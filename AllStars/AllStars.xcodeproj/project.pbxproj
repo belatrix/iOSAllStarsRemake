@@ -73,6 +73,14 @@
 		96E41EF11CE2604C0071D49E /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96E41EF01CE2604C0071D49E /* Search.storyboard */; };
 		96E41EF31CE2715B0071D49E /* EmployeeBE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E41EF21CE2715B0071D49E /* EmployeeBE.swift */; };
 		96E41EF71CE27A2A0071D49E /* EmployeeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E41EF61CE27A2A0071D49E /* EmployeeTableViewCell.swift */; };
+		B6A39C471CFDD54200DA42E3 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6A39C461CFDD54200DA42E3 /* SignUp.storyboard */; };
+		B6A39C4B1CFDDE5E00DA42E3 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A39C4A1CFDDE5E00DA42E3 /* SignUpViewController.swift */; };
+		B6A39C4D1CFDEB7A00DA42E3 /* ic_mail@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A39C4C1CFDEB7A00DA42E3 /* ic_mail@3x.png */; };
+		B6A39C4F1CFDF04800DA42E3 /* ListTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A39C4E1CFDF04800DA42E3 /* ListTagsViewController.swift */; };
+		B6A39C511CFDF80200DA42E3 /* TagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A39C501CFDF80200DA42E3 /* TagTableViewCell.swift */; };
+		B6A39C531CFE1BAE00DA42E3 /* StarKeywordBE.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A39C521CFE1BAE00DA42E3 /* StarKeywordBE.swift */; };
+		B6A39C551CFE207500DA42E3 /* iconTabBar_3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A39C541CFE207500DA42E3 /* iconTabBar_3@3x.png */; };
+		B6A39C571CFE280D00DA42E3 /* ic_user@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A39C561CFE280D00DA42E3 /* ic_user@3x.png */; };
 		D2A9355BCDB750ED285A9B5F /* Pods_AllStars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49EC9629CE6A1243877EEF8 /* Pods_AllStars.framework */; };
 /* End PBXBuildFile section */
 
@@ -174,6 +182,14 @@
 		96E41EF21CE2715B0071D49E /* EmployeeBE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeBE.swift; sourceTree = "<group>"; };
 		96E41EF61CE27A2A0071D49E /* EmployeeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeTableViewCell.swift; sourceTree = "<group>"; };
 		9A6E4D906B7D511D365AF121 /* Pods-AllStars.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AllStars.release.xcconfig"; path = "Pods/Target Support Files/Pods-AllStars/Pods-AllStars.release.xcconfig"; sourceTree = "<group>"; };
+		B6A39C461CFDD54200DA42E3 /* SignUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
+		B6A39C4A1CFDDE5E00DA42E3 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpViewController.swift; path = SignUp/SignUpViewController.swift; sourceTree = "<group>"; };
+		B6A39C4C1CFDEB7A00DA42E3 /* ic_mail@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_mail@3x.png"; sourceTree = "<group>"; };
+		B6A39C4E1CFDF04800DA42E3 /* ListTagsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTagsViewController.swift; sourceTree = "<group>"; };
+		B6A39C501CFDF80200DA42E3 /* TagTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagTableViewCell.swift; sourceTree = "<group>"; };
+		B6A39C521CFE1BAE00DA42E3 /* StarKeywordBE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarKeywordBE.swift; sourceTree = "<group>"; };
+		B6A39C541CFE207500DA42E3 /* iconTabBar_3@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconTabBar_3@3x.png"; sourceTree = "<group>"; };
+		B6A39C561CFE280D00DA42E3 /* ic_user@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_user@3x.png"; sourceTree = "<group>"; };
 		C49EC9629CE6A1243877EEF8 /* Pods_AllStars.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AllStars.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -353,6 +369,7 @@
 				96AC74EC1CDBB5E000D993E7 /* TabBar */,
 				96AC74E91CDB9F9F00D993E7 /* Profile */,
 				96AC74C91CDB762800D993E7 /* Login */,
+				B6A39C481CFDDE1600DA42E3 /* SignUp */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -361,6 +378,7 @@
 			isa = PBXGroup;
 			children = (
 				96AC74D61CDB770100D993E7 /* Login.storyboard */,
+				B6A39C461CFDD54200DA42E3 /* SignUp.storyboard */,
 				96AC74E71CDB9F4700D993E7 /* TabBar.storyboard */,
 				96AC74EA1CDB9FCA00D993E7 /* Profile.storyboard */,
 				96E41EE41CE2368F0071D49E /* Recommend.storyboard */,
@@ -381,6 +399,7 @@
 				96E41EEE1CE260220071D49E /* iconTabBar_2@3x.png */,
 				96B2A0D41CE635DD00C8F97D /* iconTabBar_1@3x.png */,
 				96E41EE61CE23E4A0071D49E /* iconTabBar_0@3x.png */,
+				B6A39C541CFE207500DA42E3 /* iconTabBar_3@3x.png */,
 				9637DE131CE2306A002AA60E /* iconAdd@3x.png */,
 				9637DE111CE21EA2002AA60E /* iconBack@3x.png */,
 				96757BEC1CE0EF2300BA216A /* iconDown@3x.png */,
@@ -388,6 +407,8 @@
 				961A318F1CDCC8E800D43012 /* placeHolderProfile@3x.png */,
 				96AC74D91CDB7C0800D993E7 /* logo@3x.png */,
 				9609D73D1CE364D300BF6036 /* textBelatrix@3x.png */,
+				B6A39C4C1CFDEB7A00DA42E3 /* ic_mail@3x.png */,
+				B6A39C561CFE280D00DA42E3 /* ic_user@3x.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -432,6 +453,7 @@
 				964823361CE4EF38007E58FE /* KeywordBE.swift */,
 				964823381CE50C82007E58FE /* RateUserBE.swift */,
 				96B2A0CF1CE6307200C8F97D /* UserRankingBE.swift */,
+				B6A39C521CFE1BAE00DA42E3 /* StarKeywordBE.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -510,6 +532,8 @@
 				96E41EEB1CE24CB40071D49E /* Logic */,
 				96E41EE91CE24AAE0071D49E /* ListEmployeeViewController.swift */,
 				96E41EF61CE27A2A0071D49E /* EmployeeTableViewCell.swift */,
+				B6A39C4E1CFDF04800DA42E3 /* ListTagsViewController.swift */,
+				B6A39C501CFDF80200DA42E3 /* TagTableViewCell.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -520,6 +544,22 @@
 				96E41EEC1CE24CC50071D49E /* SearchBC.swift */,
 			);
 			path = Logic;
+			sourceTree = "<group>";
+		};
+		B6A39C481CFDDE1600DA42E3 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				B6A39C491CFDDE2000DA42E3 /* Logic */,
+				B6A39C4A1CFDDE5E00DA42E3 /* SignUpViewController.swift */,
+			);
+			name = SignUp;
+			sourceTree = "<group>";
+		};
+		B6A39C491CFDDE2000DA42E3 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Logic;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -640,7 +680,10 @@
 				96C68EBD1CE65B2100F072AA /* iconCup_1@3x.png in Resources */,
 				96E41EF11CE2604C0071D49E /* Search.storyboard in Resources */,
 				96AC74A11CDB73AF00D993E7 /* LaunchScreen.storyboard in Resources */,
+				B6A39C471CFDD54200DA42E3 /* SignUp.storyboard in Resources */,
 				96E41EE71CE23E4A0071D49E /* iconTabBar_0@3x.png in Resources */,
+				B6A39C551CFE207500DA42E3 /* iconTabBar_3@3x.png in Resources */,
+				B6A39C571CFE280D00DA42E3 /* ic_user@3x.png in Resources */,
 				961A31901CDCC8E800D43012 /* placeHolderProfile@3x.png in Resources */,
 				96AC749E1CDB73AF00D993E7 /* Assets.xcassets in Resources */,
 				9637DE141CE2306A002AA60E /* iconAdd@3x.png in Resources */,
@@ -654,6 +697,7 @@
 				96C68EBE1CE65B2100F072AA /* iconCup_2@3x.png in Resources */,
 				9613BBFE1CE4BD9500533FAF /* OSPOptionListCell.xib in Resources */,
 				96AC74D71CDB770100D993E7 /* Login.storyboard in Resources */,
+				B6A39C4D1CFDEB7A00DA42E3 /* ic_mail@3x.png in Resources */,
 				96B2A0CC1CE6165900C8F97D /* Ranking.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -738,6 +782,8 @@
 				9638EF441CDCFBCC00D07D51 /* StarSubCategoriesCollectionViewCell.swift in Sources */,
 				9638EF421CDCF75400D07D51 /* ProfileBC.swift in Sources */,
 				96E41EEA1CE24AAE0071D49E /* ListEmployeeViewController.swift in Sources */,
+				B6A39C511CFDF80200DA42E3 /* TagTableViewCell.swift in Sources */,
+				B6A39C531CFE1BAE00DA42E3 /* StarKeywordBE.swift in Sources */,
 				9609D7441CE3A68F00BF6036 /* RecommendBC.swift in Sources */,
 				96AC74D21CDB765800D993E7 /* OSPWebSender.swift in Sources */,
 				9613BBFF1CE4BD9500533FAF /* OSPOptionListItem.m in Sources */,
@@ -751,6 +797,8 @@
 				96E41EED1CE24CC50071D49E /* SearchBC.swift in Sources */,
 				964823351CE4DDBB007E58FE /* SubCategoryBE.swift in Sources */,
 				9613BBFB1CE4BD9500533FAF /* OSPOptionList.m in Sources */,
+				B6A39C4B1CFDDE5E00DA42E3 /* SignUpViewController.swift in Sources */,
+				B6A39C4F1CFDF04800DA42E3 /* ListTagsViewController.swift in Sources */,
 				96B2A0D01CE6307200C8F97D /* UserRankingBE.swift in Sources */,
 				964823391CE50C82007E58FE /* RateUserBE.swift in Sources */,
 				96AC74EE1CDBB60200D993E7 /* CustomTabBarViewController.swift in Sources */,

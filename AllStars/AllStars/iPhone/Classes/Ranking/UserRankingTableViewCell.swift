@@ -25,7 +25,11 @@ class UserRankingTableViewCell: UITableViewCell {
         self.lblName.text = "\(self.objUser.userRanking_firstName!) \(self.objUser.userRanking_lastName!)"
         self.lblScore.text = "\(self.objUser.userRanking_value!)"
         
-        OSPImageDownloaded.descargarImagenEnURL(self.objUser.userRanking_avatar, paraImageView: self.imgAvatar, conPlaceHolder: nil)
+        if let url_photo = self.objUser.userRanking_avatar {
+            OSPImageDownloaded.descargarImagenEnURL(url_photo, paraImageView: self.imgAvatar, conPlaceHolder: nil)
+        } else {
+            self.imgAvatar.image = UIImage(named: "ic_user.png")
+        }
         
         let idCup = self.indexPath?.row > 2 ? 3 : self.indexPath?.row
         self.imgCup.image = UIImage(named: "iconCup_\(idCup!).png")

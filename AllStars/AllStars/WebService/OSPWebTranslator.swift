@@ -130,5 +130,14 @@ class OSPWebTranslator: NSObject {
         return objBE
     }
     
-
+    class func translateStarKeywordBE(objDic : NSDictionary) -> StarKeywordBE {
+        
+        let objBE = StarKeywordBE()
+        
+        objBE.keyword_name              = objDic["name"] as? String
+        objBE.keyword_pk                = NSNumber(integer: (objDic["pk"])!.integerValue)
+        objBE.keyword_num_stars         = NSNumber(integer: (objDic["num_stars"])!.integerValue)
+        
+        return objBE
+    }
 }

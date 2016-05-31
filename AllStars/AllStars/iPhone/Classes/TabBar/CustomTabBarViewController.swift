@@ -28,7 +28,7 @@ class CustomTabBarViewController: UITabBarController {
         tabBarView.layer.shadowOpacity = 0.4
         self.view.addSubview(tabBarView)
         
-        let numerTabs = 3
+        let numerTabs = 4
         let widthItemTab = UIScreen.mainScreen().bounds.size.width / CGFloat(numerTabs)
 
         for index in 0...(numerTabs - 1) {

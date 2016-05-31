@@ -90,8 +90,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
     }
     
-    
-    
+    @IBAction func clickBtnNewUser(sender: UIButton) {
+        let sb = UIStoryboard(name: "SignUp", bundle: nil)
+        let signUpViewController = sb.instantiateViewControllerWithIdentifier("SignUpViewController") as! SignUpViewController
+        self.presentViewController(signUpViewController, animated: true, completion: nil)
+    }
     
     //MARK: - Keyboard Notification
     

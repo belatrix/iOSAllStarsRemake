@@ -135,7 +135,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         self.lblScore.text      = "\(self.objUser!.user_total_score!)"
         self.lblLevel.text      = "\(self.objUser!.user_level!)"
     
-        OSPImageDownloaded.descargarImagenEnURL(self.objUser?.user_avatar, paraImageView: self.imgProfile, conPlaceHolder: self.imgProfile.image)
+        if let url_photo = self.objUser?.user_avatar {
+            OSPImageDownloaded.descargarImagenEnURL(url_photo, paraImageView: self.imgProfile, conPlaceHolder: self.imgProfile.image)
+        } else {
+            self.imgProfile.image = UIImage(named: "ic_user.png")
+        }
     }
     
     

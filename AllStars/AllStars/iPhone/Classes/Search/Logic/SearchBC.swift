@@ -10,7 +10,6 @@ import UIKit
 
 class SearchBC: NSObject {
 
-    
     class func listEmployeeToPage(page : String, withCompletion completion : (arrayEmployee : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask?{
         
         let currentUser = LoginBC.getCurrenteUserSession()
@@ -24,9 +23,6 @@ class SearchBC: NSObject {
             completion(arrayEmployee: arrayEmployee, nextPage: nextPage)
         }
     }
-    
-    
-    
     
     class func listEmployeeWithText(text : String, withCompletion completion : (arrayEmployee : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask? {
         
@@ -48,10 +44,6 @@ class SearchBC: NSObject {
         }
     }
     
-    
-    
-    
-    
     class func listEmployeeWithCompletion(completion : (arrayEmployee : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask? {
         
         let currentUser = LoginBC.getCurrenteUserSession()
@@ -64,6 +56,56 @@ class SearchBC: NSObject {
         return OSPWebModel.listEmployeeWithToken(currentUser!.user_token!) { (arrayEmployee, nextPage) in
             
             completion(arrayEmployee: arrayEmployee, nextPage: nextPage)
+        }
+    }
+    
+    class func listStarKeywordToPage(page : String, withCompletion completion : (arrayKeywords : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask? {
+        
+        let currentUser = LoginBC.getCurrenteUserSession()
+        
+        if currentUser?.user_token == nil {
+            completion(arrayKeywords: NSMutableArray(), nextPage : nil)
+            return nil
+        }
+        
+        return OSPWebModel.listStarKeywordToPage(page, withToken: currentUser!.user_token!) { (arrayEmployee, nextPage) in
+            
+            completion(arrayKeywords: arrayEmployee, nextPage: nextPage)
+        }
+    }
+    
+    class func listStarKeywordWithCompletion(completion : (arrayKeywords : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask? {
+        
+        let currentUser = LoginBC.getCurrenteUserSession()
+        
+        if currentUser?.user_token == nil {
+            completion(arrayKeywords: NSMutableArray(), nextPage : nil)
+            return nil
+        }
+        
+        return OSPWebModel.listStarKeywordWithToken(currentUser!.user_token!) { (arrayEmployee, nextPage) in
+            
+            completion(arrayKeywords: arrayEmployee, nextPage: nextPage)
+        }
+    }
+    
+    class func listStarKeywordWithText(text : String, withCompletion completion : (arrayKeywords : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask? {
+        
+        let currentUser = LoginBC.getCurrenteUserSession()
+        
+        if currentUser?.user_token == nil {
+            completion(arrayKeywords: NSMutableArray(), nextPage : nil)
+            return nil
+        }
+        
+        let newSearchText = text.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLFragmentAllowedCharacterSet())
+        if newSearchText == nil {
+            return nil
+        }
+        
+        return OSPWebModel.listStarKeywordWithText(newSearchText!, withToken: currentUser!.user_token!) { (arrayEmployee, nextPage) in
+            
+            completion(arrayKeywords: arrayEmployee, nextPage: nextPage)
         }
     }
 }
