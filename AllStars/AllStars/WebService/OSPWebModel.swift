@@ -48,11 +48,11 @@ class OSPWebModel: NSObject {
         }
     }
     
-    class func listKeyWordsWithCompletion(completion : (arrayKeywords : NSMutableArray) -> Void) {
+    class func listKeyWordsWithToken(token : String, withCompletion completion : (arrayKeywords : NSMutableArray) -> Void) {
         
         let path = "api/category/keyword/list/"
         
-        OSPWebSender.doGETToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: nil) { (objRespuesta) in
+        OSPWebSender.doGETTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
             
             let arrayResponse : NSArray? = objRespuesta.respuestaJSON as? NSArray
             let arrayKeywords = NSMutableArray()
@@ -249,6 +249,42 @@ class OSPWebModel: NSObject {
             })
             
             completion(arrayCategories: arrayCategories)
+        }
+    }
+    
+    class func listEmployeeKeywordToPage(page : String, withToken token : String, withCompletion completion : (arrayEmployee : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask{
+        
+        return OSPWebSender.doGETTokenToURL(conURL: OSPWebModelURLBase, conPath: page, conParametros: nil, conToken: token) { (objRespuesta) in
+            
+            let nextPage = (objRespuesta.respuestaJSON?["next"] as? String)?.stringByReplacingOccurrencesOfString("\(OSPWebModelURLBase)/", withString: "")
+            let arrayEmployee = NSMutableArray()
+            let arrayResponse = objRespuesta.respuestaJSON?["results"] as? NSArray
+            
+            arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
+                
+                arrayEmployee.addObject(OSPWebTranslator.translateUserTagBE(obj as! NSDictionary))
+            })
+            
+            completion(arrayEmployee: arrayEmployee, nextPage: nextPage)
+        }
+    }
+    
+    class func listEmployeeKeywordWithToken(starKeyword : StarKeywordBE, withToken token : String, withCompletion completion : (arrayEmployee : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask {
+        
+        let path = "api/star/keyword/\(starKeyword.keyword_pk)/list/"
+        
+        return OSPWebSender.doGETTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
+            
+            let nextPage = (objRespuesta.respuestaJSON?["next"] as? String)?.stringByReplacingOccurrencesOfString("\(OSPWebModelURLBase)/", withString: "")
+            let arrayEmployee = NSMutableArray()
+            let arrayResponse = objRespuesta.respuestaJSON?["results"] as? NSArray
+            
+            arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
+                
+                arrayEmployee.addObject(OSPWebTranslator.translateUserTagBE(obj as! NSDictionary))
+            })
+            
+            completion(arrayEmployee: arrayEmployee, nextPage: nextPage)
         }
     }
     

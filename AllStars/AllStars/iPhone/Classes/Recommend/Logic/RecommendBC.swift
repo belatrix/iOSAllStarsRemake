@@ -64,7 +64,14 @@ class RecommendBC: NSObject {
     
     class func listKeyWordsWithCompletion(completion : (arrayKeywords : NSMutableArray) -> Void) {
         
-        OSPWebModel.listKeyWordsWithCompletion { (arrayKeywords) in
+        let currentUser = LoginBC.getCurrenteUserSession()
+        
+        if currentUser?.user_token == nil {
+            completion(arrayKeywords: NSMutableArray())
+            return
+        }
+        
+        OSPWebModel.listKeyWordsWithToken (currentUser!.user_token!) { (arrayKeywords) in
             
             completion(arrayKeywords: arrayKeywords)
         }

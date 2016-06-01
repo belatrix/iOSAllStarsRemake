@@ -1,20 +1,21 @@
 //
-//  EmployeeTableViewCell.swift
+//  UserRankingTagTableViewCell.swift
 //  AllStars
 //
-//  Created by Kenyi Rodriguez Vergara on 10/05/16.
+//  Created by Flavio Franco Tunqui on 6/1/16.
 //  Copyright © 2016 Belatrix SF. All rights reserved.
 //
 
 import UIKit
 
-class EmployeeTableViewCell: UITableViewCell {
+class UserRankingTagTableViewCell: UITableViewCell {
 
     @IBOutlet weak var imgAvatar    : UIImageView?
     @IBOutlet weak var lblFullName  : UILabel?
-    @IBOutlet weak var lblUserName  : UILabel?
+    @IBOutlet weak var lblLevel  : UILabel?
+    @IBOutlet weak var lblNumberStars  : UILabel?
     
-    var objUserEmployee = User()
+    var objUserEmployee = UserTagBE()
     
     override func drawRect(rect: CGRect) {
         
@@ -24,7 +25,8 @@ class EmployeeTableViewCell: UITableViewCell {
     func updateData() -> Void {
         
         self.lblFullName?.text = "\(self.objUserEmployee.user_first_name!) \(self.objUserEmployee.user_last_name!)"
-        self.lblUserName?.text = "Lvl. \(self.objUserEmployee.user_level!)"
+        self.lblLevel?.text = "Lvl. \(self.objUserEmployee.user_level!)"
+        self.lblNumberStars?.text = "\(self.objUserEmployee.user_num_stars!)"
         
         if let url_photo = self.objUserEmployee.user_avatar{
             if (url_photo != "") {

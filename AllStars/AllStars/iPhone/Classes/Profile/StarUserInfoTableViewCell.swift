@@ -40,14 +40,16 @@ class StarUserInfoTableViewCell: UITableViewCell {
         let maximumLabelSize = CGSizeMake(320, CGFloat.max)
         self.constraintKeyword.constant = self.btnKeyword.sizeThatFits(maximumLabelSize).width + 12
         
-        
-        OSPImageDownloaded.descargarImagenEnURL(self.objUserQualify.userQualify_userAvatar!, paraImageView: self.imgAvatar, conPlaceHolder: nil) { (correct : Bool, nameImage : String!, image : UIImage!) in
-            
-            if nameImage == self.objUserQualify.userQualify_userAvatar!{
-                self.imgAvatar.image = image
+        if let url_photo = self.objUserQualify.userQualify_userAvatar {
+            OSPImageDownloaded.descargarImagenEnURL(url_photo, paraImageView: self.imgAvatar, conPlaceHolder: nil) { (correct : Bool, nameImage : String!, image : UIImage!) in
+                
+                if nameImage == url_photo {
+                    self.imgAvatar.image = image
+                }
             }
+        } else {
+            self.imgAvatar.image = UIImage(named: "ic_user.png")
         }
-
     }
     
     

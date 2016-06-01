@@ -309,16 +309,22 @@ class RecommendViewController: UIViewController , OSPOptionListDelegate, UITextV
         self.lblFullName?.text = "\(self.objUser!.user_first_name!) \(self.objUser!.user_last_name!)"
         self.lblUserName?.text = "\(self.objUser!.user_username!)"
         
-        OSPImageDownloaded.descargarImagenEnURL(self.objUser!.user_avatar!, paraImageView: self.imgAvatar, conPlaceHolder: self.imgAvatar.image) { (correct : Bool, nameImage : String!, image : UIImage!) in
-            
-            if nameImage == self.objUser!.user_avatar!{
-                self.imgAvatar?.image = image
+        if let url_photo = self.objUser!.user_avatar{
+            if (url_photo != "") {
+                OSPImageDownloaded.descargarImagenEnURL(url_photo, paraImageView: self.imgAvatar, conPlaceHolder: self.imgAvatar.image) { (correct : Bool, nameImage : String!, image : UIImage!) in
+                    if nameImage == url_photo {
+                        self.imgAvatar?.image = image
+                    }
+                }
+            } else {
+                self.imgAvatar!.image = UIImage(named: "ic_user.png")
             }
+        } else {
+            self.imgAvatar!.image = UIImage(named: "ic_user.png")
         }
         
         self.listAllCategories()
         self.listKeywords()
-        
     }
 
     

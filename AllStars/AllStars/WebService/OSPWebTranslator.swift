@@ -130,6 +130,21 @@ class OSPWebTranslator: NSObject {
         return objBE
     }
     
+    class func translateUserTagBE(objDic : NSDictionary) -> UserTagBE {
+        
+        let objBE = UserTagBE()
+        
+        objBE.user_pk                   = objDic["pk"] != nil ? NSNumber(integer: objDic["pk"]!.integerValue) : nil
+        objBE.user_username             = objDic["username"] != nil ? objDic["username"] as? String : ""
+        objBE.user_first_name           = objDic["first_name"] != nil ? objDic["first_name"] as? String : ""
+        objBE.user_last_name            = objDic["last_name"] != nil ? objDic["last_name"] as? String : ""
+        objBE.user_level                = objDic["level"] != nil ? NSNumber(integer: objDic["level"]!.integerValue) : nil
+        objBE.user_avatar               = (objDic["avatar"] == nil || objDic["avatar"] is NSNull) ? "" : objDic["avatar"] as? String
+        objBE.user_num_stars            = objDic["num_stars"] != nil ? NSNumber(integer: objDic["num_stars"]!.integerValue) : nil
+        
+        return objBE
+    }
+    
     class func translateStarKeywordBE(objDic : NSDictionary) -> StarKeywordBE {
         
         let objBE = StarKeywordBE()

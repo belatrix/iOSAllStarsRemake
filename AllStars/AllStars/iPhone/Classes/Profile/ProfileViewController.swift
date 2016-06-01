@@ -9,10 +9,12 @@
 import UIKit
 
 class ProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-
+    
     @IBOutlet weak var imgProfile               : UIImageView!
     @IBOutlet weak var lblNameUser              : UILabel!
+    @IBOutlet weak var lblMail                  : UILabel!
     @IBOutlet weak var lblSkype                 : UILabel!
+    @IBOutlet weak var lblLocation              : UILabel!
     @IBOutlet weak var scrollContent            : UIScrollView!
     @IBOutlet var scoreViews                    : [UIView]!
     @IBOutlet weak var lblMothScore             : UILabel!
@@ -25,20 +27,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var constraintHeightContent  : NSLayoutConstraint!
     @IBOutlet weak var btnRecommend             : UIButton?
     
-    
-    
-    
-    
-    
     var objUser : User?
     var arrayCategories = NSMutableArray()
     
-    
-    
-    
-    
     lazy var refreshControl : UIRefreshControl = {
-    
+        
         let _refreshControl = UIRefreshControl()
         _refreshControl.backgroundColor = .clearColor()
         _refreshControl.tintColor = .whiteColor()
@@ -47,26 +40,19 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         return _refreshControl
     }()
     
-    
-
     @IBAction func clickBtnBack(sender: AnyObject) {
         
         self.navigationController?.popViewControllerAnimated(true)
     }
     
-    
-    //MARK: - UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
-    
-    
+    // MARK: - UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.arrayCategories.count
     }
-    
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
@@ -80,23 +66,17 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         return cell
     }
     
-    
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         self.performSegueWithIdentifier("StarsCategoriesUserViewController", sender: self.arrayCategories[indexPath.row])
     }
-    
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
         
         return CGSizeMake(UIScreen.mainScreen().bounds.size.width, 36)
     }
     
-    
-    //MARK: - WebServices
-    
-    
-    
+    // MARK: - WebServices
     func listSubCategories() -> Void {
         
         self.acitivityCategories.startAnimating()
@@ -117,31 +97,30 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             self.constraintHeightContent.constant = newHeight > height ? CGFloat(newHeight) : CGFloat(height)
             
             self.clvCategories.reloadData()
-            
         }
     }
     
-    
-    
-    
-    //MARK: - Configuration
-    
-    
+    // MARK: - Configuration
     func updateDataUser() -> Void {
         
         self.lblNameUser.text   = "\(self.objUser!.user_first_name!) \(self.objUser!.user_last_name!)"
+        self.lblMail.text       = self.objUser!.user_email!
         self.lblSkype.text      = "Skype: \(self.objUser!.user_skype_id!)"
+        self.lblLocation.text   = "Location: \(self.objUser!.user_location_name!)"
         self.lblMothScore.text  = "\(self.objUser!.user_last_month_score!)"
         self.lblScore.text      = "\(self.objUser!.user_total_score!)"
         self.lblLevel.text      = "\(self.objUser!.user_level!)"
-    
-        if let url_photo = self.objUser?.user_avatar {
-            OSPImageDownloaded.descargarImagenEnURL(url_photo, paraImageView: self.imgProfile, conPlaceHolder: self.imgProfile.image)
+        
+        if let url_photo = self.objUser?.user_avatar{
+            if (url_photo != "") {
+                OSPImageDownloaded.descargarImagenEnURL(url_photo, paraImageView: self.imgProfile, conPlaceHolder: self.imgProfile.image)
+            } else {
+                self.imgProfile!.image = UIImage(named: "ic_user.png")
+            }
         } else {
-            self.imgProfile.image = UIImage(named: "ic_user.png")
+            self.imgProfile!.image = UIImage(named: "ic_user.png")
         }
     }
-    
     
     func updateUserInfo() -> Void {
         
@@ -161,42 +140,35 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         self.listSubCategories()
     }
     
-    
-    
     //MARK: -
-    
     override func viewWillAppear(animated: Bool) {
         
         if self.objUser == nil {
             self.objUser = LoginBC.getCurrenteUserSession()
-            
         }
-        
         
         if self.objUser != nil {
             self.updateUserInfo()
         }
-        
         
         self.btnRecommend?.alpha = CGFloat(!LoginBC.user(self.objUser, isEqualToUser: LoginBC.getCurrenteUserSession()))
         
         super.viewWillAppear(animated)
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.scrollContent.addSubview(self.refreshControl)
         OSPCrop.makeRoundView(self.imgProfile)
-
+        
         
         for view in self.scoreViews{
             view.layer.borderWidth = 1
             view.layer.borderColor = UIColor(colorLiteralRed: 230.0/255.0, green: 230.0/255.0, blue: 230.0/255.0, alpha: 1).CGColor
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -206,26 +178,19 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
-
-    
-    
-    
     
     // MARK: - Navigation
-
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "StarsCategoriesUserViewController" {
             let controller = segue.destinationViewController as! StarsCategoriesUserViewController
             controller.objStarSubCategory = sender as! StarSubCategoryBE
             controller.objUser = self.objUser!
-        
+            
         }else if segue.identifier == "RecommendViewController" {
             
             let controller = segue.destinationViewController as! RecommendViewController
             controller.objUser = self.objUser
         }
     }
-    
-
 }

@@ -81,6 +81,11 @@
 		B6A39C531CFE1BAE00DA42E3 /* StarKeywordBE.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A39C521CFE1BAE00DA42E3 /* StarKeywordBE.swift */; };
 		B6A39C551CFE207500DA42E3 /* iconTabBar_3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A39C541CFE207500DA42E3 /* iconTabBar_3@3x.png */; };
 		B6A39C571CFE280D00DA42E3 /* ic_user@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A39C561CFE280D00DA42E3 /* ic_user@3x.png */; };
+		B6EE58A61CFF4CD60027B697 /* location@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6EE58A41CFF4CD60027B697 /* location@3x.png */; };
+		B6EE58A71CFF4CD60027B697 /* logo_skype@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6EE58A51CFF4CD60027B697 /* logo_skype@3x.png */; };
+		B6EE58A91CFF883B0027B697 /* UserRankingTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EE58A81CFF883B0027B697 /* UserRankingTagViewController.swift */; };
+		B6EE58AB1CFF8AF00027B697 /* UserRankingTagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EE58AA1CFF8AF00027B697 /* UserRankingTagTableViewCell.swift */; };
+		B6EE58AD1CFF91990027B697 /* UserTagBE.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EE58AC1CFF91990027B697 /* UserTagBE.swift */; };
 		D2A9355BCDB750ED285A9B5F /* Pods_AllStars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49EC9629CE6A1243877EEF8 /* Pods_AllStars.framework */; };
 /* End PBXBuildFile section */
 
@@ -190,6 +195,11 @@
 		B6A39C521CFE1BAE00DA42E3 /* StarKeywordBE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarKeywordBE.swift; sourceTree = "<group>"; };
 		B6A39C541CFE207500DA42E3 /* iconTabBar_3@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconTabBar_3@3x.png"; sourceTree = "<group>"; };
 		B6A39C561CFE280D00DA42E3 /* ic_user@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_user@3x.png"; sourceTree = "<group>"; };
+		B6EE58A41CFF4CD60027B697 /* location@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location@3x.png"; sourceTree = "<group>"; };
+		B6EE58A51CFF4CD60027B697 /* logo_skype@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_skype@3x.png"; sourceTree = "<group>"; };
+		B6EE58A81CFF883B0027B697 /* UserRankingTagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRankingTagViewController.swift; sourceTree = "<group>"; };
+		B6EE58AA1CFF8AF00027B697 /* UserRankingTagTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRankingTagTableViewCell.swift; sourceTree = "<group>"; };
+		B6EE58AC1CFF91990027B697 /* UserTagBE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTagBE.swift; sourceTree = "<group>"; };
 		C49EC9629CE6A1243877EEF8 /* Pods_AllStars.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AllStars.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -409,6 +419,8 @@
 				9609D73D1CE364D300BF6036 /* textBelatrix@3x.png */,
 				B6A39C4C1CFDEB7A00DA42E3 /* ic_mail@3x.png */,
 				B6A39C561CFE280D00DA42E3 /* ic_user@3x.png */,
+				B6EE58A41CFF4CD60027B697 /* location@3x.png */,
+				B6EE58A51CFF4CD60027B697 /* logo_skype@3x.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -447,6 +459,7 @@
 				96AC74DC1CDB7D5E00D993E7 /* User.swift */,
 				9638EF3E1CDCF52800D07D51 /* StarSubCategoryBE.swift */,
 				96757BE61CE0DD5F00BA216A /* UserQualifyBE.swift */,
+				B6EE58AC1CFF91990027B697 /* UserTagBE.swift */,
 				96E41EF21CE2715B0071D49E /* EmployeeBE.swift */,
 				9609D7451CE3A9A800BF6036 /* CategoryBE.swift */,
 				964823341CE4DDBB007E58FE /* SubCategoryBE.swift */,
@@ -514,6 +527,8 @@
 				96B2A0CD1CE6167F00C8F97D /* RankingViewController.swift */,
 				966BA8DC1CEA091900C240D7 /* UserRankingViewController.swift */,
 				96B2A0D61CE63AD800C8F97D /* UserRankingTableViewCell.swift */,
+				B6EE58A81CFF883B0027B697 /* UserRankingTagViewController.swift */,
+				B6EE58AA1CFF8AF00027B697 /* UserRankingTagTableViewCell.swift */,
 			);
 			path = Ranking;
 			sourceTree = "<group>";
@@ -680,7 +695,9 @@
 				96C68EBD1CE65B2100F072AA /* iconCup_1@3x.png in Resources */,
 				96E41EF11CE2604C0071D49E /* Search.storyboard in Resources */,
 				96AC74A11CDB73AF00D993E7 /* LaunchScreen.storyboard in Resources */,
+				B6EE58A71CFF4CD60027B697 /* logo_skype@3x.png in Resources */,
 				B6A39C471CFDD54200DA42E3 /* SignUp.storyboard in Resources */,
+				B6EE58A61CFF4CD60027B697 /* location@3x.png in Resources */,
 				96E41EE71CE23E4A0071D49E /* iconTabBar_0@3x.png in Resources */,
 				B6A39C551CFE207500DA42E3 /* iconTabBar_3@3x.png in Resources */,
 				B6A39C571CFE280D00DA42E3 /* ic_user@3x.png in Resources */,
@@ -774,6 +791,8 @@
 				96AC74D51CDB76F800D993E7 /* LoginViewController.swift in Sources */,
 				96AC74E61CDB9A4A00D993E7 /* OSPUserAlerts.swift in Sources */,
 				96AC74971CDB73AF00D993E7 /* AppDelegate.swift in Sources */,
+				B6EE58A91CFF883B0027B697 /* UserRankingTagViewController.swift in Sources */,
+				B6EE58AD1CFF91990027B697 /* UserTagBE.swift in Sources */,
 				96757BEB1CE0E1DB00BA216A /* OSPDateManager.m in Sources */,
 				96B2A0D71CE63AD800C8F97D /* UserRankingTableViewCell.swift in Sources */,
 				96AC74D01CDB765800D993E7 /* OSPWebModel.swift in Sources */,
@@ -790,6 +809,7 @@
 				966BA8DD1CEA091900C240D7 /* UserRankingViewController.swift in Sources */,
 				96B2A0D31CE632B300C8F97D /* RankingBC.swift in Sources */,
 				96757BE31CE0CA6000BA216A /* StarsCategoriesUserViewController.swift in Sources */,
+				B6EE58AB1CFF8AF00027B697 /* UserRankingTagTableViewCell.swift in Sources */,
 				96AC74D31CDB765800D993E7 /* OSPWebTranslator.swift in Sources */,
 				96AC74F01CDBB65400D993E7 /* ProfileViewController.swift in Sources */,
 				9609D7461CE3A9A800BF6036 /* CategoryBE.swift in Sources */,
