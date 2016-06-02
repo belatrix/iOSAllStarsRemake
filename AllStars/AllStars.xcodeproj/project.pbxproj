@@ -73,6 +73,10 @@
 		96E41EF11CE2604C0071D49E /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96E41EF01CE2604C0071D49E /* Search.storyboard */; };
 		96E41EF31CE2715B0071D49E /* EmployeeBE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E41EF21CE2715B0071D49E /* EmployeeBE.swift */; };
 		96E41EF71CE27A2A0071D49E /* EmployeeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E41EF61CE27A2A0071D49E /* EmployeeTableViewCell.swift */; };
+		B66FBC771D00C7E600C058F7 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66FBC761D00C7E600C058F7 /* EditProfileViewController.swift */; };
+		B66FBC791D00CB9200C058F7 /* camera@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B66FBC781D00CB9200C058F7 /* camera@3x.png */; };
+		B66FBC7B1D00D0FD00C058F7 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66FBC7A1D00D0FD00C058F7 /* LocationTableViewCell.swift */; };
+		B66FBC7D1D00D1E100C058F7 /* LocationBE.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66FBC7C1D00D1E100C058F7 /* LocationBE.swift */; };
 		B6A39C471CFDD54200DA42E3 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6A39C461CFDD54200DA42E3 /* SignUp.storyboard */; };
 		B6A39C4B1CFDDE5E00DA42E3 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A39C4A1CFDDE5E00DA42E3 /* SignUpViewController.swift */; };
 		B6A39C4D1CFDEB7A00DA42E3 /* ic_mail@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A39C4C1CFDEB7A00DA42E3 /* ic_mail@3x.png */; };
@@ -187,6 +191,10 @@
 		96E41EF21CE2715B0071D49E /* EmployeeBE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeBE.swift; sourceTree = "<group>"; };
 		96E41EF61CE27A2A0071D49E /* EmployeeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeTableViewCell.swift; sourceTree = "<group>"; };
 		9A6E4D906B7D511D365AF121 /* Pods-AllStars.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AllStars.release.xcconfig"; path = "Pods/Target Support Files/Pods-AllStars/Pods-AllStars.release.xcconfig"; sourceTree = "<group>"; };
+		B66FBC761D00C7E600C058F7 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		B66FBC781D00CB9200C058F7 /* camera@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera@3x.png"; sourceTree = "<group>"; };
+		B66FBC7A1D00D0FD00C058F7 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
+		B66FBC7C1D00D1E100C058F7 /* LocationBE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationBE.swift; sourceTree = "<group>"; };
 		B6A39C461CFDD54200DA42E3 /* SignUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		B6A39C4A1CFDDE5E00DA42E3 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpViewController.swift; path = SignUp/SignUpViewController.swift; sourceTree = "<group>"; };
 		B6A39C4C1CFDEB7A00DA42E3 /* ic_mail@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_mail@3x.png"; sourceTree = "<group>"; };
@@ -421,6 +429,7 @@
 				B6A39C561CFE280D00DA42E3 /* ic_user@3x.png */,
 				B6EE58A41CFF4CD60027B697 /* location@3x.png */,
 				B6EE58A51CFF4CD60027B697 /* logo_skype@3x.png */,
+				B66FBC781D00CB9200C058F7 /* camera@3x.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -467,6 +476,7 @@
 				964823381CE50C82007E58FE /* RateUserBE.swift */,
 				96B2A0CF1CE6307200C8F97D /* UserRankingBE.swift */,
 				B6A39C521CFE1BAE00DA42E3 /* StarKeywordBE.swift */,
+				B66FBC7C1D00D1E100C058F7 /* LocationBE.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -499,6 +509,8 @@
 				9638EF431CDCFBCC00D07D51 /* StarSubCategoriesCollectionViewCell.swift */,
 				96757BE21CE0CA6000BA216A /* StarsCategoriesUserViewController.swift */,
 				96757BE41CE0D56E00BA216A /* StarUserInfoTableViewCell.swift */,
+				B66FBC761D00C7E600C058F7 /* EditProfileViewController.swift */,
+				B66FBC7A1D00D0FD00C058F7 /* LocationTableViewCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -692,6 +704,7 @@
 				96C68EBF1CE65B2100F072AA /* iconCup_3@3x.png in Resources */,
 				96AC74E81CDB9F4700D993E7 /* TabBar.storyboard in Resources */,
 				96C68EBC1CE65B2100F072AA /* iconCup_0@3x.png in Resources */,
+				B66FBC791D00CB9200C058F7 /* camera@3x.png in Resources */,
 				96C68EBD1CE65B2100F072AA /* iconCup_1@3x.png in Resources */,
 				96E41EF11CE2604C0071D49E /* Search.storyboard in Resources */,
 				96AC74A11CDB73AF00D993E7 /* LaunchScreen.storyboard in Resources */,
@@ -798,6 +811,7 @@
 				96AC74D01CDB765800D993E7 /* OSPWebModel.swift in Sources */,
 				96757BE51CE0D56E00BA216A /* StarUserInfoTableViewCell.swift in Sources */,
 				9613BBFD1CE4BD9500533FAF /* OSPOptionListCell.m in Sources */,
+				B66FBC771D00C7E600C058F7 /* EditProfileViewController.swift in Sources */,
 				9638EF441CDCFBCC00D07D51 /* StarSubCategoriesCollectionViewCell.swift in Sources */,
 				9638EF421CDCF75400D07D51 /* ProfileBC.swift in Sources */,
 				96E41EEA1CE24AAE0071D49E /* ListEmployeeViewController.swift in Sources */,
@@ -814,6 +828,7 @@
 				96AC74F01CDBB65400D993E7 /* ProfileViewController.swift in Sources */,
 				9609D7461CE3A9A800BF6036 /* CategoryBE.swift in Sources */,
 				96757BE71CE0DD5F00BA216A /* UserQualifyBE.swift in Sources */,
+				B66FBC7D1D00D1E100C058F7 /* LocationBE.swift in Sources */,
 				96E41EED1CE24CC50071D49E /* SearchBC.swift in Sources */,
 				964823351CE4DDBB007E58FE /* SubCategoryBE.swift in Sources */,
 				9613BBFB1CE4BD9500533FAF /* OSPOptionList.m in Sources */,
@@ -832,6 +847,7 @@
 				9638EF3F1CDCF52800D07D51 /* StarSubCategoryBE.swift in Sources */,
 				9609D7491CE3AE5400BF6036 /* OSPCrop.swift in Sources */,
 				96E41EF31CE2715B0071D49E /* EmployeeBE.swift in Sources */,
+				B66FBC7B1D00D0FD00C058F7 /* LocationTableViewCell.swift in Sources */,
 				96AC74DD1CDB7D5E00D993E7 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

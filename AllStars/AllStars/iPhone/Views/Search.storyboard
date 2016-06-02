@@ -176,13 +176,13 @@
             </objects>
             <point key="canvasLocation" x="281" y="401"/>
         </scene>
-        <!--ProfileViewController2-->
+        <!--ProfileViewController-->
         <scene sceneID="hPJ-TS-bgA">
             <objects>
-                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileViewController2" id="UaW-dN-oFn" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileViewController" id="UaW-dN-oFn" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bEs-tZ-Fq7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="655.5" y="511"/>
+            <point key="canvasLocation" x="653" y="401"/>
         </scene>
         <!--List Tags View Controller-->
         <scene sceneID="y8n-vc-TCQ">
@@ -329,11 +329,20 @@
                         <outlet property="tableTags" destination="hGv-uh-foX" id="HBQ-pO-SZl"/>
                         <outlet property="viewHeader" destination="5FL-3U-LSi" id="Bak-cm-TWD"/>
                         <outlet property="viewLoading" destination="e3d-tA-Kbq" id="XbT-zs-4c7"/>
+                        <segue destination="nPf-Mw-qcu" kind="show" identifier="UserRankingTagViewController" id="3xD-Ov-JRw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="il3-Z1-dxO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="281" y="1055"/>
+        </scene>
+        <!--UserRankingTagViewController-->
+        <scene sceneID="Pgv-yg-9TB">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Ranking" referencedIdentifier="UserRankingTagViewController" id="nPf-Mw-qcu" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uT0-ze-Vsn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="653.5" y="1055"/>
         </scene>
     </scenes>
     <resources>

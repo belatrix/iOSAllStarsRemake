@@ -67,7 +67,7 @@ class ProfileBC: NSObject {
     class func listStarSubCategoriesToUser(user : User, withCompletion completion : (arrayCategories : NSMutableArray) -> Void) {
         
         let currentUser = LoginBC.getCurrenteUserSession()
-
+        
         if currentUser?.user_token == nil {
             completion(arrayCategories: NSMutableArray())
             return
@@ -77,5 +77,21 @@ class ProfileBC: NSObject {
             
             completion(arrayCategories: arrayCategories)
         }
+    }
+    
+    class func listLocationsWithCompletion(completion : (arrayLocations : NSMutableArray) -> Void) {
+        
+        let currentUser = LoginBC.getCurrenteUserSession()
+        
+        if currentUser?.user_token == nil {
+            completion(arrayLocations: NSMutableArray())
+            return
+        }
+        
+        OSPWebModel.listLocationsWithToken (currentUser!.user_token!) { (arrayLocations) in
+            
+            completion(arrayLocations: arrayLocations)
+        }
+        
     }
 }

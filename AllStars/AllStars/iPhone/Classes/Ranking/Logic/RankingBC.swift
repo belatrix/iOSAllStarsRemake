@@ -85,5 +85,33 @@ class RankingBC: NSObject {
         }
     }
     
+    class func listStarKeywordToPage(page : String, withCompletion completion : (arrayUsers : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask? {
+        
+        let currentUser = LoginBC.getCurrenteUserSession()
+        
+        if currentUser?.user_token == nil {
+            completion(arrayUsers: NSMutableArray(), nextPage : nil)
+            return nil
+        }
+        
+        return OSPWebModel.listEmployeeKeywordToPage(page, withToken: currentUser!.user_token!) { (arrayEmployee, nextPage) in
+            
+            completion(arrayUsers: arrayEmployee, nextPage: nextPage)
+        }
+    }
     
+    class func listStarKeywordWithCompletion(starKeyword : StarKeywordBE, withCompletion completion : (arrayUsers : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask? {
+        
+        let currentUser = LoginBC.getCurrenteUserSession()
+        
+        if currentUser?.user_token == nil {
+            completion(arrayUsers: NSMutableArray(), nextPage : nil)
+            return nil
+        }
+        
+        return OSPWebModel.listEmployeeKeywordWithToken(starKeyword, withToken: currentUser!.user_token!) { (arrayEmployee, nextPage) in
+            
+            completion(arrayUsers: arrayEmployee, nextPage: nextPage)
+        }
+    }
 }

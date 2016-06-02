@@ -109,7 +109,7 @@
                                     <constraint firstAttribute="height" constant="44" id="PcC-JB-7MC"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" image="iconBack.png"/>
+                                <state key="normal" image="iconDown.png"/>
                                 <connections>
                                     <action selector="btnBackTUI:" destination="aAJ-Tt-Eoj" eventType="touchUpInside" id="KIm-am-a5x"/>
                                 </connections>
@@ -151,6 +151,6 @@
     </scenes>
     <resources>
         <image name="ic_mail.png" width="85" height="85"/>
-        <image name="iconBack.png" width="15" height="15"/>
+        <image name="iconDown.png" width="15" height="15"/>
     </resources>
 </document>

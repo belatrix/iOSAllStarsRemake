@@ -155,4 +155,15 @@ class OSPWebTranslator: NSObject {
         
         return objBE
     }
+    
+    class func translateLocationBE(objDic : NSDictionary) -> LocationBE {
+        
+        let objBE = LocationBE()
+        
+        objBE.location_pk    = NSNumber(integer: (objDic["pk"])!.integerValue)
+        objBE.location_name  = objDic["name"] as? String
+        objBE.location_icon  = objDic["icon"] as? String
+        
+        return objBE
+    }
 }

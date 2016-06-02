@@ -232,8 +232,7 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
         if segue.identifier == "ProfileViewController" {
             let controller = segue.destinationViewController as! ProfileViewController
             controller.objUser = sender as? User
+            controller.backEnable = true
         }
     }
-    
-
 }

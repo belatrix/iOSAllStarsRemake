@@ -25,9 +25,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var lblErrorMessage          : UILabel!
     @IBOutlet weak var acitivityCategories      : UIActivityIndicatorView!
     @IBOutlet weak var constraintHeightContent  : NSLayoutConstraint!
-    @IBOutlet weak var btnRecommend             : UIButton?
+    @IBOutlet weak var btnAction                : UIButton?
+    @IBOutlet weak var btnBack                  : UIButton!
     
     var objUser : User?
+    var backEnable : Bool?
     var arrayCategories = NSMutableArray()
     
     lazy var refreshControl : UIRefreshControl = {
@@ -40,8 +42,16 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         return _refreshControl
     }()
     
+    // MARK: - IBActions
+    @IBAction func btnActionProfileTUI(sender: UIButton) {
+        if (LoginBC.user(self.objUser, isEqualToUser: LoginBC.getCurrenteUserSession())) {
+            self.performSegueWithIdentifier("EditProfileViewController", sender: objUser)
+        } else {
+            self.performSegueWithIdentifier("RecommendViewController", sender: objUser)
+        }
+    }
+    
     @IBAction func clickBtnBack(sender: AnyObject) {
-        
         self.navigationController?.popViewControllerAnimated(true)
     }
     
@@ -87,7 +97,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             
             self.arrayCategories = arrayCategories
             
-            
             self.lblErrorMessage.text = "Categories no availables"
             self.viewLoading.alpha = CGFloat(!Bool(self.arrayCategories.count))
             
@@ -104,12 +113,30 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     func updateDataUser() -> Void {
         
         self.lblNameUser.text   = "\(self.objUser!.user_first_name!) \(self.objUser!.user_last_name!)"
-        self.lblMail.text       = self.objUser!.user_email!
-        self.lblSkype.text      = "Skype: \(self.objUser!.user_skype_id!)"
-        self.lblLocation.text   = "Location: \(self.objUser!.user_location_name!)"
-        self.lblMothScore.text  = "\(self.objUser!.user_last_month_score!)"
-        self.lblScore.text      = "\(self.objUser!.user_total_score!)"
-        self.lblLevel.text      = "\(self.objUser!.user_level!)"
+        
+        if let mail = self.objUser!.user_email {
+            self.lblMail.text = mail
+        }
+        
+        if let skype = self.objUser!.user_skype_id {
+            self.lblSkype.text = "Skype: \(skype)"
+        }
+        
+        if let location = self.objUser!.user_location_name {
+            self.lblLocation.text = "Location: \(location)"
+        }
+        
+        if let monthScore = self.objUser!.user_last_month_score {
+            self.lblMothScore.text = "\(monthScore)"
+        }
+        
+        if let score = self.objUser!.user_total_score {
+            self.lblScore.text = "\(score)"
+        }
+        
+        if let level = self.objUser!.user_level {
+            self.lblLevel.text = "\(level)"
+        }
         
         if let url_photo = self.objUser?.user_avatar{
             if (url_photo != "") {
@@ -123,7 +150,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     func updateUserInfo() -> Void {
-        
         self.updateDataUser()
         
         ProfileBC.getInfoToUser(self.objUser!) { (user) in
@@ -151,7 +177,17 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             self.updateUserInfo()
         }
         
-        self.btnRecommend?.alpha = CGFloat(!LoginBC.user(self.objUser, isEqualToUser: LoginBC.getCurrenteUserSession()))
+        if (LoginBC.user(self.objUser, isEqualToUser: LoginBC.getCurrenteUserSession())) {
+            self.btnAction?.setTitle("Edit", forState: .Normal)
+        } else {
+            self.btnAction?.setTitle("Recommend", forState: .Normal)
+        }
+        
+        if backEnable != nil {
+            self.btnBack.hidden = false
+        } else {
+            self.btnBack.hidden = true
+        }
         
         super.viewWillAppear(animated)
     }
@@ -161,7 +197,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         self.scrollContent.addSubview(self.refreshControl)
         OSPCrop.makeRoundView(self.imgProfile)
-        
         
         for view in self.scoreViews{
             view.layer.borderWidth = 1
@@ -174,22 +209,24 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         // Dispose of any resources that can be recreated.
     }
     
-    
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
     
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
         if segue.identifier == "StarsCategoriesUserViewController" {
             let controller = segue.destinationViewController as! StarsCategoriesUserViewController
             controller.objStarSubCategory = sender as! StarSubCategoryBE
             controller.objUser = self.objUser!
             
-        }else if segue.identifier == "RecommendViewController" {
+        } else if segue.identifier == "RecommendViewController" {
             
             let controller = segue.destinationViewController as! RecommendViewController
+            controller.objUser = self.objUser
+        } else if segue.identifier == "EditProfileViewController" {
+            
+            let controller = segue.destinationViewController as! EditProfileViewController
             controller.objUser = self.objUser
         }
     }

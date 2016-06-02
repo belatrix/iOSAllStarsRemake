@@ -102,6 +102,9 @@
                                         <rect key="frame" x="0.0" y="20" width="29" height="44"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal" image="iconBack.png"/>
+                                        <connections>
+                                            <action selector="btnBackTUI:" destination="Eck-1B-lgR" eventType="touchUpInside" id="7Mc-iL-jCC"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Dr-3k-ypW">
                                         <rect key="frame" x="40" y="20" width="241" height="44"/>
@@ -124,7 +127,7 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="UserRankingTagTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserRankingTagTableViewCell" rowHeight="59" id="6xm-Ht-qTe" customClass="UserRankingTagTableViewCell" customModule="AllStars" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserRankingTagTableViewCell" rowHeight="59" id="6xm-Ht-qTe" customClass="UserRankingTagTableViewCell" customModule="AllStars" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="59"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6xm-Ht-qTe" id="GMQ-6Y-b76">
@@ -197,11 +200,11 @@
                                     <outlet property="delegate" destination="Eck-1B-lgR" id="Gyw-21-p4D"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m0S-0y-FWT">
-                                <rect key="frame" x="0.0" y="204" width="320" height="364"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m0S-0y-FWT">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Loading employees" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="grl-s5-A99">
-                                        <rect key="frame" x="41" y="-121" width="239" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading employees" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="grl-s5-A99">
+                                        <rect key="frame" x="41" y="19" width="239" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="mUh-hs-a9j"/>
                                         </constraints>
@@ -209,8 +212,8 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="dhw-Oe-oL1">
-                                        <rect key="frame" x="150" y="-92" width="20" height="20"/>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="dhw-Oe-oL1">
+                                        <rect key="frame" x="150" y="48" width="20" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="D3M-Cx-RlY"/>
                                             <constraint firstAttribute="width" constant="20" id="uwz-Cq-Z6d"/>
@@ -244,10 +247,26 @@
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="acitivityEmployees" destination="dhw-Oe-oL1" id="zox-ge-ULk"/>
+                        <outlet property="lblErrorMessage" destination="grl-s5-A99" id="13o-Cx-c7I"/>
+                        <outlet property="lblTitle" destination="0Dr-3k-ypW" id="mEs-kZ-kDV"/>
+                        <outlet property="tableUsers" destination="Ohy-8x-CYd" id="IaV-nY-VO9"/>
+                        <outlet property="viewLoading" destination="m0S-0y-FWT" id="oPe-84-QYR"/>
+                        <segue destination="cDR-Gg-GV2" kind="show" identifier="ProfileViewControllerFromRankingTag" id="kxG-bd-Du9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FVn-qX-0y1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="666" y="1136"/>
+        </scene>
+        <!--ProfileViewController-->
+        <scene sceneID="7qM-bK-RXg">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileViewController" id="cDR-Gg-GV2" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r9i-Fl-YeI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1021.5" y="1136"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="e9e-Op-uDW">

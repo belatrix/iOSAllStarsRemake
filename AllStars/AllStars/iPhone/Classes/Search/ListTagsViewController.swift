@@ -92,11 +92,11 @@ class ListTagsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-//        let cell = tableView.cellForRowAtIndexPath(indexPath)
-//        cell?.setSelected(false, animated: true)
-//        
-//        let objBE = self.arrayTags[indexPath.row]
-//        self.performSegueWithIdentifier("ProfileViewController", sender: objBE)
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        cell?.setSelected(false, animated: true)
+        
+        let objBE = self.arrayTags[indexPath.row]
+        self.performSegueWithIdentifier("UserRankingTagViewController", sender: objBE)
     }
     
     // MARK: - WebServices
@@ -180,19 +180,18 @@ class ListTagsViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    // MARK: -
+    // MARK: - Style
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
     
     // MARK: - Navigation
-    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        
-//        if segue.identifier == "ProfileViewController" {
-//            let controller = segue.destinationViewController as! ProfileViewController
-//            controller.objUser = sender as? User
-//        }
-//    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "UserRankingTagViewController" {
+            let controller = segue.destinationViewController as! UserRankingTagViewController
+            controller.objStarKeyword = sender as? StarKeywordBE
+        }
+    }
 }
