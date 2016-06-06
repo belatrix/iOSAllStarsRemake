@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditProfileViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
+class EditProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
     @IBOutlet weak var imgUser: UIImageView!
     @IBOutlet weak var edtFirstName: UITextField!
@@ -20,6 +20,12 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITableV
     @IBOutlet weak var viewLoading              : UIView!
     @IBOutlet weak var lblErrorMessage          : UILabel!
     @IBOutlet weak var activityLocations      : UIActivityIndicatorView!
+    @IBOutlet weak var activityUpdating: UIActivityIndicatorView!
+    
+    // photo
+    var imagePickerController = UIImagePickerController()
+    var hasImage = false
+    var selectedImage  = UIImage()
     
     var objUser : User?
     var arrayLocations = NSMutableArray()
@@ -27,12 +33,19 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        OSPCrop.makeRoundView(self.imgUser)
+        
+        // imagePicker
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+        
         self.updateUserInfo()
     }
     
     // MARK: - IBActions
     @IBAction func btnUploadPhotoTIU(sender: UIButton) {
-        
+        let actionSheet = UIActionSheet(title: "Upload from", delegate: self, cancelButtonTitle: "Cancel", destructiveButtonTitle: nil, otherButtonTitles: "Camera", "Gallery")
+        actionSheet.showInView(self.view)
     }
     
     @IBAction func btnCancelTUI(sender: UIButton) {
@@ -40,7 +53,19 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITableV
     }
     
     @IBAction func btnDoneTUI(sender: UIButton) {
+        self.view.endEditing(true)
         
+        updateDataUser()
+    }
+    
+    @IBAction func textFieldVCh(sender: UITextField) {
+        if (sender == edtFirstName) {
+            objUser!.user_first_name = edtFirstName.text
+        } else if (sender == edtLastName) {
+            objUser!.user_last_name = edtLastName.text
+        } else if (sender == edtSkypeId) {
+            objUser!.user_skype_id = edtSkypeId.text
+        }
     }
     
     // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -57,23 +82,64 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITableV
         let cellIdentifier = "LocationTableViewCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! LocationTableViewCell
         
-//        cell.objStarKeywordBE = self.arrayTags[indexPath.row] as! StarKeywordBE
-//        cell.updateData()
+        let locationBE = self.arrayLocations[indexPath.row] as! LocationBE
+        
+        cell.objLocationBE = locationBE
+        cell.updateData()
+        
+        if (locationBE.location_pk == objUser!.user_location_id) {
+            cell.accessoryType = .Checkmark
+        } else {
+            cell.accessoryType = .None
+        }
         
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-//        let cell = tableView.cellForRowAtIndexPath(indexPath)
-//        cell?.setSelected(false, animated: true)
-//        
-//        let objBE = self.arrayTags[indexPath.row]
-//        self.performSegueWithIdentifier("UserRankingTagViewController", sender: objBE)
+        let locationBE = self.arrayLocations[indexPath.row] as! LocationBE
+        
+        objUser!.user_location_id = locationBE.location_pk
+        
+        tableView.reloadData()
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 36
+    }
+    
+    // MARK: - UIActionSheetDelegate
+    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
+        switch buttonIndex{
+        case 0:
+            break
+        case 1:
+            imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
+            self.presentViewController(imagePickerController, animated: true, completion: { imageP in })
+            break
+        case 2:
+            imagePickerController.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
+            self.presentViewController(imagePickerController, animated: true, completion: { imageP in })
+            break
+        default:
+            break
+        }
+    }
+    
+    // MARK: - UIImagePickerController delegates
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            hasImage = true
+            
+            selectedImage = pickedImage
+            
+            self.imgUser.image = selectedImage
+        } else {
+            hasImage = false
+        }
+        
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: - WebServices
@@ -99,50 +165,63 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITableV
         }
     }
     
-    // MARK: - Configuration
     func updateDataUser() -> Void {
+        self.view.userInteractionEnabled = false
+        self.activityUpdating.startAnimating()
         
-//        self.lblNameUser.text   = "\(self.objUser!.user_first_name!) \(self.objUser!.user_last_name!)"
-//        
-//        if let mail = self.objUser!.user_email {
-//            self.lblMail.text = mail
-//        }
-//        
-//        if let skype = self.objUser!.user_skype_id {
-//            self.lblSkype.text = "Skype: \(skype)"
-//        }
-//        
-//        if let location = self.objUser!.user_location_name {
-//            self.lblLocation.text = "Location: \(location)"
-//        }
-//        
-//        if let monthScore = self.objUser!.user_last_month_score {
-//            self.lblMothScore.text = "\(monthScore)"
-//        }
-//        
-//        if let score = self.objUser!.user_total_score {
-//            self.lblScore.text = "\(score)"
-//        }
-//        
-//        if let level = self.objUser!.user_level {
-//            self.lblLevel.text = "\(level)"
-//        }
-//        
-//        if let url_photo = self.objUser?.user_avatar{
-//            if (url_photo != "") {
-//                OSPImageDownloaded.descargarImagenEnURL(url_photo, paraImageView: self.imgProfile, conPlaceHolder: self.imgProfile.image)
-//            } else {
-//                self.imgProfile!.image = UIImage(named: "ic_user.png")
-//            }
-//        } else {
-//            self.imgProfile!.image = UIImage(named: "ic_user.png")
-//        }
+        ProfileBC.updateInfoToUser(objUser!, withController: self, withCompletion: {(isCorrect) in
+            
+            self.view.userInteractionEnabled = true
+            self.activityUpdating.stopAnimating()
+            
+            if (isCorrect == true) {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+        })
+    }
+    
+    // MARK: - Configuration
+    func updateDataUserUI() -> Void {
+        
+        if let firstName = self.objUser?.user_first_name {
+            edtFirstName.text = firstName
+        }
+        
+        if let lastName = self.objUser?.user_last_name {
+            edtLastName.text = lastName
+        }
+        
+        if let skypeId = self.objUser?.user_skype_id {
+            edtSkypeId.text = skypeId
+        }
+        
+        if let url_photo = self.objUser?.user_avatar{
+            if (url_photo != "") {
+                OSPImageDownloaded.descargarImagenEnURL(url_photo, paraImageView: self.imgUser, conPlaceHolder: self.imgUser.image)
+            } else {
+                self.imgUser!.image = UIImage(named: "ic_user.png")
+            }
+        } else {
+            self.imgUser!.image = UIImage(named: "ic_user.png")
+        }
     }
     
     func updateUserInfo() -> Void {
-        self.updateDataUser()
+        self.updateDataUserUI()
         
         self.listLocations()
+    }
+    
+    // MARK: - UITextField delegates
+    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+        if (textField == edtFirstName) {
+            edtLastName.becomeFirstResponder()
+        } else if (textField == edtLastName) {
+            edtSkypeId.becomeFirstResponder()
+        }
+        
+        textField.resignFirstResponder()
+        return true
     }
     
     // MARK: - Style

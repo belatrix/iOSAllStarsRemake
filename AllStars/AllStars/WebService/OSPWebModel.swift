@@ -325,6 +325,22 @@ class OSPWebModel: NSObject {
         }
     }
     
+    class func updateUser(user : User, withToken token : String, withCompletion completion : (isCorrect : Bool) -> Void) {
+        
+        let userID = user.user_id != nil ? user.user_id : user.user_pk
+        let path = "api/employee/\(userID!)/update/"
+        
+        let dic : NSDictionary = ["first_name" : user.user_first_name!,
+                                  "last_name" : user.user_last_name!,
+                                  "skype_id" : user.user_skype_id!,
+                                  "location" : user.user_location_id!]
+        
+        OSPWebSender.doPATCHTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: dic, conToken: token) { (objRespuesta) in
+            
+            completion(isCorrect: objRespuesta.respuestaJSON?["pk"] != nil ? true : false)
+        }
+    }
+    
     class func loginWithUser(user : User, withCompletion completion : (user : User?, messageError : String?) -> Void) {
     
         let dic : NSDictionary = ["username" : user.user_username!,

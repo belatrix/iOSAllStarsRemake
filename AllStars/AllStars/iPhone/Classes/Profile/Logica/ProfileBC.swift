@@ -94,4 +94,49 @@ class ProfileBC: NSObject {
         }
         
     }
+    
+    class func updateInfoToUser(user : User, withController controller: UIViewController, withCompletion completion : (isCorrect : Bool) -> Void) {
+        
+        let objCurrentUser = LoginBC.getCurrenteUserSession()
+        
+        if objCurrentUser!.user_token == nil {
+            OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "Problems with your conecction. Try again please.", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
+            completion(isCorrect: false)
+            return
+        }
+        
+        if (user.user_first_name == nil || user.user_first_name == "") {
+            OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "First Name must not be empty", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
+            completion(isCorrect: false)
+            return
+        }
+        
+        if (user.user_last_name == nil || user.user_last_name == "") {
+            OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "Last Name must not be empty", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
+            completion(isCorrect: false)
+            return
+        }
+        
+        
+        if (user.user_skype_id == nil || user.user_skype_id == "") {
+            OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "Skipe Id must not be empty", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
+            completion(isCorrect: false)
+            return
+        }
+        
+        if (user.user_location_id == nil) {
+            OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "Must select a location", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
+            completion(isCorrect: false)
+            return
+        }
+        
+        OSPWebModel.updateUser(user, withToken: objCurrentUser!.user_token!) { (isCorrect) in
+            
+            if (isCorrect == false) {
+                OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "Problems with your conecction. Try again please.", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
+            }
+            
+            completion(isCorrect: isCorrect)
+        }
+    }
 }

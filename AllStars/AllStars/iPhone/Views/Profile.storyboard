@@ -9,7 +9,6 @@
         <!--Profile View Controller-->
         <scene sceneID="nOy-vQ-O5F">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9lc-iH-wjD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="ProfileViewController" id="6E1-nW-whj" customClass="ProfileViewController" customModule="AllStars" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gso-N4-2KB"/>
@@ -388,6 +387,7 @@
                         <segue destination="u1U-U5-y7a" kind="show" identifier="RecommendViewController" id="8nX-wA-9Ju"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9lc-iH-wjD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="362" y="742"/>
         </scene>
@@ -615,7 +615,6 @@
         <!--Edit Profile View Controller-->
         <scene sceneID="VaV-Sb-4xo">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XxL-iK-vQv" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="EditProfileViewController" id="YrU-vE-heg" customClass="EditProfileViewController" customModule="AllStars" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Agx-PO-2K9"/>
@@ -636,10 +635,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="114"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0yW-T3-Q45">
-                                                <rect key="frame" x="226" y="20" width="86" height="44"/>
+                                                <rect key="frame" x="271" y="20" width="41" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="U4Y-mR-iJj"/>
-                                                    <constraint firstAttribute="width" constant="86" id="kNh-Sk-iuQ"/>
+                                                    <constraint firstAttribute="width" constant="41" id="kNh-Sk-iuQ"/>
                                                 </constraints>
                                                 <state key="normal" title="Done">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -661,6 +660,14 @@
                                                     <action selector="btnCancelTUI:" destination="YrU-vE-heg" eventType="touchUpInside" id="H7u-7a-GJU"/>
                                                 </connections>
                                             </button>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="jXI-F3-gAI">
+                                                <rect key="frame" x="243" y="32" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="2qe-ZE-bDE"/>
+                                                    <constraint firstAttribute="width" constant="20" id="nUQ-Xq-jgL"/>
+                                                </constraints>
+                                                <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </activityIndicatorView>
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="0.61721249089999997" blue="0.04759951447" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -668,6 +675,8 @@
                                             <constraint firstItem="0yW-T3-Q45" firstAttribute="top" secondItem="hod-WH-nXn" secondAttribute="top" constant="20" id="72j-ax-w5T"/>
                                             <constraint firstAttribute="height" constant="114" id="9o3-Ls-i79"/>
                                             <constraint firstAttribute="trailing" secondItem="0yW-T3-Q45" secondAttribute="trailing" constant="8" id="O6F-rN-lsO"/>
+                                            <constraint firstItem="0yW-T3-Q45" firstAttribute="leading" secondItem="jXI-F3-gAI" secondAttribute="trailing" constant="8" id="V5N-WR-BIE"/>
+                                            <constraint firstItem="jXI-F3-gAI" firstAttribute="top" secondItem="hod-WH-nXn" secondAttribute="top" constant="32" id="jNu-tp-B5Z"/>
                                             <constraint firstItem="oQ8-Fl-Tak" firstAttribute="top" secondItem="hod-WH-nXn" secondAttribute="top" constant="20" id="qHa-Ox-qhl"/>
                                         </constraints>
                                     </view>
@@ -684,6 +693,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
                                                 <connections>
+                                                    <action selector="textFieldVCh:" destination="YrU-vE-heg" eventType="valueChanged" id="cYl-HT-EZO"/>
                                                     <outlet property="delegate" destination="YrU-vE-heg" id="Uns-T1-V07"/>
                                                 </connections>
                                             </textField>
@@ -704,6 +714,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
                                                 <connections>
+                                                    <action selector="textFieldVCh:" destination="YrU-vE-heg" eventType="editingDidEnd" id="ogw-fv-hbP"/>
                                                     <outlet property="delegate" destination="YrU-vE-heg" id="3e6-uA-LX5"/>
                                                 </connections>
                                             </textField>
@@ -724,6 +735,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
                                                 <connections>
+                                                    <action selector="textFieldVCh:" destination="YrU-vE-heg" eventType="editingDidEnd" id="6he-ro-bD4"/>
                                                     <outlet property="delegate" destination="YrU-vE-heg" id="Flg-k3-ePY"/>
                                                 </connections>
                                             </textField>
@@ -778,11 +790,11 @@
                                                     <outlet property="delegate" destination="YrU-vE-heg" id="Rib-fv-xkO"/>
                                                 </connections>
                                             </tableView>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kOt-2E-Mq5">
-                                                <rect key="frame" x="0.0" y="368" width="320" height="86"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kOt-2E-Mq5">
+                                                <rect key="frame" x="0.0" y="261" width="320" height="193"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Loading locations" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8SK-mU-Vpz">
-                                                        <rect key="frame" x="41" y="-94" width="239" height="21"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading locations" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8SK-mU-Vpz">
+                                                        <rect key="frame" x="41" y="13" width="239" height="21"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="21" id="aac-cf-pEd"/>
                                                         </constraints>
@@ -790,8 +802,8 @@
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="5KU-Ke-H4U">
-                                                        <rect key="frame" x="150" y="-65" width="20" height="20"/>
+                                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="5KU-Ke-H4U">
+                                                        <rect key="frame" x="150" y="42" width="20" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="smB-aG-viR"/>
                                                             <constraint firstAttribute="width" constant="20" id="wHy-d0-Olm"/>
@@ -912,6 +924,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="activityLocations" destination="5KU-Ke-H4U" id="xe5-sA-x7M"/>
+                        <outlet property="activityUpdating" destination="jXI-F3-gAI" id="8Fi-XJ-y1x"/>
                         <outlet property="constraintHeightContent" destination="ptm-Cd-jS5" id="Sgm-eB-jP8"/>
                         <outlet property="edtFirstName" destination="tZ4-iz-emo" id="248-A3-1ak"/>
                         <outlet property="edtLastName" destination="nhO-Cy-iyo" id="jsA-F0-uI0"/>
@@ -923,6 +936,7 @@
                         <outlet property="viewLoading" destination="kOt-2E-Mq5" id="tor-sd-yb2"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XxL-iK-vQv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="362" y="1563"/>
         </scene>

@@ -358,6 +358,39 @@ class OSPWebSender: NSObject {
         postDataTask.resume()
     }
     
+    class func doPATCHTokenToURL(conURL url : NSString, conPath path : NSString, conParametros parametros : AnyObject?, conToken token : NSString, conCompletion completion : (objRespuesta : OSPWebResponse) -> Void){
+        
+        let configuracionSesion = NSURLSessionConfiguration.defaultSessionConfiguration()
+        configuracionSesion.HTTPAdditionalHeaders = self.crearCabeceraPeticionConToken(token) as [NSObject : AnyObject]
+        
+        let sesion = NSURLSession.init(configuration: configuracionSesion)
+        
+        let urlServicio = NSURL(string: "\(url)/\(path)")
+        let request = NSMutableURLRequest(URL: urlServicio!)
+        request.addValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        
+        if parametros != nil {
+            do {
+                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(parametros!, options: NSJSONWritingOptions.PrettyPrinted)
+            }catch {}
+        }
+        
+        request.HTTPMethod = "PATCH"
+        
+        let postDataTask = sesion.dataTaskWithRequest(request) { (data : NSData?, response : NSURLResponse?, error : NSError?) in
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                completion(objRespuesta : self.obtenerRespuestaServicioParaData(data, response: response, error: error))
+            })
+        }
+        
+        
+        postDataTask.resume()
+    }
+    
     
     
     
