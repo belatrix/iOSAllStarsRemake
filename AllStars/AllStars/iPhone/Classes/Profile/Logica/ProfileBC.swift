@@ -139,4 +139,18 @@ class ProfileBC: NSObject {
             completion(isCorrect: isCorrect)
         }
     }
+    
+    class func updatePhotoToUser(user : User, withController controller: UIViewController, withImage image : NSData, withCompletion completion : (isCorrect : Bool) -> Void) {
+        
+        let objCurrentUser = LoginBC.getCurrenteUserSession()
+        
+        OSPWebModel.updatePhoto(user, withToken: objCurrentUser!.user_token!, withImage: image) { (isCorrect) in
+            
+            if (isCorrect == false) {
+                OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "Problems with your conecction. Try again please.", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
+            }
+            
+            completion(isCorrect: isCorrect)
+        }
+    }
 }

@@ -10,7 +10,6 @@ use_frameworks!
 target 'AllStars' do
 
 pod 'FoldingCell', '~> 0.8.1'
-
+pod 'Alamofire', '~> 3.4'
 
 end
-

@@ -20,7 +20,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - IBActions
     @IBAction func btnRegisterTUI(sender: UIButton) {
-        // call WS
+        self.view.endEditing(true)
+        
+        self.createUser(txtEmail.text!)
     }
     
     @IBAction func btnBackTUI(sender: UIButton) {
@@ -29,36 +31,19 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: - WebServices
-//    func loginWithUser(objUser : User) -> Void {
-//        
-//        self.view.userInteractionEnabled = false
-//        self.activityEnter.startAnimating()
-//        
-//        LoginBC.loginWithUser(objUser, withController: self) { (user : User?) in
-//            
-//            self.view.userInteractionEnabled = true
-//            self.activityEnter.stopAnimating()
-//            
-//            self.getInfoCurrentUser()
-//        }
-//    }
-//    
-//    
-//    func getInfoCurrentUser() -> Void {
-//        
-//        self.view.userInteractionEnabled = false
-//        self.activityEnter.startAnimating()
-//        
-//        LoginBC.getUserSessionInfoConCompletion { (user : User?) in
-//            
-//            self.view.userInteractionEnabled = true
-//            self.activityEnter.stopAnimating()
-//            
-//            if user != nil {
-//                self.dismissViewControllerAnimated(true, completion: nil)
-//            }
-//        }
-//    }
+    func createUser(email : String) -> Void {
+        
+        self.view.userInteractionEnabled = false
+        self.activityIndicator.startAnimating()
+        
+        SignUpBC.createUser(email, withController: self) { (message : String) in
+            
+            self.view.userInteractionEnabled = true
+            self.activityIndicator.stopAnimating()
+            
+//            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+    }
     
     // MARK: - UITextFieldDelegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {

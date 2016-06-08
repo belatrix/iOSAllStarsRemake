@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class OSPWebSender: NSObject {
 
@@ -387,26 +388,38 @@ class OSPWebSender: NSObject {
             })
         }
         
-        
         postDataTask.resume()
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    class func doMultipartTokenToURL(conURL url : NSString, conPath path : NSString, conParametros parametros : AnyObject?, withImage image : NSData, conToken token : NSString, conCompletion completion : (objRespuesta : OSPWebResponse) -> Void){
+        
+        let urlWS = "\(url)/\(path)"
+        
+        Alamofire.upload(
+            .POST,
+            urlWS,
+            headers: self.crearCabeceraPeticionConToken(token) as! [String : String],
+            multipartFormData: { multipartFormData in
+                multipartFormData.appendBodyPart(data: image, name: "image", fileName: "testName.jpg", mimeType: "image/jpg")
+            },
+            encodingCompletion: { encodingResult in
+                switch encodingResult {
+                case .Success(let upload, _, _):
+                    upload.responseJSON { response in
+                        debugPrint(response)
+                        completion(objRespuesta : self.obtenerRespuestaServicioParaData(response.data, response: response.response, error: nil))
+                    }
+                case .Failure(let encodingError):
+                    print(encodingError)
+                    completion(objRespuesta : self.obtenerRespuestaServicioParaData(nil, response: nil, error: nil))
+                }
+            }
+        )
+    }
     
     //MARK:
     //MARK: Consumo de servicios simple
     //MARK:
-    
-    
     
     class func doPOSTToURL(conURL url : NSString, conPath path : NSString, conParametros parametros : AnyObject?, conCompletion completion : (objRespuesta : OSPWebResponse) -> Void){
         

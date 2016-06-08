@@ -10,21 +10,21 @@ import UIKit
 
 class EditProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
-    @IBOutlet weak var imgUser: UIImageView!
-    @IBOutlet weak var edtFirstName: UITextField!
-    @IBOutlet weak var edtLastName: UITextField!
-    @IBOutlet weak var edtSkypeId: UITextField!
-    @IBOutlet weak var tableLocations: UITableView!
-    @IBOutlet weak var scrollContent: UIScrollView!
-    @IBOutlet weak var constraintHeightContent: NSLayoutConstraint!
+    @IBOutlet weak var imgUser                  : UIImageView!
+    @IBOutlet weak var edtFirstName             : UITextField!
+    @IBOutlet weak var edtLastName              : UITextField!
+    @IBOutlet weak var edtSkypeId               : UITextField!
+    @IBOutlet weak var tableLocations           : UITableView!
+    @IBOutlet weak var scrollContent            : UIScrollView!
+    @IBOutlet weak var constraintHeightContent  : NSLayoutConstraint!
     @IBOutlet weak var viewLoading              : UIView!
     @IBOutlet weak var lblErrorMessage          : UILabel!
-    @IBOutlet weak var activityLocations      : UIActivityIndicatorView!
-    @IBOutlet weak var activityUpdating: UIActivityIndicatorView!
+    @IBOutlet weak var activityLocations        : UIActivityIndicatorView!
+    @IBOutlet weak var activityUpdating         : UIActivityIndicatorView!
     
     // photo
     var imagePickerController = UIImagePickerController()
-    var hasImage = false
+    var hasNewImage = false
     var selectedImage  = UIImage()
     
     var objUser : User?
@@ -44,11 +44,15 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
     
     // MARK: - IBActions
     @IBAction func btnUploadPhotoTIU(sender: UIButton) {
+        self.view.endEditing(true)
+        
         let actionSheet = UIActionSheet(title: "Upload from", delegate: self, cancelButtonTitle: "Cancel", destructiveButtonTitle: nil, otherButtonTitles: "Camera", "Gallery")
         actionSheet.showInView(self.view)
     }
     
     @IBAction func btnCancelTUI(sender: UIButton) {
+        self.view.endEditing(true)
+        
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -130,13 +134,13 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
     // MARK: - UIImagePickerController delegates
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
-            hasImage = true
+            hasNewImage = true
             
             selectedImage = pickedImage
             
             self.imgUser.image = selectedImage
         } else {
-            hasImage = false
+            hasNewImage = false
         }
         
         dismissViewControllerAnimated(true, completion: nil)
@@ -170,6 +174,27 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
         self.activityUpdating.startAnimating()
         
         ProfileBC.updateInfoToUser(objUser!, withController: self, withCompletion: {(isCorrect) in
+            
+            self.view.userInteractionEnabled = true
+            self.activityUpdating.stopAnimating()
+            
+            if (isCorrect == true) {
+                if (self.hasNewImage) {
+                    self.updatePhotoUser()
+                } else {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
+            }
+        })
+    }
+    
+    func updatePhotoUser() -> Void {
+        self.view.userInteractionEnabled = false
+        self.activityUpdating.startAnimating()
+
+        let imageData = UIImageJPEGRepresentation(selectedImage, 0.5)
+        
+        ProfileBC.updatePhotoToUser(objUser!, withController: self, withImage: imageData!, withCompletion: {(isCorrect) in
             
             self.view.userInteractionEnabled = true
             self.activityUpdating.stopAnimating()

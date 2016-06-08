@@ -341,8 +341,21 @@ class OSPWebModel: NSObject {
         }
     }
     
-    class func loginWithUser(user : User, withCompletion completion : (user : User?, messageError : String?) -> Void) {
+    class func updatePhoto(user : User, withToken token : String, withImage image : NSData, withCompletion completion : (isCorrect : Bool) -> Void) {
+        
+        let userID = user.user_id != nil ? user.user_id : user.user_pk
+        let path = "api/employee/\(userID!)/avatar/"
+        
+        let dic : NSDictionary = ["image" : "testName"] // TEST
+        
+        OSPWebSender.doMultipartTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: dic, withImage: image, conToken: token) { (objRespuesta) in
+            
+            completion(isCorrect: objRespuesta.respuestaJSON?["pk"] != nil ? true : false)
+        }
+    }
     
+    class func loginWithUser(user : User, withCompletion completion : (user : User?, messageError : String?) -> Void) {
+        
         let dic : NSDictionary = ["username" : user.user_username!,
                                   "password" : user.user_password!]
         
@@ -355,6 +368,20 @@ class OSPWebModel: NSObject {
                 completion(user: OSPWebTranslator.translateUserBE(objRespuesta.respuestaJSON as! NSDictionary), messageError: messageError)
             }else{
                 completion(user: nil, messageError: messageError)
+            }
+        }
+    }
+    
+    class func createUser(mail : String, withCompletion completion : (message : String) -> Void) {
+        
+        let dic : NSDictionary = ["email" : mail]
+        
+        OSPWebSender.doPOSTToURL(conURL: OSPWebModelURLBase, conPath: "api/employee/create/", conParametros: dic) { (objRespuesta) in
+            
+            if let message = objRespuesta.respuestaJSON?["detail"] {
+                completion(message: message as! String)
+            } else {
+                completion(message: "")
             }
         }
     }

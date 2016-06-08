@@ -85,6 +85,8 @@
 		B6A39C531CFE1BAE00DA42E3 /* StarKeywordBE.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A39C521CFE1BAE00DA42E3 /* StarKeywordBE.swift */; };
 		B6A39C551CFE207500DA42E3 /* iconTabBar_3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A39C541CFE207500DA42E3 /* iconTabBar_3@3x.png */; };
 		B6A39C571CFE280D00DA42E3 /* ic_user@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A39C561CFE280D00DA42E3 /* ic_user@3x.png */; };
+		B6C152231D087E6800D8D180 /* SignUpBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C152221D087E6800D8D180 /* SignUpBC.swift */; };
+		B6C152261D08822B00D8D180 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C152251D08822B00D8D180 /* Util.swift */; };
 		B6EE58A61CFF4CD60027B697 /* location@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6EE58A41CFF4CD60027B697 /* location@3x.png */; };
 		B6EE58A71CFF4CD60027B697 /* logo_skype@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6EE58A51CFF4CD60027B697 /* logo_skype@3x.png */; };
 		B6EE58A91CFF883B0027B697 /* UserRankingTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EE58A81CFF883B0027B697 /* UserRankingTagViewController.swift */; };
@@ -203,6 +205,8 @@
 		B6A39C521CFE1BAE00DA42E3 /* StarKeywordBE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarKeywordBE.swift; sourceTree = "<group>"; };
 		B6A39C541CFE207500DA42E3 /* iconTabBar_3@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconTabBar_3@3x.png"; sourceTree = "<group>"; };
 		B6A39C561CFE280D00DA42E3 /* ic_user@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_user@3x.png"; sourceTree = "<group>"; };
+		B6C152221D087E6800D8D180 /* SignUpBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpBC.swift; path = SignUp/Logic/SignUpBC.swift; sourceTree = "<group>"; };
+		B6C152251D08822B00D8D180 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Util.swift; path = Util/Util.swift; sourceTree = "<group>"; };
 		B6EE58A41CFF4CD60027B697 /* location@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location@3x.png"; sourceTree = "<group>"; };
 		B6EE58A51CFF4CD60027B697 /* logo_skype@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_skype@3x.png"; sourceTree = "<group>"; };
 		B6EE58A81CFF883B0027B697 /* UserRankingTagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRankingTagViewController.swift; sourceTree = "<group>"; };
@@ -484,6 +488,7 @@
 		96AC74E31CDB9A3A00D993E7 /* CommonClasses */ = {
 			isa = PBXGroup;
 			children = (
+				B6C152241D08820600D8D180 /* Util */,
 				9613BBF01CE4BD9500533FAF /* OSPOptionTable */,
 				9609D7471CE3AE4600BF6036 /* Crop */,
 				96757BE81CE0E1DA00BA216A /* OSPDateManager */,
@@ -585,8 +590,17 @@
 		B6A39C491CFDDE2000DA42E3 /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				B6C152221D087E6800D8D180 /* SignUpBC.swift */,
 			);
 			name = Logic;
+			sourceTree = "<group>";
+		};
+		B6C152241D08820600D8D180 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				B6C152251D08822B00D8D180 /* Util.swift */,
+			);
+			name = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -809,6 +823,7 @@
 				96757BEB1CE0E1DB00BA216A /* OSPDateManager.m in Sources */,
 				96B2A0D71CE63AD800C8F97D /* UserRankingTableViewCell.swift in Sources */,
 				96AC74D01CDB765800D993E7 /* OSPWebModel.swift in Sources */,
+				B6C152231D087E6800D8D180 /* SignUpBC.swift in Sources */,
 				96757BE51CE0D56E00BA216A /* StarUserInfoTableViewCell.swift in Sources */,
 				9613BBFD1CE4BD9500533FAF /* OSPOptionListCell.m in Sources */,
 				B66FBC771D00C7E600C058F7 /* EditProfileViewController.swift in Sources */,
@@ -847,6 +862,7 @@
 				9638EF3F1CDCF52800D07D51 /* StarSubCategoryBE.swift in Sources */,
 				9609D7491CE3AE5400BF6036 /* OSPCrop.swift in Sources */,
 				96E41EF31CE2715B0071D49E /* EmployeeBE.swift in Sources */,
+				B6C152261D08822B00D8D180 /* Util.swift in Sources */,
 				B66FBC7B1D00D0FD00C058F7 /* LocationTableViewCell.swift in Sources */,
 				96AC74DD1CDB7D5E00D993E7 /* User.swift in Sources */,
 			);
@@ -986,6 +1002,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = AllStars/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.belatrix.AllStars;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -998,6 +1015,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = AllStars/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.belatrix.AllStars;
 				PRODUCT_NAME = "$(TARGET_NAME)";

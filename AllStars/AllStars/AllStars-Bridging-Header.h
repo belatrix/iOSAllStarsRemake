@@ -13,6 +13,7 @@
 #import "OSPImageDownloaded.h"
 #import "OSPDateManager.h"
 #import "OSPOptionList.h"
+#import <AFNetworking/AFNetworking.h>
 
 
 #endif /* AllStars_Bridging_Header_h */

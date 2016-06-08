@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -693,8 +692,8 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
                                                 <connections>
-                                                    <action selector="textFieldVCh:" destination="YrU-vE-heg" eventType="valueChanged" id="cYl-HT-EZO"/>
-                                                    <outlet property="delegate" destination="YrU-vE-heg" id="Uns-T1-V07"/>
+                                                    <action selector="textFieldVCh:" destination="YrU-vE-heg" eventType="editingDidEnd" id="lhk-qY-hHa"/>
+                                                    <outlet property="delegate" destination="YrU-vE-heg" id="2X2-yp-Lf9"/>
                                                 </connections>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7sE-Bq-HQG">
