@@ -16,11 +16,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var constraintCenterForm : NSLayoutConstraint!
     @IBOutlet weak var viewFormLogin        : UIView!
     
-    
-    
     //MARK: - UITextFieldDelegate
-    
-    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
         if self.txtUser == textField {
@@ -32,25 +28,28 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    
     //MARK: - WebServices
-    
-    
-    
     func loginWithUser(objUser : User) -> Void {
         
         self.view.userInteractionEnabled = false
         self.activityEnter.startAnimating()
         
-        LoginBC.loginWithUser(objUser, withController: self) { (user : User?) in
+        LoginBC.loginWithUser(objUser, withController: self) { (userSession : UserSession?, accountState : String?) in
             
             self.view.userInteractionEnabled = true
             self.activityEnter.stopAnimating()
             
-            self.getInfoCurrentUser()
+            if (accountState == Constants.PASSWORD_RESET_INCOMPLETE) {
+                let resetPasswordViewController = self.storyboard!.instantiateViewControllerWithIdentifier("ResetPasswordViewController") as! ResetPasswordViewController
+                resetPasswordViewController.userSession = userSession
+                self.presentViewController(resetPasswordViewController, animated: true, completion: nil)
+            } else if (accountState == Constants.PROFILE_INCOMPLETE) {
+                print("incomplete")
+            } else if (accountState == Constants.PROFILE_COMPLETE) {
+                self.getInfoCurrentUser()
+            }
         }
     }
-    
     
     func getInfoCurrentUser() -> Void {
         
@@ -68,12 +67,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    
-    
-    
-    
     //MARK: - IBActions
-    
     @IBAction func clickBtnEnterUser(sender: AnyObject?) {
         
         let objUser = User()
@@ -82,8 +76,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         self.loginWithUser(objUser)
     }
-    
-    
     
     @IBAction func tapCloseKeyboard(sender: AnyObject) {
         
@@ -97,8 +89,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     //MARK: - Keyboard Notification
-    
-    
     func keyboardWillShown(notification : NSNotification) {
         
         let info : NSDictionary = notification.userInfo!
@@ -118,7 +108,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    
     func keyboardWillBeHidden(notification : NSNotification) {
         
         let info : NSDictionary = notification.userInfo!
@@ -132,39 +121,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    
-    
     //MARk: -
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.keyboardWillShown(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.keyboardWillBeHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
-
-        
     }
-    
     
     deinit{
-        
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

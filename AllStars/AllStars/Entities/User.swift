@@ -31,4 +31,5 @@ class User: NSObject {
     var user_role_name              : String?
     var user_skype_id               : String?
     var user_total_score            : NSNumber?
+    var user_base_profile_complete  : Bool?
 }

@@ -346,28 +346,25 @@ class OSPWebModel: NSObject {
         let userID = user.user_id != nil ? user.user_id : user.user_pk
         let path = "api/employee/\(userID!)/avatar/"
         
-        let dic : NSDictionary = ["image" : "testName"] // TEST
-        
-        OSPWebSender.doMultipartTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: dic, withImage: image, conToken: token) { (objRespuesta) in
+        OSPWebSender.doMultipartTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: nil, withImage: image, conToken: token) { (objRespuesta) in
             
             completion(isCorrect: objRespuesta.respuestaJSON?["pk"] != nil ? true : false)
         }
     }
     
-    class func loginWithUser(user : User, withCompletion completion : (user : User?, messageError : String?) -> Void) {
+    class func loginWithUser(user : User, withCompletion completion : (userSession : UserSession?, messageError : String?) -> Void) {
         
         let dic : NSDictionary = ["username" : user.user_username!,
                                   "password" : user.user_password!]
-        
         
         OSPWebSender.doPOSTToURL(conURL: OSPWebModelURLBase, conPath: "api/employee/authenticate/", conParametros: dic) { (objRespuesta : OSPWebResponse) in
             
             let messageError = self.getErrorMessageToResponse(objRespuesta)
             
             if objRespuesta.respuestaJSON != nil {
-                completion(user: OSPWebTranslator.translateUserBE(objRespuesta.respuestaJSON as! NSDictionary), messageError: messageError)
+                completion(userSession: OSPWebTranslator.translateUserSessionBE(objRespuesta.respuestaJSON as! NSDictionary), messageError: messageError)
             }else{
-                completion(user: nil, messageError: messageError)
+                completion(userSession: nil, messageError: messageError)
             }
         }
     }
@@ -382,6 +379,25 @@ class OSPWebModel: NSObject {
                 completion(message: message as! String)
             } else {
                 completion(message: "")
+            }
+        }
+    }
+    
+    class func resetUserPassword(userSession : UserSession?, oldPassword : String, newPassword : String, withCompletion completion : (user : User?, messageError : String?) -> Void) {
+        
+        let path = "api/employee/\(userSession!.session_user_id!)/update/password/"
+        
+        let dic : NSDictionary = ["current_password" : oldPassword,
+                                  "new_password" : newPassword]
+        
+        OSPWebSender.doPATCHTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: dic, conToken: userSession!.session_token!) { (objRespuesta) in
+            
+            let messageError = self.getErrorMessageToResponse(objRespuesta)
+            
+            if objRespuesta.respuestaJSON != nil {
+                completion(user: OSPWebTranslator.translateUserBE(objRespuesta.respuestaJSON as! NSDictionary), messageError: messageError)
+            }else{
+                completion(user: nil, messageError: messageError)
             }
         }
     }

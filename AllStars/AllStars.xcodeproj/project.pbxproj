@@ -22,7 +22,6 @@
 		9637DE121CE21EA2002AA60E /* iconBack@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9637DE111CE21EA2002AA60E /* iconBack@3x.png */; };
 		9637DE141CE2306A002AA60E /* iconAdd@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9637DE131CE2306A002AA60E /* iconAdd@3x.png */; };
 		9638EF3F1CDCF52800D07D51 /* StarSubCategoryBE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9638EF3E1CDCF52800D07D51 /* StarSubCategoryBE.swift */; };
-		9638EF421CDCF75400D07D51 /* ProfileBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9638EF411CDCF75400D07D51 /* ProfileBC.swift */; };
 		9638EF441CDCFBCC00D07D51 /* StarSubCategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9638EF431CDCFBCC00D07D51 /* StarSubCategoriesCollectionViewCell.swift */; };
 		9638EF461CDD0DA800D07D51 /* iconNext@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9638EF451CDD0DA800D07D51 /* iconNext@3x.png */; };
 		964823351CE4DDBB007E58FE /* SubCategoryBE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964823341CE4DDBB007E58FE /* SubCategoryBE.swift */; };
@@ -77,6 +76,8 @@
 		B66FBC791D00CB9200C058F7 /* camera@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B66FBC781D00CB9200C058F7 /* camera@3x.png */; };
 		B66FBC7B1D00D0FD00C058F7 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66FBC7A1D00D0FD00C058F7 /* LocationTableViewCell.swift */; };
 		B66FBC7D1D00D1E100C058F7 /* LocationBE.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66FBC7C1D00D1E100C058F7 /* LocationBE.swift */; };
+		B6A36C6F1D09C53C00222D1F /* ProfileBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A36C6E1D09C53C00222D1F /* ProfileBC.swift */; };
+		B6A36C711D09C56400222D1F /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A36C701D09C56400222D1F /* ResetPasswordViewController.swift */; };
 		B6A39C471CFDD54200DA42E3 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6A39C461CFDD54200DA42E3 /* SignUp.storyboard */; };
 		B6A39C4B1CFDDE5E00DA42E3 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A39C4A1CFDDE5E00DA42E3 /* SignUpViewController.swift */; };
 		B6A39C4D1CFDEB7A00DA42E3 /* ic_mail@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A39C4C1CFDEB7A00DA42E3 /* ic_mail@3x.png */; };
@@ -87,6 +88,9 @@
 		B6A39C571CFE280D00DA42E3 /* ic_user@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A39C561CFE280D00DA42E3 /* ic_user@3x.png */; };
 		B6C152231D087E6800D8D180 /* SignUpBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C152221D087E6800D8D180 /* SignUpBC.swift */; };
 		B6C152261D08822B00D8D180 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C152251D08822B00D8D180 /* Util.swift */; };
+		B6CA97901D09B556005FF6D6 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CA978F1D09B556005FF6D6 /* UserSession.swift */; };
+		B6CA97921D09BB43005FF6D6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CA97911D09BB43005FF6D6 /* Constants.swift */; };
+		B6CA97941D09C2F1005FF6D6 /* ic_lock@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6CA97931D09C2F1005FF6D6 /* ic_lock@3x.png */; };
 		B6EE58A61CFF4CD60027B697 /* location@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6EE58A41CFF4CD60027B697 /* location@3x.png */; };
 		B6EE58A71CFF4CD60027B697 /* logo_skype@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6EE58A51CFF4CD60027B697 /* logo_skype@3x.png */; };
 		B6EE58A91CFF883B0027B697 /* UserRankingTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EE58A81CFF883B0027B697 /* UserRankingTagViewController.swift */; };
@@ -132,7 +136,6 @@
 		9637DE111CE21EA2002AA60E /* iconBack@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconBack@3x.png"; sourceTree = "<group>"; };
 		9637DE131CE2306A002AA60E /* iconAdd@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconAdd@3x.png"; sourceTree = "<group>"; };
 		9638EF3E1CDCF52800D07D51 /* StarSubCategoryBE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarSubCategoryBE.swift; sourceTree = "<group>"; };
-		9638EF411CDCF75400D07D51 /* ProfileBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileBC.swift; sourceTree = "<group>"; };
 		9638EF431CDCFBCC00D07D51 /* StarSubCategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarSubCategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		9638EF451CDD0DA800D07D51 /* iconNext@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconNext@3x.png"; sourceTree = "<group>"; };
 		964823341CE4DDBB007E58FE /* SubCategoryBE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCategoryBE.swift; sourceTree = "<group>"; };
@@ -197,6 +200,8 @@
 		B66FBC781D00CB9200C058F7 /* camera@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera@3x.png"; sourceTree = "<group>"; };
 		B66FBC7A1D00D0FD00C058F7 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		B66FBC7C1D00D1E100C058F7 /* LocationBE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationBE.swift; sourceTree = "<group>"; };
+		B6A36C6E1D09C53C00222D1F /* ProfileBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileBC.swift; path = AllStars/iPhone/Classes/Profile/Logic/ProfileBC.swift; sourceTree = SOURCE_ROOT; };
+		B6A36C701D09C56400222D1F /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		B6A39C461CFDD54200DA42E3 /* SignUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		B6A39C4A1CFDDE5E00DA42E3 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpViewController.swift; path = SignUp/SignUpViewController.swift; sourceTree = "<group>"; };
 		B6A39C4C1CFDEB7A00DA42E3 /* ic_mail@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_mail@3x.png"; sourceTree = "<group>"; };
@@ -207,6 +212,9 @@
 		B6A39C561CFE280D00DA42E3 /* ic_user@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_user@3x.png"; sourceTree = "<group>"; };
 		B6C152221D087E6800D8D180 /* SignUpBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpBC.swift; path = SignUp/Logic/SignUpBC.swift; sourceTree = "<group>"; };
 		B6C152251D08822B00D8D180 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Util.swift; path = Util/Util.swift; sourceTree = "<group>"; };
+		B6CA978F1D09B556005FF6D6 /* UserSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
+		B6CA97911D09BB43005FF6D6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Util/Constants.swift; sourceTree = "<group>"; };
+		B6CA97931D09C2F1005FF6D6 /* ic_lock@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_lock@3x.png"; sourceTree = "<group>"; };
 		B6EE58A41CFF4CD60027B697 /* location@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location@3x.png"; sourceTree = "<group>"; };
 		B6EE58A51CFF4CD60027B697 /* logo_skype@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_skype@3x.png"; sourceTree = "<group>"; };
 		B6EE58A81CFF883B0027B697 /* UserRankingTagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRankingTagViewController.swift; sourceTree = "<group>"; };
@@ -299,11 +307,12 @@
 			path = OSPOptionTable;
 			sourceTree = "<group>";
 		};
-		9638EF401CDCF74900D07D51 /* Logica */ = {
+		9638EF401CDCF74900D07D51 /* Logic */ = {
 			isa = PBXGroup;
 			children = (
-				9638EF411CDCF75400D07D51 /* ProfileBC.swift */,
+				B6A36C6E1D09C53C00222D1F /* ProfileBC.swift */,
 			);
+			name = Logic;
 			path = Logica;
 			sourceTree = "<group>";
 		};
@@ -430,6 +439,7 @@
 				96AC74D91CDB7C0800D993E7 /* logo@3x.png */,
 				9609D73D1CE364D300BF6036 /* textBelatrix@3x.png */,
 				B6A39C4C1CFDEB7A00DA42E3 /* ic_mail@3x.png */,
+				B6CA97931D09C2F1005FF6D6 /* ic_lock@3x.png */,
 				B6A39C561CFE280D00DA42E3 /* ic_user@3x.png */,
 				B6EE58A41CFF4CD60027B697 /* location@3x.png */,
 				B6EE58A51CFF4CD60027B697 /* logo_skype@3x.png */,
@@ -454,6 +464,7 @@
 			children = (
 				96AC74D81CDB7B4100D993E7 /* Logic */,
 				96AC74D41CDB76F800D993E7 /* LoginViewController.swift */,
+				B6A36C701D09C56400222D1F /* ResetPasswordViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -470,6 +481,7 @@
 			isa = PBXGroup;
 			children = (
 				96AC74DC1CDB7D5E00D993E7 /* User.swift */,
+				B6CA978F1D09B556005FF6D6 /* UserSession.swift */,
 				9638EF3E1CDCF52800D07D51 /* StarSubCategoryBE.swift */,
 				96757BE61CE0DD5F00BA216A /* UserQualifyBE.swift */,
 				B6EE58AC1CFF91990027B697 /* UserTagBE.swift */,
@@ -509,7 +521,7 @@
 		96AC74E91CDB9F9F00D993E7 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				9638EF401CDCF74900D07D51 /* Logica */,
+				9638EF401CDCF74900D07D51 /* Logic */,
 				96AC74EF1CDBB65400D993E7 /* ProfileViewController.swift */,
 				9638EF431CDCFBCC00D07D51 /* StarSubCategoriesCollectionViewCell.swift */,
 				96757BE21CE0CA6000BA216A /* StarsCategoriesUserViewController.swift */,
@@ -599,6 +611,7 @@
 			isa = PBXGroup;
 			children = (
 				B6C152251D08822B00D8D180 /* Util.swift */,
+				B6CA97911D09BB43005FF6D6 /* Constants.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -720,6 +733,7 @@
 				96C68EBC1CE65B2100F072AA /* iconCup_0@3x.png in Resources */,
 				B66FBC791D00CB9200C058F7 /* camera@3x.png in Resources */,
 				96C68EBD1CE65B2100F072AA /* iconCup_1@3x.png in Resources */,
+				B6CA97941D09C2F1005FF6D6 /* ic_lock@3x.png in Resources */,
 				96E41EF11CE2604C0071D49E /* Search.storyboard in Resources */,
 				96AC74A11CDB73AF00D993E7 /* LaunchScreen.storyboard in Resources */,
 				B6EE58A71CFF4CD60027B697 /* logo_skype@3x.png in Resources */,
@@ -815,6 +829,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6A36C6F1D09C53C00222D1F /* ProfileBC.swift in Sources */,
 				96AC74D51CDB76F800D993E7 /* LoginViewController.swift in Sources */,
 				96AC74E61CDB9A4A00D993E7 /* OSPUserAlerts.swift in Sources */,
 				96AC74971CDB73AF00D993E7 /* AppDelegate.swift in Sources */,
@@ -822,13 +837,13 @@
 				B6EE58AD1CFF91990027B697 /* UserTagBE.swift in Sources */,
 				96757BEB1CE0E1DB00BA216A /* OSPDateManager.m in Sources */,
 				96B2A0D71CE63AD800C8F97D /* UserRankingTableViewCell.swift in Sources */,
+				B6CA97921D09BB43005FF6D6 /* Constants.swift in Sources */,
 				96AC74D01CDB765800D993E7 /* OSPWebModel.swift in Sources */,
 				B6C152231D087E6800D8D180 /* SignUpBC.swift in Sources */,
 				96757BE51CE0D56E00BA216A /* StarUserInfoTableViewCell.swift in Sources */,
 				9613BBFD1CE4BD9500533FAF /* OSPOptionListCell.m in Sources */,
 				B66FBC771D00C7E600C058F7 /* EditProfileViewController.swift in Sources */,
 				9638EF441CDCFBCC00D07D51 /* StarSubCategoriesCollectionViewCell.swift in Sources */,
-				9638EF421CDCF75400D07D51 /* ProfileBC.swift in Sources */,
 				96E41EEA1CE24AAE0071D49E /* ListEmployeeViewController.swift in Sources */,
 				B6A39C511CFDF80200DA42E3 /* TagTableViewCell.swift in Sources */,
 				B6A39C531CFE1BAE00DA42E3 /* StarKeywordBE.swift in Sources */,
@@ -854,9 +869,11 @@
 				96AC74EE1CDBB60200D993E7 /* CustomTabBarViewController.swift in Sources */,
 				964823371CE4EF38007E58FE /* KeywordBE.swift in Sources */,
 				96AC74D11CDB765800D993E7 /* OSPWebResponse.swift in Sources */,
+				B6A36C711D09C56400222D1F /* ResetPasswordViewController.swift in Sources */,
 				9609D7411CE39AF400BF6036 /* RecommendViewController.swift in Sources */,
 				96E41EF71CE27A2A0071D49E /* EmployeeTableViewCell.swift in Sources */,
 				96B2A0CE1CE6167F00C8F97D /* RankingViewController.swift in Sources */,
+				B6CA97901D09B556005FF6D6 /* UserSession.swift in Sources */,
 				96AC74F51CDBECB800D993E7 /* OSPImageDownloaded.m in Sources */,
 				96AC74DF1CDB80D400D993E7 /* LoginBC.swift in Sources */,
 				9638EF3F1CDCF52800D07D51 /* StarSubCategoryBE.swift in Sources */,
