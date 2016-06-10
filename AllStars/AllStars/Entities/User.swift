@@ -10,9 +10,9 @@ import UIKit
 
 class User: NSObject {
 
+    var user_pk                     : NSNumber?
     var user_username               : String?
     var user_password               : String?
-    var user_id                     : NSNumber?
     var user_token                  : String?
     var user_avatar                 : String?
     var user_current_month_score    : NSNumber?
@@ -26,7 +26,6 @@ class User: NSObject {
     var user_level                  : NSNumber?
     var user_location_id            : NSNumber?
     var user_location_name          : String?
-    var user_pk                     : NSNumber?
     var user_role_id                : NSNumber?
     var user_role_name              : String?
     var user_skype_id               : String?

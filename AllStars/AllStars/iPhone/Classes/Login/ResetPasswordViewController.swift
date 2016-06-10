@@ -23,7 +23,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: - IBActions
     @IBAction func btnResetTUI(sender: UIButton) {
-        
+        resetPassword(userSession!)
     }
     
     @IBAction func tapCloseKeyboard(sender: UITapGestureRecognizer) {

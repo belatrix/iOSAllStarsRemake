@@ -44,7 +44,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 resetPasswordViewController.userSession = userSession
                 self.presentViewController(resetPasswordViewController, animated: true, completion: nil)
             } else if (accountState == Constants.PROFILE_INCOMPLETE) {
-                print("incomplete")
+                let userTemp = User()
+                userTemp.user_pk = userSession!.session_user_id!
+                userTemp.user_token = userSession!.session_token!
+                userTemp.user_base_profile_complete = userSession!.session_base_profile_complete!
+                
+                let sb = UIStoryboard(name: "Profile", bundle: nil)
+                let editProfileViewController = sb.instantiateViewControllerWithIdentifier("EditProfileViewController") as! EditProfileViewController
+                editProfileViewController.objUser = userTemp
+                self.presentViewController(editProfileViewController, animated: true, completion: nil)
             } else if (accountState == Constants.PROFILE_COMPLETE) {
                 self.getInfoCurrentUser()
             }
@@ -62,7 +70,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             self.activityEnter.stopAnimating()
             
             if user != nil {
-                self.dismissViewControllerAnimated(true, completion: nil)
+//                self.dismissViewControllerAnimated(true, completion: nil)
+                let storyBoard : UIStoryboard = UIStoryboard(name: "TabBar", bundle:nil)
+                let customTabBarViewController = storyBoard.instantiateViewControllerWithIdentifier("CustomTabBarViewController") as! CustomTabBarViewController
+                self.presentViewController(customTabBarViewController, animated: true, completion: nil)
             }
         }
     }

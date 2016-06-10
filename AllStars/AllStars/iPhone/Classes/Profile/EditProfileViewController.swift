@@ -182,7 +182,11 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
                 if (self.hasNewImage) {
                     self.updatePhotoUser()
                 } else {
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                    if (self.objUser!.user_base_profile_complete!) {
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    } else {
+                        // 
+                    }
                 }
             }
         })
@@ -200,7 +204,11 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
             self.activityUpdating.stopAnimating()
             
             if (isCorrect == true) {
-                self.dismissViewControllerAnimated(true, completion: nil)
+                if (self.objUser!.user_base_profile_complete!) {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                } else {
+                    //
+                }
             }
         })
     }

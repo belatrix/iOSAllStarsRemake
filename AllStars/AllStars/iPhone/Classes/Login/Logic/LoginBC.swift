@@ -21,7 +21,7 @@ class LoginBC: NSObject {
             } else {
                 let userTemp = User()
                 userTemp.user_token = userSession!.session_token!
-                userTemp.user_id = userSession!.session_user_id!
+                userTemp.user_pk = userSession!.session_user_id!
                 
                 self.saveSesionOfUser(userTemp)
                 
@@ -94,7 +94,7 @@ class LoginBC: NSObject {
     
         OSPWebModel.getUserInfo(objUser!, withToken: objUser!.user_token!) { (user, messageError) in
             
-            user?.user_id = objUser?.user_id
+            user?.user_pk = objUser?.user_pk
             user?.user_token = objUser?.user_token
             self.saveSesionOfUser(user)
             
@@ -104,8 +104,8 @@ class LoginBC: NSObject {
     
     class func user(user : User?, isEqualToUser newUser : User?) -> Bool{
         
-        let userID1 = user?.user_id != nil ? user?.user_id : user?.user_pk
-        let userID2 = newUser?.user_id != nil ? newUser?.user_id : newUser?.user_pk
+        let userID1 = user?.user_pk
+        let userID2 = newUser?.user_pk
         
         return userID1 == userID2 ? true : false
     }

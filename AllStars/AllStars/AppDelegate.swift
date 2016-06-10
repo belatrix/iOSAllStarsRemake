@@ -16,6 +16,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let session_id : Int = SessionUD.sharedInstance.getUserPk()
+        let session_tokken : String = SessionUD.sharedInstance.getUserToken()
+        
+        if (session_id != -1 && session_tokken != "") {
+            objUserSession!.user_base_profile_complete! = true
+            objUserSession!.user_pk! = SessionUD.sharedInstance.getUserPk()
+            objUserSession!.user_first_name! = SessionUD.sharedInstance.getUserFirstName()
+            objUserSession!.user_last_name! = SessionUD.sharedInstance.getUserLastName()
+            objUserSession!.user_skype_id! = SessionUD.sharedInstance.getSkypeId()
+            
+            let storyBoard : UIStoryboard = UIStoryboard(name: "TabBar", bundle:nil)
+            let customTabBarViewController = storyBoard.instantiateViewControllerWithIdentifier("CustomTabBarViewController") as! CustomTabBarViewController
+            self.window?.rootViewController = customTabBarViewController
+        }
+        
         return true
     }
 

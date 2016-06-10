@@ -31,8 +31,8 @@ class OSPWebModel: NSObject {
     
     class func rateUser(rate : RateUserBE, withToken token : String, withCompletion completion : (isCorrect : Bool) -> Void) {
         
-        let userFromID = rate.rate_fromUser!.user_id != nil ? rate.rate_fromUser!.user_id : rate.rate_fromUser!.user_pk
-        let userToID = rate.rate_toUser!.user_id != nil ? rate.rate_toUser!.user_id : rate.rate_toUser!.user_pk
+        let userFromID = rate.rate_fromUser!.user_pk
+        let userToID = rate.rate_toUser!.user_pk
         
         let path = "api/star/\(userFromID!)/give/star/to/\(userToID!)/"
         
@@ -68,7 +68,7 @@ class OSPWebModel: NSObject {
     
     class func listAllCatgoriesToUser(user : User, withToken token : String, withCompletion completion : (arrayCategories : NSMutableArray) -> Void) -> NSURLSessionDataTask {
         
-        let userID = user.user_id != nil ? user.user_id : user.user_pk
+        let userID = user.user_pk
         let path = "api/employee/\(userID!)/category/list/"
         
         return OSPWebSender.doGETTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: nil, conToken: token, conCompletion: { (objRespuesta) in
@@ -215,7 +215,7 @@ class OSPWebModel: NSObject {
     
     class func listStarUserSubCategoriesToUser(user : User, toSubCategory subCategory : StarSubCategoryBE, withToken token : String, withCompletion completion : (arrayUsers : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask {
         
-        let userID = user.user_id != nil ? user.user_id : user.user_pk
+        let userID = user.user_pk
         let path = "api/star/\(userID!)/subcategory/\(subCategory.starSubCategoy_id!)/list/"
         
         return OSPWebSender.doGETTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
@@ -235,7 +235,7 @@ class OSPWebModel: NSObject {
     
     class func listStarSubCategoriesToUser(user : User, withToken token : String, withCompletion completion : (arrayCategories : NSMutableArray) -> Void) {
         
-        let userID = user.user_id != nil ? user.user_id : user.user_pk
+        let userID = user.user_pk
         let path = "api/star/\(userID!)/subcategory/list/"
         
         OSPWebSender.doGETTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
@@ -308,7 +308,7 @@ class OSPWebModel: NSObject {
     
     class func getUserInfo(user : User, withToken token : String, withCompletion completion : (user : User?, messageError : String?) -> Void) {
         
-        let userID = user.user_id != nil ? user.user_id : user.user_pk
+        let userID = user.user_pk
         let path = "api/employee/\(userID!)/"
         
         OSPWebSender.doGETTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
@@ -316,7 +316,7 @@ class OSPWebModel: NSObject {
             if objRespuesta.respuestaJSON != nil {
                 
                 let objUsuario = OSPWebTranslator.translateUserBE(objRespuesta.respuestaJSON as! NSDictionary)
-                objUsuario.user_id = user.user_id
+                objUsuario.user_pk = user.user_pk
                 
                 completion(user:objUsuario , messageError: nil)
             }else{
@@ -327,7 +327,7 @@ class OSPWebModel: NSObject {
     
     class func updateUser(user : User, withToken token : String, withCompletion completion : (isCorrect : Bool) -> Void) {
         
-        let userID = user.user_id != nil ? user.user_id : user.user_pk
+        let userID = user.user_pk
         let path = "api/employee/\(userID!)/update/"
         
         let dic : NSDictionary = ["first_name" : user.user_first_name!,
@@ -343,7 +343,7 @@ class OSPWebModel: NSObject {
     
     class func updatePhoto(user : User, withToken token : String, withImage image : NSData, withCompletion completion : (isCorrect : Bool) -> Void) {
         
-        let userID = user.user_id != nil ? user.user_id : user.user_pk
+        let userID = user.user_pk
         let path = "api/employee/\(userID!)/avatar/"
         
         OSPWebSender.doMultipartTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: nil, withImage: image, conToken: token) { (objRespuesta) in
@@ -390,7 +390,7 @@ class OSPWebModel: NSObject {
         let dic : NSDictionary = ["current_password" : oldPassword,
                                   "new_password" : newPassword]
         
-        OSPWebSender.doPATCHTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: dic, conToken: userSession!.session_token!) { (objRespuesta) in
+        OSPWebSender.doPOSTTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: dic, conToken: userSession!.session_token!) { (objRespuesta) in
             
             let messageError = self.getErrorMessageToResponse(objRespuesta)
             

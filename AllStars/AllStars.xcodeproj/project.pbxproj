@@ -86,6 +86,7 @@
 		B6A39C531CFE1BAE00DA42E3 /* StarKeywordBE.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A39C521CFE1BAE00DA42E3 /* StarKeywordBE.swift */; };
 		B6A39C551CFE207500DA42E3 /* iconTabBar_3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A39C541CFE207500DA42E3 /* iconTabBar_3@3x.png */; };
 		B6A39C571CFE280D00DA42E3 /* ic_user@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A39C561CFE280D00DA42E3 /* ic_user@3x.png */; };
+		B6B3408E1D0B283400495CD2 /* SessionUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B3408D1D0B283400495CD2 /* SessionUD.swift */; };
 		B6C152231D087E6800D8D180 /* SignUpBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C152221D087E6800D8D180 /* SignUpBC.swift */; };
 		B6C152261D08822B00D8D180 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C152251D08822B00D8D180 /* Util.swift */; };
 		B6CA97901D09B556005FF6D6 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CA978F1D09B556005FF6D6 /* UserSession.swift */; };
@@ -210,6 +211,7 @@
 		B6A39C521CFE1BAE00DA42E3 /* StarKeywordBE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarKeywordBE.swift; sourceTree = "<group>"; };
 		B6A39C541CFE207500DA42E3 /* iconTabBar_3@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconTabBar_3@3x.png"; sourceTree = "<group>"; };
 		B6A39C561CFE280D00DA42E3 /* ic_user@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_user@3x.png"; sourceTree = "<group>"; };
+		B6B3408D1D0B283400495CD2 /* SessionUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SessionUD.swift; path = Persistence/SessionUD.swift; sourceTree = "<group>"; };
 		B6C152221D087E6800D8D180 /* SignUpBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpBC.swift; path = SignUp/Logic/SignUpBC.swift; sourceTree = "<group>"; };
 		B6C152251D08822B00D8D180 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Util.swift; path = Util/Util.swift; sourceTree = "<group>"; };
 		B6CA978F1D09B556005FF6D6 /* UserSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
@@ -500,6 +502,7 @@
 		96AC74E31CDB9A3A00D993E7 /* CommonClasses */ = {
 			isa = PBXGroup;
 			children = (
+				B6B3408C1D0B279500495CD2 /* Persistence */,
 				B6C152241D08820600D8D180 /* Util */,
 				9613BBF01CE4BD9500533FAF /* OSPOptionTable */,
 				9609D7471CE3AE4600BF6036 /* Crop */,
@@ -605,6 +608,14 @@
 				B6C152221D087E6800D8D180 /* SignUpBC.swift */,
 			);
 			name = Logic;
+			sourceTree = "<group>";
+		};
+		B6B3408C1D0B279500495CD2 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				B6B3408D1D0B283400495CD2 /* SessionUD.swift */,
+			);
+			name = Persistence;
 			sourceTree = "<group>";
 		};
 		B6C152241D08820600D8D180 /* Util */ = {
@@ -856,6 +867,7 @@
 				B6EE58AB1CFF8AF00027B697 /* UserRankingTagTableViewCell.swift in Sources */,
 				96AC74D31CDB765800D993E7 /* OSPWebTranslator.swift in Sources */,
 				96AC74F01CDBB65400D993E7 /* ProfileViewController.swift in Sources */,
+				B6B3408E1D0B283400495CD2 /* SessionUD.swift in Sources */,
 				9609D7461CE3A9A800BF6036 /* CategoryBE.swift in Sources */,
 				96757BE71CE0DD5F00BA216A /* UserQualifyBE.swift in Sources */,
 				B66FBC7D1D00D1E100C058F7 /* LocationBE.swift in Sources */,
