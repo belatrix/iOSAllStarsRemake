@@ -21,15 +21,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let session_tokken : String = SessionUD.sharedInstance.getUserToken()
         
         if (session_id != -1 && session_tokken != "") {
-            objUserSession!.user_base_profile_complete! = true
-            objUserSession!.user_pk! = SessionUD.sharedInstance.getUserPk()
-            objUserSession!.user_first_name! = SessionUD.sharedInstance.getUserFirstName()
-            objUserSession!.user_last_name! = SessionUD.sharedInstance.getUserLastName()
-            objUserSession!.user_skype_id! = SessionUD.sharedInstance.getSkypeId()
+            let session : User = User()
+            session.user_pk = session_id
+            session.user_token = session_tokken
+            session.user_base_profile_complete = true
+            session.user_pk = SessionUD.sharedInstance.getUserPk()
+            session.user_first_name = SessionUD.sharedInstance.getUserFirstName()
+            session.user_last_name = SessionUD.sharedInstance.getUserLastName()
+            session.user_skype_id = SessionUD.sharedInstance.getUserSkypeId()
+            
+            objUserSession = session
             
             let storyBoard : UIStoryboard = UIStoryboard(name: "TabBar", bundle:nil)
             let customTabBarViewController = storyBoard.instantiateViewControllerWithIdentifier("CustomTabBarViewController") as! CustomTabBarViewController
-            self.window?.rootViewController = customTabBarViewController
+            let nav : UINavigationController = UINavigationController.init(rootViewController: customTabBarViewController)
+            nav.navigationBarHidden = true
+            self.window?.rootViewController = nav
         }
         
         return true

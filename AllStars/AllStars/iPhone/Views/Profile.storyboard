@@ -455,7 +455,7 @@
                                     <constraint firstAttribute="bottom" secondItem="VN9-fI-u3e" secondAttribute="bottom" id="hDu-Oj-m34"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="232" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eSq-dq-bSq">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="232" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eSq-dq-bSq">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -507,7 +507,7 @@
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOn-Vc-vaM">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOn-Vc-vaM">
                                                             <rect key="frame" x="8" y="196" width="60" height="20"/>
                                                             <color key="backgroundColor" red="0.14701241070000001" green="0.72481738790000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
@@ -623,11 +623,20 @@
                         <outlet property="lblErrorMessage" destination="Fw7-Z6-4ov" id="E40-Na-ki1"/>
                         <outlet property="tlbUsers" destination="eSq-dq-bSq" id="pR1-PA-YCb"/>
                         <outlet property="viewLoading" destination="wzB-SQ-8KY" id="62X-1b-vM8"/>
+                        <segue destination="zTs-ih-ZsU" kind="show" identifier="UserRankingTagViewController2" id="gmW-pD-1yV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oe6-4o-5f5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="821" y="742"/>
+        </scene>
+        <!--UserRankingTagViewController-->
+        <scene sceneID="91y-TP-gJK">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Ranking" referencedIdentifier="UserRankingTagViewController" id="zTs-ih-ZsU" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZqR-pg-Ra3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1178.5" y="742"/>
         </scene>
         <!--Edit Profile View Controller-->
         <scene sceneID="VaV-Sb-4xo">

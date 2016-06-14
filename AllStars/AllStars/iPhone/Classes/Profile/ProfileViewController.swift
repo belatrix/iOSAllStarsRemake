@@ -57,7 +57,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     @IBAction func btnLogoutTUI(sender: UIButton) {
-//        SessionUD.sharedInstance.c
+        SessionUD.sharedInstance.clearSession()
+        
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Login", bundle:nil)
+        let loginViewController = storyBoard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+        self.presentViewController(loginViewController, animated: true, completion: nil)
     }
     
     // MARK: - UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout

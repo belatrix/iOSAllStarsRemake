@@ -54,7 +54,7 @@ class SessionUD: NSUserDefaults {
         }
     }
     
-    func setUserLasttName (value : String) {
+    func setUserLastName (value : String) {
         self.setValue(value, forKey: UD_USER_LAST_NAME)
     }
     
@@ -66,11 +66,11 @@ class SessionUD: NSUserDefaults {
         }
     }
     
-    func setSkypeId (value : String) {
+    func setUserSkypeId (value : String) {
         self.setValue(value, forKey: UD_USER_SKYPE_ID)
     }
     
-    func getSkypeId () -> String {
+    func getUserSkypeId () -> String {
         if let userSkypeId : String = self.stringForKey(UD_USER_SKYPE_ID) {
             return userSkypeId
         } else {
@@ -82,7 +82,7 @@ class SessionUD: NSUserDefaults {
         self.setUserPk(-1)
         self.setUserToken("")
         self.setUserFirstName("")
-        self.setUserLasttName("")
-        self.setSkypeId("")
+        self.setUserLastName("")
+        self.setUserSkypeId("")
     }
 }

@@ -23,7 +23,7 @@ class LoginBC: NSObject {
                 userTemp.user_token = userSession!.session_token!
                 userTemp.user_pk = userSession!.session_user_id!
                 
-                self.saveSesionOfUser(userTemp)
+                self.saveSessionOfUser(userTemp)
                 
                 if (userSession!.session_reset_password_code == nil) {
                     if (userSession!.session_base_profile_complete!) {
@@ -90,13 +90,12 @@ class LoginBC: NSObject {
             completion(user: nil)
             return
         }
-        
     
         OSPWebModel.getUserInfo(objUser!, withToken: objUser!.user_token!) { (user, messageError) in
             
             user?.user_pk = objUser?.user_pk
             user?.user_token = objUser?.user_token
-            self.saveSesionOfUser(user)
+            self.saveSessionOfUser(user)
             
             completion(user: user)
         }
@@ -110,7 +109,22 @@ class LoginBC: NSObject {
         return userID1 == userID2 ? true : false
     }
     
-    class func saveSesionOfUser(user : User?){
+    class func saveSessionOfUser(user : User?){
+        SessionUD.sharedInstance.setUserPk(Int(user!.user_pk!))
+        SessionUD.sharedInstance.setUserToken(user!.user_token!)
+        
+        if let first_name = user!.user_first_name {
+            SessionUD.sharedInstance.setUserFirstName(first_name)
+        }
+        
+        if let last_name = user!.user_last_name {
+            SessionUD.sharedInstance.setUserLastName(last_name)
+        }
+        
+        if let skype_id = user!.user_skype_id {
+            SessionUD.sharedInstance.setUserSkypeId(skype_id)
+        }
+        
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.objUserSession = user
     }

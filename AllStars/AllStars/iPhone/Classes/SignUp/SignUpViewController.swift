@@ -49,7 +49,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         
-        // call WS
+        self.createUser(txtEmail.text!)
         
         return true
     }

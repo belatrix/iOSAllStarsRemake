@@ -60,7 +60,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
         } else if self.edtNewPassword == textField {
             self.edtRepeatNewPassword.becomeFirstResponder()
         } else {
-//            self.btnResetTUI(nil)
+            resetPassword(userSession!)
         }
         
         return true

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FoldingCell
 
 
 class StarUserInfoTableViewCell: UITableViewCell {
@@ -22,12 +21,7 @@ class StarUserInfoTableViewCell: UITableViewCell {
     @IBOutlet weak var btnKeyword       : UIButton!
     @IBOutlet weak var constraintKeyword: NSLayoutConstraint!
     
-    
-    
     var objUserQualify = UserQualifyBE()
-    
-    
-    
     
     func updateData() -> Void {
         
@@ -52,8 +46,6 @@ class StarUserInfoTableViewCell: UITableViewCell {
         }
     }
     
-    
-
     override func drawRect(rect: CGRect) {
         
         OSPCrop.makeRoundView(self.imgAvatar)
@@ -62,9 +54,6 @@ class StarUserInfoTableViewCell: UITableViewCell {
         self.containerView.layer.borderWidth = 0.5
         self.containerView.layer.borderColor = UIColor(red: 200.0/255.0, green: 200.0/255.0, blue: 200.0/255.0, alpha: 1).CGColor
     }
-    
-
-    
     
     class func getHeightToCellWithTextDescription(description : String) -> CGFloat {
         
@@ -75,5 +64,4 @@ class StarUserInfoTableViewCell: UITableViewCell {
         let size = rect.size
         return size.height + 95
     }
-
 }

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FoldingCell
 
 
 class StarsCategoriesUserViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
@@ -142,10 +141,21 @@ class StarsCategoriesUserViewController: UIViewController, UITableViewDelegate, 
         cell.objUserQualify = self.arrayUsers[indexPath.row] as! UserQualifyBE
         cell.updateData()
         
-        return cell
+        cell.btnKeyword.tag = indexPath.row
+        cell.btnKeyword.addTarget(self, action: #selector(StarsCategoriesUserViewController.openListTags(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
+        return cell
     }
     
+    func openListTags(sender: UIButton!){
+        let userQualifyBE = self.arrayUsers[sender.tag] as! UserQualifyBE
+        
+        let objStarKeyword = StarKeywordBE()
+        objStarKeyword.keyword_pk = userQualifyBE.userQualify_keywordID
+        objStarKeyword.keyword_name = userQualifyBE.userQualify_keywordName
+        
+        self.performSegueWithIdentifier("UserRankingTagViewController2", sender: objStarKeyword)
+    }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
@@ -153,11 +163,7 @@ class StarsCategoriesUserViewController: UIViewController, UITableViewDelegate, 
         return StarUserInfoTableViewCell.getHeightToCellWithTextDescription(objBE.userQualify_text!)
     }
     
-    
-    
-    //MARK: -
-    
-    
+    // MARK: -
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -186,14 +192,12 @@ class StarsCategoriesUserViewController: UIViewController, UITableViewDelegate, 
     }
     
 
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "UserRankingTagViewController2" {
+            let objStarKeyword = sender as? StarKeywordBE
+            let controller = segue.destinationViewController as! UserRankingTagViewController
+            controller.objStarKeyword = objStarKeyword
+        }
     }
-    */
-
 }

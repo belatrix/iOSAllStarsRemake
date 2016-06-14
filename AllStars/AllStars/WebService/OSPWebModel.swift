@@ -10,7 +10,7 @@ import UIKit
 
 class OSPWebModel: NSObject {
     
-    static let OSPWebModelURLBase = "https://allstars-belatrix.herokuapp.com"
+    static let OSPWebModelURLBase = "http://belatrix-connect.herokuapp.com"
     
     class func listUserRankingToKind(kind : String, withToken token : String, withCompletion completion : (arrayUsersRanking : NSMutableArray) -> Void) {
         
@@ -371,9 +371,9 @@ class OSPWebModel: NSObject {
     
     class func createUser(mail : String, withCompletion completion : (message : String) -> Void) {
         
-        let dic : NSDictionary = ["email" : mail]
+        let dic : [String : AnyObject] = ["email" : mail]
         
-        OSPWebSender.doPOSTToURL(conURL: OSPWebModelURLBase, conPath: "api/employee/create/", conParametros: dic) { (objRespuesta) in
+        OSPWebSender.doPOSTTemp(conURL: OSPWebModelURLBase, conPath: "api/employee/create/", conParametros: dic) { (objRespuesta) in
             
             if let message = objRespuesta.respuestaJSON?["detail"] {
                 completion(message: message as! String)

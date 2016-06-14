@@ -445,6 +445,8 @@ class OSPWebSender: NSObject {
         let postDataTask = sesion.dataTaskWithRequest(request) { (data : NSData?, response : NSURLResponse?, error : NSError?) in
             
             dispatch_async(dispatch_get_main_queue(), {
+                var res : OSPWebResponse = self.obtenerRespuestaServicioParaData(data, response: response, error: error)
+                print(res.statusCode)
                 
                 completion(objRespuesta : self.obtenerRespuestaServicioParaData(data, response: response, error: error))
             })
@@ -533,10 +535,45 @@ class OSPWebSender: NSObject {
         postDataTask.resume()
     }
     
-    
-    
-    
-    
+    // TEMP
+    class func doPOSTTemp(conURL url : NSString, conPath path : NSString, conParametros parametros : [String : AnyObject], conCompletion completion : (objRespuesta : OSPWebResponse) -> Void) {
+        let urlServicio = "\(url)/\(path)"
+        
+        Alamofire.request(
+            .POST,
+            urlServicio,
+            parameters: parametros)
+            .validate(statusCode: 200..<500)
+            .responseJSON { response in
+                switch response.result {
+                case .Success:
+                    print(response.response!.statusCode)
+                    print(response.result.value)
+//                    if let JSON = response.result.value {
+//                        print("JSON: \(JSON)")
+//                        
+////                        let success : Bool = JSON.valueForKey("success") as! Bool
+////                        if (success) {
+////                            self.signIn()
+////                        } else {
+////                            let message : String = JSON.valueForKey("mensaje") as! String
+////                            Util.showAlert(message)
+////                        }
+//                    }
+//                    if(response.response!.statusCode > 200 && response.response!.statusCode < 299) {
+//                        completion(objRespuesta : self.obtenerRespuestaServicioParaData(response.data, response: response.response, error: nil))
+//                    } else {
+//                        completion(objRespuesta : self.obtenerRespuestaServicioParaData(response.data, response: response.response, error: nil))
+//                    }
+                case .Failure(let error):
+                    print(response.response!.statusCode)
+                    print(response.result.value)
+//                    print(error)
+                    
+                    completion(objRespuesta : self.obtenerRespuestaServicioParaData(nil, response: nil, error: nil))
+                }
+        }
+    }
     
     
     
