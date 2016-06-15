@@ -46,12 +46,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             } else if (accountState == Constants.PROFILE_INCOMPLETE) {
                 let userTemp = User()
                 userTemp.user_pk = userSession!.session_user_id!
-                userTemp.user_token = userSession!.session_token!
                 userTemp.user_base_profile_complete = userSession!.session_base_profile_complete!
                 
                 let sb = UIStoryboard(name: "Profile", bundle: nil)
                 let editProfileViewController = sb.instantiateViewControllerWithIdentifier("EditProfileViewController") as! EditProfileViewController
                 editProfileViewController.objUser = userTemp
+                editProfileViewController.isNewUser = true
                 self.presentViewController(editProfileViewController, animated: true, completion: nil)
             } else if (accountState == Constants.PROFILE_COMPLETE) {
                 self.getInfoCurrentUser()

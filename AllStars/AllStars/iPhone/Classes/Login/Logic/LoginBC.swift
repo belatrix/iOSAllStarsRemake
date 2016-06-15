@@ -12,6 +12,20 @@ class LoginBC: NSObject {
 
     class func loginWithUser(user : User, withController controller : UIViewController, withCompletion completion : (userSession : UserSession?, accountState : String?) -> Void) {
         
+        if (user.user_username == nil || user.user_username!.isEmpty == true) {
+            OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "Username must not be empty", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
+            
+            completion(userSession: nil, accountState: "")
+            return
+        }
+        
+        if (user.user_password == nil || user.user_password!.isEmpty == true) {
+            OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "Password must not be empty", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
+            
+            completion(userSession: nil, accountState: "")
+            return
+        }
+        
         OSPWebModel.loginWithUser(user) { (userSession : UserSession?, messageError : String?) in
             
             if userSession == nil && messageError != nil {
@@ -22,6 +36,7 @@ class LoginBC: NSObject {
                 let userTemp = User()
                 userTemp.user_token = userSession!.session_token!
                 userTemp.user_pk = userSession!.session_user_id!
+                userTemp.user_base_profile_complete = userSession!.session_base_profile_complete!
                 
                 self.saveSessionOfUser(userTemp)
                 
@@ -67,6 +82,8 @@ class LoginBC: NSObject {
                         
                         completion(user: nil, messageError: "")
                     } else {
+                        saveSessionOfUser(user)
+                        
                         completion(user: user, messageError: "")
                     }
                 }
@@ -110,8 +127,18 @@ class LoginBC: NSObject {
     }
     
     class func saveSessionOfUser(user : User?){
-        SessionUD.sharedInstance.setUserPk(Int(user!.user_pk!))
-        SessionUD.sharedInstance.setUserToken(user!.user_token!)
+        
+        if let pk = user!.user_pk {
+            SessionUD.sharedInstance.setUserPk(Int(pk))
+        }
+        
+        if let token = user!.user_token {
+            SessionUD.sharedInstance.setUserToken(token)
+        }
+        
+        if let base_profile_complete = user!.user_base_profile_complete {
+            SessionUD.sharedInstance.setUserBaseProfileComplete(base_profile_complete)
+        }
         
         if let first_name = user!.user_first_name {
             SessionUD.sharedInstance.setUserFirstName(first_name)
@@ -125,8 +152,21 @@ class LoginBC: NSObject {
             SessionUD.sharedInstance.setUserSkypeId(skype_id)
         }
         
+        getUserSessionFromUD()
+    }
+    
+    class func getUserSessionFromUD() {
+        let session : User = User()
+        session.user_pk = SessionUD.sharedInstance.getUserPk()
+        session.user_token = SessionUD.sharedInstance.getUserToken()
+        session.user_base_profile_complete = SessionUD.sharedInstance.getUserBaseProfileComplete()
+        session.user_pk = SessionUD.sharedInstance.getUserPk()
+        session.user_first_name = SessionUD.sharedInstance.getUserFirstName()
+        session.user_last_name = SessionUD.sharedInstance.getUserLastName()
+        session.user_skype_id = SessionUD.sharedInstance.getUserSkypeId()
+        
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.objUserSession = user
+        appDelegate.objUserSession = session
     }
     
     class func getCurrenteUserSession() -> User? {

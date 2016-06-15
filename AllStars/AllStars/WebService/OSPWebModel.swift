@@ -325,7 +325,7 @@ class OSPWebModel: NSObject {
         }
     }
     
-    class func updateUser(user : User, withToken token : String, withCompletion completion : (isCorrect : Bool) -> Void) {
+    class func updateUser(user : User, withToken token : String, withCompletion completion : (user : User?) -> Void) {
         
         let userID = user.user_pk
         let path = "api/employee/\(userID!)/update/"
@@ -337,27 +337,27 @@ class OSPWebModel: NSObject {
         
         OSPWebSender.doPATCHTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: dic, conToken: token) { (objRespuesta) in
             
-            completion(isCorrect: objRespuesta.respuestaJSON?["pk"] != nil ? true : false)
+            completion(user: OSPWebTranslator.translateUserBE(objRespuesta.respuestaJSON as! NSDictionary))
         }
     }
     
-    class func updatePhoto(user : User, withToken token : String, withImage image : NSData, withCompletion completion : (isCorrect : Bool) -> Void) {
+    class func updatePhoto(user : User, withToken token : String, withImage image : NSData, withCompletion completion : (user : User?) -> Void) {
         
         let userID = user.user_pk
         let path = "api/employee/\(userID!)/avatar/"
         
         OSPWebSender.doMultipartTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: nil, withImage: image, conToken: token) { (objRespuesta) in
             
-            completion(isCorrect: objRespuesta.respuestaJSON?["pk"] != nil ? true : false)
+            completion(user: OSPWebTranslator.translateUserBE(objRespuesta.respuestaJSON as! NSDictionary))
         }
     }
     
     class func loginWithUser(user : User, withCompletion completion : (userSession : UserSession?, messageError : String?) -> Void) {
         
-        let dic : NSDictionary = ["username" : user.user_username!,
+        let dic : [String : AnyObject] = ["username" : user.user_username!,
                                   "password" : user.user_password!]
         
-        OSPWebSender.doPOSTToURL(conURL: OSPWebModelURLBase, conPath: "api/employee/authenticate/", conParametros: dic) { (objRespuesta : OSPWebResponse) in
+        OSPWebSender.doPOSTTemp(conURL: OSPWebModelURLBase, conPath: "api/employee/authenticate/", conParametros: dic) { (objRespuesta : OSPWebResponse) in
             
             let messageError = self.getErrorMessageToResponse(objRespuesta)
             

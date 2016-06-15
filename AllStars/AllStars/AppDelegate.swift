@@ -17,14 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        let session_id : Int = SessionUD.sharedInstance.getUserPk()
-        let session_tokken : String = SessionUD.sharedInstance.getUserToken()
+        let session_id                      : Int       = SessionUD.sharedInstance.getUserPk()
+        let session_tokken                  : String    = SessionUD.sharedInstance.getUserToken()
+        let session_base_profile_complete   : Bool      = SessionUD.sharedInstance.getUserBaseProfileComplete()
         
-        if (session_id != -1 && session_tokken != "") {
+        if (session_id != -1 && session_tokken != "" && session_base_profile_complete == true) {
             let session : User = User()
             session.user_pk = session_id
             session.user_token = session_tokken
-            session.user_base_profile_complete = true
+            session.user_base_profile_complete = session_base_profile_complete
             session.user_pk = SessionUD.sharedInstance.getUserPk()
             session.user_first_name = SessionUD.sharedInstance.getUserFirstName()
             session.user_last_name = SessionUD.sharedInstance.getUserLastName()

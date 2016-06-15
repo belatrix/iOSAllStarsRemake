@@ -10,11 +10,12 @@ import UIKit
 
 class SessionUD: NSUserDefaults {
     
-    let UD_USER_PK          : String = "user_pk"
-    let UD_USER_TOKEN       : String = "user_token"
-    let UD_USER_FIRST_NAME  : String = "user_first_name"
-    let UD_USER_LAST_NAME   : String = "user_last_name"
-    let UD_USER_SKYPE_ID    : String = "user_skype_id"
+    let UD_USER_PK                      : String = "user_pk"
+    let UD_USER_TOKEN                   : String = "user_token"
+    let UD_USER_FIRST_NAME              : String = "user_first_name"
+    let UD_USER_LAST_NAME               : String = "user_last_name"
+    let UD_USER_SKYPE_ID                : String = "user_skype_id"
+    let UD_USER_BASE_PROFILE_COMPLETE   : String = "base_profile_complete"
     
     static let sharedInstance = SessionUD()
     
@@ -78,11 +79,24 @@ class SessionUD: NSUserDefaults {
         }
     }
     
+    func setUserBaseProfileComplete (value : Bool) {
+        self.setBool(value, forKey: UD_USER_BASE_PROFILE_COMPLETE)
+    }
+    
+    func getUserBaseProfileComplete () -> Bool {
+        if let userBaseProfileComplete : Bool = self.boolForKey(UD_USER_BASE_PROFILE_COMPLETE) {
+            return userBaseProfileComplete
+        } else {
+            return false
+        }
+    }
+    
     func clearSession() {
         self.setUserPk(-1)
         self.setUserToken("")
         self.setUserFirstName("")
         self.setUserLastName("")
         self.setUserSkypeId("")
+        self.setUserBaseProfileComplete(false)
     }
 }

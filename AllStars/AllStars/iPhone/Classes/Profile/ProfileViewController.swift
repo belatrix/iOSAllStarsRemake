@@ -239,6 +239,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             
             let controller = segue.destinationViewController as! EditProfileViewController
             controller.objUser = self.objUser
+            controller.isNewUser = false
         }
     }
 }

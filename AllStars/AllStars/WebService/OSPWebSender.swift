@@ -543,7 +543,7 @@ class OSPWebSender: NSObject {
             .POST,
             urlServicio,
             parameters: parametros)
-            .validate(statusCode: 200..<500)
+            .validate(statusCode: 200..<501)
             .responseJSON { response in
                 switch response.result {
                 case .Success:
@@ -560,11 +560,12 @@ class OSPWebSender: NSObject {
 ////                            Util.showAlert(message)
 ////                        }
 //                    }
-//                    if(response.response!.statusCode > 200 && response.response!.statusCode < 299) {
-//                        completion(objRespuesta : self.obtenerRespuestaServicioParaData(response.data, response: response.response, error: nil))
-//                    } else {
-//                        completion(objRespuesta : self.obtenerRespuestaServicioParaData(response.data, response: response.response, error: nil))
-//                    }
+                    if(response.response!.statusCode > 200 && response.response!.statusCode < 299) {
+                        completion(objRespuesta : self.obtenerRespuestaServicioParaData(response.data, response: response.response, error: nil))
+                    } else {
+                        completion(objRespuesta : self.obtenerRespuestaServicioParaData(nil, response: nil, error: nil))
+                    }
+//                    completion(objRespuesta : self.obtenerRespuestaServicioParaData(response.data, response: response.response, error: nil))
                 case .Failure(let error):
                     print(response.response!.statusCode)
                     print(response.result.value)

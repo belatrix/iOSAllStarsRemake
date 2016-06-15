@@ -36,19 +36,46 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
         self.view.userInteractionEnabled = false
         self.actIndicator.startAnimating()
         
-        LoginBC.resetUserPassword(objUser, oldPassword: edtOldPassword.text!, newPassword : edtNewPassword.text!, repeatNewPassword: edtRepeatNewPassword.text!, withController: self) { (user : User?, messageError : String?) in
+        let oldPasswordString = self.edtOldPassword.text!
+        let newPasswordString = self.edtNewPassword.text!
+        let repeatNewPasswordString = self.edtRepeatNewPassword.text!
+        
+        LoginBC.resetUserPassword(objUser, oldPassword: oldPasswordString, newPassword : newPasswordString, repeatNewPassword: repeatNewPasswordString, withController: self) { (user : User?, messageError : String?) in
+            
+            self.view.userInteractionEnabled = true
+            self.actIndicator.stopAnimating()
+
+            if (user != nil && user!.user_base_profile_complete!) {
+                self.getInfoCurrentUser()
+            } else {
+                
+                let sb = UIStoryboard(name: "Profile", bundle: nil)
+                let editProfileViewController = sb.instantiateViewControllerWithIdentifier("EditProfileViewController") as! EditProfileViewController
+                editProfileViewController.objUser = user
+                editProfileViewController.isNewUser = true
+                self.presentViewController(editProfileViewController, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func getInfoCurrentUser() -> Void {
+        
+        self.view.userInteractionEnabled = false
+        self.actIndicator.startAnimating()
+        
+        LoginBC.getUserSessionInfoConCompletion { (user : User?) in
             
             self.view.userInteractionEnabled = true
             self.actIndicator.stopAnimating()
             
-//            if (accountState == Constants.PASSWORD_RESET_INCOMPLETE) {
-//                let resetPasswordViewController = self.storyboard!.instantiateViewControllerWithIdentifier("ResetPasswordViewController") as! ResetPasswordViewController
-//                self.presentViewController(resetPasswordViewController, animated: true, completion: nil)
-//            } else if (accountState == Constants.PROFILE_INCOMPLETE) {
-//                print("incomplete")
-//            } else if (accountState == Constants.PROFILE_COMPLETE) {
-////                self.getInfoCurrentUser()
-//            }
+            if user != nil {
+                //                self.dismissViewControllerAnimated(true, completion: nil)
+                let storyBoard : UIStoryboard = UIStoryboard(name: "TabBar", bundle:nil)
+                let customTabBarViewController = storyBoard.instantiateViewControllerWithIdentifier("CustomTabBarViewController") as! CustomTabBarViewController
+                let nav : UINavigationController = UINavigationController.init(rootViewController: customTabBarViewController)
+                nav.navigationBarHidden = true
+                self.presentViewController(nav, animated: true, completion: nil)
+            }
         }
     }
     

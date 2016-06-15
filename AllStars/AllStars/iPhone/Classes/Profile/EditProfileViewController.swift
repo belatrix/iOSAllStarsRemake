@@ -29,6 +29,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
     
     var objUser : User?
     var arrayLocations = NSMutableArray()
+    var isNewUser : Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -173,19 +174,25 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
         self.view.userInteractionEnabled = false
         self.activityUpdating.startAnimating()
         
-        ProfileBC.updateInfoToUser(objUser!, withController: self, withCompletion: {(isCorrect) in
+        ProfileBC.updateInfoToUser(objUser!, newUser: isNewUser!, hasImage: hasNewImage, withController: self, withCompletion: {(user) in
             
             self.view.userInteractionEnabled = true
             self.activityUpdating.stopAnimating()
             
-            if (isCorrect == true) {
+            if (user != nil) {
                 if (self.hasNewImage) {
                     self.updatePhotoUser()
                 } else {
-                    if (self.objUser!.user_base_profile_complete!) {
-                        self.dismissViewControllerAnimated(true, completion: nil)
-                    } else {
-                        // 
+                    if (user!.user_base_profile_complete!) {
+                        if (self.isNewUser!) {
+                            let storyBoard : UIStoryboard = UIStoryboard(name: "TabBar", bundle:nil)
+                            let customTabBarViewController = storyBoard.instantiateViewControllerWithIdentifier("CustomTabBarViewController") as! CustomTabBarViewController
+                            let nav : UINavigationController = UINavigationController.init(rootViewController: customTabBarViewController)
+                            nav.navigationBarHidden = true
+                            self.presentViewController(nav, animated: true, completion: nil)
+                        } else {
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                        }
                     }
                 }
             }
@@ -198,16 +205,22 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
 
         let imageData = UIImageJPEGRepresentation(selectedImage, 0.5)
         
-        ProfileBC.updatePhotoToUser(objUser!, withController: self, withImage: imageData!, withCompletion: {(isCorrect) in
+        ProfileBC.updatePhotoToUser(objUser!, withController: self, withImage: imageData!, withCompletion: {(user) in
             
             self.view.userInteractionEnabled = true
             self.activityUpdating.stopAnimating()
             
-            if (isCorrect == true) {
-                if (self.objUser!.user_base_profile_complete!) {
-                    self.dismissViewControllerAnimated(true, completion: nil)
-                } else {
-                    //
+             if (user != nil) {
+                if (user!.user_base_profile_complete!) {
+                    if (self.isNewUser!) {
+                        let storyBoard : UIStoryboard = UIStoryboard(name: "TabBar", bundle:nil)
+                        let customTabBarViewController = storyBoard.instantiateViewControllerWithIdentifier("CustomTabBarViewController") as! CustomTabBarViewController
+                        let nav : UINavigationController = UINavigationController.init(rootViewController: customTabBarViewController)
+                        nav.navigationBarHidden = true
+                        self.presentViewController(nav, animated: true, completion: nil)
+                    } else {
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    }
                 }
             }
         })
