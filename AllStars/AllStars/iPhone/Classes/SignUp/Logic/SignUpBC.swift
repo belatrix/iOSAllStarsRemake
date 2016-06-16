@@ -10,29 +10,34 @@ import UIKit
 
 class SignUpBC: NSObject {
 
-    class func createUser(mail : String, withController controller : UIViewController, withCompletion completion : (message : String) -> Void) {
+    class func createUser(mail : String, withCompletion completion : (successful : Bool) -> Void) {
         
-        if (mail == "") {
-            OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "Email must not be empty", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
-            completion(message: "")
+        if (mail.trim().isEmpty) {
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "mail_empty".localized, withAcceptButton: "ok".localized)
+            completion(successful: false)
             return
         }
         
         if (!Util.isValidEmail(mail)) {
-            OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "Email must be valid", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
-            completion(message: "")
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "mail_invalid".localized, withAcceptButton: "ok".localized)
+            completion(successful: false)
             return
         }
         
-        OSPWebModel.createUser(mail) { (message : String) in
+        OSPWebModel.createUser(mail) { (errorResponse, successful) in
             
-            if message == "" {
-                OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "We could't create your account", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
+            if (errorResponse != nil) {
+                if (successful) {
+                    OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: errorResponse!.message!, withAcceptButton: "got_it".localized)
+                    completion(successful: true)
+                } else {
+                    OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
+                    completion(successful: false)
+                }
             } else {
-                OSPUserAlerts.mostrarAlertaConTitulo("Create Account", conMensaje: message, conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
+                completion(successful: false)
             }
-            
-            completion(message: message)
         }
     }
 }

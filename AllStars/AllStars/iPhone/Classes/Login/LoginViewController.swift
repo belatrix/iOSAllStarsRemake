@@ -39,22 +39,24 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             self.view.userInteractionEnabled = true
             self.activityEnter.stopAnimating()
             
-            if (accountState == Constants.PASSWORD_RESET_INCOMPLETE) {
-                let resetPasswordViewController = self.storyboard!.instantiateViewControllerWithIdentifier("ResetPasswordViewController") as! ResetPasswordViewController
-                resetPasswordViewController.userSession = userSession
-                self.presentViewController(resetPasswordViewController, animated: true, completion: nil)
-            } else if (accountState == Constants.PROFILE_INCOMPLETE) {
-                let userTemp = User()
-                userTemp.user_pk = userSession!.session_user_id!
-                userTemp.user_base_profile_complete = userSession!.session_base_profile_complete!
-                
-                let sb = UIStoryboard(name: "Profile", bundle: nil)
-                let editProfileViewController = sb.instantiateViewControllerWithIdentifier("EditProfileViewController") as! EditProfileViewController
-                editProfileViewController.objUser = userTemp
-                editProfileViewController.isNewUser = true
-                self.presentViewController(editProfileViewController, animated: true, completion: nil)
-            } else if (accountState == Constants.PROFILE_COMPLETE) {
-                self.getInfoCurrentUser()
+            if (userSession != nil) {
+                if (accountState == Constants.PASSWORD_RESET_INCOMPLETE) {
+                    let resetPasswordViewController = self.storyboard!.instantiateViewControllerWithIdentifier("ResetPasswordViewController") as! ResetPasswordViewController
+                    resetPasswordViewController.userSession = userSession
+                    self.presentViewController(resetPasswordViewController, animated: true, completion: nil)
+                } else if (accountState == Constants.PROFILE_INCOMPLETE) {
+                    let userTemp = User()
+                    userTemp.user_pk = userSession!.session_user_id!
+                    userTemp.user_base_profile_complete = userSession!.session_base_profile_complete!
+                    
+                    let sb = UIStoryboard(name: "Profile", bundle: nil)
+                    let editProfileViewController = sb.instantiateViewControllerWithIdentifier("EditProfileViewController") as! EditProfileViewController
+                    editProfileViewController.objUser = userTemp
+                    editProfileViewController.isNewUser = true
+                    self.presentViewController(editProfileViewController, animated: true, completion: nil)
+                } else if (accountState == Constants.PROFILE_COMPLETE) {
+                    self.getInfoCurrentUser()
+                }
             }
         }
     }

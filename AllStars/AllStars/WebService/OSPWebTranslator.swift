@@ -10,7 +10,18 @@ import UIKit
 
 class OSPWebTranslator: NSObject {
     
-    class func translateUserSessionBE(objDic : NSDictionary) -> UserSession{
+    class func parseErrorMessage(objDic : NSDictionary) -> ErrorResponse {
+        
+        let errorResponse = ErrorResponse()
+        
+        if let message = objDic["detail"] as? String {
+            errorResponse.message = message
+        }
+        
+        return errorResponse
+    }
+    
+    class func parseUserSessionBE(objDic : NSDictionary) -> UserSession {
         
         let objBE = UserSession()
         

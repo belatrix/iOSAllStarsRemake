@@ -12,43 +12,53 @@ class LoginBC: NSObject {
 
     class func loginWithUser(user : User, withController controller : UIViewController, withCompletion completion : (userSession : UserSession?, accountState : String?) -> Void) {
         
-        if (user.user_username == nil || user.user_username!.isEmpty == true) {
-            OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "Username must not be empty", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
+        if (user.user_username == nil || user.user_username!.trim().isEmpty == true) {
+            OSPUserAlerts.mostrarAlertaConTitulo("app_name".localized, conMensaje: "username_empty".localized, conBotonCancelar: "ok".localized, enController: controller, conCompletion: nil)
             
             completion(userSession: nil, accountState: "")
             return
         }
         
-        if (user.user_password == nil || user.user_password!.isEmpty == true) {
-            OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "Password must not be empty", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
+        if (user.user_password == nil || user.user_password!.trim().isEmpty == true) {
+            OSPUserAlerts.mostrarAlertaConTitulo("app_name".localized, conMensaje: "password_empty".localized, conBotonCancelar: "ok".localized, enController: controller, conCompletion: nil)
             
             completion(userSession: nil, accountState: "")
             return
         }
         
-        OSPWebModel.loginWithUser(user) { (userSession : UserSession?, messageError : String?) in
+        OSPWebModel.loginUser(user) {(userSession, errorResponse, successful) in
             
-            if userSession == nil && messageError != nil {
-                OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: messageError!, conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
-                
-                completion(userSession: userSession, accountState: "")
-            } else {
-                let userTemp = User()
-                userTemp.user_token = userSession!.session_token!
-                userTemp.user_pk = userSession!.session_user_id!
-                userTemp.user_base_profile_complete = userSession!.session_base_profile_complete!
-                
-                self.saveSessionOfUser(userTemp)
-                
-                if (userSession!.session_reset_password_code == nil) {
-                    if (userSession!.session_base_profile_complete!) {
-                        completion(userSession: userSession, accountState: Constants.PROFILE_COMPLETE)
+            if (userSession != nil) {
+                if (successful) {
+                    let userTemp = User()
+                    userTemp.user_token = userSession!.session_token!
+                    userTemp.user_pk = userSession!.session_user_id!
+                    userTemp.user_base_profile_complete = userSession!.session_base_profile_complete!
+                    
+                    self.saveSessionOfUser(userTemp)
+                    
+                    if (userSession!.session_reset_password_code == nil) {
+                        if (userSession!.session_base_profile_complete!) {
+                            completion(userSession: userSession, accountState: Constants.PROFILE_COMPLETE)
+                        } else {
+                            completion(userSession: userSession, accountState: Constants.PROFILE_INCOMPLETE)
+                        }
                     } else {
-                        completion(userSession: userSession, accountState: Constants.PROFILE_INCOMPLETE)
+                        completion(userSession: userSession, accountState: Constants.PASSWORD_RESET_INCOMPLETE)
                     }
                 } else {
-                    completion(userSession: userSession, accountState: Constants.PASSWORD_RESET_INCOMPLETE)
+                    if (errorResponse != nil) {
+                        OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
+                    } else {
+                        OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
+                    }
+                    
+                    completion(userSession: nil, accountState: "")
                 }
+            } else {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
+                
+                completion(userSession: userSession, accountState: "")
             }
         }
     }

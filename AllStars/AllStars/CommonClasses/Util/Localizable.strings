@@ -1,0 +1,25 @@
+/*
+  Localizable.strings
+  AllStars
+
+  Created by Flavio Franco Tunqui on 6/16/16.
+  Copyright © 2016 Belatrix SF. All rights reserved.
+*/
+
+// General
+app_name = "Belatrix Connect";
+ok = "Accept";
+got_it = "Got It!";
+cancel = "Cancel";
+generic_title_problem = "Oops something went wrong!";
+yes = "Yes";
+no = "No";
+server_error = "There is a error in server, try again in a few minutes";
+
+// SignUp
+mail_empty = "Email must not be empty";
+mail_invalid = "Email must be valid";
+
+// LogIn
+username_empty = "Username must not be empty";
+password_empty = "Password must not be empty";

@@ -15,7 +15,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     // MARK: - IBActions
@@ -30,18 +29,24 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    @IBAction func tapCloseKeyboard(sender: AnyObject) {
+        
+        self.view.endEditing(true)
+    }
+    
     // MARK: - WebServices
     func createUser(email : String) -> Void {
-        
         self.view.userInteractionEnabled = false
         self.activityIndicator.startAnimating()
         
-        SignUpBC.createUser(email, withController: self) { (message : String) in
+        SignUpBC.createUser(email) { (successful) in
             
             self.view.userInteractionEnabled = true
             self.activityIndicator.stopAnimating()
             
-//            self.dismissViewControllerAnimated(true, completion: nil)
+            if (successful) {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
         }
     }
     

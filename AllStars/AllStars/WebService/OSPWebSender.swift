@@ -118,37 +118,37 @@ class OSPWebSender: NSObject {
     
     
     
-    class func doPOSTCookieToURL(conURL url : NSString, conPath path : NSString, conParametros parametros : AnyObject?, conCookie cookie : NSString, conCompletion completion : (objRespuesta : OSPWebResponse) -> Void){
-        
-        let configuracionSesion = NSURLSessionConfiguration.defaultSessionConfiguration()
-        configuracionSesion.HTTPAdditionalHeaders = self.crearCabeceraPeticionConCookie(cookie) as [NSObject : AnyObject]
-        
-        let sesion = NSURLSession.init(configuration: configuracionSesion)
-        
-        let urlServicio = NSURL(string: "\(url)/\(path)")
-        let request = NSMutableURLRequest(URL: urlServicio!)
-        request.addValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        
-        if parametros != nil {
-            do {
-                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(parametros!, options: NSJSONWritingOptions.PrettyPrinted)
-            }catch {}
-        }
-        
-        request.HTTPMethod = "POST"
-        
-        let postDataTask = sesion.dataTaskWithRequest(request) { (data : NSData?, response : NSURLResponse?, error : NSError?) in
-
-            dispatch_async(dispatch_get_main_queue(), {
- 
-                completion(objRespuesta : self.obtenerRespuestaServicioParaData(data, response: response, error: error))
-            })
-        }
-        
-        postDataTask.resume()
-    }
+//    class func doPOSTCookieToURL(conURL url : NSString, conPath path : NSString, conParametros parametros : AnyObject?, conCookie cookie : NSString, conCompletion completion : (objRespuesta : OSPWebResponse) -> Void){
+//        
+//        let configuracionSesion = NSURLSessionConfiguration.defaultSessionConfiguration()
+//        configuracionSesion.HTTPAdditionalHeaders = self.crearCabeceraPeticionConCookie(cookie) as [NSObject : AnyObject]
+//        
+//        let sesion = NSURLSession.init(configuration: configuracionSesion)
+//        
+//        let urlServicio = NSURL(string: "\(url)/\(path)")
+//        let request = NSMutableURLRequest(URL: urlServicio!)
+//        request.addValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+//        request.addValue("application/json", forHTTPHeaderField: "Accept")
+//        
+//        
+//        if parametros != nil {
+//            do {
+//                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(parametros!, options: NSJSONWritingOptions.PrettyPrinted)
+//            }catch {}
+//        }
+//        
+//        request.HTTPMethod = "POST"
+//        
+//        let postDataTask = sesion.dataTaskWithRequest(request) { (data : NSData?, response : NSURLResponse?, error : NSError?) in
+//
+//            dispatch_async(dispatch_get_main_queue(), {
+// 
+//                completion(objRespuesta : self.obtenerRespuestaServicioParaData(data, response: response, error: error))
+//            })
+//        }
+//        
+//        postDataTask.resume()
+//    }
     
     
     
@@ -421,40 +421,40 @@ class OSPWebSender: NSObject {
     //MARK: Consumo de servicios simple
     //MARK:
     
-    class func doPOSTToURL(conURL url : NSString, conPath path : NSString, conParametros parametros : AnyObject?, conCompletion completion : (objRespuesta : OSPWebResponse) -> Void){
-        
-        let configuracionSesion = NSURLSessionConfiguration.defaultSessionConfiguration()
-        configuracionSesion.HTTPAdditionalHeaders = self.crearCabeceraPeticion() as [NSObject : AnyObject]
-        
-        let sesion = NSURLSession.init(configuration: configuracionSesion)
-        
-        let urlServicio = NSURL(string: "\(url)/\(path)")
-        let request = NSMutableURLRequest(URL: urlServicio!)
-        request.addValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        
-        if parametros != nil {
-            do {
-                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(parametros!, options: NSJSONWritingOptions.PrettyPrinted)
-            }catch {}
-        }
-        
-        request.HTTPMethod = "POST"
-        
-        let postDataTask = sesion.dataTaskWithRequest(request) { (data : NSData?, response : NSURLResponse?, error : NSError?) in
-            
-            dispatch_async(dispatch_get_main_queue(), {
-                var res : OSPWebResponse = self.obtenerRespuestaServicioParaData(data, response: response, error: error)
-                print(res.statusCode)
-                
-                completion(objRespuesta : self.obtenerRespuestaServicioParaData(data, response: response, error: error))
-            })
-        }
-        
-        
-        postDataTask.resume()
-    }
+//    class func doPOSTToURL(conURL url : NSString, conPath path : NSString, conParametros parametros : AnyObject?, conCompletion completion : (objRespuesta : OSPWebResponse) -> Void){
+//        
+//        let configuracionSesion = NSURLSessionConfiguration.defaultSessionConfiguration()
+//        configuracionSesion.HTTPAdditionalHeaders = self.crearCabeceraPeticion() as [NSObject : AnyObject]
+//        
+//        let sesion = NSURLSession.init(configuration: configuracionSesion)
+//        
+//        let urlServicio = NSURL(string: "\(url)/\(path)")
+//        let request = NSMutableURLRequest(URL: urlServicio!)
+//        request.addValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+//        request.addValue("application/json", forHTTPHeaderField: "Accept")
+//        
+//        
+//        if parametros != nil {
+//            do {
+//                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(parametros!, options: NSJSONWritingOptions.PrettyPrinted)
+//            }catch {}
+//        }
+//        
+//        request.HTTPMethod = "POST"
+//        
+//        let postDataTask = sesion.dataTaskWithRequest(request) { (data : NSData?, response : NSURLResponse?, error : NSError?) in
+//            
+//            dispatch_async(dispatch_get_main_queue(), {
+//                var res : OSPWebResponse = self.obtenerRespuestaServicioParaData(data, response: response, error: error)
+//                print(res.statusCode)
+//                
+//                completion(objRespuesta : self.obtenerRespuestaServicioParaData(data, response: response, error: error))
+//            })
+//        }
+//        
+//        
+//        postDataTask.resume()
+//    }
     
 
     
@@ -535,47 +535,36 @@ class OSPWebSender: NSObject {
         postDataTask.resume()
     }
     
-    // TEMP
-    class func doPOSTTemp(conURL url : NSString, conPath path : NSString, conParametros parametros : [String : AnyObject], conCompletion completion : (objRespuesta : OSPWebResponse) -> Void) {
-        let urlServicio = "\(url)/\(path)"
+    class func doPOSTTemp(path : String, withParameters parameters : [String : AnyObject], withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
+        
+        let URL = Constants.WEB_SERVICES + path
         
         Alamofire.request(
             .POST,
-            urlServicio,
-            parameters: parametros)
+            URL,
+            parameters: parameters)
             .validate(statusCode: 200..<501)
             .responseJSON { response in
                 switch response.result {
                 case .Success:
-                    print(response.response!.statusCode)
-                    print(response.result.value)
-//                    if let JSON = response.result.value {
-//                        print("JSON: \(JSON)")
-//                        
-////                        let success : Bool = JSON.valueForKey("success") as! Bool
-////                        if (success) {
-////                            self.signIn()
-////                        } else {
-////                            let message : String = JSON.valueForKey("mensaje") as! String
-////                            Util.showAlert(message)
-////                        }
-//                    }
-                    if(response.response!.statusCode > 200 && response.response!.statusCode < 299) {
-                        completion(objRespuesta : self.obtenerRespuestaServicioParaData(response.data, response: response.response, error: nil))
-                    } else {
-                        completion(objRespuesta : self.obtenerRespuestaServicioParaData(nil, response: nil, error: nil))
-                    }
-//                    completion(objRespuesta : self.obtenerRespuestaServicioParaData(response.data, response: response.response, error: nil))
-                case .Failure(let error):
-                    print(response.response!.statusCode)
-                    print(response.result.value)
-//                    print(error)
+                    print("statusCode: \(response.response!.statusCode)")
+                    print("response: \(response.result.value)")
                     
-                    completion(objRespuesta : self.obtenerRespuestaServicioParaData(nil, response: nil, error: nil))
+                    if let JSON = response.result.value {
+                        if(response.response!.statusCode >= 200 && response.response!.statusCode <= 299) {
+                            completion(response : JSON, successful: true)
+                        } else {
+                            completion(response : JSON, successful: false)
+                        }
+                    } else {
+                        completion(response : nil, successful: false)
+                    }
+                case .Failure(let error):
+                    print("statusCode: \(response.response!.statusCode)")
+                    print("error: \(error)")
+                    
+                    completion(response : nil, successful: false)
                 }
         }
     }
-    
-    
-    
 }

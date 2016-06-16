@@ -10,6 +10,9 @@ import Foundation
 
 public struct Constants {
     
+    // WEB SERVICES
+    static let WEB_SERVICES                 : String = "http://belatrix-connect.herokuapp.com/"
+    
     // LOGIN
     static let PROFILE_COMPLETE             : String = "kPROFILE_COMPLETE"
     static let PROFILE_INCOMPLETE           : String = "kPROFILE_INCOMPLETE"

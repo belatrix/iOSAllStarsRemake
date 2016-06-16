@@ -10,13 +10,11 @@ import UIKit
 
 class OSPWebModel: NSObject {
     
-    static let OSPWebModelURLBase = "http://belatrix-connect.herokuapp.com"
-    
     class func listUserRankingToKind(kind : String, withToken token : String, withCompletion completion : (arrayUsersRanking : NSMutableArray) -> Void) {
         
         let path = "api/employee/list/top/\(kind)/15/"
         
-        OSPWebSender.doGETTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
+        OSPWebSender.doGETTokenToURL(conURL: Constants.WEB_SERVICES, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
             
             let arrayResponse : NSArray? = objRespuesta.respuestaJSON as? NSArray
             let arrayUsersRanking = NSMutableArray()
@@ -42,7 +40,7 @@ class OSPWebModel: NSObject {
                                   "text"        : rate.rate_comment
                                  ]
         
-        OSPWebSender.doPOSTTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: dic, conToken: token) { (objRespuesta) in
+        OSPWebSender.doPOSTTokenToURL(conURL: Constants.WEB_SERVICES, conPath: path, conParametros: dic, conToken: token) { (objRespuesta) in
             
             completion(isCorrect: objRespuesta.respuestaJSON?["pk"] != nil ? true : false)
         }
@@ -52,7 +50,7 @@ class OSPWebModel: NSObject {
         
         let path = "api/category/keyword/list/"
         
-        OSPWebSender.doGETTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
+        OSPWebSender.doGETTokenToURL(conURL: Constants.WEB_SERVICES, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
             
             let arrayResponse : NSArray? = objRespuesta.respuestaJSON as? NSArray
             let arrayKeywords = NSMutableArray()
@@ -71,7 +69,7 @@ class OSPWebModel: NSObject {
         let userID = user.user_pk
         let path = "api/employee/\(userID!)/category/list/"
         
-        return OSPWebSender.doGETTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: nil, conToken: token, conCompletion: { (objRespuesta) in
+        return OSPWebSender.doGETTokenToURL(conURL: Constants.WEB_SERVICES, conPath: path, conParametros: nil, conToken: token, conCompletion: { (objRespuesta) in
             
             let arrayResponse : NSArray? = objRespuesta.respuestaJSON as? NSArray
             let arrayCategories = NSMutableArray()
@@ -87,9 +85,9 @@ class OSPWebModel: NSObject {
     
     class func listEmployeeToPage(page : String, withToken token : String, withCompletion completion : (arrayEmployee : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask{
         
-        return OSPWebSender.doGETTokenToURL(conURL: OSPWebModelURLBase, conPath: page, conParametros: nil, conToken: token) { (objRespuesta) in
+        return OSPWebSender.doGETTokenToURL(conURL: Constants.WEB_SERVICES, conPath: page, conParametros: nil, conToken: token) { (objRespuesta) in
             
-            let nextPage = (objRespuesta.respuestaJSON?["next"] as? String)?.stringByReplacingOccurrencesOfString("\(OSPWebModelURLBase)/", withString: "")
+            let nextPage = (objRespuesta.respuestaJSON?["next"] as? String)?.stringByReplacingOccurrencesOfString("\(Constants.WEB_SERVICES)/", withString: "")
             let arrayEmployee = NSMutableArray()
             let arrayResponse = objRespuesta.respuestaJSON?["results"] as? NSArray
             
@@ -106,9 +104,9 @@ class OSPWebModel: NSObject {
         
         let path = "api/employee/list/?search=\(text)"
         
-        return OSPWebSender.doGETTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
+        return OSPWebSender.doGETTokenToURL(conURL: Constants.WEB_SERVICES, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
             
-            let nextPage = (objRespuesta.respuestaJSON?["next"] as? String)?.stringByReplacingOccurrencesOfString("\(OSPWebModelURLBase)/", withString: "")
+            let nextPage = (objRespuesta.respuestaJSON?["next"] as? String)?.stringByReplacingOccurrencesOfString("\(Constants.WEB_SERVICES)/", withString: "")
             let arrayEmployee = NSMutableArray()
             let arrayResponse = objRespuesta.respuestaJSON?["results"] as? NSArray
             
@@ -125,9 +123,9 @@ class OSPWebModel: NSObject {
         
         let path = "api/employee/list/"
         
-        return OSPWebSender.doGETTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
+        return OSPWebSender.doGETTokenToURL(conURL: Constants.WEB_SERVICES, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
             
-            let nextPage = (objRespuesta.respuestaJSON?["next"] as? String)?.stringByReplacingOccurrencesOfString("\(OSPWebModelURLBase)/", withString: "")
+            let nextPage = (objRespuesta.respuestaJSON?["next"] as? String)?.stringByReplacingOccurrencesOfString("\(Constants.WEB_SERVICES)/", withString: "")
             let arrayEmployee = NSMutableArray()
             let arrayResponse = objRespuesta.respuestaJSON?["results"] as? NSArray
             
@@ -142,9 +140,9 @@ class OSPWebModel: NSObject {
     
     class func listStarKeywordToPage(page : String, withToken token : String, withCompletion completion : (arrayKeyword : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask {
         
-        return OSPWebSender.doGETTokenToURL(conURL: OSPWebModelURLBase, conPath: page, conParametros: nil, conToken: token) { (objRespuesta) in
+        return OSPWebSender.doGETTokenToURL(conURL: Constants.WEB_SERVICES, conPath: page, conParametros: nil, conToken: token) { (objRespuesta) in
             
-            let nextPage = (objRespuesta.respuestaJSON?["next"] as? String)?.stringByReplacingOccurrencesOfString("\(OSPWebModelURLBase)/", withString: "")
+            let nextPage = (objRespuesta.respuestaJSON?["next"] as? String)?.stringByReplacingOccurrencesOfString("\(Constants.WEB_SERVICES)/", withString: "")
             let arrayStarKeyword = NSMutableArray()
             let arrayResponse = objRespuesta.respuestaJSON?["results"] as? NSArray
             
@@ -161,9 +159,9 @@ class OSPWebModel: NSObject {
         
         let path = "api/star/keyword/list/"
         
-        return OSPWebSender.doGETTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
+        return OSPWebSender.doGETTokenToURL(conURL: Constants.WEB_SERVICES, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
             
-            let nextPage = (objRespuesta.respuestaJSON?["next"] as? String)?.stringByReplacingOccurrencesOfString("\(OSPWebModelURLBase)/", withString: "")
+            let nextPage = (objRespuesta.respuestaJSON?["next"] as? String)?.stringByReplacingOccurrencesOfString("\(Constants.WEB_SERVICES)/", withString: "")
             let arrayStarKeyword = NSMutableArray()
             let arrayResponse = objRespuesta.respuestaJSON?["results"] as? NSArray
             
@@ -180,9 +178,9 @@ class OSPWebModel: NSObject {
         
         let path = "api/star/keyword/list/?search=\(text)"
         
-        return OSPWebSender.doGETTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
+        return OSPWebSender.doGETTokenToURL(conURL: Constants.WEB_SERVICES, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
             
-            let nextPage = (objRespuesta.respuestaJSON?["next"] as? String)?.stringByReplacingOccurrencesOfString("\(OSPWebModelURLBase)/", withString: "")
+            let nextPage = (objRespuesta.respuestaJSON?["next"] as? String)?.stringByReplacingOccurrencesOfString("\(Constants.WEB_SERVICES)/", withString: "")
             let arrayStarKeyword = NSMutableArray()
             let arrayResponse = objRespuesta.respuestaJSON?["results"] as? NSArray
             
@@ -198,9 +196,9 @@ class OSPWebModel: NSObject {
     class func listStarUserSubCategoriesToPage(page : String, withToken token : String, withCompletion completion : (arrayUsers : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask {
         
         
-        return OSPWebSender.doGETTokenToURL(conURL: OSPWebModelURLBase, conPath: page, conParametros: nil, conToken: token) { (objRespuesta) in
+        return OSPWebSender.doGETTokenToURL(conURL: Constants.WEB_SERVICES, conPath: page, conParametros: nil, conToken: token) { (objRespuesta) in
             
-            let nextPage = (objRespuesta.respuestaJSON?["next"] as? String)?.stringByReplacingOccurrencesOfString("\(OSPWebModelURLBase)/", withString: "")
+            let nextPage = (objRespuesta.respuestaJSON?["next"] as? String)?.stringByReplacingOccurrencesOfString("\(Constants.WEB_SERVICES)/", withString: "")
             let arrayUsers = NSMutableArray()
             let arrayResponse = objRespuesta.respuestaJSON?["results"] as? NSArray
             
@@ -218,9 +216,9 @@ class OSPWebModel: NSObject {
         let userID = user.user_pk
         let path = "api/star/\(userID!)/subcategory/\(subCategory.starSubCategoy_id!)/list/"
         
-        return OSPWebSender.doGETTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
+        return OSPWebSender.doGETTokenToURL(conURL: Constants.WEB_SERVICES, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
             
-            let nextPage = (objRespuesta.respuestaJSON?["next"] as? String)?.stringByReplacingOccurrencesOfString("\(OSPWebModelURLBase)/", withString: "")
+            let nextPage = (objRespuesta.respuestaJSON?["next"] as? String)?.stringByReplacingOccurrencesOfString("\(Constants.WEB_SERVICES)/", withString: "")
             let arrayUsers = NSMutableArray()
             let arrayResponse = objRespuesta.respuestaJSON?["results"] as? NSArray
             
@@ -238,7 +236,7 @@ class OSPWebModel: NSObject {
         let userID = user.user_pk
         let path = "api/star/\(userID!)/subcategory/list/"
         
-        OSPWebSender.doGETTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
+        OSPWebSender.doGETTokenToURL(conURL: Constants.WEB_SERVICES, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
             
             let arrayCategories = NSMutableArray()
             let arrayResponse = objRespuesta.respuestaJSON?["results"] as? NSArray
@@ -254,9 +252,9 @@ class OSPWebModel: NSObject {
     
     class func listEmployeeKeywordToPage(page : String, withToken token : String, withCompletion completion : (arrayEmployee : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask{
         
-        return OSPWebSender.doGETTokenToURL(conURL: OSPWebModelURLBase, conPath: page, conParametros: nil, conToken: token) { (objRespuesta) in
+        return OSPWebSender.doGETTokenToURL(conURL: Constants.WEB_SERVICES, conPath: page, conParametros: nil, conToken: token) { (objRespuesta) in
             
-            let nextPage = (objRespuesta.respuestaJSON?["next"] as? String)?.stringByReplacingOccurrencesOfString("\(OSPWebModelURLBase)/", withString: "")
+            let nextPage = (objRespuesta.respuestaJSON?["next"] as? String)?.stringByReplacingOccurrencesOfString("\(Constants.WEB_SERVICES)/", withString: "")
             let arrayEmployee = NSMutableArray()
             let arrayResponse = objRespuesta.respuestaJSON?["results"] as? NSArray
             
@@ -273,9 +271,9 @@ class OSPWebModel: NSObject {
         
         let path = "api/star/keyword/\(starKeyword.keyword_pk!)/list/"
         
-        return OSPWebSender.doGETTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
+        return OSPWebSender.doGETTokenToURL(conURL: Constants.WEB_SERVICES, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
             
-            let nextPage = (objRespuesta.respuestaJSON?["next"] as? String)?.stringByReplacingOccurrencesOfString("\(OSPWebModelURLBase)/", withString: "")
+            let nextPage = (objRespuesta.respuestaJSON?["next"] as? String)?.stringByReplacingOccurrencesOfString("\(Constants.WEB_SERVICES)/", withString: "")
             let arrayEmployee = NSMutableArray()
             let arrayResponse = objRespuesta.respuestaJSON?["results"] as? NSArray
             
@@ -292,7 +290,7 @@ class OSPWebModel: NSObject {
         
         let path = "api/employee/location/list/"
         
-        OSPWebSender.doGETTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
+        OSPWebSender.doGETTokenToURL(conURL: Constants.WEB_SERVICES, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
             
             let arrayResponse : NSArray? = objRespuesta.respuestaJSON as? NSArray
             let arrayLocations = NSMutableArray()
@@ -311,7 +309,7 @@ class OSPWebModel: NSObject {
         let userID = user.user_pk
         let path = "api/employee/\(userID!)/"
         
-        OSPWebSender.doGETTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
+        OSPWebSender.doGETTokenToURL(conURL: Constants.WEB_SERVICES, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
             
             if objRespuesta.respuestaJSON != nil {
                 
@@ -335,7 +333,7 @@ class OSPWebModel: NSObject {
                                   "skype_id" : user.user_skype_id!,
                                   "location" : user.user_location_id!]
         
-        OSPWebSender.doPATCHTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: dic, conToken: token) { (objRespuesta) in
+        OSPWebSender.doPATCHTokenToURL(conURL: Constants.WEB_SERVICES, conPath: path, conParametros: dic, conToken: token) { (objRespuesta) in
             
             completion(user: OSPWebTranslator.translateUserBE(objRespuesta.respuestaJSON as! NSDictionary))
         }
@@ -346,39 +344,49 @@ class OSPWebModel: NSObject {
         let userID = user.user_pk
         let path = "api/employee/\(userID!)/avatar/"
         
-        OSPWebSender.doMultipartTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: nil, withImage: image, conToken: token) { (objRespuesta) in
+        OSPWebSender.doMultipartTokenToURL(conURL: Constants.WEB_SERVICES, conPath: path, conParametros: nil, withImage: image, conToken: token) { (objRespuesta) in
             
             completion(user: OSPWebTranslator.translateUserBE(objRespuesta.respuestaJSON as! NSDictionary))
         }
     }
     
-    class func loginWithUser(user : User, withCompletion completion : (userSession : UserSession?, messageError : String?) -> Void) {
+    class func loginUser(user : User, withCompletion completion : (userSession : UserSession?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
         
-        let dic : [String : AnyObject] = ["username" : user.user_username!,
-                                  "password" : user.user_password!]
+        let dic : [String : AnyObject] =
+            ["username" : user.user_username!,
+             "password" : user.user_password!]
         
-        OSPWebSender.doPOSTTemp(conURL: OSPWebModelURLBase, conPath: "api/employee/authenticate/", conParametros: dic) { (objRespuesta : OSPWebResponse) in
-            
-            let messageError = self.getErrorMessageToResponse(objRespuesta)
-            
-            if objRespuesta.respuestaJSON != nil {
-                completion(userSession: OSPWebTranslator.translateUserSessionBE(objRespuesta.respuestaJSON as! NSDictionary), messageError: messageError)
-            }else{
-                completion(userSession: nil, messageError: messageError)
+        let path = "api/employee/authenticate/"
+        
+        OSPWebSender.doPOSTTemp(path, withParameters: dic) {(response, successful) in
+            if (response != nil) {
+                if (successful) {
+                    completion(userSession: OSPWebTranslator.parseUserSessionBE(response as! [String : AnyObject]), errorResponse: nil, successful: successful)
+                } else {
+                    completion(userSession: OSPWebTranslator.parseUserSessionBE(response as! [String : AnyObject]), errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
+                }
+            } else {
+                completion(userSession: nil, errorResponse: nil, successful: successful)
             }
         }
     }
     
-    class func createUser(mail : String, withCompletion completion : (message : String) -> Void) {
+    class func createUser(mail : String, withCompletion completion : (errorResponse : ErrorResponse?, successful : Bool) -> Void) {
         
-        let dic : [String : AnyObject] = ["email" : mail]
+        let dic : [String : AnyObject] =
+            ["email" : mail]
         
-        OSPWebSender.doPOSTTemp(conURL: OSPWebModelURLBase, conPath: "api/employee/create/", conParametros: dic) { (objRespuesta) in
-            
-            if let message = objRespuesta.respuestaJSON?["detail"] {
-                completion(message: message as! String)
+        let path = "api/employee/create/"
+        
+        OSPWebSender.doPOSTTemp(path, withParameters: dic) {(response, successful) in
+            if (response != nil) {
+                if (successful) {
+                    completion(errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
+                } else {
+                    completion(errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
+                }
             } else {
-                completion(message: "")
+                completion(errorResponse: nil, successful: successful)
             }
         }
     }
@@ -390,7 +398,7 @@ class OSPWebModel: NSObject {
         let dic : NSDictionary = ["current_password" : oldPassword,
                                   "new_password" : newPassword]
         
-        OSPWebSender.doPOSTTokenToURL(conURL: OSPWebModelURLBase, conPath: path, conParametros: dic, conToken: userSession!.session_token!) { (objRespuesta) in
+        OSPWebSender.doPOSTTokenToURL(conURL: Constants.WEB_SERVICES, conPath: path, conParametros: dic, conToken: userSession!.session_token!) { (objRespuesta) in
             
             let messageError = self.getErrorMessageToResponse(objRespuesta)
             

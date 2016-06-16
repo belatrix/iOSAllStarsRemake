@@ -951,6 +951,7 @@
                     <connections>
                         <outlet property="activityLocations" destination="5KU-Ke-H4U" id="xe5-sA-x7M"/>
                         <outlet property="activityUpdating" destination="jXI-F3-gAI" id="8Fi-XJ-y1x"/>
+                        <outlet property="btnCancel" destination="oQ8-Fl-Tak" id="m0n-yw-NYv"/>
                         <outlet property="constraintHeightContent" destination="ptm-Cd-jS5" id="Sgm-eB-jP8"/>
                         <outlet property="edtFirstName" destination="tZ4-iz-emo" id="248-A3-1ak"/>
                         <outlet property="edtLastName" destination="nhO-Cy-iyo" id="jsA-F0-uI0"/>

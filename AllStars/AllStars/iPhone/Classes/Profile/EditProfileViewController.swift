@@ -21,7 +21,8 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var lblErrorMessage          : UILabel!
     @IBOutlet weak var activityLocations        : UIActivityIndicatorView!
     @IBOutlet weak var activityUpdating         : UIActivityIndicatorView!
-    
+    @IBOutlet weak var btnCancel                : UIButton!
+
     // photo
     var imagePickerController = UIImagePickerController()
     var hasNewImage = false
@@ -39,6 +40,10 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
         // imagePicker
         imagePickerController.delegate = self
         imagePickerController.allowsEditing = true
+        
+        if (isNewUser!) {
+            btnCancel.hidden = true
+        }
         
         self.updateUserInfo()
     }
