@@ -87,17 +87,6 @@
 		B6A39C551CFE207500DA42E3 /* iconTabBar_3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A39C541CFE207500DA42E3 /* iconTabBar_3@3x.png */; };
 		B6A39C571CFE280D00DA42E3 /* ic_user@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A39C561CFE280D00DA42E3 /* ic_user@3x.png */; };
 		B6B3408E1D0B283400495CD2 /* SessionUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B3408D1D0B283400495CD2 /* SessionUD.swift */; };
-		B6C09D8B1D12E77C006C1D43 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C09D8A1D12E77C006C1D43 /* Card.m */; };
-		B6C09D8E1D12EA2C006C1D43 /* Commerce.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C09D8D1D12EA2C006C1D43 /* Commerce.m */; };
-		B6C09D911D12EA36006C1D43 /* TransactionInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C09D901D12EA36006C1D43 /* TransactionInformation.m */; };
-		B6C09D941D12EA41006C1D43 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C09D931D12EA41006C1D43 /* Person.m */; };
-		B6C09D971D12EA49006C1D43 /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C09D961D12EA49006C1D43 /* Address.m */; };
-		B6C09D9A1D12EA53006C1D43 /* Tax.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C09D991D12EA53006C1D43 /* Tax.m */; };
-		B6C09D9D1D12EA5C006C1D43 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C09D9C1D12EA5C006C1D43 /* Product.m */; };
-		B6C09DA01D12EA6A006C1D43 /* PurchaseInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C09D9F1D12EA6A006C1D43 /* PurchaseInformation.m */; };
-		B6C09DA31D12EB48006C1D43 /* ConsultResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C09DA21D12EB48006C1D43 /* ConsultResponse.m */; };
-		B6C09DA61D12EB51006C1D43 /* AuthorizeResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C09DA51D12EB51006C1D43 /* AuthorizeResponse.m */; };
-		B6C09DAA1D12F398006C1D43 /* Color.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C09DA91D12F398006C1D43 /* Color.m */; };
 		B6C09DAC1D133800006C1D43 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C09DAB1D133800006C1D43 /* ErrorResponse.swift */; };
 		B6C09DAE1D13453A006C1D43 /* ExtString.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C09DAD1D13453A006C1D43 /* ExtString.swift */; };
 		B6C09DB01D134598006C1D43 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B6C09DAF1D134598006C1D43 /* Localizable.strings */; };
@@ -226,29 +215,6 @@
 		B6A39C541CFE207500DA42E3 /* iconTabBar_3@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconTabBar_3@3x.png"; sourceTree = "<group>"; };
 		B6A39C561CFE280D00DA42E3 /* ic_user@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_user@3x.png"; sourceTree = "<group>"; };
 		B6B3408D1D0B283400495CD2 /* SessionUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SessionUD.swift; path = Persistence/SessionUD.swift; sourceTree = "<group>"; };
-		B6C09D891D12E77C006C1D43 /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Card.h; path = Util/Card.h; sourceTree = "<group>"; };
-		B6C09D8A1D12E77C006C1D43 /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Card.m; path = Util/Card.m; sourceTree = "<group>"; };
-		B6C09D8C1D12EA2C006C1D43 /* Commerce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Commerce.h; path = Util/Commerce.h; sourceTree = "<group>"; };
-		B6C09D8D1D12EA2C006C1D43 /* Commerce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Commerce.m; path = Util/Commerce.m; sourceTree = "<group>"; };
-		B6C09D8F1D12EA36006C1D43 /* TransactionInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionInformation.h; sourceTree = "<group>"; };
-		B6C09D901D12EA36006C1D43 /* TransactionInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionInformation.m; sourceTree = "<group>"; };
-		B6C09D921D12EA41006C1D43 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
-		B6C09D931D12EA41006C1D43 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
-		B6C09D951D12EA49006C1D43 /* Address.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Address.h; sourceTree = "<group>"; };
-		B6C09D961D12EA49006C1D43 /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Address.m; sourceTree = "<group>"; };
-		B6C09D981D12EA53006C1D43 /* Tax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tax.h; sourceTree = "<group>"; };
-		B6C09D991D12EA53006C1D43 /* Tax.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tax.m; sourceTree = "<group>"; };
-		B6C09D9B1D12EA5C006C1D43 /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
-		B6C09D9C1D12EA5C006C1D43 /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
-		B6C09D9E1D12EA6A006C1D43 /* PurchaseInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseInformation.h; sourceTree = "<group>"; };
-		B6C09D9F1D12EA6A006C1D43 /* PurchaseInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseInformation.m; sourceTree = "<group>"; };
-		B6C09DA11D12EB48006C1D43 /* ConsultResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsultResponse.h; sourceTree = "<group>"; };
-		B6C09DA21D12EB48006C1D43 /* ConsultResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsultResponse.m; sourceTree = "<group>"; };
-		B6C09DA41D12EB51006C1D43 /* AuthorizeResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthorizeResponse.h; sourceTree = "<group>"; };
-		B6C09DA51D12EB51006C1D43 /* AuthorizeResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthorizeResponse.m; sourceTree = "<group>"; };
-		B6C09DA71D12EFEC006C1D43 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-		B6C09DA81D12F398006C1D43 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
-		B6C09DA91D12F398006C1D43 /* Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Color.m; sourceTree = "<group>"; };
 		B6C09DAB1D133800006C1D43 /* ErrorResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		B6C09DAD1D13453A006C1D43 /* ExtString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtString.swift; path = Util/ExtString.swift; sourceTree = "<group>"; };
 		B6C09DAF1D134598006C1D43 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = Util/Localizable.strings; sourceTree = "<group>"; };
@@ -665,29 +631,6 @@
 				B6C09DAD1D13453A006C1D43 /* ExtString.swift */,
 				B6C152251D08822B00D8D180 /* Util.swift */,
 				B6CA97911D09BB43005FF6D6 /* Constants.swift */,
-				B6C09D891D12E77C006C1D43 /* Card.h */,
-				B6C09D8A1D12E77C006C1D43 /* Card.m */,
-				B6C09D8C1D12EA2C006C1D43 /* Commerce.h */,
-				B6C09D8D1D12EA2C006C1D43 /* Commerce.m */,
-				B6C09D8F1D12EA36006C1D43 /* TransactionInformation.h */,
-				B6C09D901D12EA36006C1D43 /* TransactionInformation.m */,
-				B6C09D921D12EA41006C1D43 /* Person.h */,
-				B6C09D931D12EA41006C1D43 /* Person.m */,
-				B6C09D951D12EA49006C1D43 /* Address.h */,
-				B6C09D961D12EA49006C1D43 /* Address.m */,
-				B6C09D981D12EA53006C1D43 /* Tax.h */,
-				B6C09D991D12EA53006C1D43 /* Tax.m */,
-				B6C09D9B1D12EA5C006C1D43 /* Product.h */,
-				B6C09D9C1D12EA5C006C1D43 /* Product.m */,
-				B6C09D9E1D12EA6A006C1D43 /* PurchaseInformation.h */,
-				B6C09D9F1D12EA6A006C1D43 /* PurchaseInformation.m */,
-				B6C09DA11D12EB48006C1D43 /* ConsultResponse.h */,
-				B6C09DA21D12EB48006C1D43 /* ConsultResponse.m */,
-				B6C09DA41D12EB51006C1D43 /* AuthorizeResponse.h */,
-				B6C09DA51D12EB51006C1D43 /* AuthorizeResponse.m */,
-				B6C09DA71D12EFEC006C1D43 /* Constants.h */,
-				B6C09DA81D12F398006C1D43 /* Color.h */,
-				B6C09DA91D12F398006C1D43 /* Color.m */,
 				B6C09DAF1D134598006C1D43 /* Localizable.strings */,
 			);
 			name = Util;
@@ -923,13 +866,10 @@
 				B66FBC771D00C7E600C058F7 /* EditProfileViewController.swift in Sources */,
 				9638EF441CDCFBCC00D07D51 /* StarSubCategoriesCollectionViewCell.swift in Sources */,
 				96E41EEA1CE24AAE0071D49E /* ListEmployeeViewController.swift in Sources */,
-				B6C09D8E1D12EA2C006C1D43 /* Commerce.m in Sources */,
 				B6A39C511CFDF80200DA42E3 /* TagTableViewCell.swift in Sources */,
 				B6A39C531CFE1BAE00DA42E3 /* StarKeywordBE.swift in Sources */,
 				9609D7441CE3A68F00BF6036 /* RecommendBC.swift in Sources */,
 				96AC74D21CDB765800D993E7 /* OSPWebSender.swift in Sources */,
-				B6C09D8B1D12E77C006C1D43 /* Card.m in Sources */,
-				B6C09D941D12EA41006C1D43 /* Person.m in Sources */,
 				9613BBFF1CE4BD9500533FAF /* OSPOptionListItem.m in Sources */,
 				966BA8DD1CEA091900C240D7 /* UserRankingViewController.swift in Sources */,
 				96B2A0D31CE632B300C8F97D /* RankingBC.swift in Sources */,
@@ -941,7 +881,6 @@
 				B6C09DAE1D13453A006C1D43 /* ExtString.swift in Sources */,
 				9609D7461CE3A9A800BF6036 /* CategoryBE.swift in Sources */,
 				96757BE71CE0DD5F00BA216A /* UserQualifyBE.swift in Sources */,
-				B6C09D9A1D12EA53006C1D43 /* Tax.m in Sources */,
 				B66FBC7D1D00D1E100C058F7 /* LocationBE.swift in Sources */,
 				96E41EED1CE24CC50071D49E /* SearchBC.swift in Sources */,
 				964823351CE4DDBB007E58FE /* SubCategoryBE.swift in Sources */,
@@ -949,28 +888,21 @@
 				B6A39C4B1CFDDE5E00DA42E3 /* SignUpViewController.swift in Sources */,
 				B6A39C4F1CFDF04800DA42E3 /* ListTagsViewController.swift in Sources */,
 				96B2A0D01CE6307200C8F97D /* UserRankingBE.swift in Sources */,
-				B6C09DA01D12EA6A006C1D43 /* PurchaseInformation.m in Sources */,
 				964823391CE50C82007E58FE /* RateUserBE.swift in Sources */,
 				96AC74EE1CDBB60200D993E7 /* CustomTabBarViewController.swift in Sources */,
 				964823371CE4EF38007E58FE /* KeywordBE.swift in Sources */,
 				96AC74D11CDB765800D993E7 /* OSPWebResponse.swift in Sources */,
-				B6C09DA31D12EB48006C1D43 /* ConsultResponse.m in Sources */,
 				B6A36C711D09C56400222D1F /* ResetPasswordViewController.swift in Sources */,
 				9609D7411CE39AF400BF6036 /* RecommendViewController.swift in Sources */,
 				96E41EF71CE27A2A0071D49E /* EmployeeTableViewCell.swift in Sources */,
-				B6C09D911D12EA36006C1D43 /* TransactionInformation.m in Sources */,
 				96B2A0CE1CE6167F00C8F97D /* RankingViewController.swift in Sources */,
 				B6CA97901D09B556005FF6D6 /* UserSession.swift in Sources */,
 				96AC74F51CDBECB800D993E7 /* OSPImageDownloaded.m in Sources */,
 				96AC74DF1CDB80D400D993E7 /* LoginBC.swift in Sources */,
 				9638EF3F1CDCF52800D07D51 /* StarSubCategoryBE.swift in Sources */,
-				B6C09DA61D12EB51006C1D43 /* AuthorizeResponse.m in Sources */,
-				B6C09DAA1D12F398006C1D43 /* Color.m in Sources */,
-				B6C09D971D12EA49006C1D43 /* Address.m in Sources */,
 				9609D7491CE3AE5400BF6036 /* OSPCrop.swift in Sources */,
 				96E41EF31CE2715B0071D49E /* EmployeeBE.swift in Sources */,
 				B6C152261D08822B00D8D180 /* Util.swift in Sources */,
-				B6C09D9D1D12EA5C006C1D43 /* Product.m in Sources */,
 				B6C09DAC1D133800006C1D43 /* ErrorResponse.swift in Sources */,
 				B66FBC7B1D00D0FD00C058F7 /* LocationTableViewCell.swift in Sources */,
 				96AC74DD1CDB7D5E00D993E7 /* User.swift in Sources */,

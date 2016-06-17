@@ -132,7 +132,7 @@
                                         <state key="normal" image="textBelatrix.png"/>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.61721249089999997" blue="0.04759951447" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.36862745099999999" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="e7H-ky-EYe" secondAttribute="trailing" id="DaU-9p-mTF"/>
                                     <constraint firstAttribute="height" constant="108" id="Zsx-RL-sTR"/>
@@ -292,7 +292,7 @@
                                         <state key="normal" image="textBelatrix.png"/>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.61721249089999997" blue="0.04759951447" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.36862745099999999" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="108" id="GaA-As-wVW"/>
                                     <constraint firstItem="D6y-Lf-yz7" firstAttribute="leading" secondItem="5FL-3U-LSi" secondAttribute="leading" id="HPk-Fz-9za"/>

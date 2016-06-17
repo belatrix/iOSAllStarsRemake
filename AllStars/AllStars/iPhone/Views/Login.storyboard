@@ -46,7 +46,7 @@
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u8h-67-Moq">
                                         <rect key="frame" x="0.0" y="44" width="265" height="1"/>
-                                        <color key="backgroundColor" red="1" green="0.5607843137254902" blue="0.011764705882352941" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.0" green="0.36862745099999999" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="nv4-LD-pCL"/>
                                         </constraints>
@@ -66,7 +66,7 @@
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ySa-F1-PXB">
                                         <rect key="frame" x="0.0" y="95" width="265" height="1"/>
-                                        <color key="backgroundColor" red="1" green="0.56078431370000004" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.0" green="0.36862745099999999" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="aid-45-BfA"/>
                                         </constraints>
@@ -91,7 +91,7 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eoa-WX-Bu4">
                                 <rect key="frame" x="28" y="349" width="265" height="40"/>
-                                <color key="backgroundColor" red="1" green="0.56078431370000004" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.36862745099999999" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="DdC-ln-mcK"/>
                                 </constraints>
@@ -223,7 +223,7 @@
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uTP-DK-KlF">
                                         <rect key="frame" x="0.0" y="44" width="265" height="1"/>
-                                        <color key="backgroundColor" red="1" green="0.56078431370000004" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.0" green="0.36862745099999999" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="acq-n7-tjI"/>
                                         </constraints>
@@ -256,7 +256,7 @@
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GwX-xu-aR3">
                                         <rect key="frame" x="0.0" y="44" width="265" height="1"/>
-                                        <color key="backgroundColor" red="1" green="0.56078431370000004" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.0" green="0.36862745099999999" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="Dvj-cv-21g"/>
                                         </constraints>
@@ -289,7 +289,7 @@
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fLd-2N-7Eq">
                                         <rect key="frame" x="0.0" y="44" width="265" height="1"/>
-                                        <color key="backgroundColor" red="1" green="0.56078431370000004" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.0" green="0.36862745099999999" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="Q79-QG-Xps"/>
                                         </constraints>
@@ -309,7 +309,7 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q0I-23-xxr">
                                 <rect key="frame" x="28" y="354" width="265" height="40"/>
-                                <color key="backgroundColor" red="1" green="0.56078431370000004" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.36862745099999999" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="9yq-5d-tsd"/>
                                 </constraints>

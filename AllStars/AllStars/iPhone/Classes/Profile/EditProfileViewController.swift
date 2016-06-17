@@ -52,7 +52,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
     @IBAction func btnUploadPhotoTIU(sender: UIButton) {
         self.view.endEditing(true)
         
-        let actionSheet = UIActionSheet(title: "Upload from", delegate: self, cancelButtonTitle: "Cancel", destructiveButtonTitle: nil, otherButtonTitles: "Camera", "Gallery")
+        let actionSheet = UIActionSheet(title: "Upload from", delegate: self, cancelButtonTitle: "cancel".localized, destructiveButtonTitle: nil, otherButtonTitles: "camera".localized, "gallery".localized)
         actionSheet.showInView(self.view)
     }
     
@@ -163,7 +163,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
             
             self.arrayLocations = arrayLocations
             
-            self.lblErrorMessage.text = "Locations no availables"
+            self.lblErrorMessage.text = "no_availables_locations".localized
             self.viewLoading.alpha = CGFloat(!Bool(self.arrayLocations.count))
             
             let height = Int(self.scrollContent.bounds.size.height) - 113
@@ -190,11 +190,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
                 } else {
                     if (user!.user_base_profile_complete!) {
                         if (self.isNewUser!) {
-                            let storyBoard : UIStoryboard = UIStoryboard(name: "TabBar", bundle:nil)
-                            let customTabBarViewController = storyBoard.instantiateViewControllerWithIdentifier("CustomTabBarViewController") as! CustomTabBarViewController
-                            let nav : UINavigationController = UINavigationController.init(rootViewController: customTabBarViewController)
-                            nav.navigationBarHidden = true
-                            self.presentViewController(nav, animated: true, completion: nil)
+                            self.openTabBar()
                         } else {
                             self.dismissViewControllerAnimated(true, completion: nil)
                         }
@@ -218,17 +214,21 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
              if (user != nil) {
                 if (user!.user_base_profile_complete!) {
                     if (self.isNewUser!) {
-                        let storyBoard : UIStoryboard = UIStoryboard(name: "TabBar", bundle:nil)
-                        let customTabBarViewController = storyBoard.instantiateViewControllerWithIdentifier("CustomTabBarViewController") as! CustomTabBarViewController
-                        let nav : UINavigationController = UINavigationController.init(rootViewController: customTabBarViewController)
-                        nav.navigationBarHidden = true
-                        self.presentViewController(nav, animated: true, completion: nil)
+                        self.openTabBar()
                     } else {
                         self.dismissViewControllerAnimated(true, completion: nil)
                     }
                 }
             }
         })
+    }
+    
+    func openTabBar() {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "TabBar", bundle:nil)
+        let customTabBarViewController = storyBoard.instantiateViewControllerWithIdentifier("CustomTabBarViewController") as! CustomTabBarViewController
+        let nav : UINavigationController = UINavigationController.init(rootViewController: customTabBarViewController)
+        nav.navigationBarHidden = true
+        self.presentViewController(nav, animated: true, completion: nil)
     }
     
     // MARK: - Configuration

@@ -54,7 +54,7 @@
                                         </constraints>
                                     </activityIndicatorView>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.61721249089999997" blue="0.04759951447" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.36862745099999999" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="Akm-MZ-hXO" firstAttribute="top" secondItem="wtE-Zk-9Wh" secondAttribute="top" constant="20" id="3ae-31-2L5"/>
                                     <constraint firstAttribute="trailing" secondItem="PjJ-z8-4JQ" secondAttribute="trailing" constant="52" id="9Vf-9J-CzO"/>

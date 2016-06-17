@@ -44,7 +44,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.61721249089999997" blue="0.04759951447" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.36862745099999999" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="Pq8-qs-A7H" firstAttribute="leading" secondItem="w0A-jY-m8Z" secondAttribute="leading" constant="40" id="3Vf-55-Sgh"/>
                                     <constraint firstAttribute="trailing" secondItem="Pq8-qs-A7H" secondAttribute="trailing" constant="39" id="8t7-GP-Rb7"/>
@@ -112,7 +112,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.61721249089999997" blue="0.04759951447" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.36862745099999999" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="1Dh-eK-zV6"/>
                                     <constraint firstAttribute="bottom" secondItem="0Dr-3k-ypW" secondAttribute="bottom" id="7SK-1P-Nbz"/>

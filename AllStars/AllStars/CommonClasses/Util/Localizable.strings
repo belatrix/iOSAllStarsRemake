@@ -15,6 +15,7 @@ generic_title_problem = "Oops something went wrong!";
 yes = "Yes";
 no = "No";
 server_error = "There is a error in server, try again in a few minutes";
+no_availables_locations = "Locations no availables";
 
 // SignUp
 mail_empty = "Email must not be empty";
@@ -23,3 +24,7 @@ mail_invalid = "Email must be valid";
 // LogIn
 username_empty = "Username must not be empty";
 password_empty = "Password must not be empty";
+
+// Edit
+camera = "Camera";
+gallery = "Gallery";
