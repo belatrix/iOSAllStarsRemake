@@ -286,43 +286,6 @@ class OSPWebModel: NSObject {
         }
     }
     
-    class func listLocationsWithToken(token : String, withCompletion completion : (arrayLocations : NSMutableArray) -> Void) {
-        
-        let path = "api/employee/location/list/"
-        
-        OSPWebSender.doGETTokenToURL(conURL: Constants.WEB_SERVICES, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
-            
-            let arrayResponse : NSArray? = objRespuesta.respuestaJSON as? NSArray
-            let arrayLocations = NSMutableArray()
-            
-            arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
-                
-                arrayLocations.addObject(OSPWebTranslator.translateLocationBE(obj as! NSDictionary))
-            })
-            
-            completion(arrayLocations: arrayLocations)
-        }
-    }
-    
-    class func getUserInfo(user : User, withToken token : String, withCompletion completion : (user : User?, messageError : String?) -> Void) {
-        
-        let userID = user.user_pk
-        let path = "api/employee/\(userID!)/"
-        
-        OSPWebSender.doGETTokenToURL(conURL: Constants.WEB_SERVICES, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
-            
-            if objRespuesta.respuestaJSON != nil {
-                
-                let objUsuario = OSPWebTranslator.translateUserBE(objRespuesta.respuestaJSON as! NSDictionary)
-                objUsuario.user_pk = user.user_pk
-                
-                completion(user:objUsuario , messageError: nil)
-            }else{
-                completion(user: nil, messageError: nil)
-            }
-        }
-    }
-    
     class func updateUser(user : User, withToken token : String, withCompletion completion : (user : User?) -> Void) {
         
         let userID = user.user_pk
@@ -344,11 +307,34 @@ class OSPWebModel: NSObject {
         let userID = user.user_pk
         let path = "api/employee/\(userID!)/avatar/"
         
-        OSPWebSender.doMultipartTokenToURL(conURL: Constants.WEB_SERVICES, conPath: path, conParametros: nil, withImage: image, conToken: token) { (objRespuesta) in
+        OSPWebSender.doMultipartTokenToURL(conURL: Constants.WEB_SERVICES, conPath: path, conParametros: nil, withImage: image, conToken: token) {(objRespuesta) in
             
             completion(user: OSPWebTranslator.translateUserBE(objRespuesta.respuestaJSON as! NSDictionary))
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     class func loginUser(user : User, withCompletion completion : (userSession : UserSession?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
         
@@ -363,7 +349,7 @@ class OSPWebModel: NSObject {
                 if (successful) {
                     completion(userSession: OSPWebTranslator.parseUserSessionBE(response as! [String : AnyObject]), errorResponse: nil, successful: successful)
                 } else {
-                    completion(userSession: OSPWebTranslator.parseUserSessionBE(response as! [String : AnyObject]), errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
+                    completion(userSession: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
                 }
             } else {
                 completion(userSession: nil, errorResponse: nil, successful: successful)
@@ -391,37 +377,69 @@ class OSPWebModel: NSObject {
         }
     }
     
-    class func resetUserPassword(userSession : UserSession?, oldPassword : String, newPassword : String, withCompletion completion : (user : User?, messageError : String?) -> Void) {
+    class func resetUserPassword(userSession : UserSession?, currentPassword : String, newPassword : String, withCompletion completion : (user : User?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
         
         let path = "api/employee/\(userSession!.session_user_id!)/update/password/"
         
-        let dic : NSDictionary = ["current_password" : oldPassword,
-                                  "new_password" : newPassword]
+        let dic : [String : AnyObject] =
+            ["current_password" : currentPassword,
+             "new_password" : newPassword]
         
-        OSPWebSender.doPOSTTokenToURL(conURL: Constants.WEB_SERVICES, conPath: path, conParametros: dic, conToken: userSession!.session_token!) { (objRespuesta) in
-            
-            let messageError = self.getErrorMessageToResponse(objRespuesta)
-            
-            if objRespuesta.respuestaJSON != nil {
-                completion(user: OSPWebTranslator.translateUserBE(objRespuesta.respuestaJSON as! NSDictionary), messageError: messageError)
-            }else{
-                completion(user: nil, messageError: messageError)
+        OSPWebSender.doPOSTWithTokenTemp(path, withParameters: dic, withToken: userSession!.session_token!) {(response, successful) in
+            if (response != nil) {
+                if (successful) {
+                    completion(user: OSPWebTranslator.translateUserBE(response as! [String : AnyObject]), errorResponse: nil, successful: successful)
+                } else {
+                    completion(user: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
+                }
+            } else {
+                completion(user: nil, errorResponse: nil, successful: successful)
             }
         }
     }
     
-    class func getErrorMessageToResponse(objResponse : OSPWebResponse) -> String? {
+    class func getUserInformation(user : User, withToken token : String, withCompletion completion : (user : User?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
         
-        if objResponse.respuestaJSON != nil {
+        let path = "api/employee/\(user.user_pk!)/"
+        
+        OSPWebSender.doGETWithTokenTemp(path, withToken: token) {(response, successful) in
             
-            let dictionaryResponse = objResponse.respuestaJSON! as! NSDictionary
-            
-            return dictionaryResponse["msg"] as? String
-            
-        }else {
-            
-            return "Error with your connection"
+            if (response != nil) {
+                if (successful) {
+                    let objUsuario = OSPWebTranslator.translateUserBE(response as! [String : AnyObject])
+                    objUsuario.user_pk = user.user_pk
+                    completion(user: objUsuario, errorResponse: nil, successful: successful)
+                } else {
+                    completion(user: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
+                }
+            } else {
+                completion(user: nil, errorResponse: nil, successful: successful)
+            }
         }
+    }
+    
+    class func listLocations(token : String, withCompletion completion : (arrayLocations : NSMutableArray?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
         
+        let path = "api/employee/location/list/"
+        
+        OSPWebSender.doGETWithTokenTemp(path, withToken: token) {(response, successful) in
+            
+            if (response != nil) {
+                if (successful) {
+                    let arrayResponse : NSArray? = response as? NSArray
+                    let arrayTemp = NSMutableArray()
+                    
+                    arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
+                        arrayTemp.addObject(OSPWebTranslator.translateLocationBE(obj as! NSDictionary))
+                    })
+                    
+                    completion(arrayLocations: arrayTemp, errorResponse: nil, successful: successful)
+                } else {
+                    completion(arrayLocations: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
+                }
+            } else {
+                completion(arrayLocations: nil, errorResponse: nil, successful: successful)
+            }
+        }
     }
 }

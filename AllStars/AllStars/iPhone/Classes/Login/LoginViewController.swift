@@ -9,35 +9,83 @@
 import UIKit
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
-
-    @IBOutlet weak var txtUser              : UITextField!
-    @IBOutlet weak var txtPassword          : UITextField!
-    @IBOutlet weak var activityEnter        : UIActivityIndicatorView!
+    
+    @IBOutlet weak var edtUser              : UITextField!
+    @IBOutlet weak var edtPassword          : UITextField!
+    @IBOutlet weak var actLogin             : UIActivityIndicatorView!
     @IBOutlet weak var constraintCenterForm : NSLayoutConstraint!
     @IBOutlet weak var viewFormLogin        : UIView!
+    @IBOutlet weak var btnLogin             : UIButton!
+    @IBOutlet weak var btnNewUser           : UIButton!
+    @IBOutlet weak var lblTitleApp          : UILabel!
+    @IBOutlet weak var imgLogoBelatrix      : UIImageView!
     
-    //MARK: - UITextFieldDelegate
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        if self.txtUser == textField {
-            self.txtPassword.becomeFirstResponder()
-        }else{
-            self.clickBtnEnterUser(nil)
-        }
+        setViews()
         
-        return true
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.keyboardWillShown(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.keyboardWillBeHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
-    //MARK: - WebServices
+    deinit{
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    // MARK: - UI
+    func setViews() {
+        lblTitleApp.textColor = UIColor.belatrix()
+        
+        btnLogin.backgroundColor = UIColor.colorPrimary()
+        btnNewUser.setTitleColor(UIColor.colorPrimaryDark(), forState: .Normal)
+        
+        let image = UIImage(named: "logo")
+        imgLogoBelatrix.image = image?.imageWithRenderingMode(.AlwaysTemplate)
+        imgLogoBelatrix.tintColor = UIColor.belatrix()
+    }
+    
+    func lockScreen() {
+        self.view.userInteractionEnabled = false
+        self.actLogin.startAnimating()
+    }
+    
+    func unlockScreen() {
+        self.view.userInteractionEnabled = true
+        self.actLogin.stopAnimating()
+    }
+    
+    // MARK: - IBActions
+    @IBAction func btnLoginTUI(sender: UIButton) {
+        createUserAndLogin()
+    }
+    
+    @IBAction func tapCloseKeyboard(sender: AnyObject) {
+        self.view.endEditing(true)
+    }
+    
+    @IBAction func btnNewUserTUI(sender: UIButton) {
+        let sb = UIStoryboard(name: "SignUp", bundle: nil)
+        let signUpViewController = sb.instantiateViewControllerWithIdentifier("SignUpViewController") as! SignUpViewController
+        self.presentViewController(signUpViewController, animated: true, completion: nil)
+    }
+    
+    func createUserAndLogin() {
+        let objUser = User()
+        objUser.user_username = self.edtUser.text
+        objUser.user_password = self.edtPassword.text
+        
+        self.loginWithUser(objUser)
+    }
+    
+    // MARK: - WebServices
     func loginWithUser(objUser : User) -> Void {
         
-        self.view.userInteractionEnabled = false
-        self.activityEnter.startAnimating()
+        lockScreen()
         
         LoginBC.loginWithUser(objUser, withController: self) { (userSession : UserSession?, accountState : String?) in
             
-            self.view.userInteractionEnabled = true
-            self.activityEnter.stopAnimating()
+            self.unlockScreen()
             
             if (userSession != nil) {
                 if (accountState == Constants.PASSWORD_RESET_INCOMPLETE) {
@@ -63,16 +111,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func getInfoCurrentUser() -> Void {
         
-        self.view.userInteractionEnabled = false
-        self.activityEnter.startAnimating()
+        lockScreen()
         
-        LoginBC.getUserSessionInfoConCompletion { (user : User?) in
-         
-            self.view.userInteractionEnabled = true
-            self.activityEnter.stopAnimating()
+        LoginBC.getUserSessionInformation { (user : User?) in
             
-            if user != nil {
-//                self.dismissViewControllerAnimated(true, completion: nil)
+            self.unlockScreen()
+            
+            if (user != nil) {
                 let storyBoard : UIStoryboard = UIStoryboard(name: "TabBar", bundle:nil)
                 let customTabBarViewController = storyBoard.instantiateViewControllerWithIdentifier("CustomTabBarViewController") as! CustomTabBarViewController
                 let nav : UINavigationController = UINavigationController.init(rootViewController: customTabBarViewController)
@@ -82,28 +127,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    //MARK: - IBActions
-    @IBAction func clickBtnEnterUser(sender: AnyObject?) {
+    // MARK: - UITextFieldDelegate
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
         
-        let objUser = User()
-        objUser.user_username = self.txtUser.text
-        objUser.user_password = self.txtPassword.text
+        if self.edtUser == textField {
+            self.edtPassword.becomeFirstResponder()
+        }else{
+            createUserAndLogin()
+        }
         
-        self.loginWithUser(objUser)
+        return true
     }
     
-    @IBAction func tapCloseKeyboard(sender: AnyObject) {
-        
-        self.view.endEditing(true)
-    }
-    
-    @IBAction func clickBtnNewUser(sender: UIButton) {
-        let sb = UIStoryboard(name: "SignUp", bundle: nil)
-        let signUpViewController = sb.instantiateViewControllerWithIdentifier("SignUpViewController") as! SignUpViewController
-        self.presentViewController(signUpViewController, animated: true, completion: nil)
-    }
-    
-    //MARK: - Keyboard Notification
+    // MARK: - Keyboard Notification
     func keyboardWillShown(notification : NSNotification) {
         
         let info : NSDictionary = notification.userInfo!
@@ -134,17 +170,5 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             self.view.layoutIfNeeded()
         }
         
-    }
-    
-    //MARk: -
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.keyboardWillShown(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.keyboardWillBeHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
-    }
-    
-    deinit{
-        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 }

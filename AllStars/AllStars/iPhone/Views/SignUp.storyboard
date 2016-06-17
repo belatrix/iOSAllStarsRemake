@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_mail.png" translatesAutoresizingMaskIntoConstraints="NO" id="6rt-2M-8Hj">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mail.png" translatesAutoresizingMaskIntoConstraints="NO" id="6rt-2M-8Hj">
                                 <rect key="frame" x="28" y="64" width="265" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="wzX-TM-6WU"/>
@@ -143,8 +143,11 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="G30-EA-e11" id="6Dr-dL-hMO"/>
-                        <outlet property="txtEmail" destination="fNB-ds-EfA" id="DT3-FU-7Vm"/>
+                        <outlet property="actRegister" destination="G30-EA-e11" id="1FQ-nq-Vsh"/>
+                        <outlet property="btnRegister" destination="jkI-uB-uAv" id="xLx-q2-Ejc"/>
+                        <outlet property="edtEmail" destination="fNB-ds-EfA" id="bbP-4A-1ne"/>
+                        <outlet property="imgRegister" destination="6rt-2M-8Hj" id="uWP-nN-o19"/>
+                        <outlet property="viewEdtEmail" destination="Hh3-1b-xI4" id="aco-iu-S3y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hx7-Bf-Rol" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -158,7 +161,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ic_mail.png" width="85" height="85"/>
         <image name="iconDown.png" width="15" height="15"/>
+        <image name="mail.png" width="85" height="85"/>
     </resources>
 </document>

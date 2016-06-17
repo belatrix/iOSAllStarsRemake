@@ -72,6 +72,11 @@
 		96E41EF11CE2604C0071D49E /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96E41EF01CE2604C0071D49E /* Search.storyboard */; };
 		96E41EF31CE2715B0071D49E /* EmployeeBE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E41EF21CE2715B0071D49E /* EmployeeBE.swift */; };
 		96E41EF71CE27A2A0071D49E /* EmployeeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E41EF61CE27A2A0071D49E /* EmployeeTableViewCell.swift */; };
+		B62AA0EC1D144576008FB75A /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62AA0E91D144576008FB75A /* Color.swift */; };
+		B62AA0ED1D144576008FB75A /* QualityImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62AA0EA1D144576008FB75A /* QualityImage.swift */; };
+		B62AA0EE1D144576008FB75A /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62AA0EB1D144576008FB75A /* UIColorExtension.swift */; };
+		B62AA0F01D145465008FB75A /* lock@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B62AA0EF1D145465008FB75A /* lock@3x.png */; };
+		B62AA0F21D147EA4008FB75A /* mail@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B62AA0F11D147EA4008FB75A /* mail@3x.png */; };
 		B66FBC771D00C7E600C058F7 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66FBC761D00C7E600C058F7 /* EditProfileViewController.swift */; };
 		B66FBC791D00CB9200C058F7 /* camera@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B66FBC781D00CB9200C058F7 /* camera@3x.png */; };
 		B66FBC7B1D00D0FD00C058F7 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66FBC7A1D00D0FD00C058F7 /* LocationTableViewCell.swift */; };
@@ -80,7 +85,6 @@
 		B6A36C711D09C56400222D1F /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A36C701D09C56400222D1F /* ResetPasswordViewController.swift */; };
 		B6A39C471CFDD54200DA42E3 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6A39C461CFDD54200DA42E3 /* SignUp.storyboard */; };
 		B6A39C4B1CFDDE5E00DA42E3 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A39C4A1CFDDE5E00DA42E3 /* SignUpViewController.swift */; };
-		B6A39C4D1CFDEB7A00DA42E3 /* ic_mail@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A39C4C1CFDEB7A00DA42E3 /* ic_mail@3x.png */; };
 		B6A39C4F1CFDF04800DA42E3 /* ListTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A39C4E1CFDF04800DA42E3 /* ListTagsViewController.swift */; };
 		B6A39C511CFDF80200DA42E3 /* TagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A39C501CFDF80200DA42E3 /* TagTableViewCell.swift */; };
 		B6A39C531CFE1BAE00DA42E3 /* StarKeywordBE.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A39C521CFE1BAE00DA42E3 /* StarKeywordBE.swift */; };
@@ -94,7 +98,6 @@
 		B6C152261D08822B00D8D180 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C152251D08822B00D8D180 /* Util.swift */; };
 		B6CA97901D09B556005FF6D6 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CA978F1D09B556005FF6D6 /* UserSession.swift */; };
 		B6CA97921D09BB43005FF6D6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CA97911D09BB43005FF6D6 /* Constants.swift */; };
-		B6CA97941D09C2F1005FF6D6 /* ic_lock@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6CA97931D09C2F1005FF6D6 /* ic_lock@3x.png */; };
 		B6EE58A61CFF4CD60027B697 /* location@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6EE58A41CFF4CD60027B697 /* location@3x.png */; };
 		B6EE58A71CFF4CD60027B697 /* logo_skype@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6EE58A51CFF4CD60027B697 /* logo_skype@3x.png */; };
 		B6EE58A91CFF883B0027B697 /* UserRankingTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EE58A81CFF883B0027B697 /* UserRankingTagViewController.swift */; };
@@ -200,6 +203,11 @@
 		96E41EF21CE2715B0071D49E /* EmployeeBE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeBE.swift; sourceTree = "<group>"; };
 		96E41EF61CE27A2A0071D49E /* EmployeeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeTableViewCell.swift; sourceTree = "<group>"; };
 		9A6E4D906B7D511D365AF121 /* Pods-AllStars.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AllStars.release.xcconfig"; path = "Pods/Target Support Files/Pods-AllStars/Pods-AllStars.release.xcconfig"; sourceTree = "<group>"; };
+		B62AA0E91D144576008FB75A /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Color.swift; path = Util/Color.swift; sourceTree = "<group>"; };
+		B62AA0EA1D144576008FB75A /* QualityImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QualityImage.swift; path = Util/QualityImage.swift; sourceTree = "<group>"; };
+		B62AA0EB1D144576008FB75A /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = Util/UIColorExtension.swift; sourceTree = "<group>"; };
+		B62AA0EF1D145465008FB75A /* lock@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lock@3x.png"; sourceTree = "<group>"; };
+		B62AA0F11D147EA4008FB75A /* mail@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mail@3x.png"; sourceTree = "<group>"; };
 		B66FBC761D00C7E600C058F7 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		B66FBC781D00CB9200C058F7 /* camera@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera@3x.png"; sourceTree = "<group>"; };
 		B66FBC7A1D00D0FD00C058F7 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
@@ -208,7 +216,6 @@
 		B6A36C701D09C56400222D1F /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		B6A39C461CFDD54200DA42E3 /* SignUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		B6A39C4A1CFDDE5E00DA42E3 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpViewController.swift; path = SignUp/SignUpViewController.swift; sourceTree = "<group>"; };
-		B6A39C4C1CFDEB7A00DA42E3 /* ic_mail@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_mail@3x.png"; sourceTree = "<group>"; };
 		B6A39C4E1CFDF04800DA42E3 /* ListTagsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTagsViewController.swift; sourceTree = "<group>"; };
 		B6A39C501CFDF80200DA42E3 /* TagTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagTableViewCell.swift; sourceTree = "<group>"; };
 		B6A39C521CFE1BAE00DA42E3 /* StarKeywordBE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarKeywordBE.swift; sourceTree = "<group>"; };
@@ -222,7 +229,6 @@
 		B6C152251D08822B00D8D180 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Util.swift; path = Util/Util.swift; sourceTree = "<group>"; };
 		B6CA978F1D09B556005FF6D6 /* UserSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		B6CA97911D09BB43005FF6D6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Util/Constants.swift; sourceTree = "<group>"; };
-		B6CA97931D09C2F1005FF6D6 /* ic_lock@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_lock@3x.png"; sourceTree = "<group>"; };
 		B6EE58A41CFF4CD60027B697 /* location@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location@3x.png"; sourceTree = "<group>"; };
 		B6EE58A51CFF4CD60027B697 /* logo_skype@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_skype@3x.png"; sourceTree = "<group>"; };
 		B6EE58A81CFF883B0027B697 /* UserRankingTagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRankingTagViewController.swift; sourceTree = "<group>"; };
@@ -446,12 +452,12 @@
 				961A318F1CDCC8E800D43012 /* placeHolderProfile@3x.png */,
 				96AC74D91CDB7C0800D993E7 /* logo@3x.png */,
 				9609D73D1CE364D300BF6036 /* textBelatrix@3x.png */,
-				B6A39C4C1CFDEB7A00DA42E3 /* ic_mail@3x.png */,
-				B6CA97931D09C2F1005FF6D6 /* ic_lock@3x.png */,
 				B6A39C561CFE280D00DA42E3 /* ic_user@3x.png */,
 				B6EE58A41CFF4CD60027B697 /* location@3x.png */,
 				B6EE58A51CFF4CD60027B697 /* logo_skype@3x.png */,
 				B66FBC781D00CB9200C058F7 /* camera@3x.png */,
+				B62AA0EF1D145465008FB75A /* lock@3x.png */,
+				B62AA0F11D147EA4008FB75A /* mail@3x.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -532,11 +538,11 @@
 			isa = PBXGroup;
 			children = (
 				9638EF401CDCF74900D07D51 /* Logic */,
+				B66FBC761D00C7E600C058F7 /* EditProfileViewController.swift */,
 				96AC74EF1CDBB65400D993E7 /* ProfileViewController.swift */,
 				9638EF431CDCFBCC00D07D51 /* StarSubCategoriesCollectionViewCell.swift */,
 				96757BE21CE0CA6000BA216A /* StarsCategoriesUserViewController.swift */,
 				96757BE41CE0D56E00BA216A /* StarUserInfoTableViewCell.swift */,
-				B66FBC761D00C7E600C058F7 /* EditProfileViewController.swift */,
 				B66FBC7A1D00D0FD00C058F7 /* LocationTableViewCell.swift */,
 			);
 			path = Profile;
@@ -631,6 +637,9 @@
 				B6C09DAD1D13453A006C1D43 /* ExtString.swift */,
 				B6C152251D08822B00D8D180 /* Util.swift */,
 				B6CA97911D09BB43005FF6D6 /* Constants.swift */,
+				B62AA0E91D144576008FB75A /* Color.swift */,
+				B62AA0EA1D144576008FB75A /* QualityImage.swift */,
+				B62AA0EB1D144576008FB75A /* UIColorExtension.swift */,
 				B6C09DAF1D134598006C1D43 /* Localizable.strings */,
 			);
 			name = Util;
@@ -754,11 +763,11 @@
 				B66FBC791D00CB9200C058F7 /* camera@3x.png in Resources */,
 				96C68EBD1CE65B2100F072AA /* iconCup_1@3x.png in Resources */,
 				B6C09DB01D134598006C1D43 /* Localizable.strings in Resources */,
-				B6CA97941D09C2F1005FF6D6 /* ic_lock@3x.png in Resources */,
 				96E41EF11CE2604C0071D49E /* Search.storyboard in Resources */,
 				96AC74A11CDB73AF00D993E7 /* LaunchScreen.storyboard in Resources */,
 				B6EE58A71CFF4CD60027B697 /* logo_skype@3x.png in Resources */,
 				B6A39C471CFDD54200DA42E3 /* SignUp.storyboard in Resources */,
+				B62AA0F01D145465008FB75A /* lock@3x.png in Resources */,
 				B6EE58A61CFF4CD60027B697 /* location@3x.png in Resources */,
 				96E41EE71CE23E4A0071D49E /* iconTabBar_0@3x.png in Resources */,
 				B6A39C551CFE207500DA42E3 /* iconTabBar_3@3x.png in Resources */,
@@ -774,9 +783,9 @@
 				96B2A0D91CE63DEB00C8F97D /* iconCup@3x.png in Resources */,
 				96E41EEF1CE260220071D49E /* iconTabBar_2@3x.png in Resources */,
 				96C68EBE1CE65B2100F072AA /* iconCup_2@3x.png in Resources */,
+				B62AA0F21D147EA4008FB75A /* mail@3x.png in Resources */,
 				9613BBFE1CE4BD9500533FAF /* OSPOptionListCell.xib in Resources */,
 				96AC74D71CDB770100D993E7 /* Login.storyboard in Resources */,
-				B6A39C4D1CFDEB7A00DA42E3 /* ic_mail@3x.png in Resources */,
 				96B2A0CC1CE6165900C8F97D /* Ranking.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -861,11 +870,13 @@
 				B6CA97921D09BB43005FF6D6 /* Constants.swift in Sources */,
 				96AC74D01CDB765800D993E7 /* OSPWebModel.swift in Sources */,
 				B6C152231D087E6800D8D180 /* SignUpBC.swift in Sources */,
+				B62AA0EC1D144576008FB75A /* Color.swift in Sources */,
 				96757BE51CE0D56E00BA216A /* StarUserInfoTableViewCell.swift in Sources */,
 				9613BBFD1CE4BD9500533FAF /* OSPOptionListCell.m in Sources */,
 				B66FBC771D00C7E600C058F7 /* EditProfileViewController.swift in Sources */,
 				9638EF441CDCFBCC00D07D51 /* StarSubCategoriesCollectionViewCell.swift in Sources */,
 				96E41EEA1CE24AAE0071D49E /* ListEmployeeViewController.swift in Sources */,
+				B62AA0EE1D144576008FB75A /* UIColorExtension.swift in Sources */,
 				B6A39C511CFDF80200DA42E3 /* TagTableViewCell.swift in Sources */,
 				B6A39C531CFE1BAE00DA42E3 /* StarKeywordBE.swift in Sources */,
 				9609D7441CE3A68F00BF6036 /* RecommendBC.swift in Sources */,
@@ -900,6 +911,7 @@
 				96AC74F51CDBECB800D993E7 /* OSPImageDownloaded.m in Sources */,
 				96AC74DF1CDB80D400D993E7 /* LoginBC.swift in Sources */,
 				9638EF3F1CDCF52800D07D51 /* StarSubCategoryBE.swift in Sources */,
+				B62AA0ED1D144576008FB75A /* QualityImage.swift in Sources */,
 				9609D7491CE3AE5400BF6036 /* OSPCrop.swift in Sources */,
 				96E41EF31CE2715B0071D49E /* EmployeeBE.swift in Sources */,
 				B6C152261D08822B00D8D180 /* Util.swift in Sources */,

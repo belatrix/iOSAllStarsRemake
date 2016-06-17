@@ -19,7 +19,7 @@
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="wOe-Ru-4fs">
                                 <rect key="frame" x="20" y="20" width="280" height="137"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Belatrix All Stars" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n1H-Ya-l8w">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Belatrix Connect" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n1H-Ya-l8w">
                                 <rect key="frame" x="20" y="165" width="280" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="rZc-oo-16o"/>
@@ -105,7 +105,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="clickBtnEnterUser:" destination="Vo9-8w-xjF" eventType="touchUpInside" id="nRK-4z-NnX"/>
+                                    <action selector="btnLoginTUI:" destination="Vo9-8w-xjF" eventType="touchUpInside" id="WS8-7G-Hek"/>
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="1H4-p3-et1">
@@ -124,7 +124,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="New user? Sign Up!"/>
                                 <connections>
-                                    <action selector="clickBtnNewUser:" destination="Vo9-8w-xjF" eventType="touchUpInside" id="ExI-Cl-ewG"/>
+                                    <action selector="btnNewUserTUI:" destination="Vo9-8w-xjF" eventType="touchUpInside" id="gl9-Fp-h60"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -156,10 +156,14 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="activityEnter" destination="1H4-p3-et1" id="Xic-XL-293"/>
+                        <outlet property="actLogin" destination="1H4-p3-et1" id="dyb-IW-7fm"/>
+                        <outlet property="btnLogin" destination="Eoa-WX-Bu4" id="UhO-JQ-zNj"/>
+                        <outlet property="btnNewUser" destination="an4-XA-MEK" id="DlR-lV-AzV"/>
                         <outlet property="constraintCenterForm" destination="VSp-my-9QA" id="eMi-NC-6h9"/>
-                        <outlet property="txtPassword" destination="wZc-uY-E5o" id="wVe-eg-sfl"/>
-                        <outlet property="txtUser" destination="shE-7e-xby" id="mgp-9k-kw8"/>
+                        <outlet property="edtPassword" destination="wZc-uY-E5o" id="tAd-W6-mRJ"/>
+                        <outlet property="edtUser" destination="shE-7e-xby" id="5n8-0k-aWS"/>
+                        <outlet property="imgLogoBelatrix" destination="wOe-Ru-4fs" id="EMB-7F-uOz"/>
+                        <outlet property="lblTitleApp" destination="n1H-Ya-l8w" id="7aB-va-Hzm"/>
                         <outlet property="viewFormLogin" destination="Cyi-m8-GQs" id="44e-Ms-BYO"/>
                     </connections>
                 </viewController>
@@ -184,7 +188,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_lock.png" translatesAutoresizingMaskIntoConstraints="NO" id="vUS-8M-eA8">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lock.png" translatesAutoresizingMaskIntoConstraints="NO" id="vUS-8M-eA8">
                                 <rect key="frame" x="28" y="64" width="265" height="66"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="66" id="mdV-dF-Iqt"/>
@@ -211,7 +215,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wdt-5t-4EJ">
                                 <rect key="frame" x="28" y="188" width="265" height="45"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Old Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m1H-Op-txo">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Current Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m1H-Op-txo">
                                         <rect key="frame" x="0.0" y="1" width="265" height="41"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -368,10 +372,15 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="actIndicator" destination="kfP-I4-FOt" id="9XP-NF-JaP"/>
+                        <outlet property="actReset" destination="kfP-I4-FOt" id="bxE-HC-wX1"/>
+                        <outlet property="btnReset" destination="q0I-23-xxr" id="MYf-hg-TU3"/>
+                        <outlet property="edtCurrentPassword" destination="m1H-Op-txo" id="FtN-oF-dVR"/>
                         <outlet property="edtNewPassword" destination="6Zs-KI-3s6" id="JFg-sa-Xdx"/>
-                        <outlet property="edtOldPassword" destination="m1H-Op-txo" id="arz-jR-BVf"/>
                         <outlet property="edtRepeatNewPassword" destination="cuB-m6-bRK" id="Ixj-Yg-M9O"/>
+                        <outlet property="imgReset" destination="vUS-8M-eA8" id="ihc-mv-q4T"/>
+                        <outlet property="viewCurrentPassword" destination="uTP-DK-KlF" id="TV7-NT-bFm"/>
+                        <outlet property="viewNewPassword" destination="GwX-xu-aR3" id="utL-6w-E6s"/>
+                        <outlet property="viewRepeatOldPassword" destination="fLd-2N-7Eq" id="axR-if-Qad"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p9Q-qj-Pv6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -385,7 +394,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ic_lock.png" width="85" height="85"/>
+        <image name="lock.png" width="85" height="85"/>
         <image name="logo.png" width="57" height="76"/>
     </resources>
 </document>

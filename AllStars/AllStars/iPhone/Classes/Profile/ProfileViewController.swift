@@ -45,7 +45,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     // MARK: - IBActions
     @IBAction func btnActionProfileTUI(sender: UIButton) {
-        if (LoginBC.user(self.objUser, isEqualToUser: LoginBC.getCurrenteUserSession())) {
+        if (ProfileBC.validateUser(self.objUser, isEqualToUser: LoginBC.getCurrenteUserSession())) {
             self.performSegueWithIdentifier("EditProfileViewController", sender: objUser)
         } else {
             self.performSegueWithIdentifier("RecommendViewController", sender: objUser)
@@ -186,7 +186,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             self.updateUserInfo()
         }
         
-        if (LoginBC.user(self.objUser, isEqualToUser: LoginBC.getCurrenteUserSession())) {
+        if (ProfileBC.validateUser(self.objUser, isEqualToUser: LoginBC.getCurrenteUserSession())) {
             self.btnAction?.setTitle("Edit", forState: .Normal)
         } else {
             self.btnAction?.setTitle("Recommend", forState: .Normal)

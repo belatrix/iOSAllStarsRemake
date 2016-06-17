@@ -33,6 +33,68 @@ class OSPWebTranslator: NSObject {
         return objBE
     }
     
+    class func translateUserBE(objDic : NSDictionary) -> User{
+        
+        let objBE = User()
+        
+        objBE.user_pk                       = objDic["pk"] != nil ? NSNumber(integer: objDic["pk"]!.integerValue) : nil
+        objBE.user_token                    = objDic["token"] as? String
+        
+        objBE.user_current_month_score      = objDic["current_month_score"] != nil ? NSNumber(integer: objDic["current_month_score"]!.integerValue) : nil
+        objBE.user_current_year_score       = objDic["current_year_score"] != nil ? NSNumber(integer: objDic["current_year_score"]!.integerValue) : nil
+        objBE.user_email                    = objDic["email"] != nil ? objDic["email"] as? String : ""
+        objBE.user_first_name               = objDic["first_name"] != nil ? objDic["first_name"] as? String : ""
+        objBE.user_is_active                = objDic["is_active"] != nil ? NSNumber(integer: objDic["is_active"]!.integerValue) : nil
+        objBE.user_last_month_score         = objDic["last_month_score"] != nil ? NSNumber(integer: objDic["last_month_score"]!.integerValue) : nil
+        objBE.user_last_name                = objDic["last_name"] != nil ? objDic["last_name"] as? String : ""
+        objBE.user_last_year_score          = objDic["last_year_score"] != nil ? NSNumber(integer: objDic["last_year_score"]!.integerValue) : nil
+        objBE.user_level                    = objDic["level"] != nil ? NSNumber(integer: objDic["level"]!.integerValue) : nil
+        objBE.user_role_id                  = objDic["role"] != nil ? NSNumber(integer: objDic["role"]!["id"]!!.integerValue) : nil
+        objBE.user_role_name                = objDic["role"]?["name"] != nil ? objDic["role"]?["name"] as? String : ""
+        objBE.user_total_score              = objDic["total_score"] != nil ? NSNumber(integer: objDic["total_score"]!.integerValue) : nil
+        objBE.user_username                 = objDic["username"] != nil ? objDic["username"] as? String : ""
+        objBE.user_base_profile_complete    = objDic["base_profile_complete"] != nil ? objDic["base_profile_complete"] as? Bool : false
+        
+        if (objBE.user_base_profile_complete!) {
+            objBE.user_location_id              = objDic["location"] != nil ? NSNumber(integer: (objDic["location"]!["id"]!)!.integerValue) : nil
+            objBE.user_location_name            = objDic["location"]?["name"] != nil ? objDic["location"]?["name"] as? String : ""
+            objBE.user_skype_id                 = objDic["skype_id"] != nil ? objDic["skype_id"] as? String : ""
+            objBE.user_avatar                   = (objDic["avatar"] == nil || objDic["avatar"] is NSNull) ? "" : objDic["avatar"] as? String
+        }
+        
+        return objBE
+    }
+    
+    class func translateLocationBE(objDic : NSDictionary) -> LocationBE {
+        
+        let objBE = LocationBE()
+        
+        objBE.location_pk    = NSNumber(integer: (objDic["pk"])!.integerValue)
+        objBE.location_name  = objDic["name"] as? String
+        objBE.location_icon  = objDic["icon"] as? String
+        
+        return objBE
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     class func translateUserRankingBE(objDic : NSDictionary) -> UserRankingBE {
         
         let objBE = UserRankingBE()
@@ -124,37 +186,7 @@ class OSPWebTranslator: NSObject {
     
     
     
-    class func translateUserBE(objDic : NSDictionary) -> User{
-        
-        let objBE = User()
-        
-        objBE.user_pk                       = objDic["pk"] != nil ? NSNumber(integer: objDic["pk"]!.integerValue) : nil
-        objBE.user_token                    = objDic["token"] as? String
-        
-        objBE.user_current_month_score      = objDic["current_month_score"] != nil ? NSNumber(integer: objDic["current_month_score"]!.integerValue) : nil
-        objBE.user_current_year_score       = objDic["current_year_score"] != nil ? NSNumber(integer: objDic["current_year_score"]!.integerValue) : nil
-        objBE.user_email                    = objDic["email"] != nil ? objDic["email"] as? String : ""
-        objBE.user_first_name               = objDic["first_name"] != nil ? objDic["first_name"] as? String : ""
-        objBE.user_is_active                = objDic["is_active"] != nil ? NSNumber(integer: objDic["is_active"]!.integerValue) : nil
-        objBE.user_last_month_score         = objDic["last_month_score"] != nil ? NSNumber(integer: objDic["last_month_score"]!.integerValue) : nil
-        objBE.user_last_name                = objDic["last_name"] != nil ? objDic["last_name"] as? String : ""
-        objBE.user_last_year_score          = objDic["last_year_score"] != nil ? NSNumber(integer: objDic["last_year_score"]!.integerValue) : nil
-        objBE.user_level                    = objDic["level"] != nil ? NSNumber(integer: objDic["level"]!.integerValue) : nil
-        objBE.user_role_id                  = objDic["role"] != nil ? NSNumber(integer: objDic["role"]!["id"]!!.integerValue) : nil
-        objBE.user_role_name                = objDic["role"]?["name"] != nil ? objDic["role"]?["name"] as? String : ""
-        objBE.user_total_score              = objDic["total_score"] != nil ? NSNumber(integer: objDic["total_score"]!.integerValue) : nil
-        objBE.user_username                 = objDic["username"] != nil ? objDic["username"] as? String : ""
-        objBE.user_base_profile_complete    = objDic["base_profile_complete"] != nil ? objDic["base_profile_complete"] as? Bool : false
-        
-        if (objBE.user_base_profile_complete!) {
-            objBE.user_location_id              = objDic["location"] != nil ? NSNumber(integer: (objDic["location"]!["id"]!)!.integerValue) : nil
-            objBE.user_location_name            = objDic["location"]?["name"] != nil ? objDic["location"]?["name"] as? String : ""
-            objBE.user_skype_id                 = objDic["skype_id"] != nil ? objDic["skype_id"] as? String : ""
-            objBE.user_avatar                   = (objDic["avatar"] == nil || objDic["avatar"] is NSNull) ? "" : objDic["avatar"] as? String
-        }
-        
-        return objBE
-    }
+
     
     class func translateUserTagBE(objDic : NSDictionary) -> UserTagBE {
         
@@ -182,14 +214,5 @@ class OSPWebTranslator: NSObject {
         return objBE
     }
     
-    class func translateLocationBE(objDic : NSDictionary) -> LocationBE {
-        
-        let objBE = LocationBE()
-        
-        objBE.location_pk    = NSNumber(integer: (objDic["pk"])!.integerValue)
-        objBE.location_name  = objDic["name"] as? String
-        objBE.location_icon  = objDic["icon"] as? String
-        
-        return objBE
-    }
+
 }

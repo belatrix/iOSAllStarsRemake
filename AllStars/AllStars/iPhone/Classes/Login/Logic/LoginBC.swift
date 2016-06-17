@@ -13,14 +13,14 @@ class LoginBC: NSObject {
     class func loginWithUser(user : User, withController controller : UIViewController, withCompletion completion : (userSession : UserSession?, accountState : String?) -> Void) {
         
         if (user.user_username == nil || user.user_username!.trim().isEmpty == true) {
-            OSPUserAlerts.mostrarAlertaConTitulo("app_name".localized, conMensaje: "username_empty".localized, conBotonCancelar: "ok".localized, enController: controller, conCompletion: nil)
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "username_empty".localized, withAcceptButton: "ok".localized)
             
             completion(userSession: nil, accountState: "")
             return
         }
         
         if (user.user_password == nil || user.user_password!.trim().isEmpty == true) {
-            OSPUserAlerts.mostrarAlertaConTitulo("app_name".localized, conMensaje: "password_empty".localized, conBotonCancelar: "ok".localized, enController: controller, conCompletion: nil)
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "password_empty".localized, withAcceptButton: "ok".localized)
             
             completion(userSession: nil, accountState: "")
             return
@@ -29,32 +29,26 @@ class LoginBC: NSObject {
         OSPWebModel.loginUser(user) {(userSession, errorResponse, successful) in
             
             if (userSession != nil) {
-                if (successful) {
-                    let userTemp = User()
-                    userTemp.user_token = userSession!.session_token!
-                    userTemp.user_pk = userSession!.session_user_id!
-                    userTemp.user_base_profile_complete = userSession!.session_base_profile_complete!
-                    
-                    self.saveSessionOfUser(userTemp)
-                    
-                    if (userSession!.session_reset_password_code == nil) {
-                        if (userSession!.session_base_profile_complete!) {
-                            completion(userSession: userSession, accountState: Constants.PROFILE_COMPLETE)
-                        } else {
-                            completion(userSession: userSession, accountState: Constants.PROFILE_INCOMPLETE)
-                        }
+                let userTemp = User()
+                userTemp.user_token = userSession!.session_token!
+                userTemp.user_pk = userSession!.session_user_id!
+                userTemp.user_base_profile_complete = userSession!.session_base_profile_complete!
+                
+                self.saveSessionOfUser(userTemp)
+                
+                if (userSession!.session_reset_password_code == nil) {
+                    if (userSession!.session_base_profile_complete!) {
+                        completion(userSession: userSession, accountState: Constants.PROFILE_COMPLETE)
                     } else {
-                        completion(userSession: userSession, accountState: Constants.PASSWORD_RESET_INCOMPLETE)
+                        completion(userSession: userSession, accountState: Constants.PROFILE_INCOMPLETE)
                     }
                 } else {
-                    if (errorResponse != nil) {
-                        OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
-                    } else {
-                        OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
-                    }
-                    
-                    completion(userSession: nil, accountState: "")
+                    completion(userSession: userSession, accountState: Constants.PASSWORD_RESET_INCOMPLETE)
                 }
+            } else if (errorResponse != nil) {
+                 OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
+                
+                completion(userSession: userSession, accountState: "")
             } else {
                 OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
                 
@@ -63,80 +57,86 @@ class LoginBC: NSObject {
         }
     }
     
-    class func resetUserPassword(userSession : UserSession, oldPassword : String, newPassword : String, repeatNewPassword : String, withController controller : UIViewController, withCompletion completion : (user : User?, messageError : String?) -> Void) {
+    class func resetUserPassword(userSession : UserSession, currentPassword : String, newPassword : String, repeatNewPassword : String, withController controller : UIViewController, withCompletion completion : (user : User?) -> Void) {
         
         if userSession.session_token == nil {
-            OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "Problems with your conecction. Try again please.", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
-            completion(user: nil, messageError: "")
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
+            
+            completion(user: nil)
             return
         }
         
-        if (oldPassword == "") {
-            OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "Old Password must not be empty", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
-            completion(user: nil, messageError: "")
+        if (currentPassword == "") {
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "old_password_empty".localized, withAcceptButton: "ok".localized)
+            
+            completion(user: nil)
             return
         }
         
         if (newPassword == "" || repeatNewPassword == "") {
-            OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "New Password must not be empty", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
-            completion(user: nil, messageError: "")
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "new_password_empty".localized, withAcceptButton: "ok".localized)
+            
+            completion(user: nil)
             return
         }
         
         if (newPassword == repeatNewPassword) {
             if (newPassword.characters.count >= Constants.MIN_PASSWORD_LENGTH) {
-                OSPWebModel.resetUserPassword(userSession, oldPassword: oldPassword, newPassword: newPassword) { (user : User?, messageError : String?) in
+                OSPWebModel.resetUserPassword(userSession, currentPassword: currentPassword, newPassword: newPassword) {(user, errorResponse, successful) in
                     
-                    if user == nil && messageError != nil {
-                        OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: messageError!, conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
-                        
-                        completion(user: nil, messageError: "")
-                    } else {
+                    if (user != nil) {
                         saveSessionOfUser(user)
-                        
-                        completion(user: user, messageError: "")
+                        completion(user: user)
+                    } else if (errorResponse != nil) {
+                        OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
+                        completion(user: nil)
+                    } else {
+                        completion(user: nil)
+                        OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
                     }
                 }
             } else {
-                OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "New Password must be at least \(Constants.MIN_PASSWORD_LENGTH) characters", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
-                completion(user: nil, messageError: "")
-                return
+                OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "new_password_length".localized + " \(Constants.MIN_PASSWORD_LENGTH) "  + "characters".localized, withAcceptButton: "ok".localized)
+                
+                completion(user: nil)
             }
         } else {
-            OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "The new password doesn't match", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
-            completion(user: nil, messageError: "")
-            return
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "new_password_match".localized, withAcceptButton: "ok".localized)
+            
+            completion(user: nil)
         }
     }
  
-    class func getUserSessionInfoConCompletion(completion : (user : User?) -> Void) {
+    class func getUserSessionInformation(completion : (user : User?) -> Void) {
         
         let objUser = self.getCurrenteUserSession()
         
-        if objUser == nil || objUser?.user_token == nil {
+        if (objUser == nil || objUser!.user_token == nil) {
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
+            
             completion(user: nil)
             return
         }
     
-        OSPWebModel.getUserInfo(objUser!, withToken: objUser!.user_token!) { (user, messageError) in
+        OSPWebModel.getUserInformation(objUser!, withToken: objUser!.user_token!) {(user, errorResponse, successful) in
             
-            user?.user_pk = objUser?.user_pk
-            user?.user_token = objUser?.user_token
-            self.saveSessionOfUser(user)
-            
-            completion(user: user)
+            if (user != nil) {
+                user?.user_pk = objUser?.user_pk
+                user?.user_token = objUser?.user_token
+                saveSessionOfUser(user)
+                
+                completion(user: user)
+            } else if (errorResponse != nil) {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
+                completion(user: nil)
+            } else {
+                completion(user: nil)
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
+            }
         }
     }
     
-    class func user(user : User?, isEqualToUser newUser : User?) -> Bool{
-        
-        let userID1 = user?.user_pk
-        let userID2 = newUser?.user_pk
-        
-        return userID1 == userID2 ? true : false
-    }
-    
-    class func saveSessionOfUser(user : User?){
+    class func saveSessionOfUser(user : User?) {
         
         if let pk = user!.user_pk {
             SessionUD.sharedInstance.setUserPk(Int(pk))

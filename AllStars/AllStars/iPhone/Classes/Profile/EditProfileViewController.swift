@@ -10,6 +10,7 @@ import UIKit
 
 class EditProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
+    @IBOutlet weak var viewHeader               : UIView!
     @IBOutlet weak var imgUser                  : UIImageView!
     @IBOutlet weak var edtFirstName             : UITextField!
     @IBOutlet weak var edtLastName              : UITextField!
@@ -19,9 +20,13 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var constraintHeightContent  : NSLayoutConstraint!
     @IBOutlet weak var viewLoading              : UIView!
     @IBOutlet weak var lblErrorMessage          : UILabel!
-    @IBOutlet weak var activityLocations        : UIActivityIndicatorView!
-    @IBOutlet weak var activityUpdating         : UIActivityIndicatorView!
+    @IBOutlet weak var actUpdating              : UIActivityIndicatorView!
+    @IBOutlet weak var actLocations             : UIActivityIndicatorView!
     @IBOutlet weak var btnCancel                : UIButton!
+    @IBOutlet weak var btnUploadPhoto           : UIButton!
+    @IBOutlet weak var viewFirstName            : UIView!
+    @IBOutlet weak var viewLastName             : UIView!
+    @IBOutlet weak var viewSkypeId              : UITextField!
 
     // photo
     var imagePickerController = UIImagePickerController()
@@ -35,24 +40,52 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        OSPCrop.makeRoundView(self.imgUser)
+        setViews()
         
         // imagePicker
         imagePickerController.delegate = self
         imagePickerController.allowsEditing = true
         
+        self.updateUserInfo()
+    }
+    
+    // MARK: - Style
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+    
+    // MARK: - UI
+    func setViews() {
         if (isNewUser!) {
             btnCancel.hidden = true
         }
         
-        self.updateUserInfo()
+        OSPCrop.makeRoundView(self.imgUser)
+        
+        viewHeader.backgroundColor = UIColor.colorPrimary()
+        
+        viewFirstName.backgroundColor = UIColor.colorPrimary()
+        viewFirstName.backgroundColor = UIColor.colorPrimary()
+        viewFirstName.backgroundColor = UIColor.colorPrimary()
+        
+        btnUploadPhoto.backgroundColor = UIColor.belatrix()
+    }
+    
+    func lockScreen() {
+        self.view.userInteractionEnabled = false
+        self.actUpdating.startAnimating()
+    }
+    
+    func unlockScreen() {
+        self.view.userInteractionEnabled = true
+        self.actUpdating.stopAnimating()
     }
     
     // MARK: - IBActions
     @IBAction func btnUploadPhotoTIU(sender: UIButton) {
         self.view.endEditing(true)
         
-        let actionSheet = UIActionSheet(title: "Upload from", delegate: self, cancelButtonTitle: "cancel".localized, destructiveButtonTitle: nil, otherButtonTitles: "camera".localized, "gallery".localized)
+        let actionSheet = UIActionSheet(title: "upload_from".localized, delegate: self, cancelButtonTitle: "cancel".localized, destructiveButtonTitle: nil, otherButtonTitles: "camera".localized, "gallery".localized)
         actionSheet.showInView(self.view)
     }
     
@@ -155,20 +188,19 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
     // MARK: - WebServices
     func listLocations() -> Void {
         
-        self.activityLocations.startAnimating()
+        self.actLocations.startAnimating()
         
-        ProfileBC.listLocationsWithCompletion { (arrayLocations) in
+        ProfileBC.listLocations {(arrayLocations) in
             
-            self.activityLocations.stopAnimating()
+            self.actLocations.stopAnimating()
             
-            self.arrayLocations = arrayLocations
+            self.arrayLocations = arrayLocations!
             
             self.lblErrorMessage.text = "no_availables_locations".localized
             self.viewLoading.alpha = CGFloat(!Bool(self.arrayLocations.count))
             
             let height = Int(self.scrollContent.bounds.size.height) - 113
             let newHeight = Int(self.tableLocations.frame.origin.y) + self.arrayLocations.count * 36
-            
             self.constraintHeightContent.constant = newHeight > height ? CGFloat(newHeight) : CGFloat(height)
             
             self.tableLocations.reloadData()
@@ -176,13 +208,11 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func updateDataUser() -> Void {
-        self.view.userInteractionEnabled = false
-        self.activityUpdating.startAnimating()
         
         ProfileBC.updateInfoToUser(objUser!, newUser: isNewUser!, hasImage: hasNewImage, withController: self, withCompletion: {(user) in
             
             self.view.userInteractionEnabled = true
-            self.activityUpdating.stopAnimating()
+            self.actUpdating.stopAnimating()
             
             if (user != nil) {
                 if (self.hasNewImage) {
@@ -201,15 +231,14 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func updatePhotoUser() -> Void {
-        self.view.userInteractionEnabled = false
-        self.activityUpdating.startAnimating()
+        
+        lockScreen()
 
         let imageData = UIImageJPEGRepresentation(selectedImage, 0.5)
         
         ProfileBC.updatePhotoToUser(objUser!, withController: self, withImage: imageData!, withCompletion: {(user) in
             
-            self.view.userInteractionEnabled = true
-            self.activityUpdating.stopAnimating()
+            self.unlockScreen()
             
              if (user != nil) {
                 if (user!.user_base_profile_complete!) {
@@ -222,7 +251,8 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
             }
         })
     }
-    
+
+    // MARK: - Other
     func openTabBar() {
         let storyBoard : UIStoryboard = UIStoryboard(name: "TabBar", bundle:nil)
         let customTabBarViewController = storyBoard.instantiateViewControllerWithIdentifier("CustomTabBarViewController") as! CustomTabBarViewController
@@ -273,10 +303,5 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
         
         textField.resignFirstResponder()
         return true
-    }
-    
-    // MARK: - Style
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
     }
 }

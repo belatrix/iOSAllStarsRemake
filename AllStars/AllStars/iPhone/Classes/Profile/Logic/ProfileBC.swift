@@ -9,7 +9,50 @@
 import UIKit
 
 class ProfileBC: NSObject {
-
+    
+    class func listLocations(completion : (arrayLocations : NSMutableArray?) -> Void) {
+        
+        let objUser = LoginBC.getCurrenteUserSession()
+        
+        if (objUser == nil || objUser!.user_token == nil) {
+            
+            completion(arrayLocations: NSMutableArray())
+            return
+        }
+        
+        OSPWebModel.listLocations(objUser!.user_token!) { (arrayLocations, errorResponse, successful) in
+            if (arrayLocations != nil) {
+                completion(arrayLocations: arrayLocations!)
+            } else if (errorResponse != nil) {
+                completion(arrayLocations: NSMutableArray())
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
+            } else {
+                completion(arrayLocations: NSMutableArray())
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     class func listStarUserSubCategoriesToPage(page : String, withCompletion completion : (arrayUsers : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask? {
         
@@ -56,10 +99,10 @@ class ProfileBC: NSObject {
         
         let objCurrentUser = LoginBC.getCurrenteUserSession()
         
-        OSPWebModel.getUserInfo(user, withToken: objCurrentUser!.user_token!) { (user, messageError) in
-            
-            completion(user: user)
-        }
+        //        OSPWebModel.getUserInfor(user, withToken: objCurrentUser!.user_token!) { (user, messageError) in
+        //
+        //            completion(user: user)
+        //        }
     }
     
     
@@ -77,22 +120,6 @@ class ProfileBC: NSObject {
             
             completion(arrayCategories: arrayCategories)
         }
-    }
-    
-    class func listLocationsWithCompletion(completion : (arrayLocations : NSMutableArray) -> Void) {
-        
-        let currentUser = LoginBC.getCurrenteUserSession()
-        
-        if currentUser?.user_token == nil {
-            completion(arrayLocations: NSMutableArray())
-            return
-        }
-        
-        OSPWebModel.listLocationsWithToken (currentUser!.user_token!) { (arrayLocations) in
-            
-            completion(arrayLocations: arrayLocations)
-        }
-        
     }
     
     class func updateInfoToUser(user : User, newUser isNewUser : Bool, hasImage hasNewImage : Bool, withController controller: UIViewController, withCompletion completion : (user : User?) -> Void) {
@@ -127,13 +154,13 @@ class ProfileBC: NSObject {
         
         
         if (user.user_skype_id == nil || user.user_skype_id == "") {
-            OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "Skipe Id must not be empty", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
+            OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "Skype Id must not be empty", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
             completion(user: nil)
             return
         }
         
         if (user.user_location_id == nil) {
-            OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "Must select a location", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
+            OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "Must be select a location", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
             completion(user: nil)
             return
         }
@@ -164,5 +191,13 @@ class ProfileBC: NSObject {
             
             completion(user: user)
         }
+    }
+    
+    class func validateUser(user : User?, isEqualToUser newUser : User?) -> Bool {
+        
+        let userID1 = user?.user_pk
+        let userID2 = newUser?.user_pk
+        
+        return userID1 == userID2 ? true : false
     }
 }

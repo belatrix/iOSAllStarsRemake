@@ -16,15 +16,24 @@ yes = "Yes";
 no = "No";
 server_error = "There is a error in server, try again in a few minutes";
 no_availables_locations = "Locations no availables";
+token_invalid = "Problems with your session. Logout and try again please";
 
 // SignUp
 mail_empty = "Email must not be empty";
 mail_invalid = "Email must be valid";
 
-// LogIn
+// Login
 username_empty = "Username must not be empty";
 password_empty = "Password must not be empty";
 
+// Reset
+old_password_empty = "Old Password must not be empty";
+new_password_empty = "New Password must not be empty";
+new_password_length = "New Password must be at least";
+characters = "characters";
+new_password_match = "The new passwords must be match";
+
 // Edit
+upload_from = "Upload From";
 camera = "Camera";
 gallery = "Gallery";
