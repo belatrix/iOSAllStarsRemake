@@ -33,7 +33,7 @@ class OSPWebTranslator: NSObject {
         return objBE
     }
     
-    class func translateUserBE(objDic : NSDictionary) -> User{
+    class func parseUserBE(objDic : NSDictionary) -> User{
         
         let objBE = User()
         
@@ -65,7 +65,7 @@ class OSPWebTranslator: NSObject {
         return objBE
     }
     
-    class func translateLocationBE(objDic : NSDictionary) -> LocationBE {
+    class func parseLocationBE(objDic : NSDictionary) -> LocationBE {
         
         let objBE = LocationBE()
         

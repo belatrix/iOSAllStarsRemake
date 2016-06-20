@@ -24,19 +24,93 @@ class ProfileBC: NSObject {
             if (arrayLocations != nil) {
                 completion(arrayLocations: arrayLocations!)
             } else if (errorResponse != nil) {
-                completion(arrayLocations: NSMutableArray())
                 OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
-            } else {
                 completion(arrayLocations: NSMutableArray())
+            } else {
                 OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
+                completion(arrayLocations: NSMutableArray())
             }
         }
     }
     
+    class func updateInfoToUser(user : User, newUser isNewUser : Bool, hasImage hasNewImage : Bool, withController controller: UIViewController, withCompletion completion : (user : User?) -> Void) {
+        
+        let objCurrentUser = LoginBC.getCurrenteUserSession()
+        
+        if objCurrentUser!.user_token == nil {
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
+            completion(user: nil)
+            return
+        }
+        
+        if (isNewUser) {
+            if (!hasNewImage) {
+                OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "photo_empty".localized, withAcceptButton: "ok".localized)
+                completion(user: nil)
+                return
+            }
+        }
+        
+        if (user.user_first_name == nil || user.user_first_name == "") {
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "first_name_empty".localized, withAcceptButton: "ok".localized)
+            completion(user: nil)
+            return
+        }
+        
+        if (user.user_last_name == nil || user.user_last_name == "") {
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "last_name_empty".localized, withAcceptButton: "ok".localized)
+            completion(user: nil)
+            return
+        }
+        
+        
+        if (user.user_skype_id == nil || user.user_skype_id == "") {
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "skype_id_empty".localized, withAcceptButton: "ok".localized)
+            completion(user: nil)
+            return
+        }
+        
+        if (user.user_location_id == nil) {
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "location_empty".localized, withAcceptButton: "ok".localized)
+            completion(user: nil)
+            return
+        }
+        
+        OSPWebModel.updateUser(user, withToken: objCurrentUser!.user_token!) {(user, errorResponse, successful) in
+
+            if (user != nil) {
+                LoginBC.saveSessionOfUser(user)
+                
+                completion(user: user!)
+            } else if (errorResponse != nil) {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
+                completion(user: nil)
+            } else {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
+                completion(user: nil)
+            }
+        }
+    }
     
-    
-    
-    
+    class func updatePhotoToUser(user : User, withController controller: UIViewController, withImage image : NSData, withCompletion completion : (user : User?) -> Void) {
+        
+        let objCurrentUser = LoginBC.getCurrenteUserSession()
+        
+        OSPWebModel.updatePhoto(user, withToken: objCurrentUser!.user_token!, withImage: image) {(user, errorResponse, successful) in
+            
+            if (user != nil) {
+                LoginBC.saveSessionOfUser(user)
+                
+                completion(user: user!)
+            } else if (errorResponse != nil) {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
+                completion(user: nil)
+            } else {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
+                completion(user: nil)
+            }
+        }
+    }
     
     
     
@@ -122,76 +196,7 @@ class ProfileBC: NSObject {
         }
     }
     
-    class func updateInfoToUser(user : User, newUser isNewUser : Bool, hasImage hasNewImage : Bool, withController controller: UIViewController, withCompletion completion : (user : User?) -> Void) {
-        
-        let objCurrentUser = LoginBC.getCurrenteUserSession()
-        
-        if objCurrentUser!.user_token == nil {
-            OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "Problems with your conecction. Try again please.", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
-            completion(user: nil)
-            return
-        }
-        
-        if (isNewUser) {
-            if (!hasNewImage) {
-                OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "Photo must not be empty", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
-                completion(user: nil)
-                return
-            }
-        }
-        
-        if (user.user_first_name == nil || user.user_first_name == "") {
-            OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "First Name must not be empty", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
-            completion(user: nil)
-            return
-        }
-        
-        if (user.user_last_name == nil || user.user_last_name == "") {
-            OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "Last Name must not be empty", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
-            completion(user: nil)
-            return
-        }
-        
-        
-        if (user.user_skype_id == nil || user.user_skype_id == "") {
-            OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "Skype Id must not be empty", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
-            completion(user: nil)
-            return
-        }
-        
-        if (user.user_location_id == nil) {
-            OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "Must be select a location", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
-            completion(user: nil)
-            return
-        }
-        
-        OSPWebModel.updateUser(user, withToken: objCurrentUser!.user_token!) { (user) in
-            
-            if (user == nil) {
-                OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "Problems with your conecction. Try again please.", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
-            }
-            
-            LoginBC.saveSessionOfUser(user)
-            
-            completion(user: user)
-        }
-    }
-    
-    class func updatePhotoToUser(user : User, withController controller: UIViewController, withImage image : NSData, withCompletion completion : (user : User?) -> Void) {
-        
-        let objCurrentUser = LoginBC.getCurrenteUserSession()
-        
-        OSPWebModel.updatePhoto(user, withToken: objCurrentUser!.user_token!, withImage: image) { (user) in
-            
-            if (user == nil) {
-                OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "Problems with your conecction. Try again please.", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
-            }
-            
-            LoginBC.saveSessionOfUser(user)
-            
-            completion(user: user)
-        }
-    }
+
     
     class func validateUser(user : User?, isEqualToUser newUser : User?) -> Bool {
         

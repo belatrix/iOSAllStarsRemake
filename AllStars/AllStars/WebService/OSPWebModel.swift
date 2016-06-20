@@ -93,7 +93,7 @@ class OSPWebModel: NSObject {
             
             arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
                 
-                arrayEmployee.addObject(OSPWebTranslator.translateUserBE(obj as! NSDictionary))
+                arrayEmployee.addObject(OSPWebTranslator.parseUserBE(obj as! NSDictionary))
             })
             
             completion(arrayEmployee: arrayEmployee, nextPage: nextPage)
@@ -112,7 +112,7 @@ class OSPWebModel: NSObject {
             
             arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
                 
-                arrayEmployee.addObject(OSPWebTranslator.translateUserBE(obj as! NSDictionary))
+                arrayEmployee.addObject(OSPWebTranslator.parseUserBE(obj as! NSDictionary))
             })
             
             completion(arrayEmployee: arrayEmployee, nextPage: nextPage)
@@ -131,7 +131,7 @@ class OSPWebModel: NSObject {
             
             arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
                 
-                arrayEmployee.addObject(OSPWebTranslator.translateUserBE(obj as! NSDictionary))
+                arrayEmployee.addObject(OSPWebTranslator.parseUserBE(obj as! NSDictionary))
             })
             
             completion(arrayEmployee: arrayEmployee, nextPage: nextPage)
@@ -286,37 +286,7 @@ class OSPWebModel: NSObject {
         }
     }
     
-    class func updateUser(user : User, withToken token : String, withCompletion completion : (user : User?) -> Void) {
-        
-        let userID = user.user_pk
-        let path = "api/employee/\(userID!)/update/"
-        
-        let dic : NSDictionary = ["first_name" : user.user_first_name!,
-                                  "last_name" : user.user_last_name!,
-                                  "skype_id" : user.user_skype_id!,
-                                  "location" : user.user_location_id!]
-        
-        OSPWebSender.doPATCHTokenToURL(conURL: Constants.WEB_SERVICES, conPath: path, conParametros: dic, conToken: token) { (objRespuesta) in
-            
-            completion(user: OSPWebTranslator.translateUserBE(objRespuesta.respuestaJSON as! NSDictionary))
-        }
-    }
-    
-    class func updatePhoto(user : User, withToken token : String, withImage image : NSData, withCompletion completion : (user : User?) -> Void) {
-        
-        let userID = user.user_pk
-        let path = "api/employee/\(userID!)/avatar/"
-        
-        OSPWebSender.doMultipartTokenToURL(conURL: Constants.WEB_SERVICES, conPath: path, conParametros: nil, withImage: image, conToken: token) {(objRespuesta) in
-            
-            completion(user: OSPWebTranslator.translateUserBE(objRespuesta.respuestaJSON as! NSDictionary))
-        }
-    }
-    
-    
-    
-    
-    
+
     
     
     
@@ -388,7 +358,7 @@ class OSPWebModel: NSObject {
         OSPWebSender.doPOSTWithTokenTemp(path, withParameters: dic, withToken: userSession!.session_token!) {(response, successful) in
             if (response != nil) {
                 if (successful) {
-                    completion(user: OSPWebTranslator.translateUserBE(response as! [String : AnyObject]), errorResponse: nil, successful: successful)
+                    completion(user: OSPWebTranslator.parseUserBE(response as! [String : AnyObject]), errorResponse: nil, successful: successful)
                 } else {
                     completion(user: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
                 }
@@ -406,7 +376,7 @@ class OSPWebModel: NSObject {
             
             if (response != nil) {
                 if (successful) {
-                    let objUsuario = OSPWebTranslator.translateUserBE(response as! [String : AnyObject])
+                    let objUsuario = OSPWebTranslator.parseUserBE(response as! [String : AnyObject])
                     objUsuario.user_pk = user.user_pk
                     completion(user: objUsuario, errorResponse: nil, successful: successful)
                 } else {
@@ -430,7 +400,7 @@ class OSPWebModel: NSObject {
                     let arrayTemp = NSMutableArray()
                     
                     arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
-                        arrayTemp.addObject(OSPWebTranslator.translateLocationBE(obj as! NSDictionary))
+                        arrayTemp.addObject(OSPWebTranslator.parseLocationBE(obj as! NSDictionary))
                     })
                     
                     completion(arrayLocations: arrayTemp, errorResponse: nil, successful: successful)
@@ -442,4 +412,55 @@ class OSPWebModel: NSObject {
             }
         }
     }
+    
+    class func updateUser(user : User, withToken token : String, withCompletion completion : (user : User?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
+        
+        let path = "api/employee/\(user.user_pk!)/update/"
+        
+        let dic : [String : AnyObject] =
+            ["first_name" : user.user_first_name!,
+             "last_name" : user.user_last_name!,
+             "skype_id" : user.user_skype_id!,
+             "location" : user.user_location_id!]
+        
+        OSPWebSender.doPATCHWithTokenTemp(path, withParameters: dic, withToken: token) {(response, successful) in
+            
+            if (response != nil) {
+                if (successful) {
+                    completion(user: OSPWebTranslator.parseUserBE(response as! [String : AnyObject]), errorResponse: nil, successful: successful)
+                } else {
+                    completion(user: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
+                }
+            } else {
+                completion(user: nil, errorResponse: nil, successful: successful)
+            }
+        }
+//        OSPWebSender.doPATCHTokenToURL(conURL: Constants.WEB_SERVICES, conPath: path, conParametros: dic, conToken: token) { (objRespuesta) in
+//            
+//            completion(user: OSPWebTranslator.parseUserBE(objRespuesta.respuestaJSON as! NSDictionary))
+//        }
+    }
+    
+    class func updatePhoto(user : User, withToken token : String, withImage image : NSData, withCompletion completion : (user : User?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
+        
+        let path = "api/employee/\(user.user_pk!)/avatar/"
+        
+        OSPWebSender.doMultipartTokenToURL(path, withParameters: nil, withImage: image, withToken: token) {(response, successful) in
+            
+            if (response != nil) {
+                if (successful) {
+                    completion(user: OSPWebTranslator.parseUserBE(response as! [String : AnyObject]), errorResponse: nil, successful: successful)
+                } else {
+                    completion(user: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
+                }
+            } else {
+                completion(user: nil, errorResponse: nil, successful: successful)
+            }
+        }
+    }
+    
+    
+    
+    
+    
 }

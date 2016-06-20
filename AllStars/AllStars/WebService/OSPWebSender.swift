@@ -391,31 +391,7 @@ class OSPWebSender: NSObject {
         postDataTask.resume()
     }
     
-    class func doMultipartTokenToURL(conURL url : NSString, conPath path : NSString, conParametros parametros : AnyObject?, withImage image : NSData, conToken token : NSString, conCompletion completion : (objRespuesta : OSPWebResponse) -> Void){
-        
-        let urlWS = "\(url)/\(path)"
-        
-        Alamofire.upload(
-            .POST,
-            urlWS,
-            headers: self.crearCabeceraPeticionConToken(token) as! [String : String],
-            multipartFormData: { multipartFormData in
-                multipartFormData.appendBodyPart(data: image, name: "image", fileName: "testName.jpg", mimeType: "image/jpg")
-            },
-            encodingCompletion: { encodingResult in
-                switch encodingResult {
-                case .Success(let upload, _, _):
-                    upload.responseJSON { response in
-                        debugPrint(response)
-                        completion(objRespuesta : self.obtenerRespuestaServicioParaData(response.data, response: response.response, error: nil))
-                    }
-                case .Failure(let encodingError):
-                    print(encodingError)
-                    completion(objRespuesta : self.obtenerRespuestaServicioParaData(nil, response: nil, error: nil))
-                }
-            }
-        )
-    }
+
     
     //MARK:
     //MARK: Consumo de servicios simple
@@ -643,5 +619,143 @@ class OSPWebSender: NSObject {
                     completion(response : nil, successful: false)
                 }
         }
+    }
+    
+    class func doPATCHWithTokenTemp(path : String, withParameters parameters : [String : AnyObject], withToken token : String, withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
+        
+//        let URL = Constants.WEB_SERVICES + path
+//        let urlService = NSURL(string: URL)
+//        let request = NSMutableURLRequest(URL: urlService!)
+//        request.HTTPMethod = "PATCH"
+//        request.setValue("PATCH", forHTTPHeaderField: "X-HTTP-Method-Override")
+//        request.setValue("Token \(token)", forHTTPHeaderField: "Authorization")
+//        
+//        Alamofire.request(request)
+//            .validate(statusCode: 200..<501)
+//            .responseJSON { response in
+//                switch response.result {
+//                case .Success:
+//                    print("statusCode: \(response.response!.statusCode)")
+//                    print("response: \(response.result.value)")
+//                    
+//                    if let JSON = response.result.value {
+//                        if(response.response!.statusCode >= 200 && response.response!.statusCode <= 299) {
+//                            completion(response : JSON, successful: true)
+//                        } else {
+//                            completion(response : JSON, successful: false)
+//                        }
+//                    } else {
+//                        completion(response : nil, successful: false)
+//                    }
+//                case .Failure(let error):
+//                    print("error: \(error)")
+//                    
+//                    completion(response : nil, successful: false)
+//                }
+//        }
+        
+        
+//        let configuracionSesion = NSURLSessionConfiguration.defaultSessionConfiguration()
+//        configuracionSesion.HTTPAdditionalHeaders = self.crearCabeceraPeticionConToken(token) as [NSObject : AnyObject]
+//        
+//        let sesion = NSURLSession.init(configuration: configuracionSesion)
+//        
+//        let URL = Constants.WEB_SERVICES + path
+//        let urlService = NSURL(string: URL)
+//        let request = NSMutableURLRequest(URL: urlService!)
+//        request.addValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+//        request.addValue("application/json", forHTTPHeaderField: "Accept")
+//        
+//        request.HTTPMethod = "PATCH"
+//        
+//        let postDataTask = sesion.dataTaskWithRequest(request) { (data : NSData?, response : NSURLResponse?, error : NSError?) in
+//            
+//            dispatch_async(dispatch_get_main_queue(), {
+//                do{
+//                    let JSON : AnyObject? = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
+//                    let urlResponse = response as? NSHTTPURLResponse
+//                    
+//                    print("statusCode: \(urlResponse!.statusCode)")
+//                    print("response: \(JSON)")
+//                    
+//                    if(urlResponse!.statusCode >= 200 && urlResponse!.statusCode <= 299) {
+//                        completion(response : JSON, successful: true)
+//                    } else {
+//                        completion(response : JSON, successful: false)
+//                    }
+//                } catch{
+//                    completion(response : nil, successful: false)
+//                }
+//            })
+//        }
+//        
+//        postDataTask.resume()
+        
+        
+        
+        let URL = Constants.WEB_SERVICES + path
+        
+        Alamofire.request(
+            .PATCH,
+            URL,
+            headers: self.crearCabeceraPeticionConToken(token) as! [String : String],
+            parameters: parameters)
+            .validate(statusCode: 200..<501)
+            .responseJSON { response in
+                switch response.result {
+                case .Success:
+                    print("statusCode: \(response.response!.statusCode)")
+                    print("response: \(response.result.value)")
+                    
+                    if let JSON = response.result.value {
+                        if(response.response!.statusCode >= 200 && response.response!.statusCode <= 299) {
+                            completion(response : JSON, successful: true)
+                        } else {
+                            completion(response : JSON, successful: false)
+                        }
+                    } else {
+                        completion(response : nil, successful: false)
+                    }
+                case .Failure(let error):
+                    print("error: \(error)")
+                    
+                    completion(response : nil, successful: false)
+                }
+        }
+        
+        
+    }
+    
+    class func doMultipartTokenToURL(path : String, withParameters parameters : NSDictionary?, withImage image : NSData, withToken token : String, withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
+        
+        let URL = Constants.WEB_SERVICES + path
+        
+        Alamofire.upload(
+            .POST,
+            URL,
+            headers: self.crearCabeceraPeticionConToken(token) as! [String : String],
+            multipartFormData: { multipartFormData in
+                multipartFormData.appendBodyPart(data: image, name: "image", fileName: "testName.jpg", mimeType: "image/jpg")
+            },
+            encodingCompletion: { encodingResult in
+                switch encodingResult {
+                case .Success(let upload, _, _):
+                    upload.responseJSON { response in
+                        print("statusCode: \(response.response!.statusCode)")
+                        print("response: \(response.result.value)")
+                        
+                        if let JSON = response.result.value {
+                            completion(response : JSON, successful: false)
+                        } else {
+                            completion(response : nil, successful: false)
+                        }
+                    }
+                case .Failure(let encodingError):
+                    print("error: \(encodingError)")
+                    
+                    completion(response : nil, successful: false)
+                }
+            }
+        )
     }
 }

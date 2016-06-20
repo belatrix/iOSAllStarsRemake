@@ -194,21 +194,22 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
             
             self.actLocations.stopAnimating()
             
-            self.arrayLocations = arrayLocations!
-            
-            self.lblErrorMessage.text = "no_availables_locations".localized
-            self.viewLoading.alpha = CGFloat(!Bool(self.arrayLocations.count))
-            
-            let height = Int(self.scrollContent.bounds.size.height) - 113
-            let newHeight = Int(self.tableLocations.frame.origin.y) + self.arrayLocations.count * 36
-            self.constraintHeightContent.constant = newHeight > height ? CGFloat(newHeight) : CGFloat(height)
-            
-            self.tableLocations.reloadData()
+            if (arrayLocations != nil) {
+                self.arrayLocations = arrayLocations!
+                
+                self.lblErrorMessage.text = "no_availables_locations".localized
+                self.viewLoading.alpha = CGFloat(!Bool(self.arrayLocations.count))
+                
+                let height = Int(self.scrollContent.bounds.size.height) - 113
+                let newHeight = Int(self.tableLocations.frame.origin.y) + self.arrayLocations.count * 36
+                self.constraintHeightContent.constant = newHeight > height ? CGFloat(newHeight) : CGFloat(height)
+                
+                self.tableLocations.reloadData()
+            }
         }
     }
     
     func updateDataUser() -> Void {
-        
         ProfileBC.updateInfoToUser(objUser!, newUser: isNewUser!, hasImage: hasNewImage, withController: self, withCompletion: {(user) in
             
             self.view.userInteractionEnabled = true

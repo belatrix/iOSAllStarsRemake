@@ -91,8 +91,8 @@ class LoginBC: NSObject {
                         OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
                         completion(user: nil)
                     } else {
-                        completion(user: nil)
                         OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
+                        completion(user: nil)
                     }
                 }
             } else {
@@ -130,8 +130,8 @@ class LoginBC: NSObject {
                 OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
                 completion(user: nil)
             } else {
-                completion(user: nil)
                 OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
+                completion(user: nil)
             }
         }
     }
