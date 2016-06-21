@@ -346,6 +346,7 @@
                         <outlet property="txtDescription" destination="Qpz-cO-Nmz" id="azr-fl-HRs"/>
                         <outlet property="txtKeyword" destination="okL-nm-nwC" id="LyE-Sg-fIJ"/>
                         <outlet property="txtSubCategory" destination="2CC-qv-7Xe" id="9ut-vN-LhZ"/>
+                        <outlet property="viewHeader" destination="wtE-Zk-9Wh" id="XwH-kA-XnV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ruq-4a-sgF" userLabel="First Responder" sceneMemberID="firstResponder"/>

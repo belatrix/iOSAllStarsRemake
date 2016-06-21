@@ -26,7 +26,7 @@ class OSPWebTranslator: NSObject {
         let objBE = UserSession()
         
         objBE.session_reset_password_code   = objDic["reset_password_code"] != nil ? objDic["reset_password_code"] as? String : ""
-        objBE.session_base_profile_complete = objDic["base_profile_complete"] != nil ? objDic["base_profile_complete"] as? Bool : false
+        objBE.session_base_profile_complete = objDic["is_base_profile_complete"] != nil ? objDic["is_base_profile_complete"] as? Bool : false
         objBE.session_user_id               = objDic["user_id"] != nil ? NSNumber(integer: objDic["user_id"]!.integerValue) : nil
         objBE.session_token                 = objDic["token"] != nil ? objDic["token"] as? String : ""
         
@@ -53,13 +53,15 @@ class OSPWebTranslator: NSObject {
         objBE.user_role_name                = objDic["role"]?["name"] != nil ? objDic["role"]?["name"] as? String : ""
         objBE.user_total_score              = objDic["total_score"] != nil ? NSNumber(integer: objDic["total_score"]!.integerValue) : nil
         objBE.user_username                 = objDic["username"] != nil ? objDic["username"] as? String : ""
-        objBE.user_base_profile_complete    = objDic["base_profile_complete"] != nil ? objDic["base_profile_complete"] as? Bool : false
+        objBE.user_base_profile_complete    = objDic["is_base_profile_complete"] != nil ? objDic["is_base_profile_complete"] as? Bool : false
+        objBE.user_blocked                  = objDic["is_blocked"] != nil ? objDic["is_blocked"] as? Bool : false
+        objBE.user_active                   = objDic["is_active"] != nil ? objDic["is_active"] as? Bool : false
         
         if (objBE.user_base_profile_complete!) {
-            objBE.user_location_id              = objDic["location"] != nil ? NSNumber(integer: (objDic["location"]!["id"]!)!.integerValue) : nil
-            objBE.user_location_name            = objDic["location"]?["name"] != nil ? objDic["location"]?["name"] as? String : ""
-            objBE.user_skype_id                 = objDic["skype_id"] != nil ? objDic["skype_id"] as? String : ""
-            objBE.user_avatar                   = (objDic["avatar"] == nil || objDic["avatar"] is NSNull) ? "" : objDic["avatar"] as? String
+            objBE.user_location_id          = objDic["location"] != nil ? NSNumber(integer: (objDic["location"]!["id"]!)!.integerValue) : nil
+            objBE.user_location_name        = objDic["location"]?["name"] != nil ? objDic["location"]?["name"] as? String : ""
+            objBE.user_skype_id             = objDic["skype_id"] != nil ? objDic["skype_id"] as? String : ""
+            objBE.user_avatar               = (objDic["avatar"] == nil || objDic["avatar"] is NSNull) ? "" : objDic["avatar"] as? String
         }
         
         return objBE
@@ -76,7 +78,16 @@ class OSPWebTranslator: NSObject {
         return objBE
     }
     
-    
+    class func parseStarSubCategoryBE(objDic : NSDictionary) -> StarSubCategoryBE {
+        
+        let objBE = StarSubCategoryBE()
+        
+        objBE.starSubCategoy_id         = objDic["pk"] != nil ? NSNumber(integer: objDic["pk"]!.integerValue) : nil
+        objBE.starSubCategoy_name       = objDic["name"] as? String
+        objBE.starSubCategoy_numStars   = objDic["num_stars"] != nil ? NSNumber(integer: objDic["num_stars"]!.integerValue) : 0
+        
+        return objBE
+    }
     
     
     
@@ -173,16 +184,7 @@ class OSPWebTranslator: NSObject {
     }
     
     
-    class func translateStarSubCategoryBE(objDic : NSDictionary) -> StarSubCategoryBE {
-        
-        let objBE = StarSubCategoryBE()
-        
-        objBE.starSubCategoy_id         = objDic["pk"] != nil ? NSNumber(integer: objDic["pk"]!.integerValue) : nil
-        objBE.starSubCategoy_name       = objDic["name"] as? String
-        objBE.starSubCategoy_numStars   = objDic["num_stars"] != nil ? NSNumber(integer: objDic["num_stars"]!.integerValue) : 0
-        
-        return objBE
-    }
+
     
     
     

@@ -8,10 +8,8 @@
 
 import UIKit
 
-
 class StarUserInfoTableViewCell: UITableViewCell {
 
-    
     @IBOutlet weak var imgAvatar        : UIImageView!
     @IBOutlet weak var lblCategory      : UILabel!
     @IBOutlet weak var lblFullName      : UILabel!
@@ -29,6 +27,7 @@ class StarUserInfoTableViewCell: UITableViewCell {
         self.lblFullName.text = "\(self.objUserQualify.userQualify_firstName!) \(self.objUserQualify.userQualify_lastName!)"
         self.lblCategory.text = self.objUserQualify.userQualify_categoryName!
         self.txtInfo.text = self.objUserQualify.userQualify_text!
+        self.btnKeyword.backgroundColor = UIColor.belatrix()
         self.btnKeyword.setTitle("#\(self.objUserQualify.userQualify_keywordName!)", forState: .Normal)
         
         let maximumLabelSize = CGSizeMake(320, CGFloat.max)
@@ -52,7 +51,7 @@ class StarUserInfoTableViewCell: UITableViewCell {
 
         self.containerView.layer.cornerRadius = 4
         self.containerView.layer.borderWidth = 0.5
-        self.containerView.layer.borderColor = UIColor(red: 200.0/255.0, green: 200.0/255.0, blue: 200.0/255.0, alpha: 1).CGColor
+        self.containerView.layer.borderColor = UIColor.grayColor().CGColor
     }
     
     class func getHeightToCellWithTextDescription(description : String) -> CGFloat {

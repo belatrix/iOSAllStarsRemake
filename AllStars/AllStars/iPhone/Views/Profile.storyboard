@@ -384,7 +384,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="acitivityCategories" destination="tP3-n8-Cp9" id="cNF-al-r2R"/>
+                        <outlet property="actCategories" destination="tP3-n8-Cp9" id="1nl-G5-0F4"/>
                         <outlet property="btnAction" destination="TPc-sw-XWM" id="jji-TG-9CJ"/>
                         <outlet property="btnBack" destination="4N6-a2-tEW" id="akj-3Z-Jqe"/>
                         <outlet property="btnLogout" destination="MHj-Cf-koJ" id="6Zk-pU-rvo"/>
@@ -400,6 +400,7 @@
                         <outlet property="lblScore" destination="Jhz-WX-dXv" id="juN-n5-de4"/>
                         <outlet property="lblSkype" destination="Cgd-GY-81C" id="52I-VA-nkO"/>
                         <outlet property="scrollContent" destination="fse-8Y-enM" id="74n-96-v3q"/>
+                        <outlet property="viewHeader" destination="DrU-B1-znD" id="VPu-0g-Dmp"/>
                         <outlet property="viewLoading" destination="hop-ed-cRA" id="5eI-1R-IIv"/>
                         <outletCollection property="scoreViews" destination="jDQ-tb-EO1" collectionClass="NSMutableArray" id="yXh-1O-ntf"/>
                         <outletCollection property="scoreViews" destination="uYu-fD-N9N" collectionClass="NSMutableArray" id="vQV-nw-1KR"/>
@@ -623,10 +624,11 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="acitivityLoading" destination="ktC-af-1GG" id="hNh-Ro-apT"/>
+                        <outlet property="actLoading" destination="ktC-af-1GG" id="I2m-Gh-hg1"/>
                         <outlet property="lblCategoryName" destination="VN9-fI-u3e" id="ZWe-Vh-Ocv"/>
                         <outlet property="lblErrorMessage" destination="Fw7-Z6-4ov" id="E40-Na-ki1"/>
                         <outlet property="tlbUsers" destination="eSq-dq-bSq" id="pR1-PA-YCb"/>
+                        <outlet property="viewHeader" destination="NLc-2Q-4Ll" id="nOu-t1-gxb"/>
                         <outlet property="viewLoading" destination="wzB-SQ-8KY" id="62X-1b-vM8"/>
                         <segue destination="zTs-ih-ZsU" kind="show" identifier="UserRankingTagViewController2" id="gmW-pD-1yV"/>
                     </connections>
@@ -722,7 +724,7 @@
                                                 </constraints>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="next"/>
                                                 <connections>
                                                     <action selector="textFieldVCh:" destination="YrU-vE-heg" eventType="editingDidEnd" id="lhk-qY-hHa"/>
                                                     <outlet property="delegate" destination="YrU-vE-heg" id="2X2-yp-Lf9"/>
@@ -743,7 +745,7 @@
                                                 </constraints>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="next"/>
                                                 <connections>
                                                     <action selector="textFieldVCh:" destination="YrU-vE-heg" eventType="editingDidEnd" id="ogw-fv-hbP"/>
                                                     <outlet property="delegate" destination="YrU-vE-heg" id="3e6-uA-LX5"/>

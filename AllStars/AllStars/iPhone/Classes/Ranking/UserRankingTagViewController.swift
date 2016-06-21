@@ -10,6 +10,7 @@ import UIKit
 
 class UserRankingTagViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     
+    @IBOutlet weak var viewHeader               : UIView!
     @IBOutlet weak var tableUsers               : UITableView!
     @IBOutlet weak var viewLoading              : UIView!
     @IBOutlet weak var lblErrorMessage          : UILabel!
@@ -26,6 +27,7 @@ class UserRankingTagViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setViews()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -34,6 +36,11 @@ class UserRankingTagViewController: UIViewController, UITableViewDelegate, UITab
         lblTitle.text = "\(objStarKeyword!.keyword_name!) Top"
         
         self.listAllUsers()
+    }
+    
+    // MARK: - UI
+    func setViews() {
+        viewHeader.backgroundColor = UIColor.colorPrimary()
     }
     
     // MARK: - UIScrollViewDelegate

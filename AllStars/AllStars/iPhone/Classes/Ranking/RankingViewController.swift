@@ -10,13 +10,11 @@ import UIKit
 
 class RankingViewController: UIViewController, UIPageViewControllerDataSource {
     
-    
+    @IBOutlet weak var viewHeader   : UIView!
     @IBOutlet weak var sgmRanking   : UISegmentedControl!
-    
     
     var pageViewController = UIPageViewController()
     var currentIndex = 0
-    
     
     lazy var arrayViewControllers : NSMutableArray = {
         
@@ -40,13 +38,27 @@ class RankingViewController: UIViewController, UIPageViewControllerDataSource {
         return _arrayViewControllers
     }()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setViews()
+    }
     
+    // MARK: - Style
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
     
+    // MARK: - UI
+    func setViews() {
+        viewHeader.backgroundColor = UIColor.colorPrimary()
+    }
+    
+    // MARK: - IBActions
     @IBAction func tapSegmented(sender: UISegmentedControl) {
         
         self.assignArrayTableToIndex(sender.selectedSegmentIndex)
     }
-    
     
     func assignArrayTableToIndex(index : Int) {
         
@@ -55,12 +67,7 @@ class RankingViewController: UIViewController, UIPageViewControllerDataSource {
         self.currentIndex = index
     }
     
-    
-    
- 
-    //MARK: - UIPageViewControllerDataSource
-    
-    
+    // MARK - UIPageViewControllerDataSource
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         
         let index = self.arrayViewControllers.indexOfObject(viewController)
@@ -78,40 +85,7 @@ class RankingViewController: UIViewController, UIPageViewControllerDataSource {
         return (index == self.arrayViewControllers.count - 1) ? nil : self.arrayViewControllers[index + 1] as? UIViewController
     }
     
-
-    
-    
-    //MARK: -
-    
-    
-    
-    
-    
-    override func viewWillAppear(animated: Bool) {
-        
-        super.viewWillAppear(animated)
-    }
-    
-    
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        
-        return .LightContent
-    }
-
-    
     // MARK: - Navigation
-
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
        
         if segue.identifier == "PageControllerRanking" {
@@ -121,10 +95,6 @@ class RankingViewController: UIViewController, UIPageViewControllerDataSource {
             
             let controllerInitial = self.arrayViewControllers[0] as! UIViewController
             self.pageViewController.setViewControllers([controllerInitial], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
-
         }
-        
     }
-    
-
 }

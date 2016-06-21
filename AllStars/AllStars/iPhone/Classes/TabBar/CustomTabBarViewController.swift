@@ -9,14 +9,12 @@
 import UIKit
 
 class CustomTabBarViewController: UITabBarController {
-
     
     lazy var arrayButtonsTab : NSMutableArray = {
-       
+        
         let _arrayButtonsTab = NSMutableArray()
         return _arrayButtonsTab
     }()
-    
     
     override func viewDidLoad() {
         
@@ -48,7 +46,6 @@ class CustomTabBarViewController: UITabBarController {
         super.viewDidLoad()
     }
     
-    
     func tapBarButton(sender : UIButton) {
         
         self.selectedIndex = sender.tag
@@ -58,41 +55,6 @@ class CustomTabBarViewController: UITabBarController {
             btn.tintColor = UIColor.darkGrayColor()
         }
         
-        sender.tintColor = UIColor(red: 37.0/255.0, green: 185.0/255.0, blue: 1, alpha: 1)
+        sender.tintColor = UIColor.belatrix()
     }
-    
-    
-    override func viewWillAppear(animated: Bool) {
-        
-        super.viewWillAppear(animated)
-    }
-
-    
-    override func viewDidAppear(animated: Bool) {
-        
-        let objUser = LoginBC.getCurrenteUserSession()
-        
-        if objUser == nil {
-            self.performSegueWithIdentifier("LoginViewController", sender: nil)
-        }
-        
-        super.viewDidAppear(animated)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

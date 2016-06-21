@@ -10,6 +10,7 @@ import UIKit
 
 class ProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    @IBOutlet weak var viewHeader               : UIView!
     @IBOutlet weak var imgProfile               : UIImageView!
     @IBOutlet weak var lblNameUser              : UILabel!
     @IBOutlet weak var lblMail                  : UILabel!
@@ -23,7 +24,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var clvCategories            : UICollectionView!
     @IBOutlet weak var viewLoading              : UIView!
     @IBOutlet weak var lblErrorMessage          : UILabel!
-    @IBOutlet weak var acitivityCategories      : UIActivityIndicatorView!
+    @IBOutlet weak var actCategories            : UIActivityIndicatorView!
     @IBOutlet weak var constraintHeightContent  : NSLayoutConstraint!
     @IBOutlet weak var btnAction                : UIButton?
     @IBOutlet weak var btnBack                  : UIButton!
@@ -33,8 +34,58 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     var backEnable : Bool?
     var arrayCategories = NSMutableArray()
     
-    lazy var refreshControl : UIRefreshControl = {
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
+        setViews()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        if self.objUser == nil {
+            self.objUser = LoginBC.getCurrenteUserSession()
+        }
+        
+        if self.objUser != nil {
+            self.updateUserInfo()
+        }
+        
+        if (ProfileBC.validateUser(self.objUser, isEqualToUser: LoginBC.getCurrenteUserSession())) {
+            self.btnAction?.setTitle("Edit", forState: .Normal)
+        } else {
+            self.btnAction?.setTitle("Recommend", forState: .Normal)
+        }
+        
+        if backEnable != nil {
+            self.btnBack.hidden = false
+            self.btnLogout.hidden = true
+        } else {
+            self.btnBack.hidden = true
+            self.btnLogout.hidden = false
+        }
+        
+        super.viewWillAppear(animated)
+    }
+    
+    // MARK: - Style
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+    
+    // MARK: - UI
+    func setViews() {
+        self.scrollContent.addSubview(self.refreshControl)
+        OSPCrop.makeRoundView(self.imgProfile)
+        
+        for view in self.scoreViews{
+            view.layer.borderWidth = 1
+            view.layer.borderColor = UIColor.score().CGColor
+        }
+        
+        self.view.backgroundColor = UIColor.colorPrimary()
+        viewHeader.backgroundColor = UIColor.colorPrimary()
+    }
+    
+    lazy var refreshControl : UIRefreshControl = {
         let _refreshControl = UIRefreshControl()
         _refreshControl.backgroundColor = .clearColor()
         _refreshControl.tintColor = .whiteColor()
@@ -98,13 +149,13 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     // MARK: - WebServices
     func listSubCategories() -> Void {
         
-        self.acitivityCategories.startAnimating()
+        self.actCategories.startAnimating()
         
         ProfileBC.listStarSubCategoriesToUser(self.objUser!) { (arrayCategories) in
             
-            self.acitivityCategories.stopAnimating()
+            self.actCategories.stopAnimating()
             
-            self.arrayCategories = arrayCategories
+            self.arrayCategories = arrayCategories!
             
             self.lblErrorMessage.text = "Categories no availables"
             self.viewLoading.alpha = CGFloat(!Bool(self.arrayCategories.count))
@@ -169,59 +220,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
                 self.objUser = user!
                 self.updateDataUser()
             }
-            
         }
         
         self.listSubCategories()
-    }
-    
-    //MARK: -
-    override func viewWillAppear(animated: Bool) {
-        
-        if self.objUser == nil {
-            self.objUser = LoginBC.getCurrenteUserSession()
-        }
-        
-        if self.objUser != nil {
-            self.updateUserInfo()
-        }
-        
-        if (ProfileBC.validateUser(self.objUser, isEqualToUser: LoginBC.getCurrenteUserSession())) {
-            self.btnAction?.setTitle("Edit", forState: .Normal)
-        } else {
-            self.btnAction?.setTitle("Recommend", forState: .Normal)
-        }
-        
-        if backEnable != nil {
-            self.btnBack.hidden = false
-            self.btnLogout.hidden = true
-        } else {
-            self.btnBack.hidden = true
-            self.btnLogout.hidden = false
-        }
-        
-        super.viewWillAppear(animated)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.scrollContent.addSubview(self.refreshControl)
-        OSPCrop.makeRoundView(self.imgProfile)
-        
-        for view in self.scoreViews{
-            view.layer.borderWidth = 1
-            view.layer.borderColor = UIColor(colorLiteralRed: 230.0/255.0, green: 230.0/255.0, blue: 230.0/255.0, alpha: 1).CGColor
-        }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
     }
     
     // MARK: - Navigation

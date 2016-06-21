@@ -62,6 +62,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
         
         OSPCrop.makeRoundView(self.imgUser)
         
+        self.view.backgroundColor = UIColor.colorPrimary()
         viewHeader.backgroundColor = UIColor.colorPrimary()
         
         viewFirstName.backgroundColor = UIColor.colorPrimary()
@@ -194,18 +195,16 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
             
             self.actLocations.stopAnimating()
             
-            if (arrayLocations != nil) {
-                self.arrayLocations = arrayLocations!
-                
-                self.lblErrorMessage.text = "no_availables_locations".localized
-                self.viewLoading.alpha = CGFloat(!Bool(self.arrayLocations.count))
-                
-                let height = Int(self.scrollContent.bounds.size.height) - 113
-                let newHeight = Int(self.tableLocations.frame.origin.y) + self.arrayLocations.count * 36
-                self.constraintHeightContent.constant = newHeight > height ? CGFloat(newHeight) : CGFloat(height)
-                
-                self.tableLocations.reloadData()
-            }
+            self.arrayLocations = arrayLocations!
+            
+            self.lblErrorMessage.text = "no_availables_locations".localized
+            self.viewLoading.alpha = CGFloat(!Bool(self.arrayLocations.count))
+            
+            let height = Int(self.scrollContent.bounds.size.height) - 113
+            let newHeight = Int(self.tableLocations.frame.origin.y) + self.arrayLocations.count * 36
+            self.constraintHeightContent.constant = newHeight > height ? CGFloat(newHeight) : CGFloat(height)
+            
+            self.tableLocations.reloadData()
         }
     }
     

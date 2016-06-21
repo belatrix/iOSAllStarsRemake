@@ -85,9 +85,10 @@ class OSPWebModel: NSObject {
     
     class func listEmployeeToPage(page : String, withToken token : String, withCompletion completion : (arrayEmployee : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask{
         
-        return OSPWebSender.doGETTokenToURL(conURL: Constants.WEB_SERVICES, conPath: page, conParametros: nil, conToken: token) { (objRespuesta) in
+        return OSPWebSender.doGETTokenToURL(conURL: "", conPath: page, conParametros: nil, conToken: token) { (objRespuesta) in
             
-            let nextPage = (objRespuesta.respuestaJSON?["next"] as? String)?.stringByReplacingOccurrencesOfString("\(Constants.WEB_SERVICES)/", withString: "")
+//            let nextPage = (objRespuesta.respuestaJSON?["next"] as? String)?.stringByReplacingOccurrencesOfString("\(Constants.WEB_SERVICES)/", withString: "")
+            let nextPage = objRespuesta.respuestaJSON?["next"] as? String
             let arrayEmployee = NSMutableArray()
             let arrayResponse = objRespuesta.respuestaJSON?["results"] as? NSArray
             
@@ -106,7 +107,8 @@ class OSPWebModel: NSObject {
         
         return OSPWebSender.doGETTokenToURL(conURL: Constants.WEB_SERVICES, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
             
-            let nextPage = (objRespuesta.respuestaJSON?["next"] as? String)?.stringByReplacingOccurrencesOfString("\(Constants.WEB_SERVICES)/", withString: "")
+//            let nextPage = (objRespuesta.respuestaJSON?["next"] as? String)?.stringByReplacingOccurrencesOfString("\(Constants.WEB_SERVICES)/", withString: "")
+            let nextPage = objRespuesta.respuestaJSON?["next"] as? String
             let arrayEmployee = NSMutableArray()
             let arrayResponse = objRespuesta.respuestaJSON?["results"] as? NSArray
             
@@ -125,7 +127,8 @@ class OSPWebModel: NSObject {
         
         return OSPWebSender.doGETTokenToURL(conURL: Constants.WEB_SERVICES, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
             
-            let nextPage = (objRespuesta.respuestaJSON?["next"] as? String)?.stringByReplacingOccurrencesOfString("\(Constants.WEB_SERVICES)/", withString: "")
+//            let nextPage = (objRespuesta.respuestaJSON?["next"] as? String)?.stringByReplacingOccurrencesOfString("\(Constants.WEB_SERVICES)/", withString: "")
+            let nextPage = objRespuesta.respuestaJSON?["next"] as? String
             let arrayEmployee = NSMutableArray()
             let arrayResponse = objRespuesta.respuestaJSON?["results"] as? NSArray
             
@@ -231,24 +234,7 @@ class OSPWebModel: NSObject {
         }
     }
     
-    class func listStarSubCategoriesToUser(user : User, withToken token : String, withCompletion completion : (arrayCategories : NSMutableArray) -> Void) {
-        
-        let userID = user.user_pk
-        let path = "api/star/\(userID!)/subcategory/list/"
-        
-        OSPWebSender.doGETTokenToURL(conURL: Constants.WEB_SERVICES, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
-            
-            let arrayCategories = NSMutableArray()
-            let arrayResponse = objRespuesta.respuestaJSON?["results"] as? NSArray
-            
-            arrayResponse?.enumerateObjectsUsingBlock({ (obj : AnyObject, idx : Int, stop : UnsafeMutablePointer<ObjCBool>) in
-    
-                arrayCategories.addObject(OSPWebTranslator.translateStarSubCategoryBE(obj as! NSDictionary))
-            })
-            
-            completion(arrayCategories: arrayCategories)
-        }
-    }
+
     
     class func listEmployeeKeywordToPage(page : String, withToken token : String, withCompletion completion : (arrayEmployee : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask{
         
@@ -435,10 +421,6 @@ class OSPWebModel: NSObject {
                 completion(user: nil, errorResponse: nil, successful: successful)
             }
         }
-//        OSPWebSender.doPATCHTokenToURL(conURL: Constants.WEB_SERVICES, conPath: path, conParametros: dic, conToken: token) { (objRespuesta) in
-//            
-//            completion(user: OSPWebTranslator.parseUserBE(objRespuesta.respuestaJSON as! NSDictionary))
-//        }
     }
     
     class func updatePhoto(user : User, withToken token : String, withImage image : NSData, withCompletion completion : (user : User?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
@@ -459,7 +441,31 @@ class OSPWebModel: NSObject {
         }
     }
     
-    
+    class func listStarSubCategoriesToUser(user : User, withToken token : String, withCompletion completion : (arrayCategories : NSMutableArray?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
+        
+        let path = "api/star/\(user.user_pk!)/subcategory/list/"
+        
+        OSPWebSender.doGETWithTokenTemp(path, withToken: token) {(response, successful) in
+            
+            if (response != nil) {
+                if (successful) {
+                    let dic = response as! NSDictionary
+                    let arrayResponse = dic["results"] as? NSArray
+                    
+                    let arrayTemp = NSMutableArray()
+                    arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
+                        arrayTemp.addObject(OSPWebTranslator.parseStarSubCategoryBE(obj as! NSDictionary))
+                    })
+                    
+                    completion(arrayCategories: arrayTemp, errorResponse: nil, successful: successful)
+                } else {
+                    completion(arrayCategories: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
+                }
+            } else {
+                completion(arrayCategories: nil, errorResponse: nil, successful: successful)
+            }
+        }
+    }
     
     
     

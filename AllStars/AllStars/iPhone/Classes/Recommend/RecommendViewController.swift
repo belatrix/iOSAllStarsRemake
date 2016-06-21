@@ -8,10 +8,9 @@
 
 import UIKit
 
-
-
 class RecommendViewController: UIViewController , OSPOptionListDelegate, UITextViewDelegate {
 
+    @IBOutlet weak var viewHeader                   : UIView!
     @IBOutlet weak var imgAvatar                    : UIImageView!
     @IBOutlet weak var lblFullName                  : UILabel!
     @IBOutlet weak var lblPlaceHolder               : UILabel!
@@ -26,19 +25,12 @@ class RecommendViewController: UIViewController , OSPOptionListDelegate, UITextV
     @IBOutlet weak var txtDescription               : UITextView!
     @IBOutlet weak var activityRate                 : UIActivityIndicatorView!
     
-    
-    
-    
     var objUser                 : User?
     var objCategorySelected     : CategoryBE?
     var objSubCategorySelected  : SubCategoryBE?
     var objKeywordSelected      : KeywordBE?
     var arrayCategories         = NSMutableArray()
     var arraykeyWords           = NSMutableArray()
-    
-    
-    
-    
     
     func getHeightToTextDescripcion() -> CGFloat{
         
@@ -47,67 +39,61 @@ class RecommendViewController: UIViewController , OSPOptionListDelegate, UITextV
         return height
     }
     
-    
-    
-    //MARK: - UITextViewDelegate
-    
-    
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        let count = textView.text.characters.count + (text == "" ? -range.length : text.characters.count)
-        self.lblPlaceHolder.alpha = CGFloat(!Bool(count))
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RecommendViewController.keyboardWillShown(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RecommendViewController.keyboardWillBeHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
         
-        self.constraitHeightDescription.constant = self.getHeightToTextDescripcion()
-        self.view.layoutIfNeeded()
+        setViews()
         
-        return true
-    }
-    
-    
-    
-    
-    //MARK: - OSPOptionListDelegate
-    
-    
-    func optionListSeleccionarItem(aItem: OSPOptionListItem!, enOptionList aOptionList: OSPOptionList!) {
+        self.lblFullName?.text = "\(self.objUser!.user_first_name!) \(self.objUser!.user_last_name!)"
+        self.lblUserName?.text = "\(self.objUser!.user_username!)"
         
-        if aOptionList.tag == 0 {
-            
-            self.txtCategory.text = aItem.titulo
-            self.objCategorySelected = aItem.objeto as? CategoryBE
-            self.objSubCategorySelected = nil
-            self.txtSubCategory.text = ""
-            
-        } else if aOptionList.tag == 1 {
-            
-            self.txtSubCategory.text = aItem.titulo
-            self.objSubCategorySelected = aItem.objeto as? SubCategoryBE
-            
-        } else if aOptionList.tag == 2 {
-            
-            self.txtKeyword.text = aItem.titulo
-            self.objKeywordSelected = aItem.objeto as? KeywordBE
+        if let url_photo = self.objUser!.user_avatar{
+            if (url_photo != "") {
+                OSPImageDownloaded.descargarImagenEnURL(url_photo, paraImageView: self.imgAvatar, conPlaceHolder: self.imgAvatar.image) { (correct : Bool, nameImage : String!, image : UIImage!) in
+                    if nameImage == url_photo {
+                        self.imgAvatar?.image = image
+                    }
+                }
+            } else {
+                self.imgAvatar!.image = UIImage(named: "ic_user.png")
+            }
+        } else {
+            self.imgAvatar!.image = UIImage(named: "ic_user.png")
         }
+        
+        self.listAllCategories()
+        self.listKeywords()
     }
     
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
     
+    // MARK: - UI
+    func setViews() {
+        OSPCrop.makeRoundView(self.imgAvatar)
+        
+        viewHeader.backgroundColor = UIColor.colorPrimary()
+    }
     
-    //MARK: - Events Click
+    // MARK: - Style
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
     
-    
+    // MARK: - IBActions
     @IBAction func tapToCloseKeyboard(sender: AnyObject) {
         
         self.view.endEditing(true)
     }
     
-    
     @IBAction func clickBtnBack(sender: AnyObject) {
         
         self.navigationController?.popViewControllerAnimated(true)
     }
-    
-    
-    
     
     @IBAction func clickBtnDone(sender: AnyObject) {
         
@@ -132,8 +118,6 @@ class RecommendViewController: UIViewController , OSPOptionListDelegate, UITextV
             }
         }
     }
-    
-    
     
     @IBAction func clickBtnCategory(sender: AnyObject) {
         
@@ -165,12 +149,8 @@ class RecommendViewController: UIViewController , OSPOptionListDelegate, UITextV
         list.mostrarEnVista(self.view)
     }
     
-   
-    
-    
-    
     @IBAction func clickBtnSubCategory(sender: AnyObject) {
-    
+        
         if self.objCategorySelected == nil {
             OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "You need select a Category", conBotonCancelar: "Accept", enController: self, conCompletion: nil)
             return
@@ -199,11 +179,8 @@ class RecommendViewController: UIViewController , OSPOptionListDelegate, UITextV
         list.mostrarEnVista(self.view)
     }
     
-    
-    
-    
     @IBAction func clickBtnKeyword(sender: AnyObject) {
-    
+        
         if self.arraykeyWords.count == 0 {
             OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "Keywords no availables", conBotonCancelar: "Accept", enController: self, conCompletion: nil)
             return
@@ -232,10 +209,41 @@ class RecommendViewController: UIViewController , OSPOptionListDelegate, UITextV
         list.mostrarEnVista(self.view)
     }
     
+    // MARK: - UITextViewDelegate
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        
+        let count = textView.text.characters.count + (text == "" ? -range.length : text.characters.count)
+        self.lblPlaceHolder.alpha = CGFloat(!Bool(count))
+        
+        self.constraitHeightDescription.constant = self.getHeightToTextDescripcion()
+        self.view.layoutIfNeeded()
+        
+        return true
+    }
     
+    // MARK: - OSPOptionListDelegate
+    func optionListSeleccionarItem(aItem: OSPOptionListItem!, enOptionList aOptionList: OSPOptionList!) {
+        
+        if aOptionList.tag == 0 {
+            
+            self.txtCategory.text = aItem.titulo
+            self.objCategorySelected = aItem.objeto as? CategoryBE
+            self.objSubCategorySelected = nil
+            self.txtSubCategory.text = ""
+            
+        } else if aOptionList.tag == 1 {
+            
+            self.txtSubCategory.text = aItem.titulo
+            self.objSubCategorySelected = aItem.objeto as? SubCategoryBE
+            
+        } else if aOptionList.tag == 2 {
+            
+            self.txtKeyword.text = aItem.titulo
+            self.objKeywordSelected = aItem.objeto as? KeywordBE
+        }
+    }
     
-    //MARK: - WebServices
-    
+    // MARK: - WebServices
     func listAllCategories() -> Void {
         
         self.activityCategory.startAnimating()
@@ -246,7 +254,6 @@ class RecommendViewController: UIViewController , OSPOptionListDelegate, UITextV
             self.arrayCategories = arrayCategories
         }
     }
-    
     
     func listKeywords() {
         
@@ -259,11 +266,7 @@ class RecommendViewController: UIViewController , OSPOptionListDelegate, UITextV
         }
     }
     
-    
-    
-    //MARK: - Keyboard Notification
-    
-    
+    // MARK: - Keyboard Notification
     func keyboardWillShown(notification : NSNotification) {
         
         let info : NSDictionary = notification.userInfo!
@@ -278,7 +281,6 @@ class RecommendViewController: UIViewController , OSPOptionListDelegate, UITextV
         }
     }
     
-    
     func keyboardWillBeHidden(notification : NSNotification) {
         
         let info : NSDictionary = notification.userInfo!
@@ -289,69 +291,5 @@ class RecommendViewController: UIViewController , OSPOptionListDelegate, UITextV
             self.constraintBottonScroll.constant = 0
             self.view.layoutIfNeeded()
         }
-        
     }
-    
-    
-    
-    //MARK: -
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RecommendViewController.keyboardWillShown(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RecommendViewController.keyboardWillBeHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
-        
-        
-        OSPCrop.makeRoundView(self.imgAvatar)
-        
-        self.lblFullName?.text = "\(self.objUser!.user_first_name!) \(self.objUser!.user_last_name!)"
-        self.lblUserName?.text = "\(self.objUser!.user_username!)"
-        
-        if let url_photo = self.objUser!.user_avatar{
-            if (url_photo != "") {
-                OSPImageDownloaded.descargarImagenEnURL(url_photo, paraImageView: self.imgAvatar, conPlaceHolder: self.imgAvatar.image) { (correct : Bool, nameImage : String!, image : UIImage!) in
-                    if nameImage == url_photo {
-                        self.imgAvatar?.image = image
-                    }
-                }
-            } else {
-                self.imgAvatar!.image = UIImage(named: "ic_user.png")
-            }
-        } else {
-            self.imgAvatar!.image = UIImage(named: "ic_user.png")
-        }
-        
-        self.listAllCategories()
-        self.listKeywords()
-    }
-
-    
-    deinit{
-        
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

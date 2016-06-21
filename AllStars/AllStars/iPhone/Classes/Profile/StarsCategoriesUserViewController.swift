@@ -8,19 +8,14 @@
 
 import UIKit
 
-
 class StarsCategoriesUserViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
-
-   
     
+    @IBOutlet weak var viewHeader               : UIView!
     @IBOutlet weak var tlbUsers                 : UITableView!
     @IBOutlet weak var lblCategoryName          : UILabel!
     @IBOutlet weak var lblErrorMessage          : UILabel!
-    @IBOutlet weak var acitivityLoading         : UIActivityIndicatorView!
+    @IBOutlet weak var actLoading               : UIActivityIndicatorView!
     @IBOutlet weak var viewLoading              : UIView!
-    
-    
-    
     
     var objUser = User()
     var objStarSubCategory = StarSubCategoryBE()
@@ -29,35 +24,49 @@ class StarsCategoriesUserViewController: UIViewController, UITableViewDelegate, 
     var nextPage    : String? = nil
     var dataTaskRequest : NSURLSessionDataTask?
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setViews()
+        
+        self.tlbUsers.addSubview(self.refreshControl)
+    }
     
+    override func viewWillAppear(animated: Bool) {
+        self.listStarsSubCategoriesUser()
+        self.lblCategoryName.text = self.objStarSubCategory.starSubCategoy_name!
+        
+        super.viewWillAppear(animated)
+    }
+    
+    // MARK: - Style
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+    
+    // MARK: - UI
+    func setViews() {
+        viewHeader.backgroundColor = UIColor.colorPrimary()
+    }
     
     lazy var refreshControl : UIRefreshControl = {
         
         let _refreshControl = UIRefreshControl()
         _refreshControl.backgroundColor = .clearColor()
-        _refreshControl.tintColor = UIColor(red: 255.0/255.0, green: 157.0/255.0, blue: 12.0/255.0, alpha: 1)
+        _refreshControl.tintColor = UIColor.belatrix()
         _refreshControl.addTarget(self, action: #selector(StarsCategoriesUserViewController.listStarsSubCategoriesUser), forControlEvents: .ValueChanged)
         
         return _refreshControl
     }()
     
-    
-    
-    
+    // MARK: - IBActions
     @IBAction func clickBtnBack(sender: AnyObject) {
         
         self.navigationController?.popViewControllerAnimated(true)
     }
-
     
-    
-    
-    //MARK: - WebServices
-    
-    
+    // MARK: - WebServices
     func listStarsSubCategoriesUserNextPage() -> Void {
-        
-        
         if self.dataTaskRequest != nil {
             self.dataTaskRequest?.suspend()
         }
@@ -82,10 +91,9 @@ class StarsCategoriesUserViewController: UIViewController, UITableViewDelegate, 
         })
     }
     
-    
     func listStarsSubCategoriesUser() -> Void {
         
-        self.acitivityLoading.startAnimating()
+        self.actLoading.startAnimating()
         
         if self.dataTaskRequest != nil {
             self.dataTaskRequest?.suspend()
@@ -100,30 +108,22 @@ class StarsCategoriesUserViewController: UIViewController, UITableViewDelegate, 
             
             self.lblErrorMessage.text = "Information no available"
             self.viewLoading.alpha = CGFloat(!Bool(self.arrayUsers.count))
-            self.acitivityLoading.stopAnimating()
+            self.actLoading.stopAnimating()
             
             self.tlbUsers.reloadData()
         }
     }
     
     
-    //MARK: - UIScrollViewDelegate
-    
-    
+    // MARK: - UIScrollViewDelegate
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        
         if (self.nextPage != nil && self.isDownload == false && scrollView.contentOffset.y + scrollView.frame.size.height  > scrollView.contentSize.height + 40) {
             
             self.listStarsSubCategoriesUserNextPage()
         }
     }
     
-    
-    
-    //MARK: - UITableViewDelegate and UITableViewDataSource
-    
-    
-    
+    // MARK: - UITableViewDelegate and UITableViewDataSource
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -162,35 +162,6 @@ class StarsCategoriesUserViewController: UIViewController, UITableViewDelegate, 
         let objBE = self.arrayUsers[indexPath.row] as! UserQualifyBE
         return StarUserInfoTableViewCell.getHeightToCellWithTextDescription(objBE.userQualify_text!)
     }
-    
-    // MARK: -
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        
-        self.tlbUsers.addSubview(self.refreshControl)
-    }
-
-    
-    override func viewWillAppear(animated: Bool) {
-        
-        self.listStarsSubCategoriesUser()
-        self.lblCategoryName.text = self.objStarSubCategory.starSubCategoy_name!
-        super.viewWillAppear(animated)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        
-        return .LightContent
-    }
-    
 
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

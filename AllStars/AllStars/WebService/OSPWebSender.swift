@@ -25,9 +25,7 @@ class OSPWebSender: NSObject {
         
         return diccionarioHeader
     }
-    
-    
-    
+
     
     class func crearCabeceraPeticionConToken(aToken : NSString) -> NSDictionary {
         
@@ -40,9 +38,6 @@ class OSPWebSender: NSObject {
         return diccionarioHeader
     }
     
-    
-    
-    
     class func crearCabeceraPeticionConCookie(aCookie : NSString) -> NSDictionary {
         
         let diccionarioHeader = NSMutableDictionary()
@@ -54,14 +49,9 @@ class OSPWebSender: NSObject {
         return diccionarioHeader
     }
     
-    
-    
-    
     //MARK:
     //MARK: Tratado de respuesta
     //MARK:
-    
-    
     class func obtenerRespuestaEnJSONConData(data : NSData) -> AnyObject? {
         
         do{
@@ -70,9 +60,6 @@ class OSPWebSender: NSObject {
             return nil
         }
     }
-    
-    
-    
     
     class func obtenerRespuestaServicioParaData(data : NSData?, response : NSURLResponse?, error : NSError?) -> OSPWebResponse{
         
@@ -103,148 +90,7 @@ class OSPWebSender: NSObject {
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    //MARK:
-    //MARK: Consumo de servicios con cookie
-    //MARK:
-    
-    
-    
-    
-//    class func doPOSTCookieToURL(conURL url : NSString, conPath path : NSString, conParametros parametros : AnyObject?, conCookie cookie : NSString, conCompletion completion : (objRespuesta : OSPWebResponse) -> Void){
-//        
-//        let configuracionSesion = NSURLSessionConfiguration.defaultSessionConfiguration()
-//        configuracionSesion.HTTPAdditionalHeaders = self.crearCabeceraPeticionConCookie(cookie) as [NSObject : AnyObject]
-//        
-//        let sesion = NSURLSession.init(configuration: configuracionSesion)
-//        
-//        let urlServicio = NSURL(string: "\(url)/\(path)")
-//        let request = NSMutableURLRequest(URL: urlServicio!)
-//        request.addValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
-//        request.addValue("application/json", forHTTPHeaderField: "Accept")
-//        
-//        
-//        if parametros != nil {
-//            do {
-//                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(parametros!, options: NSJSONWritingOptions.PrettyPrinted)
-//            }catch {}
-//        }
-//        
-//        request.HTTPMethod = "POST"
-//        
-//        let postDataTask = sesion.dataTaskWithRequest(request) { (data : NSData?, response : NSURLResponse?, error : NSError?) in
-//
-//            dispatch_async(dispatch_get_main_queue(), {
-// 
-//                completion(objRespuesta : self.obtenerRespuestaServicioParaData(data, response: response, error: error))
-//            })
-//        }
-//        
-//        postDataTask.resume()
-//    }
-    
-    
-    
-    
-    
-    
-    
-    class func doGETCookieToURL(conURL url : NSString, conPath path : NSString, conParametros parametros : AnyObject?, conCookie cookie : NSString, conCompletion completion : (objRespuesta : OSPWebResponse) -> Void){
-        
-        let configuracionSesion = NSURLSessionConfiguration.defaultSessionConfiguration()
-        configuracionSesion.HTTPAdditionalHeaders = self.crearCabeceraPeticionConCookie(cookie) as [NSObject : AnyObject]
-        
-        let sesion = NSURLSession.init(configuration: configuracionSesion)
-        
-        let urlServicio = NSURL(string: "\(url)/\(path)")
-        let request = NSMutableURLRequest(URL: urlServicio!)
-        request.addValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        
-        if parametros != nil {
-            do {
-                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(parametros!, options: NSJSONWritingOptions.PrettyPrinted)
-            }catch {}
-        }
-        
-        request.HTTPMethod = "GET"
-        
-        let postDataTask = sesion.dataTaskWithRequest(request) { (data : NSData?, response : NSURLResponse?, error : NSError?) in
-            
-            dispatch_async(dispatch_get_main_queue(), {
-                
-                completion(objRespuesta : self.obtenerRespuestaServicioParaData(data, response: response, error: error))
-            })
-        }
-        
-        
-        postDataTask.resume()
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    class func doPUTCookieToURL(conURL url : NSString, conPath path : NSString, conParametros parametros : AnyObject?, conCookie cookie : NSString, conCompletion completion : (objRespuesta : OSPWebResponse) -> Void){
-        
-        let configuracionSesion = NSURLSessionConfiguration.defaultSessionConfiguration()
-        configuracionSesion.HTTPAdditionalHeaders = self.crearCabeceraPeticionConCookie(cookie) as [NSObject : AnyObject]
-        
-        let sesion = NSURLSession.init(configuration: configuracionSesion)
-        
-        let urlServicio = NSURL(string: "\(url)/\(path)")
-        let request = NSMutableURLRequest(URL: urlServicio!)
-        request.addValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        
-        if parametros != nil {
-            do {
-                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(parametros!, options: NSJSONWritingOptions.PrettyPrinted)
-            }catch {}
-        }
-        
-        request.HTTPMethod = "PUT"
-        
-        let postDataTask = sesion.dataTaskWithRequest(request) { (data : NSData?, response : NSURLResponse?, error : NSError?) in
-            
-            dispatch_async(dispatch_get_main_queue(), {
-                
-                completion(objRespuesta : self.obtenerRespuestaServicioParaData(data, response: response, error: error))
-            })
-        }
-        
-        
-        postDataTask.resume()
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    //MARK:
     //MARK: Consumo de servicios con token
-    //MARK:
-    
-    
-    
-    
     class func doPOSTTokenToURL(conURL url : NSString, conPath path : NSString, conParametros parametros : AnyObject?, conToken token : NSString, conCompletion completion : (objRespuesta : OSPWebResponse) -> Void){
         
         let configuracionSesion = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -279,11 +125,6 @@ class OSPWebSender: NSObject {
     }
     
     
-    
-    
-    
-    
-    
     class func doGETTokenToURL(conURL url : NSString, conPath path : NSString, conParametros parametros : AnyObject?, conToken token : NSString, conCompletion completion : (objRespuesta : OSPWebResponse) -> Void) -> NSURLSessionDataTask {
         
         let configuracionSesion = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -291,7 +132,10 @@ class OSPWebSender: NSObject {
         
         let sesion = NSURLSession.init(configuration: configuracionSesion)
         
-        let urlServicio = NSURL(string: "\(url)/\(path)")
+        var urlServicio = NSURL(string: "\(path)")
+        if (url != "") {
+            urlServicio = NSURL(string: "\(url)/\(path)")
+        }
         let request = NSMutableURLRequest(URL: urlServicio!)
         request.addValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -317,13 +161,6 @@ class OSPWebSender: NSObject {
         postDataTask.resume()
         return postDataTask
     }
-    
-    
-    
-    
-    
-    
-    
     
     
     class func doPUTTokenToURL(conURL url : NSString, conPath path : NSString, conParametros parametros : AnyObject?, conToken token : NSString, conCompletion completion : (objRespuesta : OSPWebResponse) -> Void){
@@ -358,170 +195,73 @@ class OSPWebSender: NSObject {
         
         postDataTask.resume()
     }
-    
-    class func doPATCHTokenToURL(conURL url : NSString, conPath path : NSString, conParametros parametros : AnyObject?, conToken token : NSString, conCompletion completion : (objRespuesta : OSPWebResponse) -> Void){
-        
-        let configuracionSesion = NSURLSessionConfiguration.defaultSessionConfiguration()
-        configuracionSesion.HTTPAdditionalHeaders = self.crearCabeceraPeticionConToken(token) as [NSObject : AnyObject]
-        
-        let sesion = NSURLSession.init(configuration: configuracionSesion)
-        
-        let urlServicio = NSURL(string: "\(url)/\(path)")
-        let request = NSMutableURLRequest(URL: urlServicio!)
-        request.addValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        
-        if parametros != nil {
-            do {
-                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(parametros!, options: NSJSONWritingOptions.PrettyPrinted)
-            }catch {}
-        }
-        
-        request.HTTPMethod = "PATCH"
-        
-        let postDataTask = sesion.dataTaskWithRequest(request) { (data : NSData?, response : NSURLResponse?, error : NSError?) in
-            
-            dispatch_async(dispatch_get_main_queue(), {
-                
-                completion(objRespuesta : self.obtenerRespuestaServicioParaData(data, response: response, error: error))
-            })
-        }
-        
-        postDataTask.resume()
-    }
-    
-
-    
-    //MARK:
-    //MARK: Consumo de servicios simple
-    //MARK:
-    
-//    class func doPOSTToURL(conURL url : NSString, conPath path : NSString, conParametros parametros : AnyObject?, conCompletion completion : (objRespuesta : OSPWebResponse) -> Void){
-//        
-//        let configuracionSesion = NSURLSessionConfiguration.defaultSessionConfiguration()
-//        configuracionSesion.HTTPAdditionalHeaders = self.crearCabeceraPeticion() as [NSObject : AnyObject]
-//        
-//        let sesion = NSURLSession.init(configuration: configuracionSesion)
-//        
-//        let urlServicio = NSURL(string: "\(url)/\(path)")
-//        let request = NSMutableURLRequest(URL: urlServicio!)
-//        request.addValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
-//        request.addValue("application/json", forHTTPHeaderField: "Accept")
-//        
-//        
-//        if parametros != nil {
-//            do {
-//                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(parametros!, options: NSJSONWritingOptions.PrettyPrinted)
-//            }catch {}
-//        }
-//        
-//        request.HTTPMethod = "POST"
-//        
-//        let postDataTask = sesion.dataTaskWithRequest(request) { (data : NSData?, response : NSURLResponse?, error : NSError?) in
-//            
-//            dispatch_async(dispatch_get_main_queue(), {
-//                var res : OSPWebResponse = self.obtenerRespuestaServicioParaData(data, response: response, error: error)
-//                print(res.statusCode)
-//                
-//                completion(objRespuesta : self.obtenerRespuestaServicioParaData(data, response: response, error: error))
-//            })
-//        }
-//        
-//        
-//        postDataTask.resume()
-//    }
-    
 
     
     
     
     
     
-    class func doGETToURL(conURL url : NSString, conPath path : NSString, conParametros parametros : AnyObject?, conCompletion completion : (objRespuesta : OSPWebResponse) -> Void){
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    class func doGETWithTokenTemp(path : String, withToken token : String, withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
         
-        let configuracionSesion = NSURLSessionConfiguration.defaultSessionConfiguration()
-        configuracionSesion.HTTPAdditionalHeaders = self.crearCabeceraPeticion() as [NSObject : AnyObject]
+        let URL = Constants.WEB_SERVICES + path
         
-        let sesion = NSURLSession.init(configuration: configuracionSesion)
-        
-        let urlServicio = NSURL(string: "\(url)/\(path)")
-        let request = NSMutableURLRequest(URL: urlServicio!)
-        request.addValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        
-        if parametros != nil {
-            do {
-                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(parametros!, options: NSJSONWritingOptions.PrettyPrinted)
-            }catch {}
+        Alamofire.request(
+            .GET,
+            URL,
+            headers: self.crearCabeceraPeticionConToken(token) as! [String : String],
+            parameters: nil)
+            .validate(statusCode: 200..<501)
+            .responseJSON { response in
+                switch response.result {
+                case .Success:
+                    print("statusCode: \(response.response!.statusCode)")
+                    print("response: \(response.result.value)")
+                    
+                    if let JSON = response.result.value {
+                        if(response.response!.statusCode >= 200 && response.response!.statusCode <= 299) {
+                            completion(response : JSON, successful: true)
+                        } else {
+                            completion(response : JSON, successful: false)
+                        }
+                    } else {
+                        completion(response : nil, successful: false)
+                    }
+                case .Failure(let error):
+                    print("error: \(error)")
+                    
+                    completion(response : nil, successful: false)
+                }
         }
-        
-        request.HTTPMethod = "GET"
-        
-        let postDataTask = sesion.dataTaskWithRequest(request) { (data : NSData?, response : NSURLResponse?, error : NSError?) in
-            
-            dispatch_async(dispatch_get_main_queue(), {
-                
-                completion(objRespuesta : self.obtenerRespuestaServicioParaData(data, response: response, error: error))
-            })
-        }
-        
-        
-        postDataTask.resume()
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    class func doPUTToURL(conURL url : NSString, conPath path : NSString, conParametros parametros : AnyObject?, conCompletion completion : (objRespuesta : OSPWebResponse) -> Void){
-        
-        let configuracionSesion = NSURLSessionConfiguration.defaultSessionConfiguration()
-        configuracionSesion.HTTPAdditionalHeaders = self.crearCabeceraPeticion() as [NSObject : AnyObject]
-        
-        let sesion = NSURLSession.init(configuration: configuracionSesion)
-        
-        let urlServicio = NSURL(string: "\(url)/\(path)")
-        let request = NSMutableURLRequest(URL: urlServicio!)
-        request.addValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        
-        if parametros != nil {
-            do {
-                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(parametros!, options: NSJSONWritingOptions.PrettyPrinted)
-            }catch {}
-        }
-        
-        request.HTTPMethod = "PUT"
-        
-        let postDataTask = sesion.dataTaskWithRequest(request) { (data : NSData?, response : NSURLResponse?, error : NSError?) in
-            
-            dispatch_async(dispatch_get_main_queue(), {
-                
-                completion(objRespuesta : self.obtenerRespuestaServicioParaData(data, response: response, error: error))
-            })
-        }
-        
-        
-        postDataTask.resume()
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     class func doPOSTTemp(path : String, withParameters parameters : [String : AnyObject], withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
         
@@ -588,110 +328,7 @@ class OSPWebSender: NSObject {
         }
     }
     
-    class func doGETWithTokenTemp(path : String, withToken token : String, withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
-        
-        let URL = Constants.WEB_SERVICES + path
-        
-        Alamofire.request(
-            .GET,
-            URL,
-            headers: self.crearCabeceraPeticionConToken(token) as! [String : String],
-            parameters: nil)
-            .validate(statusCode: 200..<501)
-            .responseJSON { response in
-                switch response.result {
-                case .Success:
-                    print("statusCode: \(response.response!.statusCode)")
-                    print("response: \(response.result.value)")
-                    
-                    if let JSON = response.result.value {
-                        if(response.response!.statusCode >= 200 && response.response!.statusCode <= 299) {
-                            completion(response : JSON, successful: true)
-                        } else {
-                            completion(response : JSON, successful: false)
-                        }
-                    } else {
-                        completion(response : nil, successful: false)
-                    }
-                case .Failure(let error):
-                    print("error: \(error)")
-                    
-                    completion(response : nil, successful: false)
-                }
-        }
-    }
-    
     class func doPATCHWithTokenTemp(path : String, withParameters parameters : [String : AnyObject], withToken token : String, withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
-        
-//        let URL = Constants.WEB_SERVICES + path
-//        let urlService = NSURL(string: URL)
-//        let request = NSMutableURLRequest(URL: urlService!)
-//        request.HTTPMethod = "PATCH"
-//        request.setValue("PATCH", forHTTPHeaderField: "X-HTTP-Method-Override")
-//        request.setValue("Token \(token)", forHTTPHeaderField: "Authorization")
-//        
-//        Alamofire.request(request)
-//            .validate(statusCode: 200..<501)
-//            .responseJSON { response in
-//                switch response.result {
-//                case .Success:
-//                    print("statusCode: \(response.response!.statusCode)")
-//                    print("response: \(response.result.value)")
-//                    
-//                    if let JSON = response.result.value {
-//                        if(response.response!.statusCode >= 200 && response.response!.statusCode <= 299) {
-//                            completion(response : JSON, successful: true)
-//                        } else {
-//                            completion(response : JSON, successful: false)
-//                        }
-//                    } else {
-//                        completion(response : nil, successful: false)
-//                    }
-//                case .Failure(let error):
-//                    print("error: \(error)")
-//                    
-//                    completion(response : nil, successful: false)
-//                }
-//        }
-        
-        
-//        let configuracionSesion = NSURLSessionConfiguration.defaultSessionConfiguration()
-//        configuracionSesion.HTTPAdditionalHeaders = self.crearCabeceraPeticionConToken(token) as [NSObject : AnyObject]
-//        
-//        let sesion = NSURLSession.init(configuration: configuracionSesion)
-//        
-//        let URL = Constants.WEB_SERVICES + path
-//        let urlService = NSURL(string: URL)
-//        let request = NSMutableURLRequest(URL: urlService!)
-//        request.addValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
-//        request.addValue("application/json", forHTTPHeaderField: "Accept")
-//        
-//        request.HTTPMethod = "PATCH"
-//        
-//        let postDataTask = sesion.dataTaskWithRequest(request) { (data : NSData?, response : NSURLResponse?, error : NSError?) in
-//            
-//            dispatch_async(dispatch_get_main_queue(), {
-//                do{
-//                    let JSON : AnyObject? = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
-//                    let urlResponse = response as? NSHTTPURLResponse
-//                    
-//                    print("statusCode: \(urlResponse!.statusCode)")
-//                    print("response: \(JSON)")
-//                    
-//                    if(urlResponse!.statusCode >= 200 && urlResponse!.statusCode <= 299) {
-//                        completion(response : JSON, successful: true)
-//                    } else {
-//                        completion(response : JSON, successful: false)
-//                    }
-//                } catch{
-//                    completion(response : nil, successful: false)
-//                }
-//            })
-//        }
-//        
-//        postDataTask.resume()
-        
-        
         
         let URL = Constants.WEB_SERVICES + path
         
@@ -722,8 +359,6 @@ class OSPWebSender: NSObject {
                     completion(response : nil, successful: false)
                 }
         }
-        
-        
     }
     
     class func doMultipartTokenToURL(path : String, withParameters parameters : NSDictionary?, withImage image : NSData, withToken token : String, withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
@@ -745,7 +380,7 @@ class OSPWebSender: NSObject {
                         print("response: \(response.result.value)")
                         
                         if let JSON = response.result.value {
-                            completion(response : JSON, successful: false)
+                            completion(response : JSON, successful: true)
                         } else {
                             completion(response : nil, successful: false)
                         }

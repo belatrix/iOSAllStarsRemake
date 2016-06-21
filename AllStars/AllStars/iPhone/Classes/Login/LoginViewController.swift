@@ -19,6 +19,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var btnNewUser           : UIButton!
     @IBOutlet weak var lblTitleApp          : UILabel!
     @IBOutlet weak var imgLogoBelatrix      : UIImageView!
+    @IBOutlet weak var viewUserName         : UIView!
+    @IBOutlet weak var viewPassword         : UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +45,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let image = UIImage(named: "logo")
         imgLogoBelatrix.image = image?.imageWithRenderingMode(.AlwaysTemplate)
         imgLogoBelatrix.tintColor = UIColor.belatrix()
+        
+        viewUserName.backgroundColor = UIColor.colorPrimary()
+        viewPassword.backgroundColor = UIColor.colorPrimary()
     }
     
     func lockScreen() {

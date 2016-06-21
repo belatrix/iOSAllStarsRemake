@@ -14,11 +14,12 @@ class ProfileBC: NSObject {
         
         let objUser = LoginBC.getCurrenteUserSession()
         
-        if (objUser == nil || objUser!.user_token == nil) {
-            
+        if objUser!.user_token == nil {
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
             completion(arrayLocations: NSMutableArray())
             return
         }
+        
         
         OSPWebModel.listLocations(objUser!.user_token!) { (arrayLocations, errorResponse, successful) in
             if (arrayLocations != nil) {
@@ -35,9 +36,9 @@ class ProfileBC: NSObject {
     
     class func updateInfoToUser(user : User, newUser isNewUser : Bool, hasImage hasNewImage : Bool, withController controller: UIViewController, withCompletion completion : (user : User?) -> Void) {
         
-        let objCurrentUser = LoginBC.getCurrenteUserSession()
+        let objUser = LoginBC.getCurrenteUserSession()
         
-        if objCurrentUser!.user_token == nil {
+        if objUser!.user_token == nil {
             OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
             completion(user: nil)
             return
@@ -76,7 +77,7 @@ class ProfileBC: NSObject {
             return
         }
         
-        OSPWebModel.updateUser(user, withToken: objCurrentUser!.user_token!) {(user, errorResponse, successful) in
+        OSPWebModel.updateUser(user, withToken: objUser!.user_token!) {(user, errorResponse, successful) in
 
             if (user != nil) {
                 LoginBC.saveSessionOfUser(user)
@@ -94,9 +95,15 @@ class ProfileBC: NSObject {
     
     class func updatePhotoToUser(user : User, withController controller: UIViewController, withImage image : NSData, withCompletion completion : (user : User?) -> Void) {
         
-        let objCurrentUser = LoginBC.getCurrenteUserSession()
+        let objUser = LoginBC.getCurrenteUserSession()
         
-        OSPWebModel.updatePhoto(user, withToken: objCurrentUser!.user_token!, withImage: image) {(user, errorResponse, successful) in
+        if objUser!.user_token == nil {
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
+            completion(user: nil)
+            return
+        }
+        
+        OSPWebModel.updatePhoto(user, withToken: objUser!.user_token!, withImage: image) {(user, errorResponse, successful) in
             
             if (user != nil) {
                 LoginBC.saveSessionOfUser(user)
@@ -108,6 +115,53 @@ class ProfileBC: NSObject {
             } else {
                 OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
                 completion(user: nil)
+            }
+        }
+    }
+    
+    class func getInfoToUser(user : User, withCompletion completion : (user : User?) -> Void) {
+        
+        let objUser = LoginBC.getCurrenteUserSession()
+        
+        if objUser!.user_token == nil {
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
+            completion(user: nil)
+            return
+        }
+        
+        OSPWebModel.getUserInformation(user, withToken: objUser!.user_token!) {(user, errorResponse, successful) in
+            
+            if (user != nil) {
+                completion(user: user)
+            } else if (errorResponse != nil) {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
+                completion(user: nil)
+            } else {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
+                completion(user: nil)
+            }
+        }
+    }
+    
+    class func listStarSubCategoriesToUser(user : User, withCompletion completion : (arrayCategories : NSMutableArray?) -> Void) {
+        
+        let objUser = LoginBC.getCurrenteUserSession()
+        
+        if objUser!.user_token == nil {
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
+            completion(arrayCategories: NSMutableArray())
+            return
+        }
+        
+        OSPWebModel.listStarSubCategoriesToUser(user, withToken: objUser!.user_token!) { (arrayCategories, errorResponse, successful) in
+            if (arrayCategories != nil) {
+                completion(arrayCategories: arrayCategories!)
+            } else if (errorResponse != nil) {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
+                completion(arrayCategories: NSMutableArray())
+            } else {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
+                completion(arrayCategories: NSMutableArray())
             }
         }
     }
@@ -127,6 +181,42 @@ class ProfileBC: NSObject {
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    class func listStarUserSubCategoriesToUser(user : User, toSubCategory subCategory : StarSubCategoryBE, withCompletion completion : (arrayUsers : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask? {
+        
+        let currentUser = LoginBC.getCurrenteUserSession()
+        
+        if currentUser?.user_token == nil {
+            completion(arrayUsers: NSMutableArray(), nextPage: nil)
+            return nil
+        }
+        
+        return OSPWebModel.listStarUserSubCategoriesToUser(user, toSubCategory: subCategory, withToken: currentUser!.user_token!) { (arrayUsers, nextPage) in
+            
+            let sortDate = NSSortDescriptor.init(key: "userQualify_date", ascending: false)
+            arrayUsers.sortUsingDescriptors([sortDate])
+            
+            completion(arrayUsers: arrayUsers, nextPage: nextPage)
+        }
+        
+    }
     
     class func listStarUserSubCategoriesToPage(page : String, withCompletion completion : (arrayUsers : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask? {
         
@@ -149,52 +239,14 @@ class ProfileBC: NSObject {
     }
     
     
-    class func listStarUserSubCategoriesToUser(user : User, toSubCategory subCategory : StarSubCategoryBE, withCompletion completion : (arrayUsers : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask? {
-        
-        let currentUser = LoginBC.getCurrenteUserSession()
-        
-        if currentUser?.user_token == nil {
-            completion(arrayUsers: NSMutableArray(), nextPage: nil)
-            return nil
-        }
-        
-        return OSPWebModel.listStarUserSubCategoriesToUser(user, toSubCategory: subCategory, withToken: currentUser!.user_token!) { (arrayUsers, nextPage) in
-            
-            let sortDate = NSSortDescriptor.init(key: "userQualify_date", ascending: false)
-            arrayUsers.sortUsingDescriptors([sortDate])
-            
-            completion(arrayUsers: arrayUsers, nextPage: nextPage)
-        }
-        
-    }
+
     
     
-    class func getInfoToUser(user : User, withCompletion completion : (user : User?) -> Void) {
-        
-        let objCurrentUser = LoginBC.getCurrenteUserSession()
-        
-        //        OSPWebModel.getUserInfor(user, withToken: objCurrentUser!.user_token!) { (user, messageError) in
-        //
-        //            completion(user: user)
-        //        }
-    }
+
     
     
     
-    class func listStarSubCategoriesToUser(user : User, withCompletion completion : (arrayCategories : NSMutableArray) -> Void) {
-        
-        let currentUser = LoginBC.getCurrenteUserSession()
-        
-        if currentUser?.user_token == nil {
-            completion(arrayCategories: NSMutableArray())
-            return
-        }
-        
-        OSPWebModel.listStarSubCategoriesToUser(user, withToken: currentUser!.user_token!) { (arrayCategories) in
-            
-            completion(arrayCategories: arrayCategories)
-        }
-    }
+
     
 
     

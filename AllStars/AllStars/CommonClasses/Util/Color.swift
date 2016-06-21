@@ -37,4 +37,8 @@ extension UIColor {
     class func belatrix() -> UIColor {
         return UIColor(rgba: 0xFF8F03, alphaCGFloat: 1)
     }
+    
+    class func score() -> UIColor {
+        return UIColor(rgba: 0xE6E6E6, alphaCGFloat: 1)
+    }
 }

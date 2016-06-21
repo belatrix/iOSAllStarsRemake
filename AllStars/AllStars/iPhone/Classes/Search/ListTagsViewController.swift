@@ -10,12 +10,12 @@ import UIKit
 
 class ListTagsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, UISearchBarDelegate {
     
+     @IBOutlet weak var viewHeader : UIView!
     @IBOutlet weak var tableTags : UITableView!
     @IBOutlet weak var searchTags : UISearchBar!
     @IBOutlet weak var viewLoading : UIView!
     @IBOutlet weak var lblErrorMessage : UILabel!
     @IBOutlet weak var acitivityTags : UIActivityIndicatorView!
-    @IBOutlet weak var viewHeader : UIView!
     
     var isDownload = false
     var arrayTags = NSMutableArray()
@@ -26,17 +26,28 @@ class ListTagsViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setViews()
+        
+        self.listAllTags()
+    }
+    
+    // MARK: - Style
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+    
+    // MARK: - UI
+    func setViews() {
         self.searchTags.backgroundImage = UIImage()
         self.searchTags.backgroundColor = .clearColor()
         self.searchTags.barTintColor = .clearColor()
         
-        self.viewHeader.layer.shadowOffset = CGSizeMake(0, 0)
-        self.viewHeader.layer.shadowRadius = 2
-        self.viewHeader.layer.masksToBounds = false
-        self.viewHeader.layer.shadowOpacity = 1
-        self.viewHeader.layer.shadowColor = UIColor.orangeColor().CGColor
-        
-        self.listAllTags()
+        viewHeader.layer.shadowOffset = CGSizeMake(0, 0)
+        viewHeader.layer.shadowRadius = 2
+        viewHeader.layer.masksToBounds = false
+        viewHeader.layer.shadowOpacity = 1
+        viewHeader.layer.shadowColor = UIColor.orangeColor().CGColor
+        viewHeader.backgroundColor = UIColor.colorPrimary()
     }
     
     // MARK: - UISearchBarDelegate
@@ -178,11 +189,6 @@ class ListTagsViewController: UIViewController, UITableViewDelegate, UITableView
             self.viewLoading.alpha = CGFloat(!Bool(self.arrayTags.count))
             self.lblErrorMessage.text = "Tags not found"
         }
-    }
-    
-    // MARK: - Style
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
     }
     
     // MARK: - Navigation

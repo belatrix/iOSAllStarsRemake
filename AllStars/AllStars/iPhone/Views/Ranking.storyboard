@@ -76,6 +76,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="sgmRanking" destination="jtF-n9-nSs" id="EA6-Yr-PIy"/>
+                        <outlet property="viewHeader" destination="w0A-jY-m8Z" id="aL4-xE-aH5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="96B-4Y-klQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -251,6 +252,7 @@
                         <outlet property="lblErrorMessage" destination="grl-s5-A99" id="13o-Cx-c7I"/>
                         <outlet property="lblTitle" destination="0Dr-3k-ypW" id="mEs-kZ-kDV"/>
                         <outlet property="tableUsers" destination="Ohy-8x-CYd" id="IaV-nY-VO9"/>
+                        <outlet property="viewHeader" destination="TGc-uo-fNh" id="Xmy-Mo-t9B"/>
                         <outlet property="viewLoading" destination="m0S-0y-FWT" id="oPe-84-QYR"/>
                         <segue destination="cDR-Gg-GV2" kind="show" identifier="ProfileViewControllerFromRankingTag" id="kxG-bd-Du9"/>
                     </connections>

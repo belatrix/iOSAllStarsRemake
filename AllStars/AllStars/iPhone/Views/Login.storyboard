@@ -165,6 +165,8 @@
                         <outlet property="imgLogoBelatrix" destination="wOe-Ru-4fs" id="EMB-7F-uOz"/>
                         <outlet property="lblTitleApp" destination="n1H-Ya-l8w" id="7aB-va-Hzm"/>
                         <outlet property="viewFormLogin" destination="Cyi-m8-GQs" id="44e-Ms-BYO"/>
+                        <outlet property="viewPassword" destination="ySa-F1-PXB" id="ZfV-xh-83y"/>
+                        <outlet property="viewUserName" destination="u8h-67-Moq" id="nya-gd-Ztn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zo6-KC-LV8" userLabel="First Responder" sceneMemberID="firstResponder"/>

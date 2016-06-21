@@ -10,13 +10,12 @@ import UIKit
 
 class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, UISearchBarDelegate {
 
+    @IBOutlet weak var viewHeader               : UIView!
     @IBOutlet weak var tlbUsers                 : UITableView!
     @IBOutlet weak var searchUsers              : UISearchBar!
     @IBOutlet weak var viewLoading              : UIView!
     @IBOutlet weak var lblErrorMessage          : UILabel!
     @IBOutlet weak var acitivityEmployees       : UIActivityIndicatorView!
-    @IBOutlet weak var viewHeader               : UIView!
-    
     
     var isDownload      = false
     var arrayUsers      = NSMutableArray()
@@ -24,23 +23,44 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
     var searchText      : String  = ""
     var dataTaskRequest : NSURLSessionDataTask?
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setViews()
+        
+        self.listAllEmployees()
+    }
     
+    // MARK: - Style
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
     
-    //MARK: - UISearchBarDelegate
+    // MARK: - UI
+    func setViews() {
+        self.searchUsers.backgroundImage = UIImage()
+        self.searchUsers.backgroundColor = .clearColor()
+        self.searchUsers.barTintColor = .clearColor()
+        
+        viewHeader.layer.shadowOffset = CGSizeMake(0, 0)
+        viewHeader.layer.shadowRadius = 2
+        viewHeader.layer.masksToBounds = false
+        viewHeader.layer.shadowOpacity = 1
+        viewHeader.layer.shadowColor = UIColor.orangeColor().CGColor
+        viewHeader.backgroundColor = UIColor.colorPrimary()
+    }
     
-    
+    // MARK: - UISearchBarDelegate
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         
         self.searchUsers.text = ""
         self.listAllEmployees()
     }
     
-    
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         
         searchUsers.resignFirstResponder()
     }
-    
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
@@ -53,12 +73,7 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
-    
-    
-    
-    //MARK: - UIScrollViewDelegate
-    
-    
+    // MARK: - UIScrollViewDelegate
     func scrollViewDidScroll(scrollView: UIScrollView) {
         
         if (self.nextPage != nil && self.isDownload == false && scrollView.contentOffset.y + scrollView.frame.size.height  > scrollView.contentSize.height + 40) {
@@ -67,9 +82,7 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
-    
-    //MARK: - UITableViewDelegate, UITableViewDataSource
-    
+    // MARK: - UITableViewDelegate, UITableViewDataSource
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -78,7 +91,6 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.arrayUsers.count
     }
-    
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
@@ -91,7 +103,6 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
         return cell
     }
     
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let cell = tableView.cellForRowAtIndexPath(indexPath)
@@ -101,11 +112,7 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
         self.performSegueWithIdentifier("ProfileViewController", sender: objBE)
     }
     
-    
-    
-    //MARK: - WebServices
-    
-    
+    // MARK: - WebServices
     func listAllEmployees() {
         
         if self.dataTaskRequest != nil {
@@ -127,7 +134,6 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
             self.lblErrorMessage.text = "Employees not found"
         }
     }
-    
     
     func listEmployeesInNextPage() {
         
@@ -165,13 +171,11 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
         })
     }
     
-    
     func listEmployessToSearchText() {
         
         if self.dataTaskRequest != nil {
             self.dataTaskRequest?.suspend()
         }
-        
         
         self.acitivityEmployees.startAnimating()
         self.viewLoading.alpha = CGFloat(!Bool(self.arrayUsers.count))
@@ -190,43 +194,7 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
-    //MARK: -
-    
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.searchUsers.backgroundImage = UIImage()
-        self.searchUsers.backgroundColor = .clearColor()
-        self.searchUsers.barTintColor = .clearColor()
-        
-        self.viewHeader.layer.shadowOffset = CGSizeMake(0, 0)
-        self.viewHeader.layer.shadowRadius = 2
-        self.viewHeader.layer.masksToBounds = false
-        self.viewHeader.layer.shadowOpacity = 1
-        self.viewHeader.layer.shadowColor = UIColor.orangeColor().CGColor
-        
-        self.listAllEmployees()
-    }
-
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        
-        return .LightContent
-    }
-
-    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "ProfileViewController" {
