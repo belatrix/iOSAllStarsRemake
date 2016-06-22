@@ -10,75 +10,78 @@ import UIKit
 
 class SearchBC: NSObject {
     
-//    class func listStarSubCategoriesToUser(user : User, withCompletion completion : (arrayCategories : NSMutableArray?) -> Void) {
-//        
-//        let objUser = LoginBC.getCurrenteUserSession()
-//        
-//        if objUser!.user_token == nil {
-//            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
-//            completion(arrayCategories: NSMutableArray())
-//            return
-//        }
-//        
-//        OSPWebModel.listStarSubCategoriesToUser(user, withToken: objUser!.user_token!) { (arrayCategories, errorResponse, successful) in
-//            if (arrayCategories != nil) {
-//                completion(arrayCategories: arrayCategories!)
-//            } else if (errorResponse != nil) {
-//                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
-//                completion(arrayCategories: NSMutableArray())
-//            } else {
-//                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
-//                completion(arrayCategories: NSMutableArray())
-//            }
-//        }
-//    }
-    
-    class func listEmployeeWithCompletion(completion : (arrayEmployee : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask? {
+    class func listEmployeeWithCompletion(completion : (arrayEmployees : NSMutableArray?, nextPage : String?) -> Void) {
         
-        let currentUser = LoginBC.getCurrenteUserSession()
+        let objUser = LoginBC.getCurrenteUserSession()
         
-        if currentUser?.user_token == nil {
-            completion(arrayEmployee: NSMutableArray(), nextPage : nil)
-            return nil
+        if objUser!.user_token == nil {
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
+            completion(arrayEmployees: NSMutableArray(), nextPage: nil)
+            return
         }
         
-        return OSPWebModel.listEmployeeWithToken(currentUser!.user_token!) { (arrayEmployee, nextPage) in
+        OSPWebModel.listEmployeeWithToken(objUser!.user_token!) { (arrayEmployees, nextPage, errorResponse, successful) in
             
-            completion(arrayEmployee: arrayEmployee, nextPage: nextPage)
+            if (arrayEmployees != nil) {
+                completion(arrayEmployees: arrayEmployees!, nextPage: nextPage)
+            } else if (errorResponse != nil) {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
+                completion(arrayEmployees: NSMutableArray(), nextPage: nil)
+            } else {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
+                completion(arrayEmployees: NSMutableArray(), nextPage: nil)
+            }
         }
     }
 
-    class func listEmployeeToPage(page : String, withCompletion completion : (arrayEmployee : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask?{
+    class func listEmployeeToPage(page : String, withCompletion completion : (arrayEmployees : NSMutableArray?, nextPage : String?) -> Void) {
         
-        let currentUser = LoginBC.getCurrenteUserSession()
+        let objUser = LoginBC.getCurrenteUserSession()
         
-        if currentUser?.user_token == nil {
-            completion(arrayEmployee: NSMutableArray(), nextPage : nil)
-            return nil
+        if objUser!.user_token == nil {
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
+            completion(arrayEmployees: NSMutableArray(), nextPage: nil)
+            return
         }
         
-        return OSPWebModel.listEmployeeToPage(page, withToken: currentUser!.user_token!) { (arrayEmployee, nextPage) in
-            completion(arrayEmployee: arrayEmployee, nextPage: nextPage)
+        OSPWebModel.listEmployeeToPage(page, withToken: objUser!.user_token!) { (arrayEmployees, nextPage, errorResponse, successful) in
+            if (arrayEmployees != nil) {
+                completion(arrayEmployees: arrayEmployees!, nextPage: nextPage)
+            } else if (errorResponse != nil) {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
+                completion(arrayEmployees: NSMutableArray(), nextPage: nil)
+            } else {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
+                completion(arrayEmployees: NSMutableArray(), nextPage: nil)
+            }
         }
     }
     
-    class func listEmployeeWithText(text : String, withCompletion completion : (arrayEmployee : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask? {
+    class func listEmployeeWithText(text : String, withCompletion completion : (arrayEmployees : NSMutableArray?, nextPage : String?) -> Void) {
         
-        let currentUser = LoginBC.getCurrenteUserSession()
+        let objUser = LoginBC.getCurrenteUserSession()
         
-        if currentUser?.user_token == nil {
-            completion(arrayEmployee: NSMutableArray(), nextPage : nil)
-            return nil
+        if objUser!.user_token == nil {
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
+            completion(arrayEmployees: NSMutableArray(), nextPage: nil)
+            return
         }
         
         let newSearchText = text.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLFragmentAllowedCharacterSet())
-        if newSearchText == nil {
-            return nil
+        if newSearchText == nil || newSearchText == "" {
+            return
         }
         
-        return OSPWebModel.listEmployeeWithText(newSearchText!, withToken: currentUser!.user_token!) { (arrayEmployee, nextPage) in
-            
-            completion(arrayEmployee: arrayEmployee, nextPage: nextPage)
+        OSPWebModel.listEmployeeWithText(newSearchText!, withToken: objUser!.user_token!) { (arrayEmployees, nextPage, errorResponse, successful) in
+            if (arrayEmployees != nil) {
+                completion(arrayEmployees: arrayEmployees!, nextPage: nextPage)
+            } else if (errorResponse != nil) {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
+                completion(arrayEmployees: NSMutableArray(), nextPage: nil)
+            } else {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
+                completion(arrayEmployees: NSMutableArray(), nextPage: nil)
+            }
         }
     }
     

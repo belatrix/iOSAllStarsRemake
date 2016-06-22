@@ -21,7 +21,7 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
     var arrayUsers      = NSMutableArray()
     var nextPage        : String? = nil
     var searchText      : String  = ""
-    var dataTaskRequest : NSURLSessionDataTask?
+//    var dataTaskRequest : NSURLSessionDataTask?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,83 +115,101 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
     // MARK: - WebServices
     func listAllEmployees() {
         
-        if self.dataTaskRequest != nil {
-            self.dataTaskRequest?.suspend()
-        }
-        
-        self.acitivityEmployees.startAnimating()
-        self.viewLoading.alpha = CGFloat(!Bool(self.arrayUsers.count))
-        self.lblErrorMessage.text = "Loading employees"
-        
-        self.dataTaskRequest = SearchBC.listEmployeeWithCompletion { (arrayEmployee, nextPage) in
+//        if self.dataTaskRequest != nil {
+//            self.dataTaskRequest?.suspend()
+//        }
+        if (!self.isDownload) {
+            self.isDownload = true
             
-            self.nextPage = nextPage
-            self.arrayUsers = arrayEmployee
-            self.tlbUsers.reloadData()
-            
-            self.acitivityEmployees.stopAnimating()
+            self.acitivityEmployees.startAnimating()
             self.viewLoading.alpha = CGFloat(!Bool(self.arrayUsers.count))
-            self.lblErrorMessage.text = "Employees not found"
+            self.lblErrorMessage.text = "Loading employees"
+            
+            //        self.dataTaskRequest =
+            SearchBC.listEmployeeWithCompletion { (arrayEmployees, nextPage) in
+                
+                self.nextPage = nextPage
+                self.arrayUsers = arrayEmployees!
+                self.tlbUsers.reloadData()
+                
+                self.acitivityEmployees.stopAnimating()
+                self.viewLoading.alpha = CGFloat(!Bool(self.arrayUsers.count))
+                self.lblErrorMessage.text = "Employees not found"
+                
+                self.isDownload = false
+            }
         }
+
     }
     
     func listEmployeesInNextPage() {
         
-        if self.dataTaskRequest != nil {
-            self.dataTaskRequest?.suspend()
-        }
+//        if self.dataTaskRequest != nil {
+//            self.dataTaskRequest?.suspend()
+//        }
         
-        self.isDownload = true
-        
-        self.acitivityEmployees.startAnimating()
-        self.viewLoading.alpha = CGFloat(!Bool(self.arrayUsers.count))
-        self.lblErrorMessage.text = "Loading employees"
-        
-        
-        self.dataTaskRequest = SearchBC.listEmployeeToPage(self.nextPage!, withCompletion: { (arrayEmployee, nextPage) in
+        if (!self.isDownload) {
+            self.isDownload = true
             
-            self.isDownload = false
-            self.nextPage = nextPage
-            
-            let userCountInitial = self.arrayUsers.count
-            self.arrayUsers.addObjectsFromArray(arrayEmployee as [AnyObject])
-            let userCountFinal = self.arrayUsers.count - 1
-            
-            var arrayIndexPaths = [NSIndexPath]()
-            
-            for row in userCountInitial...userCountFinal {
-                arrayIndexPaths.append(NSIndexPath(forRow: row, inSection: 0))
-            }
-            
-            self.tlbUsers.insertRowsAtIndexPaths(arrayIndexPaths, withRowAnimation: .Fade)
-            
-            self.acitivityEmployees.stopAnimating()
+            self.acitivityEmployees.startAnimating()
             self.viewLoading.alpha = CGFloat(!Bool(self.arrayUsers.count))
-            self.lblErrorMessage.text = "Employees not found"
-        })
+            self.lblErrorMessage.text = "Loading employees"
+            
+            
+            SearchBC.listEmployeeToPage(self.nextPage!, withCompletion: { (arrayEmployees, nextPage) in
+                
+                self.nextPage = nextPage
+                
+                let userCountInitial = self.arrayUsers.count
+                self.arrayUsers.addObjectsFromArray(arrayEmployees! as [AnyObject])
+                let userCountFinal = self.arrayUsers.count - 1
+                
+                var arrayIndexPaths = [NSIndexPath]()
+                
+                for row in userCountInitial...userCountFinal {
+                    arrayIndexPaths.append(NSIndexPath(forRow: row, inSection: 0))
+                }
+                
+                self.tlbUsers.insertRowsAtIndexPaths(arrayIndexPaths, withRowAnimation: .Fade)
+                
+                self.acitivityEmployees.stopAnimating()
+                self.viewLoading.alpha = CGFloat(!Bool(self.arrayUsers.count))
+                self.lblErrorMessage.text = "Employees not found"
+                
+                self.isDownload = false
+            })
+        }
     }
     
     func listEmployessToSearchText() {
         
-        if self.dataTaskRequest != nil {
-            self.dataTaskRequest?.suspend()
-        }
+        self.isDownload = true
         
-        self.acitivityEmployees.startAnimating()
-        self.viewLoading.alpha = CGFloat(!Bool(self.arrayUsers.count))
-        self.lblErrorMessage.text = "Loading employees"
+//        if self.dataTaskRequest != nil {
+//            self.dataTaskRequest?.suspend()
+//        }
         
-        
-        self.dataTaskRequest = SearchBC.listEmployeeWithText(self.searchText) { (arrayEmployee, nextPage) in
-            
-            self.nextPage = nextPage
-            self.arrayUsers = arrayEmployee
-            self.tlbUsers.reloadData()
-            
-            self.acitivityEmployees.stopAnimating()
+        if (!self.isDownload) {
+            self.acitivityEmployees.startAnimating()
             self.viewLoading.alpha = CGFloat(!Bool(self.arrayUsers.count))
-            self.lblErrorMessage.text = "Employees not found"
+            self.lblErrorMessage.text = "Loading employees"
+            
+            
+            //        self.dataTaskRequest =
+            SearchBC.listEmployeeWithText(self.searchText) { (arrayEmployees, nextPage) in
+                
+                self.nextPage = nextPage
+                self.arrayUsers = arrayEmployees!
+                self.tlbUsers.reloadData()
+                
+                self.acitivityEmployees.stopAnimating()
+                self.viewLoading.alpha = CGFloat(!Bool(self.arrayUsers.count))
+                self.lblErrorMessage.text = "Employees not found"
+                
+                self.isDownload = false
+            }
         }
+
     }
     
     // MARK: - Navigation

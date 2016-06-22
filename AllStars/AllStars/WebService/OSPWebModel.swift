@@ -83,63 +83,9 @@ class OSPWebModel: NSObject {
         })
     }
     
-    class func listEmployeeToPage(page : String, withToken token : String, withCompletion completion : (arrayEmployee : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask{
-        
-        return OSPWebSender.doGETTokenToURL(conURL: "", conPath: page, conParametros: nil, conToken: token) { (objRespuesta) in
-            
-//            let nextPage = (objRespuesta.respuestaJSON?["next"] as? String)?.stringByReplacingOccurrencesOfString("\(Constants.WEB_SERVICES)/", withString: "")
-            let nextPage = objRespuesta.respuestaJSON?["next"] as? String
-            let arrayEmployee = NSMutableArray()
-            let arrayResponse = objRespuesta.respuestaJSON?["results"] as? NSArray
-            
-            arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
-                
-                arrayEmployee.addObject(OSPWebTranslator.parseUserBE(obj as! NSDictionary))
-            })
-            
-            completion(arrayEmployee: arrayEmployee, nextPage: nextPage)
-        }
-    }
+
     
-    class func listEmployeeWithText(text : String, withToken token : String, withCompletion completion : (arrayEmployee : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask {
-        
-        let path = "api/employee/list/?search=\(text)"
-        
-        return OSPWebSender.doGETTokenToURL(conURL: Constants.WEB_SERVICES, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
-            
-//            let nextPage = (objRespuesta.respuestaJSON?["next"] as? String)?.stringByReplacingOccurrencesOfString("\(Constants.WEB_SERVICES)/", withString: "")
-            let nextPage = objRespuesta.respuestaJSON?["next"] as? String
-            let arrayEmployee = NSMutableArray()
-            let arrayResponse = objRespuesta.respuestaJSON?["results"] as? NSArray
-            
-            arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
-                
-                arrayEmployee.addObject(OSPWebTranslator.parseUserBE(obj as! NSDictionary))
-            })
-            
-            completion(arrayEmployee: arrayEmployee, nextPage: nextPage)
-        }
-    }
-    
-    class func listEmployeeWithToken(token : String, withCompletion completion : (arrayEmployee : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask {
-        
-        let path = "api/employee/list/"
-        
-        return OSPWebSender.doGETTokenToURL(conURL: Constants.WEB_SERVICES, conPath: path, conParametros: nil, conToken: token) { (objRespuesta) in
-            
-//            let nextPage = (objRespuesta.respuestaJSON?["next"] as? String)?.stringByReplacingOccurrencesOfString("\(Constants.WEB_SERVICES)/", withString: "")
-            let nextPage = objRespuesta.respuestaJSON?["next"] as? String
-            let arrayEmployee = NSMutableArray()
-            let arrayResponse = objRespuesta.respuestaJSON?["results"] as? NSArray
-            
-            arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
-                
-                arrayEmployee.addObject(OSPWebTranslator.parseUserBE(obj as! NSDictionary))
-            })
-            
-            completion(arrayEmployee: arrayEmployee, nextPage: nextPage)
-        }
-    }
+
     
     class func listStarKeywordToPage(page : String, withToken token : String, withCompletion completion : (arrayKeyword : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask {
         
@@ -467,6 +413,88 @@ class OSPWebModel: NSObject {
         }
     }
     
+    class func listEmployeeWithToken(token : String, withCompletion completion : (arrayEmployees : NSMutableArray?, nextPage : String?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
+        
+        let path = "api/employee/list/"
+        
+        OSPWebSender.doGETWithTokenTemp(path, withToken: token) {(response, successful) in
+            
+            if (response != nil) {
+                if (successful) {
+                    let dic = response as! NSDictionary
+                    var nextPage = dic["next"] as? String
+                    nextPage = nextPage?.replace(Constants.WEB_SERVICES, withString: "")
+                    let arrayResponse = dic["results"] as? NSArray
+                    
+                    let arrayTemp = NSMutableArray()
+                    arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
+                        
+                        arrayTemp.addObject(OSPWebTranslator.parseUserBE(obj as! NSDictionary))
+                    })
+                    
+                    completion(arrayEmployees: arrayTemp, nextPage: nextPage, errorResponse: nil, successful: true)
+                } else {
+                    completion(arrayEmployees: nil, nextPage: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: false)
+                }
+            } else {
+                completion(arrayEmployees: nil, nextPage: nil, errorResponse: nil, successful: false)
+            }
+        }
+    }
     
+    class func listEmployeeToPage(page : String, withToken token : String, withCompletion completion : (arrayEmployees : NSMutableArray?, nextPage : String?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
+        
+        OSPWebSender.doGETWithTokenTemp(page, withToken: token) {(response, successful) in
+            
+            if (response != nil) {
+                if (successful) {
+                    let dic = response as! NSDictionary
+                    var nextPage = dic["next"] as? String
+                    nextPage = nextPage?.replace(Constants.WEB_SERVICES, withString: "")
+                    let arrayResponse = dic["results"] as? NSArray
+                    
+                    let arrayTemp = NSMutableArray()
+                    arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
+                        
+                        arrayTemp.addObject(OSPWebTranslator.parseUserBE(obj as! NSDictionary))
+                    })
+                    
+                    completion(arrayEmployees: arrayTemp, nextPage: nextPage, errorResponse: nil, successful: true)
+                } else {
+                   completion(arrayEmployees: nil, nextPage: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: false)
+                }
+            } else {
+                 completion(arrayEmployees: nil, nextPage: nil, errorResponse: nil, successful: false)
+            }
+        }
+    }
     
+    class func listEmployeeWithText(text : String, withToken token : String, withCompletion completion : (arrayEmployees : NSMutableArray?, nextPage : String?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
+        
+        let path = "api/employee/list/?search=\(text)"
+        
+        OSPWebSender.doGETWithTokenTemp(path, withToken: token) {(response, successful) in
+            
+            if (response != nil) {
+                if (successful) {
+                    let dic = response as! NSDictionary
+                    var nextPage = dic["next"] as? String
+                    nextPage = nextPage?.replace(Constants.WEB_SERVICES, withString: "")
+                    let arrayResponse = dic["results"] as? NSArray
+                    
+                    let arrayTemp = NSMutableArray()
+                    arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
+                        
+                        arrayTemp.addObject(OSPWebTranslator.parseUserBE(obj as! NSDictionary))
+                    })
+                    
+                    completion(arrayEmployees: arrayTemp, nextPage: nextPage, errorResponse: nil, successful: true)
+                } else {
+                    completion(arrayEmployees: nil, nextPage: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: false)
+                }
+            } else {
+                completion(arrayEmployees: nil, nextPage: nil, errorResponse: nil, successful: false)
+            }
+        }
+    }
 }
