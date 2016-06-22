@@ -106,7 +106,7 @@ class OSPWebTranslator: NSObject {
     
     
     
-    class func translateUserRankingBE(objDic : NSDictionary) -> UserRankingBE {
+    class func parseUserRankingBE(objDic : NSDictionary) -> UserRankingBE {
         
         let objBE = UserRankingBE()
     
@@ -121,7 +121,7 @@ class OSPWebTranslator: NSObject {
     }
     
     
-    class func translateKeywordBE(objDic : NSDictionary) -> KeywordBE {
+    class func parseKeywordBE(objDic : NSDictionary) -> KeywordBE {
         
         let objBE = KeywordBE()
         
@@ -132,7 +132,7 @@ class OSPWebTranslator: NSObject {
     }
     
     
-    class func translateSubCategoryBE(objDic : NSDictionary) -> SubCategoryBE {
+    class func parseSubCategoryBE(objDic : NSDictionary) -> SubCategoryBE {
         
         let objBE = SubCategoryBE()
         
@@ -144,7 +144,7 @@ class OSPWebTranslator: NSObject {
     
     
 
-    class func translateCategoryBE(objDic : NSDictionary) -> CategoryBE {
+    class func parseCategoryBE(objDic : NSDictionary) -> CategoryBE {
         
         let objBE = CategoryBE()
         
@@ -156,7 +156,7 @@ class OSPWebTranslator: NSObject {
         
         arraySubCategories?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
             
-            objBE.category_arraySubCategories.addObject(OSPWebTranslator.translateSubCategoryBE(obj as! NSDictionary))
+            objBE.category_arraySubCategories.addObject(OSPWebTranslator.parseSubCategoryBE(obj as! NSDictionary))
         })
         
         return objBE
@@ -164,7 +164,7 @@ class OSPWebTranslator: NSObject {
     
     
     
-    class func translateUserQualifyBE(objDic : NSDictionary) -> UserQualifyBE {
+    class func parseUserQualifyBE(objDic : NSDictionary) -> UserQualifyBE {
         
         let objBE = UserQualifyBE()
         

@@ -10,7 +10,7 @@ import UIKit
 
 class ListTagsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, UISearchBarDelegate {
     
-     @IBOutlet weak var viewHeader : UIView!
+    @IBOutlet weak var viewHeader : UIView!
     @IBOutlet weak var tableTags : UITableView!
     @IBOutlet weak var searchTags : UISearchBar!
     @IBOutlet weak var viewLoading : UIView!

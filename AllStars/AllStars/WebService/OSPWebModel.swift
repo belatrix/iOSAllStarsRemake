@@ -20,7 +20,7 @@ class OSPWebModel: NSObject {
             let arrayUsersRanking = NSMutableArray()
             
             arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
-                arrayUsersRanking.addObject(OSPWebTranslator.translateUserRankingBE(obj as! NSDictionary))
+                arrayUsersRanking.addObject(OSPWebTranslator.parseUserRankingBE(obj as! NSDictionary))
             })
             
             completion(arrayUsersRanking: arrayUsersRanking)
@@ -57,7 +57,7 @@ class OSPWebModel: NSObject {
             
             arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
                 
-                arrayKeywords.addObject(OSPWebTranslator.translateKeywordBE(obj as! NSDictionary))
+                arrayKeywords.addObject(OSPWebTranslator.parseKeywordBE(obj as! NSDictionary))
             })
             
             completion(arrayKeywords: arrayKeywords)
@@ -76,7 +76,7 @@ class OSPWebModel: NSObject {
             
             arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
                 
-                arrayCategories.addObject(OSPWebTranslator.translateCategoryBE(obj as! NSDictionary))
+                arrayCategories.addObject(OSPWebTranslator.parseCategoryBE(obj as! NSDictionary))
             })
             
             completion(arrayCategories: arrayCategories)
@@ -207,7 +207,7 @@ class OSPWebModel: NSObject {
             
             arrayResponse?.enumerateObjectsUsingBlock({ (obj : AnyObject, idx : Int, stop : UnsafeMutablePointer<ObjCBool>) in
                 
-                arrayUsers.addObject(OSPWebTranslator.translateUserQualifyBE(obj as! NSDictionary))
+                arrayUsers.addObject(OSPWebTranslator.parseUserQualifyBE(obj as! NSDictionary))
             })
             
             completion(arrayUsers: arrayUsers, nextPage: nextPage)
@@ -227,7 +227,7 @@ class OSPWebModel: NSObject {
             
             arrayResponse?.enumerateObjectsUsingBlock({ (obj : AnyObject, idx : Int, stop : UnsafeMutablePointer<ObjCBool>) in
                 
-                arrayUsers.addObject(OSPWebTranslator.translateUserQualifyBE(obj as! NSDictionary))
+                arrayUsers.addObject(OSPWebTranslator.parseUserQualifyBE(obj as! NSDictionary))
             })
             
             completion(arrayUsers: arrayUsers, nextPage: nextPage)
