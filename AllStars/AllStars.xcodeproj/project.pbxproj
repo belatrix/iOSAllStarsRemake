@@ -77,6 +77,9 @@
 		B62AA0EE1D144576008FB75A /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62AA0EB1D144576008FB75A /* UIColorExtension.swift */; };
 		B62AA0F01D145465008FB75A /* lock@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B62AA0EF1D145465008FB75A /* lock@3x.png */; };
 		B62AA0F21D147EA4008FB75A /* mail@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B62AA0F11D147EA4008FB75A /* mail@3x.png */; };
+		B63FA5A91D1C2EDF009D0EE3 /* Pods_AllStars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B63FA5A81D1C2EDF009D0EE3 /* Pods_AllStars.framework */; };
+		B63FA5B01D1C3202009D0EE3 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B63FA5AE1D1C3202009D0EE3 /* FBSDKCoreKit.framework */; };
+		B63FA5B11D1C3202009D0EE3 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B63FA5AF1D1C3202009D0EE3 /* FBSDKLoginKit.framework */; };
 		B66FBC771D00C7E600C058F7 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66FBC761D00C7E600C058F7 /* EditProfileViewController.swift */; };
 		B66FBC791D00CB9200C058F7 /* camera@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B66FBC781D00CB9200C058F7 /* camera@3x.png */; };
 		B66FBC7B1D00D0FD00C058F7 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66FBC7A1D00D0FD00C058F7 /* LocationTableViewCell.swift */; };
@@ -103,7 +106,6 @@
 		B6EE58A91CFF883B0027B697 /* UserRankingTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EE58A81CFF883B0027B697 /* UserRankingTagViewController.swift */; };
 		B6EE58AB1CFF8AF00027B697 /* UserRankingTagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EE58AA1CFF8AF00027B697 /* UserRankingTagTableViewCell.swift */; };
 		B6EE58AD1CFF91990027B697 /* UserTagBE.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EE58AC1CFF91990027B697 /* UserTagBE.swift */; };
-		D2A9355BCDB750ED285A9B5F /* Pods_AllStars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49EC9629CE6A1243877EEF8 /* Pods_AllStars.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -208,6 +210,13 @@
 		B62AA0EB1D144576008FB75A /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = Util/UIColorExtension.swift; sourceTree = "<group>"; };
 		B62AA0EF1D145465008FB75A /* lock@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lock@3x.png"; sourceTree = "<group>"; };
 		B62AA0F11D147EA4008FB75A /* mail@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mail@3x.png"; sourceTree = "<group>"; };
+		B63FA5A41D1C2D7F009D0EE3 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../../../FacebookSDKs-iOS-4.13.1/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		B63FA5A51D1C2D7F009D0EE3 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../../FacebookSDKs-iOS-4.13.1/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		B63FA5A81D1C2EDF009D0EE3 /* Pods_AllStars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_AllStars.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/AllStars-czdsuutwjdhmhrggdsabizwulklx/Build/Products/Debug-iphonesimulator/Pods_AllStars.framework"; sourceTree = "<group>"; };
+		B63FA5AA1D1C2F19009D0EE3 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = AllStars/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		B63FA5AB1D1C2F19009D0EE3 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = AllStars/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		B63FA5AE1D1C3202009D0EE3 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		B63FA5AF1D1C3202009D0EE3 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		B66FBC761D00C7E600C058F7 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		B66FBC781D00CB9200C058F7 /* camera@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera@3x.png"; sourceTree = "<group>"; };
 		B66FBC7A1D00D0FD00C058F7 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
@@ -242,7 +251,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2A9355BCDB750ED285A9B5F /* Pods_AllStars.framework in Frameworks */,
+				B63FA5A91D1C2EDF009D0EE3 /* Pods_AllStars.framework in Frameworks */,
+				B63FA5B01D1C3202009D0EE3 /* FBSDKCoreKit.framework in Frameworks */,
+				B63FA5B11D1C3202009D0EE3 /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +286,11 @@
 		74929EA0904086B92140D449 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B63FA5AA1D1C2F19009D0EE3 /* FBSDKCoreKit.framework */,
+				B63FA5AB1D1C2F19009D0EE3 /* FBSDKLoginKit.framework */,
+				B63FA5A81D1C2EDF009D0EE3 /* Pods_AllStars.framework */,
+				B63FA5A41D1C2D7F009D0EE3 /* FBSDKCoreKit.framework */,
+				B63FA5A51D1C2D7F009D0EE3 /* FBSDKLoginKit.framework */,
 				C49EC9629CE6A1243877EEF8 /* Pods_AllStars.framework */,
 			);
 			name = Frameworks;
@@ -370,6 +386,7 @@
 				96AC74C41CDB743500D993E7 /* iPhone */,
 				96AC74DB1CDB7D4500D993E7 /* Entities */,
 				96AC74C81CDB747D00D993E7 /* WebService */,
+				B63FA5B21D1C3214009D0EE3 /* Frameworks */,
 				96AC749D1CDB73AF00D993E7 /* Assets.xcassets */,
 				96AC749F1CDB73AF00D993E7 /* LaunchScreen.storyboard */,
 				96AC74A21CDB73AF00D993E7 /* Info.plist */,
@@ -606,6 +623,15 @@
 			path = Logic;
 			sourceTree = "<group>";
 		};
+		B63FA5B21D1C3214009D0EE3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B63FA5AE1D1C3202009D0EE3 /* FBSDKCoreKit.framework */,
+				B63FA5AF1D1C3202009D0EE3 /* FBSDKLoginKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B6A39C481CFDDE1600DA42E3 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -658,6 +684,7 @@
 				96AC74911CDB73AF00D993E7 /* Resources */,
 				94B7DD705FE02BA9418E0AC8 /* Embed Pods Frameworks */,
 				BC1E8E2F8261B071C6F6FF5C /* Copy Pods Resources */,
+				B6DF767F1D22D1B70030D8BB /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -837,6 +864,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AllStars/Pods-AllStars-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		B6DF767F1D22D1B70030D8BB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 83904d594d841085dfdf6bbd32107cf91f6dfd35 6632dc3ee24be36cc118ea0b101148696c2cee44988112d73f4cc552b2ed0a3a";
 		};
 		BC1E8E2F8261B071C6F6FF5C /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1057,6 +1097,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AllStars",
+				);
 				INFOPLIST_FILE = AllStars/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1073,6 +1117,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AllStars",
+				);
 				INFOPLIST_FILE = AllStars/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

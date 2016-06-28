@@ -127,13 +127,52 @@
                                     <action selector="btnNewUserTUI:" destination="Vo9-8w-xjF" eventType="touchUpInside" id="gl9-Fp-h60"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8uL-Dt-yaC" customClass="FBSDKLoginButton">
+                                <rect key="frame" x="28" y="429" width="265" height="40"/>
+                                <color key="backgroundColor" red="0.0" green="0.36862745099999999" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="vc9-Or-UHH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <state key="normal" title="Facebook">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L3S-1C-Plb" customClass="TWTRLogInButton">
+                                <rect key="frame" x="28" y="477" width="265" height="40"/>
+                                <color key="backgroundColor" red="0.0" green="0.36862745099999999" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="umv-tb-Kz7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <state key="normal" title="Twitter">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="btnTwitterTUI:" destination="Vo9-8w-xjF" eventType="touchUpInside" id="z2W-Ig-ZDA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="8uL-Dt-yaC" firstAttribute="top" secondItem="an4-XA-MEK" secondAttribute="bottom" constant="8" id="2Gh-kQ-xCr"/>
                             <constraint firstAttribute="trailing" secondItem="Eoa-WX-Bu4" secondAttribute="trailing" constant="27" id="3Qb-0L-53k"/>
                             <constraint firstItem="n1H-Ya-l8w" firstAttribute="leading" secondItem="a0S-Lh-H3G" secondAttribute="leading" constant="20" id="6eK-Qt-O8C"/>
+                            <constraint firstItem="L3S-1C-Plb" firstAttribute="leading" secondItem="a0S-Lh-H3G" secondAttribute="leading" constant="28" id="7I9-SH-9fr"/>
+                            <constraint firstItem="L3S-1C-Plb" firstAttribute="top" secondItem="8uL-Dt-yaC" secondAttribute="bottom" constant="8" id="Azu-24-jDN"/>
                             <constraint firstItem="an4-XA-MEK" firstAttribute="leading" secondItem="a0S-Lh-H3G" secondAttribute="leading" constant="28" id="Iwq-UE-Io7"/>
+                            <constraint firstAttribute="trailing" secondItem="8uL-Dt-yaC" secondAttribute="trailing" constant="27" id="K7p-gR-M0X"/>
                             <constraint firstItem="Cyi-m8-GQs" firstAttribute="top" secondItem="n1H-Ya-l8w" secondAttribute="bottom" constant="26" id="Lpl-C3-KcW"/>
                             <constraint firstItem="wOe-Ru-4fs" firstAttribute="leading" secondItem="a0S-Lh-H3G" secondAttribute="leading" constant="20" id="Mit-pb-IZI"/>
                             <constraint firstItem="Cyi-m8-GQs" firstAttribute="leading" secondItem="a0S-Lh-H3G" secondAttribute="leading" constant="28" id="QH2-Gg-r9n"/>
@@ -143,6 +182,8 @@
                             <constraint firstItem="wOe-Ru-4fs" firstAttribute="top" secondItem="3FL-st-quH" secondAttribute="bottom" id="cg1-aJ-eGM"/>
                             <constraint firstItem="Eoa-WX-Bu4" firstAttribute="top" secondItem="Cyi-m8-GQs" secondAttribute="bottom" constant="15" id="dOk-cz-otb"/>
                             <constraint firstItem="1H4-p3-et1" firstAttribute="top" secondItem="Cyi-m8-GQs" secondAttribute="bottom" constant="25" id="dpc-Ev-XFt"/>
+                            <constraint firstItem="8uL-Dt-yaC" firstAttribute="leading" secondItem="a0S-Lh-H3G" secondAttribute="leading" constant="28" id="gdD-Q9-JPB"/>
+                            <constraint firstAttribute="trailing" secondItem="L3S-1C-Plb" secondAttribute="trailing" constant="27" id="i6g-m3-Hpr"/>
                             <constraint firstItem="Eoa-WX-Bu4" firstAttribute="leading" secondItem="a0S-Lh-H3G" secondAttribute="leading" constant="28" id="j9E-r0-C5b"/>
                             <constraint firstAttribute="trailing" secondItem="wOe-Ru-4fs" secondAttribute="trailing" constant="20" id="k7m-Xc-iWM"/>
                             <constraint firstAttribute="trailing" secondItem="an4-XA-MEK" secondAttribute="trailing" constant="27" id="myh-wJ-JaE"/>
@@ -157,6 +198,8 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="actLogin" destination="1H4-p3-et1" id="dyb-IW-7fm"/>
+                        <outlet property="btnLogInFacebook" destination="8uL-Dt-yaC" id="cIa-R4-Op3"/>
+                        <outlet property="btnLogInTwitter" destination="L3S-1C-Plb" id="jkc-H3-ePA"/>
                         <outlet property="btnLogin" destination="Eoa-WX-Bu4" id="UhO-JQ-zNj"/>
                         <outlet property="btnNewUser" destination="an4-XA-MEK" id="DlR-lV-AzV"/>
                         <outlet property="constraintCenterForm" destination="VSp-my-9QA" id="eMi-NC-6h9"/>

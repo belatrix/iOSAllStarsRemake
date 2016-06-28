@@ -13,6 +13,8 @@
 #import "OSPImageDownloaded.h"
 #import "OSPDateManager.h"
 #import "OSPOptionList.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 
 #endif /* AllStars_Bridging_Header_h */

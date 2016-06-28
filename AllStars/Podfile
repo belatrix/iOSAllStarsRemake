@@ -10,5 +10,8 @@ use_frameworks!
 target 'AllStars' do
 
 pod 'Alamofire', '~> 3.4'
+pod 'Fabric'
+pod 'TwitterKit'
+pod 'TwitterCore'
 
 end

@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import TwitterKit
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate {
     
     @IBOutlet weak var edtUser              : UITextField!
     @IBOutlet weak var edtPassword          : UITextField!
@@ -21,11 +22,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var imgLogoBelatrix      : UIImageView!
     @IBOutlet weak var viewUserName         : UIView!
     @IBOutlet weak var viewPassword         : UIView!
+    @IBOutlet weak var btnLogInFacebook     : FBSDKLoginButton!
+    @IBOutlet weak var btnLogInTwitter      : TWTRLogInButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setViews()
+        
+        // Set FBSDKLoginButton
+        btnLogInFacebook.readPermissions = ["public_profile", "email", "user_friends"]
+        btnLogInFacebook.delegate = self
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.keyboardWillShown(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.keyboardWillBeHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
@@ -48,6 +55,32 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         viewUserName.backgroundColor = UIColor.colorPrimary()
         viewPassword.backgroundColor = UIColor.colorPrimary()
+        
+//        btnLogInTwitter = TWTRLogInButton { (session, error) in
+//            if let unwrappedSession = session {
+//                let alert = UIAlertController(title: "Logged In",
+//                    message: "User \(unwrappedSession.userName) has logged in",
+//                    preferredStyle: UIAlertControllerStyle.Alert
+//                )
+//                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+//                self.presentViewController(alert, animated: true, completion: nil)
+//            } else {
+//                NSLog("Login error: %@", error!.localizedDescription);
+//            }
+//        }
+        
+//        btnLogInTwitter.logInCompletion = {(session, error) -> Void in
+//            if let unwrappedSession = session {
+//                let alert = UIAlertController(title: "Logged In",
+//                                              message: "UserID \(unwrappedSession.userID)\nUserName \(unwrappedSession.userName)",
+//                                              preferredStyle: UIAlertControllerStyle.Alert
+//                )
+//                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+//                self.presentViewController(alert, animated: true, completion: nil)
+//            } else {
+//                NSLog("Login error: %@", error!.localizedDescription);
+//            }
+//        }
     }
     
     func lockScreen() {
@@ -174,6 +207,112 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             self.constraintCenterForm.constant = 0
             self.view.layoutIfNeeded()
         }
+    }
+    
+    // MARK: - TWTRLoginButton delegates
+    @IBAction func btnTwitterTUI(sender: TWTRLogInButton) {
+//        Twitter.sharedInstance().logInWithCompletion { session, error in
+//            if (session != nil) {
+//                print("UserID: \(session!.userID)\nUserName: \(session!.userName)");
+//            } else {
+//                print("error: \(error!.localizedDescription)");
+//            }
+//        }
         
+//        Twitter.sharedInstance().logInWithMethods(.WebBased, completion: nil)
+//        
+//        // If using the TWTRLoginButton
+//        let logInButton = TWTRLogInButton() { session, error in
+//        }
+//        logInButton.loginMethods = [.WebBased]
+        
+        // If using the log in methods on the Twitter instance
+        Twitter.sharedInstance().logInWithMethods([.WebBased]) { session, error in
+            
+            if (session != nil) {
+                print("UserID: \(session!.userID)\nUserName: \(session!.userName)");
+                
+                let client = TWTRAPIClient.clientWithCurrentUser()
+                let request = client.URLRequestWithMethod("GET",
+                                                          URL: "https://api.twitter.com/1.1/account/verify_credentials.json",
+                                                          parameters: ["include_email": "true", "skip_status": "true"],
+                                                          error: nil)
+                
+                client.sendTwitterRequest(request) { response, data, connectionError in
+                    print("response: \(response)")
+                    print("data: \(data)")
+                    print("connectionError: \(connectionError)")
+                }
+                
+                
+                
+            } else {
+                print("error: \(error!.localizedDescription)");
+            }
+            
+
+        }
+        
+//        TWTRShareE
+        
+        
+        
+//        if (Twitter.sharedInstance().session() != nil) {
+//            if let shareEmailViewController = TWTRShareEmailViewController(completion: {
+//                (email: String!, error: NSError!) in
+//                if (email != nil) {
+//                    print("\(email)")
+//                } else {
+//                    print("\(error)")
+//                }
+//            }) {
+//                self.presentViewController(shareEmailViewController, animated: true, completion: nil)
+//            }
+//        } else {
+//            print("User not logged in")
+//        }
+    }
+    
+    // MARK: - FBSDKLoginButton delegates
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        print("User Logged In")
+        
+        if ((error) != nil) {
+            // Process error
+            print("Error: \(error)")
+        } else if result.isCancelled {
+            // Handle cancellations
+            print("Cancelled")
+        } else {
+            if result.grantedPermissions.contains("email") {
+                // Do work
+                returnUserData()
+            }
+        }
+    }
+    
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        print("User Logged Out")
+    }
+    
+    func returnUserData() {
+        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"])
+        graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
+            
+            if ((error) != nil) {
+                print("Error: \(error)")
+            } else {
+                print("fetched user: \(result)")
+                let names : String = result.valueForKey("first_name") as! String
+                print("User Name is: \(names)")
+                let lastname : String = result.valueForKey("last_name") as! String
+                print("User LastName is: \(lastname)")
+                let email : String = result.valueForKey("email") as! String
+                print("User Email is: \(email)")
+                
+                // WS
+//                self.signUp(email, names: names, lastname: lastname, password: email)
+            }
+        })
     }
 }
