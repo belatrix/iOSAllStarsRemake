@@ -211,26 +211,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     
     // MARK: - TWTRLoginButton delegates
     @IBAction func btnTwitterTUI(sender: TWTRLogInButton) {
-//        Twitter.sharedInstance().logInWithCompletion { session, error in
-//            if (session != nil) {
-//                print("UserID: \(session!.userID)\nUserName: \(session!.userName)");
-//            } else {
-//                print("error: \(error!.localizedDescription)");
-//            }
-//        }
-        
-//        Twitter.sharedInstance().logInWithMethods(.WebBased, completion: nil)
-//        
-//        // If using the TWTRLoginButton
-//        let logInButton = TWTRLogInButton() { session, error in
-//        }
-//        logInButton.loginMethods = [.WebBased]
-        
-        // If using the log in methods on the Twitter instance
         Twitter.sharedInstance().logInWithMethods([.WebBased]) { session, error in
             
             if (session != nil) {
-                print("UserID: \(session!.userID)\nUserName: \(session!.userName)");
+                print("userID: \(session!.userID)");
+                print("userName: \(session!.userName)");
                 
                 let client = TWTRAPIClient.clientWithCurrentUser()
                 let request = client.URLRequestWithMethod("GET",
@@ -239,38 +224,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                                                           error: nil)
                 
                 client.sendTwitterRequest(request) { response, data, connectionError in
-                    print("response: \(response)")
-                    print("data: \(data)")
-                    print("connectionError: \(connectionError)")
+                    if (connectionError == nil) {
+                        do{
+                            let parsedResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
+//                            print("parsedResult: \(parsedResult)")
+                            let name = parsedResult["name"]
+                            let email = parsedResult["email"]
+                            print("name: \(name)")
+                            print("email: \(email)")
+                        } catch let error1 as NSError {
+                            print("error: \(error1.localizedDescription)");
+                        }
+                    }
                 }
-                
-                
-                
             } else {
                 print("error: \(error!.localizedDescription)");
             }
-            
-
         }
-        
-//        TWTRShareE
-        
-        
-        
-//        if (Twitter.sharedInstance().session() != nil) {
-//            if let shareEmailViewController = TWTRShareEmailViewController(completion: {
-//                (email: String!, error: NSError!) in
-//                if (email != nil) {
-//                    print("\(email)")
-//                } else {
-//                    print("\(error)")
-//                }
-//            }) {
-//                self.presentViewController(shareEmailViewController, animated: true, completion: nil)
-//            }
-//        } else {
-//            print("User not logged in")
-//        }
     }
     
     // MARK: - FBSDKLoginButton delegates
