@@ -12,7 +12,7 @@ class ProfileBC: NSObject {
     
     class func listLocations(completion : (arrayLocations : NSMutableArray?) -> Void) {
         
-        let objUser = LoginBC.getCurrenteUserSession()
+        let objUser = LogInBC.getCurrenteUserSession()
         
         if objUser!.user_token == nil {
             OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
@@ -36,7 +36,7 @@ class ProfileBC: NSObject {
     
     class func updateInfoToUser(user : User, newUser isNewUser : Bool, hasImage hasNewImage : Bool, withController controller: UIViewController, withCompletion completion : (user : User?) -> Void) {
         
-        let objUser = LoginBC.getCurrenteUserSession()
+        let objUser = LogInBC.getCurrenteUserSession()
         
         if objUser!.user_token == nil {
             OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
@@ -80,7 +80,7 @@ class ProfileBC: NSObject {
         OSPWebModel.updateUser(user, withToken: objUser!.user_token!) {(user, errorResponse, successful) in
 
             if (user != nil) {
-                LoginBC.saveSessionOfUser(user)
+                LogInBC.saveSessionOfUser(user)
                 
                 completion(user: user!)
             } else if (errorResponse != nil) {
@@ -95,7 +95,7 @@ class ProfileBC: NSObject {
     
     class func updatePhotoToUser(user : User, withController controller: UIViewController, withImage image : NSData, withCompletion completion : (user : User?) -> Void) {
         
-        let objUser = LoginBC.getCurrenteUserSession()
+        let objUser = LogInBC.getCurrenteUserSession()
         
         if objUser!.user_token == nil {
             OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
@@ -106,7 +106,7 @@ class ProfileBC: NSObject {
         OSPWebModel.updatePhoto(user, withToken: objUser!.user_token!, withImage: image) {(user, errorResponse, successful) in
             
             if (user != nil) {
-                LoginBC.saveSessionOfUser(user)
+                LogInBC.saveSessionOfUser(user)
                 
                 completion(user: user!)
             } else if (errorResponse != nil) {
@@ -121,7 +121,7 @@ class ProfileBC: NSObject {
     
     class func getInfoToUser(user : User, withCompletion completion : (user : User?) -> Void) {
         
-        let objUser = LoginBC.getCurrenteUserSession()
+        let objUser = LogInBC.getCurrenteUserSession()
         
         if objUser!.user_token == nil {
             OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
@@ -145,7 +145,7 @@ class ProfileBC: NSObject {
     
     class func listStarSubCategoriesToUser(user : User, withCompletion completion : (arrayCategories : NSMutableArray?) -> Void) {
         
-        let objUser = LoginBC.getCurrenteUserSession()
+        let objUser = LogInBC.getCurrenteUserSession()
         
         if objUser!.user_token == nil {
             OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
@@ -201,7 +201,7 @@ class ProfileBC: NSObject {
     
     class func listStarUserSubCategoriesToUser(user : User, toSubCategory subCategory : StarSubCategoryBE, withCompletion completion : (arrayUsers : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask? {
         
-        let currentUser = LoginBC.getCurrenteUserSession()
+        let currentUser = LogInBC.getCurrenteUserSession()
         
         if currentUser?.user_token == nil {
             completion(arrayUsers: NSMutableArray(), nextPage: nil)
@@ -220,7 +220,7 @@ class ProfileBC: NSObject {
     
     class func listStarUserSubCategoriesToPage(page : String, withCompletion completion : (arrayUsers : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask? {
         
-        let currentUser = LoginBC.getCurrenteUserSession()
+        let currentUser = LogInBC.getCurrenteUserSession()
         
         if currentUser?.user_token == nil {
             completion(arrayUsers: NSMutableArray(), nextPage: nil)

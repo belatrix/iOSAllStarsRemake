@@ -69,7 +69,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
         let newPasswordString = self.edtNewPassword.text!
         let repeatNewPasswordString = self.edtRepeatNewPassword.text!
         
-        LoginBC.resetUserPassword(objUser, currentPassword: currentPasswordString, newPassword : newPasswordString, repeatNewPassword: repeatNewPasswordString, withController: self) { (user : User?) in
+        LogInBC.resetUserPassword(objUser, currentPassword: currentPasswordString, newPassword : newPasswordString, repeatNewPassword: repeatNewPasswordString, withController: self) { (user : User?) in
             
             self.unlockScreen()
             
@@ -91,7 +91,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
         
         lockScreen()
         
-        LoginBC.getUserSessionInformation { (user : User?) in
+        LogInBC.getUserSessionInformation { (user : User?) in
             
             self.unlockScreen()
             

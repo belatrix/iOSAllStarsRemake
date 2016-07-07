@@ -21,7 +21,6 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
     var arrayUsers      = NSMutableArray()
     var nextPage        : String? = nil
     var searchText      : String  = ""
-//    var dataTaskRequest : NSURLSessionDataTask?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,10 +113,6 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
     
     // MARK: - WebServices
     func listAllEmployees() {
-        
-//        if self.dataTaskRequest != nil {
-//            self.dataTaskRequest?.suspend()
-//        }
         if (!self.isDownload) {
             self.isDownload = true
             
@@ -143,11 +138,6 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func listEmployeesInNextPage() {
-        
-//        if self.dataTaskRequest != nil {
-//            self.dataTaskRequest?.suspend()
-//        }
-        
         if (!self.isDownload) {
             self.isDownload = true
             
@@ -184,10 +174,6 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
     func listEmployessToSearchText() {
         
         self.isDownload = true
-        
-//        if self.dataTaskRequest != nil {
-//            self.dataTaskRequest?.suspend()
-//        }
         
         if (!self.isDownload) {
             self.acitivityEmployees.startAnimating()

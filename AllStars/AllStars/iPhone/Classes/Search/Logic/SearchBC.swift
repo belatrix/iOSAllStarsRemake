@@ -12,7 +12,7 @@ class SearchBC: NSObject {
     
     class func listEmployeeWithCompletion(completion : (arrayEmployees : NSMutableArray?, nextPage : String?) -> Void) {
         
-        let objUser = LoginBC.getCurrenteUserSession()
+        let objUser = LogInBC.getCurrenteUserSession()
         
         if objUser!.user_token == nil {
             OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
@@ -36,7 +36,7 @@ class SearchBC: NSObject {
 
     class func listEmployeeToPage(page : String, withCompletion completion : (arrayEmployees : NSMutableArray?, nextPage : String?) -> Void) {
         
-        let objUser = LoginBC.getCurrenteUserSession()
+        let objUser = LogInBC.getCurrenteUserSession()
         
         if objUser!.user_token == nil {
             OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
@@ -59,7 +59,7 @@ class SearchBC: NSObject {
     
     class func listEmployeeWithText(text : String, withCompletion completion : (arrayEmployees : NSMutableArray?, nextPage : String?) -> Void) {
         
-        let objUser = LoginBC.getCurrenteUserSession()
+        let objUser = LogInBC.getCurrenteUserSession()
         
         if objUser!.user_token == nil {
             OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
@@ -89,7 +89,7 @@ class SearchBC: NSObject {
     
     class func listStarKeywordToPage(page : String, withCompletion completion : (arrayKeywords : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask? {
         
-        let currentUser = LoginBC.getCurrenteUserSession()
+        let currentUser = LogInBC.getCurrenteUserSession()
         
         if currentUser?.user_token == nil {
             completion(arrayKeywords: NSMutableArray(), nextPage : nil)
@@ -104,7 +104,7 @@ class SearchBC: NSObject {
     
     class func listStarKeywordWithCompletion(completion : (arrayKeywords : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask? {
         
-        let currentUser = LoginBC.getCurrenteUserSession()
+        let currentUser = LogInBC.getCurrenteUserSession()
         
         if currentUser?.user_token == nil {
             completion(arrayKeywords: NSMutableArray(), nextPage : nil)
@@ -119,7 +119,7 @@ class SearchBC: NSObject {
     
     class func listStarKeywordWithText(text : String, withCompletion completion : (arrayKeywords : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask? {
         
-        let currentUser = LoginBC.getCurrenteUserSession()
+        let currentUser = LogInBC.getCurrenteUserSession()
         
         if currentUser?.user_token == nil {
             completion(arrayKeywords: NSMutableArray(), nextPage : nil)

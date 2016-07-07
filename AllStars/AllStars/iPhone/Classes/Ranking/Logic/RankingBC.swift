@@ -13,7 +13,7 @@ class RankingBC: NSObject {
     
     class func listUserRankingWithKind(kind : String?, withCompletion completion : (arrayUsersRanking : NSMutableArray) -> Void) {
         
-        let currentUser = LoginBC.getCurrenteUserSession()
+        let currentUser = LogInBC.getCurrenteUserSession()
         
         if currentUser?.user_token == nil || kind == nil {
             completion(arrayUsersRanking: NSMutableArray())
@@ -33,7 +33,7 @@ class RankingBC: NSObject {
 
     class func listUserRankingTotalScoreWithCompletion(completion : (arrayUsersRanking : NSMutableArray) -> Void) {
         
-        let currentUser = LoginBC.getCurrenteUserSession()
+        let currentUser = LogInBC.getCurrenteUserSession()
         
         if currentUser?.user_token == nil {
             completion(arrayUsersRanking: NSMutableArray())
@@ -52,7 +52,7 @@ class RankingBC: NSObject {
     
     class func listUserRankingLastMonthWithCompletion(completion : (arrayUsersRanking : NSMutableArray) -> Void) {
         
-        let currentUser = LoginBC.getCurrenteUserSession()
+        let currentUser = LogInBC.getCurrenteUserSession()
         
         if currentUser?.user_token == nil {
             completion(arrayUsersRanking: NSMutableArray())
@@ -71,7 +71,7 @@ class RankingBC: NSObject {
     
     class func listUserRankingCurrentMonthWithCompletion(completion : (arrayUsersRanking : NSMutableArray) -> Void) {
         
-        let currentUser = LoginBC.getCurrenteUserSession()
+        let currentUser = LogInBC.getCurrenteUserSession()
         
         if currentUser?.user_token == nil {
             completion(arrayUsersRanking: NSMutableArray())
@@ -87,7 +87,7 @@ class RankingBC: NSObject {
     
     class func listStarKeywordToPage(page : String, withCompletion completion : (arrayUsers : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask? {
         
-        let currentUser = LoginBC.getCurrenteUserSession()
+        let currentUser = LogInBC.getCurrenteUserSession()
         
         if currentUser?.user_token == nil {
             completion(arrayUsers: NSMutableArray(), nextPage : nil)
@@ -102,7 +102,7 @@ class RankingBC: NSObject {
     
     class func listStarKeywordWithCompletion(starKeyword : StarKeywordBE, withCompletion completion : (arrayUsers : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask? {
         
-        let currentUser = LoginBC.getCurrenteUserSession()
+        let currentUser = LogInBC.getCurrenteUserSession()
         
         if currentUser?.user_token == nil {
             completion(arrayUsers: NSMutableArray(), nextPage : nil)

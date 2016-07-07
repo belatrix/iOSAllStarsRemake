@@ -22,9 +22,13 @@ token_invalid = "Problems with your session. Logout and try again please";
 mail_empty = "Email must not be empty";
 mail_invalid = "Email must be valid";
 
-// Login
+// LogIn
 username_empty = "Username must not be empty";
 password_empty = "Password must not be empty";
+
+// LogInGuest
+facebook_profile_message = "We couldn't get your email from Facebook service. Enter your email to start using the app!";
+twitter_profile_message = "We couldn't get your email from Twitter service. Enter your email to start using the app!";
 
 // Reset
 old_password_empty = "Old Password must not be empty";

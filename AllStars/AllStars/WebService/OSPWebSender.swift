@@ -228,7 +228,37 @@ class OSPWebSender: NSObject {
 
     
     
-    
+    class func doGETTemp(path : String, withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
+        
+        let URL = Constants.WEB_SERVICES + path
+        
+        Alamofire.request(
+            .GET,
+            URL,
+            parameters: nil)
+            .validate(statusCode: 200..<501)
+            .responseJSON { response in
+                switch response.result {
+                case .Success:
+                    print("statusCode: \(response.response!.statusCode)")
+                    print("response: \(response.result.value)")
+                    
+                    if let JSON = response.result.value {
+                        if(response.response!.statusCode >= 200 && response.response!.statusCode <= 299) {
+                            completion(response : JSON, successful: true)
+                        } else {
+                            completion(response : JSON, successful: false)
+                        }
+                    } else {
+                        completion(response : nil, successful: false)
+                    }
+                case .Failure(let error):
+                    print("error: \(error)")
+                    
+                    completion(response : nil, successful: false)
+                }
+        }
+    }
     
     class func doGETWithTokenTemp(path : String, withToken token : String, withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
         

@@ -8,9 +8,9 @@
 
 import UIKit
 
-class LoginBC: NSObject {
+class LogInBC: NSObject {
 
-    class func loginWithUser(user : User, withController controller : UIViewController, withCompletion completion : (userSession : UserSession?, accountState : String?) -> Void) {
+    class func logInWithUser(user : User, withController controller : UIViewController, withCompletion completion : (userSession : UserSession?, accountState : String?) -> Void) {
         
         if (user.user_username == nil || user.user_username!.trim().isEmpty == true) {
             OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "username_empty".localized, withAcceptButton: "ok".localized)
@@ -26,7 +26,7 @@ class LoginBC: NSObject {
             return
         }
         
-        OSPWebModel.loginUser(user) {(userSession, errorResponse, successful) in
+        OSPWebModel.logInUser(user) {(userSession, errorResponse, successful) in
             
             if (userSession != nil) {
                 let userTemp = User()
@@ -132,6 +132,29 @@ class LoginBC: NSObject {
             } else {
                 OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
                 completion(user: nil)
+            }
+        }
+    }
+    
+    class func createParticipant(fullName : String?, email : String?, socialNetworkType : Int, socialNetworkId : String, withCompletion completion : (userGuest : UserGuest?, fieldsCompleted : Bool) -> Void) {
+        
+        if (fullName == nil || fullName!.isEmpty == true || email == nil || email!.isEmpty == true) {
+            completion(userGuest: nil, fieldsCompleted: false)
+            return
+        }
+
+        OSPWebModel.createParticipant(fullName!, email: email!, socialNetworkType: socialNetworkType, socialNetworkId: socialNetworkId) {(userGuest, errorResponse, successful) in
+            
+            if (userGuest != nil) {
+                completion(userGuest: userGuest, fieldsCompleted: true)
+            } else if (errorResponse != nil) {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
+                
+                completion(userGuest: userGuest, fieldsCompleted: true)
+            } else {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
+                
+                completion(userGuest: userGuest, fieldsCompleted: true)
             }
         }
     }

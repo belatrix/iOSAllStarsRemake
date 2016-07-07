@@ -180,8 +180,6 @@ class OSPWebModel: NSObject {
         }
     }
     
-
-    
     class func listEmployeeKeywordToPage(page : String, withToken token : String, withCompletion completion : (arrayEmployee : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask{
         
         return OSPWebSender.doGETTokenToURL(conURL: Constants.WEB_SERVICES, conPath: page, conParametros: nil, conToken: token) { (objRespuesta) in
@@ -219,6 +217,7 @@ class OSPWebModel: NSObject {
     }
     
 
+
     
     
     
@@ -238,7 +237,7 @@ class OSPWebModel: NSObject {
     
     
     
-    class func loginUser(user : User, withCompletion completion : (userSession : UserSession?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
+    class func logInUser(user : User, withCompletion completion : (userSession : UserSession?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
         
         let dic : [String : AnyObject] =
             ["username" : user.user_username!,
@@ -259,10 +258,10 @@ class OSPWebModel: NSObject {
         }
     }
     
-    class func createUser(mail : String, withCompletion completion : (errorResponse : ErrorResponse?, successful : Bool) -> Void) {
+    class func createUser(email : String, withCompletion completion : (errorResponse : ErrorResponse?, successful : Bool) -> Void) {
         
         let dic : [String : AnyObject] =
-            ["email" : mail]
+            ["email" : email]
         
         let path = "api/employee/create/"
         
@@ -296,6 +295,36 @@ class OSPWebModel: NSObject {
                 }
             } else {
                 completion(user: nil, errorResponse: nil, successful: successful)
+            }
+        }
+    }
+    
+    class func createParticipant(fullName : String, email : String, socialNetworkType : Int, socialNetworkId : String, withCompletion completion : (userGuest : UserGuest?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
+        
+        let path = "api/event/participant/"
+        
+        var socialNetworkIdKey = ""
+        if (socialNetworkType == 1) {
+            socialNetworkIdKey = "facebook_id"
+        } else if (socialNetworkType == 2) {
+            socialNetworkIdKey = "twitter_id"
+        }
+        
+        let dic : [String : AnyObject] =
+            ["fullname" : fullName,
+             "email" : email,
+             socialNetworkIdKey : socialNetworkId]
+        
+
+        OSPWebSender.doPOSTTemp(path, withParameters: dic) {(response, successful) in
+            if (response != nil) {
+                if (successful) {
+                    completion(userGuest: OSPWebTranslator.parseUserGuestBE(response as! [String : AnyObject]), errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
+                } else {
+                    completion(userGuest: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
+                }
+            } else {
+                completion(userGuest: nil, errorResponse: nil, successful: successful)
             }
         }
     }
@@ -486,6 +515,35 @@ class OSPWebModel: NSObject {
                     arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
                         
                         arrayTemp.addObject(OSPWebTranslator.parseUserBE(obj as! NSDictionary))
+                    })
+                    
+                    completion(arrayEmployees: arrayTemp, nextPage: nextPage, errorResponse: nil, successful: true)
+                } else {
+                    completion(arrayEmployees: nil, nextPage: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: false)
+                }
+            } else {
+                completion(arrayEmployees: nil, nextPage: nil, errorResponse: nil, successful: false)
+            }
+        }
+    }
+    
+    class func listEvents(completion : (arrayEmployees : NSMutableArray?, nextPage : String?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
+        
+        let path = "api/event/list/"
+        
+        OSPWebSender.doGETTemp(path) {(response, successful) in
+            
+            if (response != nil) {
+                if (successful) {
+                    let dic = response as! NSDictionary
+                    var nextPage = dic["next"] as? String
+                    nextPage = nextPage?.replace(Constants.WEB_SERVICES, withString: "")
+                    let arrayResponse = dic["results"] as? NSArray
+                    
+                    let arrayTemp = NSMutableArray()
+                    arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
+                        
+                        arrayTemp.addObject(OSPWebTranslator.parseEvent(obj as! NSDictionary))
                     })
                     
                     completion(arrayEmployees: arrayTemp, nextPage: nextPage, errorResponse: nil, successful: true)

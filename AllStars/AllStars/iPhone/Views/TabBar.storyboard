@@ -34,7 +34,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="AqH-qZ-qjj" kind="presentation" identifier="LoginViewController" animates="NO" modalTransitionStyle="coverVertical" id="X0W-2v-Prh"/>
+                        <segue destination="AqH-qZ-qjj" kind="presentation" identifier="LogInViewController" animates="NO" modalTransitionStyle="coverVertical" id="X0W-2v-Prh"/>
                         <segue destination="wWs-rJ-wOl" kind="relationship" relationship="viewControllers" id="VkA-D8-9n8"/>
                         <segue destination="a4D-E0-X0S" kind="relationship" relationship="viewControllers" id="S0e-Z2-gET"/>
                         <segue destination="NA1-BV-whf" kind="relationship" relationship="viewControllers" id="yOZ-Gp-QT8"/>
@@ -85,10 +85,10 @@
             </objects>
             <point key="canvasLocation" x="247.5" y="740"/>
         </scene>
-        <!--LoginViewController-->
+        <!--LogInViewController-->
         <scene sceneID="HMu-zi-tHT">
             <objects>
-                <viewControllerPlaceholder storyboardName="Login" referencedIdentifier="LoginViewController" id="AqH-qZ-qjj" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="LogIn" referencedIdentifier="LogInViewController" id="AqH-qZ-qjj" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R6k-Ym-3zQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="607.5" y="420"/>

@@ -14,7 +14,7 @@ class RecommendBC: NSObject {
     
     class func rateUser(rate : RateUserBE, withController controller : UIViewController, withCompletion completion : (isCorrect : Bool) -> Void) {
         
-        let currentUser = LoginBC.getCurrenteUserSession()
+        let currentUser = LogInBC.getCurrenteUserSession()
         
         if currentUser?.user_token == nil {
             OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "Problems with your conecction. Try again please.", conBotonCancelar: "Accept", enController: controller, conCompletion: nil)
@@ -64,7 +64,7 @@ class RecommendBC: NSObject {
     
     class func listKeyWordsWithCompletion(completion : (arrayKeywords : NSMutableArray) -> Void) {
         
-        let currentUser = LoginBC.getCurrenteUserSession()
+        let currentUser = LogInBC.getCurrenteUserSession()
         
         if currentUser?.user_token == nil {
             completion(arrayKeywords: NSMutableArray())
@@ -83,7 +83,7 @@ class RecommendBC: NSObject {
     
     class func listAllCatgoriesToUser(user : User, withCompletion completion : (arrayCategories : NSMutableArray) -> Void)  {
         
-        let currentUser = LoginBC.getCurrenteUserSession()
+        let currentUser = LogInBC.getCurrenteUserSession()
         
         if currentUser?.user_token == nil {
             completion(arrayCategories: NSMutableArray())

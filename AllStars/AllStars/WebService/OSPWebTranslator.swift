@@ -67,6 +67,25 @@ class OSPWebTranslator: NSObject {
         return objBE
     }
     
+    class func parseUserGuestBE(objDic : NSDictionary) -> UserGuest{
+        
+        let objBE = UserGuest()
+        
+        objBE.guest_id                  = objDic["id"] != nil ? NSNumber(integer: objDic["id"]!.integerValue) : nil
+        objBE.guest_fullname            = objDic["fullname"] != nil ? objDic["fullname"] as? String : ""
+        objBE.guest_email               = objDic["email"] != nil ? objDic["email"] as? String : ""
+        objBE.guest_birth_date          = objDic["birth_date"] != nil ? objDic["birth_date"] as? String : ""
+        objBE.guest_carreer             = objDic["carreer"] != nil ? objDic["carreer"] as? String : ""
+        objBE.guest_educational_center  = objDic["educational_center"] != nil ? objDic["educational_center"] as? String : ""
+        objBE.guest_english_level       = objDic["english_level"] != nil ? objDic["english_level"] as? String : ""
+        objBE.guest_facebook_id         = objDic["facebook_id"] != nil ? objDic["facebook_id"] as? String : ""
+        objBE.guest_facebook_link       = objDic["facebook_link"] != nil ? objDic["facebook_link"] as? String : ""
+        objBE.guest_twitter_id          = objDic["twitter_id"] != nil ? objDic["twitter_id"] as? String : ""
+        objBE.guest_twitter_link        = objDic["twitter_link"] != nil ? objDic["twitter_link"] as? String : ""
+        
+        return objBE
+    }
+    
     class func parseLocationBE(objDic : NSDictionary) -> LocationBE {
         
         let objBE = LocationBE()
@@ -85,6 +104,31 @@ class OSPWebTranslator: NSObject {
         objBE.starSubCategoy_id         = objDic["pk"] != nil ? NSNumber(integer: objDic["pk"]!.integerValue) : nil
         objBE.starSubCategoy_name       = objDic["name"] as? String
         objBE.starSubCategoy_numStars   = objDic["num_stars"] != nil ? NSNumber(integer: objDic["num_stars"]!.integerValue) : 0
+        
+        return objBE
+    }
+    
+    class func parseEvent(objDic : NSDictionary) -> Event {
+        
+        let objBE = Event()
+        
+        objBE.event_pk                      = objDic["pk"] != nil ? NSNumber(integer: objDic["pk"]!.integerValue) : nil
+        objBE.event_title                   = objDic["title"] != nil ? objDic["title"] as? String : "-"
+        objBE.event_description             = objDic["description"] != nil ? objDic["description"] as? String : "-"
+        if let datetime = objDic["datetime"] as? String{
+            objBE.event_datetime            = OSPDateManager.convertirTexto(datetime, conFormato: "yyyy-MM-dd'T'HH:mm:ssZ")
+        } else {
+            objBE.event_datetime            = nil
+        }
+        if let image = objDic["image"] as? String {
+            objBE.event_image               = image
+        } else {
+            objBE.event_image               = ""
+        }
+        objBE.event_location                = objDic["location"] != nil ? objDic["location"] as? String : "-"
+        objBE.event_is_registration_open    = objDic["is_registration_open"] != nil ? objDic["is_registration_open"] as? Bool : false
+        objBE.event_collaborators           = objDic["collaborators"] != nil ? NSNumber(integer: objDic["collaborators"]!.integerValue) : nil
+        objBE.event_participants            = objDic["participants"] != nil ? NSNumber(integer: objDic["participants"]!.integerValue) : nil
         
         return objBE
     }

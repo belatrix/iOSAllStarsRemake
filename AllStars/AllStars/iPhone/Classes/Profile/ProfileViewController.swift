@@ -42,14 +42,14 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     override func viewWillAppear(animated: Bool) {
         if self.objUser == nil {
-            self.objUser = LoginBC.getCurrenteUserSession()
+            self.objUser = LogInBC.getCurrenteUserSession()
         }
         
         if self.objUser != nil {
             self.updateUserInfo()
         }
         
-        if (ProfileBC.validateUser(self.objUser, isEqualToUser: LoginBC.getCurrenteUserSession())) {
+        if (ProfileBC.validateUser(self.objUser, isEqualToUser: LogInBC.getCurrenteUserSession())) {
             self.btnAction?.setTitle("Edit", forState: .Normal)
         } else {
             self.btnAction?.setTitle("Recommend", forState: .Normal)
@@ -96,7 +96,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     // MARK: - IBActions
     @IBAction func btnActionProfileTUI(sender: UIButton) {
-        if (ProfileBC.validateUser(self.objUser, isEqualToUser: LoginBC.getCurrenteUserSession())) {
+        if (ProfileBC.validateUser(self.objUser, isEqualToUser: LogInBC.getCurrenteUserSession())) {
             self.performSegueWithIdentifier("EditProfileViewController", sender: objUser)
         } else {
             self.performSegueWithIdentifier("RecommendViewController", sender: objUser)
@@ -110,9 +110,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBAction func btnLogoutTUI(sender: UIButton) {
         SessionUD.sharedInstance.clearSession()
         
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Login", bundle:nil)
-        let loginViewController = storyBoard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-        self.presentViewController(loginViewController, animated: true, completion: nil)
+        let storyBoard : UIStoryboard = UIStoryboard(name: "LogIn", bundle:nil)
+        let logInViewController = storyBoard.instantiateViewControllerWithIdentifier("LogInViewController") as! LogInViewController
+        self.presentViewController(logInViewController, animated: true, completion: nil)
     }
     
     // MARK: - UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
