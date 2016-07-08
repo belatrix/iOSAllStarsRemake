@@ -105,6 +105,14 @@
     [cell setObjItem:self.arrayItemList[indexPath.row]];
     [cell actualizarData];
     
+    if (self.arrayItemList.count <= 3) {
+        
+        CGRect frame = cell.frame;
+        
+        frame.size.height = 50;
+        cell.frame = frame;
+    }
+    
     return cell;
 }
 
