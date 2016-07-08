@@ -21,7 +21,6 @@ class ListTagsViewController: UIViewController, UITableViewDelegate, UITableView
     var arrayTags = NSMutableArray()
     var nextPage : String? = nil
     var searchText : String  = ""
-    var dataTaskRequest : NSURLSessionDataTask?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,82 +111,81 @@ class ListTagsViewController: UIViewController, UITableViewDelegate, UITableView
     
     // MARK: - WebServices
     func listAllTags() {
-        
-        if self.dataTaskRequest != nil {
-            self.dataTaskRequest?.suspend()
-        }
-        
-        self.acitivityTags.startAnimating()
-        self.viewLoading.alpha = CGFloat(!Bool(self.arrayTags.count))
-        self.lblErrorMessage.text = "Loading tags"
-        
-        self.dataTaskRequest = SearchBC.listStarKeywordWithCompletion { (arrayKeywords, nextPage) in
+        if (!self.isDownload) {
+            self.isDownload = true
             
-            self.nextPage = nextPage
-            self.arrayTags = arrayKeywords
-            self.tableTags.reloadData()
-            
-            self.acitivityTags.stopAnimating()
+            self.acitivityTags.startAnimating()
             self.viewLoading.alpha = CGFloat(!Bool(self.arrayTags.count))
-            self.lblErrorMessage.text = "Tags not found"
+            self.lblErrorMessage.text = "Loading tags"
+            
+            SearchBC.listStarKeywordWithCompletion { (arrayKeywords, nextPage) in
+                
+                self.nextPage = nextPage
+                self.arrayTags = arrayKeywords!
+                self.tableTags.reloadData()
+                
+                self.acitivityTags.stopAnimating()
+                self.viewLoading.alpha = CGFloat(!Bool(self.arrayTags.count))
+                self.lblErrorMessage.text = "Tags not found"
+                
+                self.isDownload = false
+            }
         }
     }
     
     func listEmployeesInNextPage() {
-        
-        if self.dataTaskRequest != nil {
-            self.dataTaskRequest?.suspend()
-        }
-        
-        self.isDownload = true
-        
-        self.acitivityTags.startAnimating()
-        self.viewLoading.alpha = CGFloat(!Bool(self.arrayTags.count))
-        self.lblErrorMessage.text = "Loading tags"
-        
-        self.dataTaskRequest = SearchBC.listStarKeywordToPage(self.nextPage!, withCompletion: { (arrayKeywords, nextPage) in
+        if (!self.isDownload) {
+            self.isDownload = true
             
-            self.isDownload = false
-            self.nextPage = nextPage
-            
-            let userCountInitial = self.arrayTags.count
-            self.arrayTags.addObjectsFromArray(arrayKeywords as [AnyObject])
-            let userCountFinal = self.arrayTags.count - 1
-            
-            var arrayIndexPaths = [NSIndexPath]()
-            
-            for row in userCountInitial...userCountFinal {
-                arrayIndexPaths.append(NSIndexPath(forRow: row, inSection: 0))
-            }
-            
-            self.tableTags.insertRowsAtIndexPaths(arrayIndexPaths, withRowAnimation: .Fade)
-            
-            self.acitivityTags.stopAnimating()
+            self.acitivityTags.startAnimating()
             self.viewLoading.alpha = CGFloat(!Bool(self.arrayTags.count))
-            self.lblErrorMessage.text = "Tags not found"
-        })
+            self.lblErrorMessage.text = "Loading tags"
+            
+            SearchBC.listStarKeywordToPage(self.nextPage!, withCompletion: { (arrayKeywords, nextPage) in
+                
+                self.nextPage = nextPage
+                
+                let userCountInitial = self.arrayTags.count
+                self.arrayTags.addObjectsFromArray(arrayKeywords! as [AnyObject])
+                let userCountFinal = self.arrayTags.count - 1
+                
+                var arrayIndexPaths = [NSIndexPath]()
+                
+                for row in userCountInitial...userCountFinal {
+                    arrayIndexPaths.append(NSIndexPath(forRow: row, inSection: 0))
+                }
+                
+                self.tableTags.insertRowsAtIndexPaths(arrayIndexPaths, withRowAnimation: .Fade)
+                
+                self.acitivityTags.stopAnimating()
+                self.viewLoading.alpha = CGFloat(!Bool(self.arrayTags.count))
+                self.lblErrorMessage.text = "Tags not found"
+                
+                self.isDownload = false
+            })
+        }
     }
     
     func listTagsToSearchText() {
-        
-        if self.dataTaskRequest != nil {
-            self.dataTaskRequest?.suspend()
-        }
-        
-        self.acitivityTags.startAnimating()
-        self.viewLoading.alpha = CGFloat(!Bool(self.arrayTags.count))
-        self.lblErrorMessage.text = "Loading tags"
-        
-        
-        self.dataTaskRequest = SearchBC.listStarKeywordWithText(self.searchText) { (arrayKeywords, nextPage) in
+        if (!self.isDownload) {
+            self.isDownload = true
             
-            self.nextPage = nextPage
-            self.arrayTags = arrayKeywords
-            self.tableTags.reloadData()
-            
-            self.acitivityTags.stopAnimating()
+            self.acitivityTags.startAnimating()
             self.viewLoading.alpha = CGFloat(!Bool(self.arrayTags.count))
-            self.lblErrorMessage.text = "Tags not found"
+            self.lblErrorMessage.text = "Loading tags"
+            
+            SearchBC.listStarKeywordWithText(self.searchText) { (arrayKeywords, nextPage) in
+                
+                self.nextPage = nextPage
+                self.arrayTags = arrayKeywords!
+                self.tableTags.reloadData()
+                
+                self.acitivityTags.stopAnimating()
+                self.viewLoading.alpha = CGFloat(!Bool(self.arrayTags.count))
+                self.lblErrorMessage.text = "Tags not found"
+                
+                self.isDownload = false
+            }
         }
     }
     

@@ -2,8 +2,8 @@
 //  OSPWebSender.swift
 //  BookShelf
 //
-//  Created by Kenyi Rodriguez on 11/04/16.
-//  Copyright © 2016 Online Studio Productions. All rights reserved.
+//  Created by Flavio Franco Tunqui on 7/6/16.
+//  Copyright © 2016 Belatrix SF. All rights reserved.
 //
 
 import UIKit

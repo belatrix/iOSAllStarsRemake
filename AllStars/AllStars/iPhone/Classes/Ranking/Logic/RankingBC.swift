@@ -10,7 +10,6 @@ import UIKit
 
 class RankingBC: NSObject {
     
-    
     class func listUserRankingWithKind(kind : String?, withCompletion completion : (arrayUsersRanking : NSMutableArray) -> Void) {
         
         let currentUser = LogInBC.getCurrenteUserSession()
@@ -20,17 +19,12 @@ class RankingBC: NSObject {
             return
         }
         
-        
         OSPWebModel.listUserRankingToKind(kind!, withToken: currentUser!.user_token!) { (arrayUsersRanking) in
             
             completion(arrayUsersRanking: arrayUsersRanking)
         }
     }
-
     
-    
-    
-
     class func listUserRankingTotalScoreWithCompletion(completion : (arrayUsersRanking : NSMutableArray) -> Void) {
         
         let currentUser = LogInBC.getCurrenteUserSession()
@@ -40,15 +34,11 @@ class RankingBC: NSObject {
             return
         }
         
-        
         OSPWebModel.listUserRankingToKind("total_score", withToken: currentUser!.user_token!) { (arrayUsersRanking) in
             
             completion(arrayUsersRanking: arrayUsersRanking)
         }
     }
-    
-    
-    
     
     class func listUserRankingLastMonthWithCompletion(completion : (arrayUsersRanking : NSMutableArray) -> Void) {
         
@@ -59,15 +49,11 @@ class RankingBC: NSObject {
             return
         }
         
-        
         OSPWebModel.listUserRankingToKind("last_month_score", withToken: currentUser!.user_token!) { (arrayUsersRanking) in
             
             completion(arrayUsersRanking: arrayUsersRanking)
         }
     }
-    
-    
-    
     
     class func listUserRankingCurrentMonthWithCompletion(completion : (arrayUsersRanking : NSMutableArray) -> Void) {
         
@@ -78,40 +64,70 @@ class RankingBC: NSObject {
             return
         }
         
-        
         OSPWebModel.listUserRankingToKind("current_month_score", withToken: currentUser!.user_token!) { (arrayUsersRanking) in
             
             completion(arrayUsersRanking: arrayUsersRanking)
         }
     }
     
-    class func listStarKeywordToPage(page : String, withCompletion completion : (arrayUsers : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask? {
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+    
+    
+    
+    
+    class func listStarKeywordWithCompletion(starKeyword : StarKeywordBE, withCompletion completion : (arrayUsers : NSMutableArray, nextPage : String?) -> Void) {
         
-        let currentUser = LogInBC.getCurrenteUserSession()
+        let objUser = LogInBC.getCurrenteUserSession()
         
-        if currentUser?.user_token == nil {
-            completion(arrayUsers: NSMutableArray(), nextPage : nil)
-            return nil
+        if objUser!.user_token == nil {
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
+            completion(arrayUsers: NSMutableArray(), nextPage: nil)
+            return
         }
         
-        return OSPWebModel.listEmployeeKeywordToPage(page, withToken: currentUser!.user_token!) { (arrayEmployee, nextPage) in
+       OSPWebModel.listEmployeeKeywordWithToken(starKeyword, withToken: objUser!.user_token!) { (arrayEmployees, nextPage, errorResponse, successful) in
             
-            completion(arrayUsers: arrayEmployee, nextPage: nextPage)
+            if (arrayEmployees != nil) {
+                completion(arrayUsers: arrayEmployees!, nextPage: nextPage)
+            } else if (errorResponse != nil) {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
+                completion(arrayUsers: NSMutableArray(), nextPage: nil)
+            } else {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
+                completion(arrayUsers: NSMutableArray(), nextPage: nil)
+            }
         }
     }
     
-    class func listStarKeywordWithCompletion(starKeyword : StarKeywordBE, withCompletion completion : (arrayUsers : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask? {
+    class func listStarKeywordToPage(page : String, withCompletion completion : (arrayUsers : NSMutableArray, nextPage : String?) -> Void) {
         
-        let currentUser = LogInBC.getCurrenteUserSession()
+        let objUser = LogInBC.getCurrenteUserSession()
         
-        if currentUser?.user_token == nil {
-            completion(arrayUsers: NSMutableArray(), nextPage : nil)
-            return nil
+        if objUser!.user_token == nil {
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
+            completion(arrayUsers: NSMutableArray(), nextPage: nil)
+            return
         }
         
-        return OSPWebModel.listEmployeeKeywordWithToken(starKeyword, withToken: currentUser!.user_token!) { (arrayEmployee, nextPage) in
-            
-            completion(arrayUsers: arrayEmployee, nextPage: nextPage)
+        OSPWebModel.listEmployeeKeywordToPage(page, withToken: objUser!.user_token!) { (arrayEmployees, nextPage, errorResponse, successful) in
+            if (arrayEmployees != nil) {
+                completion(arrayUsers: arrayEmployees!, nextPage: nextPage)
+            } else if (errorResponse != nil) {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
+                completion(arrayUsers: NSMutableArray(), nextPage: nil)
+            } else {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
+                completion(arrayUsers: NSMutableArray(), nextPage: nil)
+            }
         }
     }
 }

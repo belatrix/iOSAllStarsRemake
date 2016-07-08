@@ -51,7 +51,6 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
     
     // MARK: - UISearchBarDelegate
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        
         self.searchUsers.text = ""
         self.listAllEmployees()
     }
@@ -86,7 +85,6 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
         return 1
     }
     
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.arrayUsers.count
     }
@@ -120,7 +118,6 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
             self.viewLoading.alpha = CGFloat(!Bool(self.arrayUsers.count))
             self.lblErrorMessage.text = "Loading employees"
             
-            //        self.dataTaskRequest =
             SearchBC.listEmployeeWithCompletion { (arrayEmployees, nextPage) in
                 
                 self.nextPage = nextPage
@@ -134,7 +131,6 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
                 self.isDownload = false
             }
         }
-
     }
     
     func listEmployeesInNextPage() {
@@ -144,7 +140,6 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
             self.acitivityEmployees.startAnimating()
             self.viewLoading.alpha = CGFloat(!Bool(self.arrayUsers.count))
             self.lblErrorMessage.text = "Loading employees"
-            
             
             SearchBC.listEmployeeToPage(self.nextPage!, withCompletion: { (arrayEmployees, nextPage) in
                 
@@ -172,16 +167,13 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func listEmployessToSearchText() {
-        
-        self.isDownload = true
-        
         if (!self.isDownload) {
+            self.isDownload = true
+            
             self.acitivityEmployees.startAnimating()
             self.viewLoading.alpha = CGFloat(!Bool(self.arrayUsers.count))
             self.lblErrorMessage.text = "Loading employees"
             
-            
-            //        self.dataTaskRequest =
             SearchBC.listEmployeeWithText(self.searchText) { (arrayEmployees, nextPage) in
                 
                 self.nextPage = nextPage
@@ -195,7 +187,6 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
                 self.isDownload = false
             }
         }
-
     }
     
     // MARK: - Navigation

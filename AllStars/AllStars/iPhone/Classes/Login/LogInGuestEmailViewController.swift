@@ -17,7 +17,9 @@ class LogInGuestEmailViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var btnRegister              : UIButton!
     @IBOutlet weak var lblSocialNetworkMessage  : UILabel!
     
+    var fullName : String = ""
     var socialNetworkType : Int = 0
+    var socialNetworkId : String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +58,7 @@ class LogInGuestEmailViewController: UIViewController, UITextFieldDelegate {
     @IBAction func btnRegisterTUI(sender: UIButton) {
         self.view.endEditing(true)
         
-        self.createUser(edtEmail.text!)
+        self.createParticipant(fullName, email: edtEmail.text!, socialNetworkType: 1, socialNetworkId: socialNetworkId)
     }
     
     @IBAction func btnBackTUI(sender: UIButton) {
@@ -69,24 +71,26 @@ class LogInGuestEmailViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: - WebServices
-    func createUser(email : String) -> Void {
-//        lockScreen()
+    func createParticipant(fullName : String?, email : String?, socialNetworkType : Int, socialNetworkId : String) -> Void {
+        lockScreen()
         
-//        SignUpBC.createUser(email) { (successful) in
-//            
-//            self.unlockScreen()
-//            
-//            if (successful) {
-//                self.dismissViewControllerAnimated(true, completion: nil)
-//            }
-//        }
+        LogInBC.createParticipant(fullName, email: email, socialNetworkType: socialNetworkType, socialNetworkId: socialNetworkId) { (userGuest, fieldsCompleted) in
+            
+            self.unlockScreen()
+            
+            if (fieldsCompleted) {
+                let sb = UIStoryboard(name: "Event", bundle: nil)
+                let eventsViewController = sb.instantiateViewControllerWithIdentifier("EventsViewController") as! EventsViewController
+                self.presentViewController(eventsViewController, animated: true, completion: nil)
+            }
+        }
     }
     
     // MARK: - UITextFieldDelegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         
-        self.createUser(edtEmail.text!)
+        self.createParticipant(fullName, email: edtEmail.text!, socialNetworkType: 1, socialNetworkId: socialNetworkId)
         
         return true
     }

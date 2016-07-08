@@ -57,11 +57,12 @@ class OSPWebTranslator: NSObject {
         objBE.user_blocked                  = objDic["is_blocked"] != nil ? objDic["is_blocked"] as? Bool : false
         objBE.user_active                   = objDic["is_active"] != nil ? objDic["is_active"] as? Bool : false
         
+        objBE.user_avatar                   = (objDic["avatar"] == nil || objDic["avatar"] is NSNull) ? "" : objDic["avatar"] as? String
+        
         if (objBE.user_base_profile_complete!) {
             objBE.user_location_id          = objDic["location"] != nil ? NSNumber(integer: (objDic["location"]!["id"]!)!.integerValue) : nil
             objBE.user_location_name        = objDic["location"]?["name"] != nil ? objDic["location"]?["name"] as? String : ""
             objBE.user_skype_id             = objDic["skype_id"] != nil ? objDic["skype_id"] as? String : ""
-            objBE.user_avatar               = (objDic["avatar"] == nil || objDic["avatar"] is NSNull) ? "" : objDic["avatar"] as? String
         }
         
         return objBE
