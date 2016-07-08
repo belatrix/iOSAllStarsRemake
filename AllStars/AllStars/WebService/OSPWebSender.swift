@@ -267,7 +267,7 @@ class OSPWebSender: NSObject {
         Alamofire.request(
             .GET,
             URL,
-            headers: self.crearCabeceraPeticionConToken(token) as! [String : String],
+            headers: self.crearCabeceraPeticionConToken(token) as? [String : String],
             parameters: nil)
             .validate(statusCode: 200..<501)
             .responseJSON { response in
@@ -332,7 +332,7 @@ class OSPWebSender: NSObject {
         Alamofire.request(
             .POST,
             URL,
-            headers: self.crearCabeceraPeticionConToken(token) as! [String : String],
+            headers: self.crearCabeceraPeticionConToken(token) as? [String : String],
             parameters: parameters)
             .validate(statusCode: 200..<501)
             .responseJSON { response in
@@ -365,7 +365,7 @@ class OSPWebSender: NSObject {
         Alamofire.request(
             .PATCH,
             URL,
-            headers: self.crearCabeceraPeticionConToken(token) as! [String : String],
+            headers: self.crearCabeceraPeticionConToken(token) as? [String : String],
             parameters: parameters)
             .validate(statusCode: 200..<501)
             .responseJSON { response in
@@ -398,7 +398,7 @@ class OSPWebSender: NSObject {
         Alamofire.upload(
             .POST,
             URL,
-            headers: self.crearCabeceraPeticionConToken(token) as! [String : String],
+            headers: self.crearCabeceraPeticionConToken(token) as? [String : String],
             multipartFormData: { multipartFormData in
                 multipartFormData.appendBodyPart(data: image, name: "image", fileName: "testName.jpg", mimeType: "image/jpg")
             },
