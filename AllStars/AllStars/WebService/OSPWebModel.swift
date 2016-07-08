@@ -83,10 +83,6 @@ class OSPWebModel: NSObject {
         })
     }
     
-
-    
-
-    
     class func listStarKeywordToPage(page : String, withToken token : String, withCompletion completion : (arrayKeyword : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask {
         
         return OSPWebSender.doGETTokenToURL(conURL: Constants.WEB_SERVICES, conPath: page, conParametros: nil, conToken: token) { (objRespuesta) in
@@ -215,27 +211,6 @@ class OSPWebModel: NSObject {
             completion(arrayEmployee: arrayEmployee, nextPage: nextPage)
         }
     }
-    
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     class func logInUser(user : User, withCompletion completion : (userSession : UserSession?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
         
