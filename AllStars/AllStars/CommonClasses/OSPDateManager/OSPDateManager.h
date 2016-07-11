@@ -3,7 +3,7 @@
 //  OSPDateManager v2.0.0
 //
 //  Created by Kenyimetal on 9/12/14.
-//  Copyright (c) 2014 Online Studio Productions LLC. All rights reserved.
+//  Copyright (c) 2014 Belatrix SF. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
