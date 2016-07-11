@@ -52,14 +52,12 @@ class OSPUserAlerts: NSObject {
             }
         }
         
-        
         let accionAceptar = UIAlertAction(title: aceptar, style: UIAlertActionStyle.Default) { (action : UIAlertAction) in
             
             if completionAceptar != nil {
                 completionAceptar!()
             }
-        }
-        
+        }        
         
         alertController.addAction(accionCancelar)
         alertController.addAction(accionAceptar)

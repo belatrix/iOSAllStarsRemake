@@ -86,8 +86,30 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
     @IBAction func btnUploadPhotoTIU(sender: UIButton) {
         self.view.endEditing(true)
         
-        let actionSheet = UIActionSheet(title: "upload_from".localized, delegate: self, cancelButtonTitle: "cancel".localized, destructiveButtonTitle: nil, otherButtonTitles: "camera".localized, "gallery".localized)
-        actionSheet.showInView(self.view)
+        let alert: UIAlertController = UIAlertController(title: "upload_from".localized, message: nil, preferredStyle: .ActionSheet)
+        
+        let cameraAction = UIAlertAction(title: "camera".localized, style: .Default,
+                                         handler: {(alert: UIAlertAction) in
+                                            
+                                            self.imagePickerController.sourceType = .Camera
+                                            self.presentViewController(self.imagePickerController, animated: true, completion: { imageP in })
+                                        })
+        
+        let galleryAction = UIAlertAction(title: "gallery".localized, style: .Default,
+                                         handler: {(alert: UIAlertAction) in
+                                            
+                                            self.imagePickerController.sourceType = .SavedPhotosAlbum
+                                            self.presentViewController(self.imagePickerController, animated: true, completion: { imageP in })
+                                            })
+        
+        let cancelAction = UIAlertAction(title: "Cancel".localized, style: .Cancel,
+                                          handler: nil)
+        
+        alert.addAction(cameraAction)
+        alert.addAction(galleryAction)
+        alert.addAction(cancelAction)
+        
+        self.presentViewController(alert, animated: true, completion: {})
     }
     
     @IBAction func btnCancelTUI(sender: UIButton) {
@@ -153,23 +175,6 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
         return 36
     }
     
-    // MARK: - UIActionSheetDelegate
-    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
-        switch buttonIndex{
-        case 0:
-            break
-        case 1:
-            imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
-            self.presentViewController(imagePickerController, animated: true, completion: { imageP in })
-            break
-        case 2:
-            imagePickerController.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
-            self.presentViewController(imagePickerController, animated: true, completion: { imageP in })
-            break
-        default:
-            break
-        }
-    }
     
     // MARK: - UIImagePickerController delegates
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
