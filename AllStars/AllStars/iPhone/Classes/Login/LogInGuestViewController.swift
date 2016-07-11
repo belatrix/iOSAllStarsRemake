@@ -181,7 +181,9 @@ class LogInGuestViewController: UIViewController, FBSDKLoginButtonDelegate {
                 print("no complete")
                 let sb = UIStoryboard(name: "LogIn", bundle: nil)
                 let logInGuestEmailViewController = sb.instantiateViewControllerWithIdentifier("LogInGuestEmailViewController") as! LogInGuestEmailViewController
+                logInGuestEmailViewController.fullName = fullName!
                 logInGuestEmailViewController.socialNetworkType = socialNetworkType
+                logInGuestEmailViewController.socialNetworkId = socialNetworkId
                 self.presentViewController(logInGuestEmailViewController, animated: true, completion: nil)
             }
         }

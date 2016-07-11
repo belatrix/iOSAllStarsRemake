@@ -26,7 +26,7 @@ class EmployeeTableViewCell: UITableViewCell {
         self.lblFullName?.text = "\(self.objUserEmployee.user_first_name!) \(self.objUserEmployee.user_last_name!)"
         self.lblUserName?.text = "Lvl. \(self.objUserEmployee.user_level!)"
         
-        if let url_photo = self.objUserEmployee.user_avatar{
+        if let url_photo = self.objUserEmployee.user_avatar {
             if (url_photo != "") {
                 OSPImageDownloaded.descargarImagenEnURL(url_photo, paraImageView: self.imgAvatar, conPlaceHolder: nil) { (correct : Bool, nameImage : String!, image : UIImage!) in
                     

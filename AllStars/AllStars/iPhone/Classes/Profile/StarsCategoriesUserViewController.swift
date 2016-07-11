@@ -66,6 +66,29 @@ class StarsCategoriesUserViewController: UIViewController, UITableViewDelegate, 
     }
     
     // MARK: - WebServices
+    func listStarsSubCategoriesUser() -> Void {
+        
+        self.actLoading.startAnimating()
+        
+        if self.dataTaskRequest != nil {
+            self.dataTaskRequest?.suspend()
+        }
+        
+        self.dataTaskRequest = ProfileBC.listStarUserSubCategoriesToUser(self.objUser, toSubCategory: self.objStarSubCategory) { (arrayUsers, nextPage) in
+            
+            self.arrayUsers = arrayUsers
+            self.nextPage = nextPage
+            
+            self.refreshControl.endRefreshing()
+            
+            self.lblErrorMessage.text = "Information no available"
+            self.viewLoading.alpha = CGFloat(!Bool(self.arrayUsers.count))
+            self.actLoading.stopAnimating()
+            
+            self.tlbUsers.reloadData()
+        }
+    }
+    
     func listStarsSubCategoriesUserNextPage() -> Void {
         if self.dataTaskRequest != nil {
             self.dataTaskRequest?.suspend()
@@ -90,30 +113,6 @@ class StarsCategoriesUserViewController: UIViewController, UITableViewDelegate, 
             self.tlbUsers.insertRowsAtIndexPaths(arrayIndexPaths, withRowAnimation: .Fade)
         })
     }
-    
-    func listStarsSubCategoriesUser() -> Void {
-        
-        self.actLoading.startAnimating()
-        
-        if self.dataTaskRequest != nil {
-            self.dataTaskRequest?.suspend()
-        }
-        
-        self.dataTaskRequest = ProfileBC.listStarUserSubCategoriesToUser(self.objUser, toSubCategory: self.objStarSubCategory) { (arrayUsers, nextPage) in
-            
-            self.arrayUsers = arrayUsers
-            self.nextPage = nextPage
-            
-            self.refreshControl.endRefreshing()
-            
-            self.lblErrorMessage.text = "Information no available"
-            self.viewLoading.alpha = CGFloat(!Bool(self.arrayUsers.count))
-            self.actLoading.stopAnimating()
-            
-            self.tlbUsers.reloadData()
-        }
-    }
-    
     
     // MARK: - UIScrollViewDelegate
     func scrollViewDidScroll(scrollView: UIScrollView) {

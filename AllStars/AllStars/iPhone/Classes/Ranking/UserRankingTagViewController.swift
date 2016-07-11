@@ -23,10 +23,10 @@ class UserRankingTagViewController: UIViewController, UITableViewDelegate, UITab
     var arrayUsers = NSMutableArray()
     var nextPage : String? = nil
     var searchText : String  = ""
-    var dataTaskRequest : NSURLSessionDataTask?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setViews()
     }
     
@@ -91,59 +91,59 @@ class UserRankingTagViewController: UIViewController, UITableViewDelegate, UITab
     // MARK: - WebServices
     func listAllUsers() {
         
-        if self.dataTaskRequest != nil {
-            self.dataTaskRequest?.suspend()
-        }
-        
-        self.acitivityEmployees.startAnimating()
-        self.viewLoading.alpha = CGFloat(!Bool(self.arrayUsers.count))
-        self.lblErrorMessage.text = "Loading employees"
-        
-        self.dataTaskRequest = RankingBC.listStarKeywordWithCompletion (objStarKeyword!) { (arrayUsers, nextPage) in
+        if (!self.isDownload) {
+            self.isDownload = true
             
-            self.nextPage = nextPage
-            self.arrayUsers = arrayUsers
-            self.tableUsers.reloadData()
-            
-            self.acitivityEmployees.stopAnimating()
+            self.acitivityEmployees.startAnimating()
             self.viewLoading.alpha = CGFloat(!Bool(self.arrayUsers.count))
-            self.lblErrorMessage.text = "Employees not found"
+            self.lblErrorMessage.text = "Loading employees"
+            
+            RankingBC.listStarKeywordWithCompletion (objStarKeyword!) { (arrayUsers, nextPage) in
+                
+                self.nextPage = nextPage
+                self.arrayUsers = arrayUsers
+                self.tableUsers.reloadData()
+                
+                self.acitivityEmployees.stopAnimating()
+                self.viewLoading.alpha = CGFloat(!Bool(self.arrayUsers.count))
+                self.lblErrorMessage.text = "Employees not found"
+                
+                self.isDownload = false
+            }
         }
     }
     
     func listEmployeesInNextPage() {
-        
-        if self.dataTaskRequest != nil {
-            self.dataTaskRequest?.suspend()
-        }
-        
-        self.isDownload = true
-        
-        self.acitivityEmployees.startAnimating()
-        self.viewLoading.alpha = CGFloat(!Bool(self.arrayUsers.count))
-        self.lblErrorMessage.text = "Loading employees"
-        
-        self.dataTaskRequest = RankingBC.listStarKeywordToPage(self.nextPage!, withCompletion: { (arrayUsers, nextPage) in
+        if (!self.isDownload) {
+            self.isDownload = true
             
-            self.isDownload = false
-            self.nextPage = nextPage
-            
-            let userCountInitial = self.arrayUsers.count
-            self.arrayUsers.addObjectsFromArray(arrayUsers as [AnyObject])
-            let userCountFinal = self.arrayUsers.count - 1
-            
-            var arrayIndexPaths = [NSIndexPath]()
-            
-            for row in userCountInitial...userCountFinal {
-                arrayIndexPaths.append(NSIndexPath(forRow: row, inSection: 0))
-            }
-            
-            self.tableUsers.insertRowsAtIndexPaths(arrayIndexPaths, withRowAnimation: .Fade)
-            
-            self.acitivityEmployees.stopAnimating()
+            self.acitivityEmployees.startAnimating()
             self.viewLoading.alpha = CGFloat(!Bool(self.arrayUsers.count))
-            self.lblErrorMessage.text = "Employees not found"
-        })
+            self.lblErrorMessage.text = "Loading employees"
+            
+            SearchBC.listStarKeywordToPage(self.nextPage!, withCompletion: { (arrayKeywords, nextPage) in
+                
+                self.nextPage = nextPage
+                
+                let userCountInitial = self.arrayUsers.count
+                self.arrayUsers.addObjectsFromArray(arrayKeywords! as [AnyObject])
+                let userCountFinal = self.arrayUsers.count - 1
+                
+                var arrayIndexPaths = [NSIndexPath]()
+                
+                for row in userCountInitial...userCountFinal {
+                    arrayIndexPaths.append(NSIndexPath(forRow: row, inSection: 0))
+                }
+                
+                self.tableUsers.insertRowsAtIndexPaths(arrayIndexPaths, withRowAnimation: .Fade)
+                
+                self.acitivityEmployees.stopAnimating()
+                self.viewLoading.alpha = CGFloat(!Bool(self.arrayUsers.count))
+                self.lblErrorMessage.text = "Employees not found"
+                
+                self.isDownload = false
+            })
+        }
     }
     
     // MARK: - IBActions

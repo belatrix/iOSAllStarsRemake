@@ -85,55 +85,78 @@ class SearchBC: NSObject {
         }
     }
     
+    class func listStarKeywordWithCompletion(completion : (arrayKeywords : NSMutableArray?, nextPage : String?) -> Void) {
+        
+        let objUser = LogInBC.getCurrenteUserSession()
+        
+        if objUser!.user_token == nil {
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
+            completion(arrayKeywords: NSMutableArray(), nextPage: nil)
+            return
+        }
+        
+        OSPWebModel.listStarKeywordWithToken(objUser!.user_token!) { (arrayKeywords, nextPage, errorResponse, successful) in
+            
+            if (arrayKeywords != nil) {
+                completion(arrayKeywords: arrayKeywords!, nextPage: nextPage)
+            } else if (errorResponse != nil) {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
+                completion(arrayKeywords: NSMutableArray(), nextPage: nil)
+            } else {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
+                completion(arrayKeywords: NSMutableArray(), nextPage: nil)
+            }
+        }
+    }
+    
+    class func listStarKeywordToPage(page : String, withCompletion completion : (arrayKeywords : NSMutableArray?, nextPage : String?) -> Void) {
+        
+        let objUser = LogInBC.getCurrenteUserSession()
+        
+        if objUser!.user_token == nil {
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
+            completion(arrayKeywords: NSMutableArray(), nextPage: nil)
+            return
+        }
+        
+        OSPWebModel.listStarKeywordToPage(page, withToken: objUser!.user_token!) { (arrayKeywords, nextPage, errorResponse, successful) in
+            if (arrayKeywords != nil) {
+                completion(arrayKeywords: arrayKeywords!, nextPage: nextPage)
+            } else if (errorResponse != nil) {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
+                completion(arrayKeywords: NSMutableArray(), nextPage: nil)
+            } else {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
+                completion(arrayKeywords: NSMutableArray(), nextPage: nil)
+            }
+        }
+    }
+    
+    class func listStarKeywordWithText(text : String, withCompletion completion : (arrayKeywords : NSMutableArray?, nextPage : String?) -> Void) {
 
-    
-    class func listStarKeywordToPage(page : String, withCompletion completion : (arrayKeywords : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask? {
+        let objUser = LogInBC.getCurrenteUserSession()
         
-        let currentUser = LogInBC.getCurrenteUserSession()
-        
-        if currentUser?.user_token == nil {
-            completion(arrayKeywords: NSMutableArray(), nextPage : nil)
-            return nil
-        }
-        
-        return OSPWebModel.listStarKeywordToPage(page, withToken: currentUser!.user_token!) { (arrayEmployee, nextPage) in
-            
-            completion(arrayKeywords: arrayEmployee, nextPage: nextPage)
-        }
-    }
-    
-    class func listStarKeywordWithCompletion(completion : (arrayKeywords : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask? {
-        
-        let currentUser = LogInBC.getCurrenteUserSession()
-        
-        if currentUser?.user_token == nil {
-            completion(arrayKeywords: NSMutableArray(), nextPage : nil)
-            return nil
-        }
-        
-        return OSPWebModel.listStarKeywordWithToken(currentUser!.user_token!) { (arrayEmployee, nextPage) in
-            
-            completion(arrayKeywords: arrayEmployee, nextPage: nextPage)
-        }
-    }
-    
-    class func listStarKeywordWithText(text : String, withCompletion completion : (arrayKeywords : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask? {
-        
-        let currentUser = LogInBC.getCurrenteUserSession()
-        
-        if currentUser?.user_token == nil {
-            completion(arrayKeywords: NSMutableArray(), nextPage : nil)
-            return nil
+        if objUser!.user_token == nil {
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
+            completion(arrayKeywords: NSMutableArray(), nextPage: nil)
+            return
         }
         
         let newSearchText = text.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLFragmentAllowedCharacterSet())
-        if newSearchText == nil {
-            return nil
+        if newSearchText == nil || newSearchText == "" {
+            return
         }
         
-        return OSPWebModel.listStarKeywordWithText(newSearchText!, withToken: currentUser!.user_token!) { (arrayEmployee, nextPage) in
-            
-            completion(arrayKeywords: arrayEmployee, nextPage: nextPage)
+        OSPWebModel.listStarKeywordWithText(newSearchText!, withToken: objUser!.user_token!) { (arrayKeywords, nextPage, errorResponse, successful) in
+            if (arrayKeywords != nil) {
+                completion(arrayKeywords: arrayKeywords!, nextPage: nextPage)
+            } else if (errorResponse != nil) {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
+                completion(arrayKeywords: NSMutableArray(), nextPage: nil)
+            } else {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
+                completion(arrayKeywords: NSMutableArray(), nextPage: nil)
+            }
         }
     }
 }

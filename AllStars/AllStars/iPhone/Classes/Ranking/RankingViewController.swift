@@ -24,7 +24,6 @@ class RankingViewController: UIViewController, UIPageViewControllerDataSource {
         controllerAllTime.kind = "total_score"
         _arrayViewControllers.addObject(controllerAllTime)
         
-        
         let controllerCurrentMonth = self.storyboard?.instantiateViewControllerWithIdentifier("UserRankingViewController") as! UserRankingViewController
         controllerCurrentMonth.kind = "current_month_score"
         _arrayViewControllers.addObject(controllerCurrentMonth)
