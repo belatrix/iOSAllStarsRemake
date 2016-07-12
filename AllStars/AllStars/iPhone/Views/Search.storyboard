@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--List Employee View Controller-->
+        <!--People-->
         <scene sceneID="QS5-07-9ua">
             <objects>
-                <viewController storyboardIdentifier="ListEmployeeViewController" id="5Kt-MF-mnU" customClass="ListEmployeeViewController" customModule="AllStars" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListEmployeeViewController" automaticallyAdjustsScrollViewInsets="NO" id="5Kt-MF-mnU" customClass="ListEmployeeViewController" customModule="AllStars" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HBi-Z7-I3g"/>
                         <viewControllerLayoutGuide type="bottom" id="XEU-1Y-QuN"/>
@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="59" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TQG-TZ-OvM">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="59" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TQG-TZ-OvM">
                                 <rect key="frame" x="0.0" y="108" width="320" height="460"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -81,7 +81,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vh0-YR-GOP">
-                                <rect key="frame" x="0.0" y="108" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="108" width="320" height="411"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading employees" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GQ4-qc-di7">
                                         <rect key="frame" x="41" y="8" width="239" height="21"/>
@@ -160,6 +160,9 @@
                             <constraint firstItem="LDf-Be-SjQ" firstAttribute="top" secondItem="pf3-6u-1yd" secondAttribute="top" id="xNO-wG-ug3"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="People" image="iconTabBar_2.png" id="MSK-uz-uMg"/>
+                    <navigationItem key="navigationItem" id="nCO-76-Dok"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="acitivityEmployees" destination="XHK-Xm-Lbf" id="yMd-fU-FEe"/>
@@ -168,25 +171,27 @@
                         <outlet property="tlbUsers" destination="TQG-TZ-OvM" id="fkM-y3-Esr"/>
                         <outlet property="viewHeader" destination="LDf-Be-SjQ" id="Vxw-9x-yGc"/>
                         <outlet property="viewLoading" destination="vh0-YR-GOP" id="MsA-Uh-1WE"/>
-                        <segue destination="UaW-dN-oFn" kind="show" identifier="ProfileViewController" id="uKn-yK-2hK"/>
+                        <segue destination="UaW-dN-oFn" kind="push" identifier="ProfileViewController" id="uKn-yK-2hK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Zd-Br-eDy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="281" y="401"/>
+            <point key="canvasLocation" x="563" y="392"/>
         </scene>
         <!--ProfileViewController-->
         <scene sceneID="hPJ-TS-bgA">
             <objects>
-                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileViewController" id="UaW-dN-oFn" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileViewController" id="UaW-dN-oFn" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="5yT-27-suF"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bEs-tZ-Fq7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="653" y="401"/>
+            <point key="canvasLocation" x="1053" y="392"/>
         </scene>
-        <!--List Tags View Controller-->
+        <!--Tags-->
         <scene sceneID="y8n-vc-TCQ">
             <objects>
-                <viewController storyboardIdentifier="ListTagsViewController" id="jQt-mV-AbO" customClass="ListTagsViewController" customModule="AllStars" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="jQt-mV-AbO" customClass="ListTagsViewController" customModule="AllStars" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zV5-YT-5oe"/>
                         <viewControllerLayoutGuide type="bottom" id="kpR-b9-3qd"/>
@@ -195,7 +200,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hGv-uh-foX">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hGv-uh-foX">
                                 <rect key="frame" x="0.0" y="108" width="320" height="460"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -241,7 +246,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e3d-tA-Kbq">
-                                <rect key="frame" x="0.0" y="108" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="108" width="320" height="411"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading tags" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LH5-26-0Ma">
                                         <rect key="frame" x="41" y="8" width="239" height="21"/>
@@ -320,6 +325,9 @@
                             <constraint firstItem="5FL-3U-LSi" firstAttribute="top" secondItem="z9I-h8-FVW" secondAttribute="top" id="xGy-IR-1uv"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Tags" image="iconTabBar_3.png" id="H1D-Me-Nz4"/>
+                    <navigationItem key="navigationItem" id="YLG-ML-C2K"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="acitivityTags" destination="1bb-zW-f1E" id="fbN-Uz-NCX"/>
@@ -328,24 +336,69 @@
                         <outlet property="tableTags" destination="hGv-uh-foX" id="HBQ-pO-SZl"/>
                         <outlet property="viewHeader" destination="5FL-3U-LSi" id="Bak-cm-TWD"/>
                         <outlet property="viewLoading" destination="e3d-tA-Kbq" id="XbT-zs-4c7"/>
-                        <segue destination="nPf-Mw-qcu" kind="show" identifier="UserRankingTagViewController" id="3xD-Ov-JRw"/>
+                        <segue destination="nPf-Mw-qcu" kind="push" identifier="UserRankingTagViewController" id="3xD-Ov-JRw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="il3-Z1-dxO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="281" y="1055"/>
+            <point key="canvasLocation" x="568" y="1014"/>
         </scene>
         <!--UserRankingTagViewController-->
         <scene sceneID="Pgv-yg-9TB">
             <objects>
-                <viewControllerPlaceholder storyboardName="Ranking" referencedIdentifier="UserRankingTagViewController" id="nPf-Mw-qcu" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Ranking" referencedIdentifier="UserRankingTagViewController" id="nPf-Mw-qcu" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="yBE-UT-DZg"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uT0-ze-Vsn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="653.5" y="1055"/>
+            <point key="canvasLocation" x="884" y="998"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="b8p-WE-xHO">
+            <objects>
+                <navigationController storyboardIdentifier="ListTagsViewController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="JxG-xO-mQg" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LQK-LC-uCS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="jQt-mV-AbO" kind="relationship" relationship="rootViewController" id="kXc-n2-1DX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0zq-38-C6H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="149.86666666666667" y="998.73333333333335"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="aHN-8N-lZ3">
+            <objects>
+                <navigationController storyboardIdentifier="ListEmployeeNavViewController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="9la-OI-soI" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="a9X-zF-HQt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="FFu-VV-1Ik">
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="5Kt-MF-mnU" kind="relationship" relationship="rootViewController" id="2Zd-jW-3e2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OPp-GB-Q6Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="149" y="392"/>
         </scene>
     </scenes>
     <resources>
         <image name="iconNext.png" width="15" height="15"/>
+        <image name="iconTabBar_2.png" width="30" height="30"/>
+        <image name="iconTabBar_3.png" width="30" height="30"/>
         <image name="textBelatrix.png" width="121" height="19"/>
     </resources>
 </document>
