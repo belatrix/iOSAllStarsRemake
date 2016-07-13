@@ -40,7 +40,6 @@
                         <segue destination="JjQ-O3-wmn" kind="relationship" relationship="viewControllers" id="Vuz-R9-jhM"/>
                         <segue destination="AqH-qZ-qjj" kind="modal" id="5HH-xj-vUo"/>
                         <segue destination="GT3-Hg-aip" kind="relationship" relationship="viewControllers" id="nSn-oz-9sQ"/>
-                        <segue destination="vtu-Ls-8tf" kind="relationship" relationship="viewControllers" id="XdV-vm-gZr"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BdS-Tu-jam" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -56,25 +55,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h5v-JT-v0R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="435.5" y="701"/>
-        </scene>
-        <!--Other option-->
-        <scene sceneID="aPj-8w-ega">
-            <objects>
-                <viewController id="vtu-Ls-8tf" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Fuc-B4-bVW"/>
-                        <viewControllerLayoutGuide type="bottom" id="dS0-ts-wgg"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="i0r-fk-HaQ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Other option" image="iconCup.png" id="9IU-Nh-WJB"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Y97-yh-ydx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="748" y="953"/>
         </scene>
         <!--RankingViewController-->
         <scene sceneID="kqI-ha-5zj">
@@ -130,7 +110,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="iconCup.png" width="30" height="30"/>
         <image name="iconTabBar_0.png" width="30" height="30"/>
         <image name="iconTabBar_1.png" width="40" height="40"/>
         <image name="iconTabBar_2.png" width="30" height="30"/>
