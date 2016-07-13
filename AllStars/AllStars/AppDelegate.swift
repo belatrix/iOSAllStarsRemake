@@ -18,6 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        // PUSH notification
+        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
+        
         // start Facebook
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
@@ -51,21 +56,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = nav
         }
         
-        
-
-//        
-//        //        if (FBSDKAccessToken.currentAccessToken() != nil){
-//        //            self.openOptions()
-//        //        } else {
-//        let defaults = NSUserDefaults.standardUserDefaults()
-//        if let session : Int = defaults.integerForKey("session") {
-//            if (session == 1) {
-//                self.openOptions()
-//            }
-//        }
-//        //        }
-        
         return true
+    }
+    
+    // implemented in your application delegate
+//    func application(application: UIApplication, didRe
+//    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData!) {
+//        print("Got token data! \(deviceToken)")
+//    }
+//    
+//    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError!) {
+//        print("Couldn't register: \(error)")
+//    }
+//    
+//    func application(application: UIApplication!, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings!) {
+//        // inspect notificationSettings to see what the user said!
+//        application.registerForRemoteNotifications()
+//    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        print("receive push :D")
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
