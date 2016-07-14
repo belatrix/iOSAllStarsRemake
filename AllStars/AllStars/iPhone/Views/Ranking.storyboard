@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Ranking View Controller-->
+        <!--Ranking-->
         <scene sceneID="Iro-PO-N4i">
             <objects>
                 <viewController storyboardIdentifier="RankingViewController" id="HFw-Ol-dK1" customClass="RankingViewController" customModule="AllStars" customModuleProvider="target" sceneMemberID="viewController">
@@ -13,7 +13,7 @@
                         <viewControllerLayoutGuide type="bottom" id="cyk-FC-GjB"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ou8-Ql-jZe">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w0A-jY-m8Z">
@@ -56,7 +56,7 @@
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bg1-V6-pt6">
-                                <rect key="frame" x="0.0" y="103" width="320" height="465"/>
+                                <rect key="frame" x="0.0" y="103" width="320" height="416"/>
                                 <connections>
                                     <segue destination="uYs-Cb-kjh" kind="embed" identifier="PageControllerRanking" id="DQR-cf-wGw"/>
                                 </connections>
@@ -73,6 +73,9 @@
                             <constraint firstItem="bg1-V6-pt6" firstAttribute="leading" secondItem="ou8-Ql-jZe" secondAttribute="leading" id="rIf-2j-SBj"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <tabBarItem key="tabBarItem" title="Ranking" image="iconTabBar_1.png" id="pjc-vU-0NP"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="sgmRanking" destination="jtF-n9-nSs" id="EA6-Yr-PIy"/>
@@ -81,7 +84,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="96B-4Y-klQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="666" y="477"/>
+            <point key="canvasLocation" x="697" y="477"/>
         </scene>
         <!--User Ranking Tag View Controller-->
         <scene sceneID="ijx-13-1E5">
@@ -246,6 +249,7 @@
                             <constraint firstItem="TGc-uo-fNh" firstAttribute="top" secondItem="aUr-Qp-Vth" secondAttribute="top" id="xSv-hm-DRH"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Xxg-bv-1ue"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="acitivityEmployees" destination="dhw-Oe-oL1" id="zox-ge-ULk"/>
@@ -259,7 +263,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FVn-qX-0y1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="666" y="1136"/>
+            <point key="canvasLocation" x="1062" y="1136"/>
         </scene>
         <!--ProfileViewController-->
         <scene sceneID="7qM-bK-RXg">
@@ -267,7 +271,7 @@
                 <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileViewController" id="cDR-Gg-GV2" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r9i-Fl-YeI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1021.5" y="1136"/>
+            <point key="canvasLocation" x="1490" y="1115"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="e9e-Op-uDW">
@@ -419,10 +423,30 @@
             </objects>
             <point key="canvasLocation" x="1514" y="477"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="DbG-78-WGa">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="38s-eJ-bmj" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="el0-yo-kuA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Eck-1B-lgR" kind="relationship" relationship="rootViewController" id="x95-Yh-dpq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gse-V6-Ebw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="666" y="1136"/>
+        </scene>
     </scenes>
     <resources>
         <image name="iconBack.png" width="15" height="15"/>
         <image name="iconCup_0.png" width="30" height="30"/>
         <image name="iconNext.png" width="15" height="15"/>
+        <image name="iconTabBar_1.png" width="40" height="40"/>
     </resources>
 </document>

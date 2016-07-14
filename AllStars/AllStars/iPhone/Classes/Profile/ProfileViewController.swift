@@ -79,9 +79,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         for view in self.scoreViews{
             view.layer.borderWidth = 1
             view.layer.borderColor = UIColor.score().CGColor
-        }
-        
-        self.view.backgroundColor = UIColor.colorPrimary()
+        }        
         viewHeader.backgroundColor = UIColor.colorPrimary()
     }
     

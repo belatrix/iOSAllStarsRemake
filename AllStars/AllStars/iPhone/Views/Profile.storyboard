@@ -5,7 +5,7 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Profile View Controller-->
+        <!--Profile-->
         <scene sceneID="nOy-vQ-O5F">
             <objects>
                 <viewController storyboardIdentifier="ProfileViewController" id="6E1-nW-whj" customClass="ProfileViewController" customModule="AllStars" customModuleProvider="target" sceneMemberID="viewController">
@@ -17,12 +17,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7JB-Ot-AUC">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7JB-Ot-AUC">
                                 <rect key="frame" x="0.0" y="284" width="320" height="284"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fse-8Y-enM">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DrU-B1-znD">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="114"/>
@@ -65,7 +65,7 @@
                                             <constraint firstItem="MHj-Cf-koJ" firstAttribute="top" secondItem="DrU-B1-znD" secondAttribute="top" constant="20" id="xvK-0g-RRn"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="background">
+                                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
                                                 <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
@@ -370,7 +370,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.36862745099999999" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="7JB-Ot-AUC" firstAttribute="height" secondItem="xdq-eq-ViY" secondAttribute="height" multiplier="0.5" id="7w7-x7-2Cc"/>
                             <constraint firstAttribute="trailing" secondItem="7JB-Ot-AUC" secondAttribute="trailing" id="IVN-p9-BVK"/>
@@ -382,7 +382,9 @@
                             <constraint firstItem="qeW-k9-TB5" firstAttribute="top" secondItem="7JB-Ot-AUC" secondAttribute="bottom" id="y1w-T6-N2M"/>
                         </constraints>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="iconTabBar_0.png" id="o9d-T3-Wiz"/>
+                    <navigationItem key="navigationItem" id="cNS-zN-Qwv"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="actCategories" destination="tP3-n8-Cp9" id="1nl-G5-0F4"/>
                         <outlet property="btnAction" destination="TPc-sw-XWM" id="jji-TG-9CJ"/>
@@ -412,7 +414,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9lc-iH-wjD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="362" y="742"/>
+            <point key="canvasLocation" x="938" y="742"/>
         </scene>
         <!--RecommendViewController-->
         <scene sceneID="TMb-nk-bRd">
@@ -461,7 +463,7 @@
                                     <constraint firstAttribute="bottom" secondItem="VN9-fI-u3e" secondAttribute="bottom" id="hDu-Oj-m34"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="232" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eSq-dq-bSq">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="232" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eSq-dq-bSq">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -576,7 +578,7 @@
                                     <outlet property="delegate" destination="a4y-nA-Rrk" id="nOl-jb-YvJ"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wzB-SQ-8KY">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wzB-SQ-8KY">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading recommendations" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fw7-Z6-4ov">
@@ -635,7 +637,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oe6-4o-5f5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="821" y="742"/>
+            <point key="canvasLocation" x="1448" y="742"/>
         </scene>
         <!--UserRankingTagViewController-->
         <scene sceneID="91y-TP-gJK">
@@ -643,7 +645,7 @@
                 <viewControllerPlaceholder storyboardName="Ranking" referencedIdentifier="UserRankingTagViewController" id="zTs-ih-ZsU" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZqR-pg-Ra3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1178.5" y="742"/>
+            <point key="canvasLocation" x="1882" y="742"/>
         </scene>
         <!--Edit Profile View Controller-->
         <scene sceneID="VaV-Sb-4xo">
@@ -979,10 +981,30 @@
             </objects>
             <point key="canvasLocation" x="362" y="1563"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="U9v-bw-vLP">
+            <objects>
+                <navigationController storyboardIdentifier="ProfileNavViewController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="0tj-Ib-YlZ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="b6r-d9-fVA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="6E1-nW-whj" kind="relationship" relationship="rootViewController" id="blz-Gq-xr2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S0y-dx-hFJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="394" y="742"/>
+        </scene>
     </scenes>
     <resources>
         <image name="camera.png" width="42" height="42"/>
         <image name="iconBack.png" width="15" height="15"/>
         <image name="iconNext.png" width="15" height="15"/>
+        <image name="iconTabBar_0.png" width="30" height="30"/>
     </resources>
 </document>

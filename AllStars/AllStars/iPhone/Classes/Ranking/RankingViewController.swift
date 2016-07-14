@@ -61,12 +61,12 @@ class RankingViewController: UIViewController, UIPageViewControllerDataSource {
     
     func assignArrayTableToIndex(index : Int) {
         
-        let controllerInitial = self.arrayViewControllers[index] as! UIViewController
-        self.pageViewController.setViewControllers([controllerInitial], direction: self.currentIndex < index ? UIPageViewControllerNavigationDirection.Forward : UIPageViewControllerNavigationDirection.Reverse, animated: true, completion: nil)
+        let initialController = self.arrayViewControllers[index] as! UIViewController
+        self.pageViewController.setViewControllers([initialController], direction: self.currentIndex < index ? UIPageViewControllerNavigationDirection.Forward : UIPageViewControllerNavigationDirection.Reverse, animated: true, completion: nil)
         self.currentIndex = index
     }
     
-    // MARK - UIPageViewControllerDataSource
+    // MARK: - UIPageViewControllerDataSource
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         
         let index = self.arrayViewControllers.indexOfObject(viewController)

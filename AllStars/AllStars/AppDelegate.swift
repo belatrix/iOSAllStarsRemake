@@ -45,25 +45,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             objUserSession = session
             
             let storyBoard : UIStoryboard = UIStoryboard(name: "TabBar", bundle:nil)
-            let customTabBarViewController = storyBoard.instantiateViewControllerWithIdentifier("CustomTabBarViewController") as! CustomTabBarViewController
-            let nav : UINavigationController = UINavigationController.init(rootViewController: customTabBarViewController)
-            nav.navigationBarHidden = true
-            self.window?.rootViewController = nav
+            let tabBarViewController = storyBoard.instantiateViewControllerWithIdentifier("CustomTabBarViewController") as! UITabBarController
+           
+            UITabBar.appearance().tintColor = UIColor.belatrix()
+            
+            self.window?.rootViewController = tabBarViewController
         }
-        
-        
-
-//        
-//        //        if (FBSDKAccessToken.currentAccessToken() != nil){
-//        //            self.openOptions()
-//        //        } else {
-//        let defaults = NSUserDefaults.standardUserDefaults()
-//        if let session : Int = defaults.integerForKey("session") {
-//            if (session == 1) {
-//                self.openOptions()
-//            }
-//        }
-//        //        }
         
         return true
     }
