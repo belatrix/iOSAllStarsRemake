@@ -16,6 +16,7 @@ class SessionUD: NSUserDefaults {
     let UD_USER_LAST_NAME               : String = "user_last_name"
     let UD_USER_SKYPE_ID                : String = "user_skype_id"
     let UD_USER_BASE_PROFILE_COMPLETE   : String = "base_profile_complete"
+    let UD_USER_PUSH_TOKEN              : String = "push_token"
     
     static let sharedInstance = SessionUD()
     
@@ -88,6 +89,18 @@ class SessionUD: NSUserDefaults {
             return userBaseProfileComplete
         } else {
             return false
+        }
+    }
+    
+    func setUserPushToken (value : String) {
+        self.setValue(value, forKey: UD_USER_PUSH_TOKEN)
+    }
+    
+    func getUserPushToken () -> String {
+        if let userPUSHToken : String = self.stringForKey(UD_USER_PUSH_TOKEN) {
+            return userPUSHToken
+        } else {
+            return ""
         }
     }
     

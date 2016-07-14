@@ -9,6 +9,9 @@
 import UIKit
 import Fabric
 import TwitterKit
+import Firebase
+import FirebaseInstanceID
+import FirebaseMessaging
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,10 +21,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        // PUSH notification
-        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-        application.registerUserNotificationSettings(settings)
-        application.registerForRemoteNotifications()
+        // PUSH Notification
+        if #available(iOS 8.0, *) {
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+            application.registerForRemoteNotifications()
+        } else {
+            let types: UIRemoteNotificationType = [.Alert, .Badge, .Sound]
+            application.registerForRemoteNotificationTypes(types)
+        }
+
+        // Firebase
+        FIRApp.configure()
         
         // start Facebook
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -56,26 +68,71 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = nav
         }
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.tokenRefreshNotification),
+                                                         name: kFIRInstanceIDTokenRefreshNotification, object: nil)
+        
         return true
     }
     
-    // implemented in your application delegate
-//    func application(application: UIApplication, didRe
-//    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData!) {
-//        print("Got token data! \(deviceToken)")
-//    }
-//    
-//    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError!) {
-//        print("Couldn't register: \(error)")
-//    }
-//    
-//    func application(application: UIApplication!, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings!) {
-//        // inspect notificationSettings to see what the user said!
-//        application.registerForRemoteNotifications()
-//    }
+    func tokenRefreshNotification(notification: NSNotification) {
+        let refreshedToken = FIRInstanceID.instanceID().token()!
+        print("InstanceID token: \(refreshedToken)")
+        
+        // save in SessionUD
+        SessionUD.sharedInstance.setUserPushToken(refreshedToken)
+        
+        connectToFcm()
+    }
+    
+    func connectToFcm() {
+        FIRMessaging.messaging().connectWithCompletion { (error) in
+            if (error != nil) {
+                print("Unable to connect with FCM. \(error)")
+            } else {
+                print("Connected to FCM.")
+            }
+        }
+    }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        print("DeviceToken: \(deviceToken.description)")
+//
+//        var token = deviceToken.description
+//        token = token.replace("<", withString: "")
+//        token = token.replace(">", withString: "")
+//        token = token.replace(" ", withString: "")
+//        
+//        print("DeviceTokenFormatted: \(token)")
+//        
+//        SessionUD.sharedInstance.setUserPushToken(token)
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        print("Error: \(error.localizedDescription)")
+//        SessionUD.sharedInstance.setUserPushToken("")
+    }
+    
+    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+        application.registerForRemoteNotifications()
+    }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        print("receive push :D")
+        print("userInfo: \(userInfo)")
+        
+        let message_id = userInfo["gcm.message_id"]!
+        let dicPUSH = userInfo["aps"]!["alert"]! as! NSDictionary
+        let body = dicPUSH["body"] as! String
+        let title = dicPUSH["title"] as! String
+
+        let notification = UILocalNotification()
+        notification.alertTitle = title
+        notification.alertBody = body
+        notification.alertAction = "Open"
+        notification.fireDate = nil
+        notification.soundName = UILocalNotificationDefaultSoundName
+        notification.userInfo = ["title": title, "message_id": message_id]
+        
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
@@ -90,6 +147,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        FIRMessaging.messaging().disconnect()
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -99,9 +157,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         FBSDKAppEvents.activateApp()
+        
+        connectToFcm()
     }
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    
 }
