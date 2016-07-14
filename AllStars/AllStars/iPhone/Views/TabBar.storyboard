@@ -39,7 +39,7 @@
                         <segue destination="NA1-BV-whf" kind="relationship" relationship="viewControllers" id="HjU-Jm-1o2"/>
                         <segue destination="JjQ-O3-wmn" kind="relationship" relationship="viewControllers" id="Vuz-R9-jhM"/>
                         <segue destination="AqH-qZ-qjj" kind="modal" id="5HH-xj-vUo"/>
-                        <segue destination="GT3-Hg-aip" kind="relationship" relationship="viewControllers" id="nSn-oz-9sQ"/>
+                        <segue destination="387-2h-kvU" kind="relationship" relationship="viewControllers" id="CxC-Z0-yUn"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BdS-Tu-jam" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -66,6 +66,16 @@
             </objects>
             <point key="canvasLocation" x="-56.5" y="750"/>
         </scene>
+        <!--About-->
+        <scene sceneID="GYY-tV-FmK">
+            <objects>
+                <viewControllerPlaceholder storyboardName="About" id="387-2h-kvU" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="About" id="9fa-ar-8Gu"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tsE-Hy-2da" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="474.5" y="215"/>
+        </scene>
         <!--LogInViewController-->
         <scene sceneID="HMu-zi-tHT">
             <objects>
@@ -74,46 +84,11 @@
             </objects>
             <point key="canvasLocation" x="399.5" y="403"/>
         </scene>
-        <!--About-->
-        <scene sceneID="AXx-Yx-lzu">
-            <objects>
-                <viewController id="GT3-Hg-aip" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="heJ-Ae-uta"/>
-                        <viewControllerLayoutGuide type="bottom" id="mjm-7Z-oys"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="pTe-io-e3g">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="TUP-RY-Jgb">
-                                <rect key="frame" x="9" y="33" width="304" height="478"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="TUP-RY-Jgb" firstAttribute="top" secondItem="heJ-Ae-uta" secondAttribute="bottom" constant="13" id="D4G-Lw-G54"/>
-                            <constraint firstItem="mjm-7Z-oys" firstAttribute="top" secondItem="TUP-RY-Jgb" secondAttribute="bottom" constant="8" id="bJQ-pn-saz"/>
-                            <constraint firstItem="TUP-RY-Jgb" firstAttribute="leading" secondItem="pTe-io-e3g" secondAttribute="leading" constant="9" id="v6V-KW-3an"/>
-                            <constraint firstAttribute="trailing" secondItem="TUP-RY-Jgb" secondAttribute="trailing" constant="7" id="vHH-7H-qYK"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="About" image="location.png" id="y0j-Qm-nvd"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XMy-Kb-29X" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="708" y="298"/>
-        </scene>
     </scenes>
     <resources>
         <image name="iconTabBar_0.png" width="30" height="30"/>
         <image name="iconTabBar_1.png" width="40" height="40"/>
         <image name="iconTabBar_2.png" width="30" height="30"/>
         <image name="iconTabBar_3.png" width="30" height="30"/>
-        <image name="location.png" width="30" height="30"/>
     </resources>
 </document>
