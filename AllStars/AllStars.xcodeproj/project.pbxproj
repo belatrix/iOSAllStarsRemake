@@ -113,6 +113,7 @@
 		B6C09DB01D134598006C1D43 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B6C09DAF1D134598006C1D43 /* Localizable.strings */; };
 		B6C152231D087E6800D8D180 /* SignUpBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C152221D087E6800D8D180 /* SignUpBC.swift */; };
 		B6C152261D08822B00D8D180 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C152251D08822B00D8D180 /* Util.swift */; };
+		B6C369EC1D38332F006FCD73 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B6C369EB1D38332F006FCD73 /* GoogleService-Info.plist */; };
 		B6CA97901D09B556005FF6D6 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CA978F1D09B556005FF6D6 /* UserSession.swift */; };
 		B6CA97921D09BB43005FF6D6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CA97911D09BB43005FF6D6 /* Constants.swift */; };
 		B6EE58A61CFF4CD60027B697 /* location@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6EE58A41CFF4CD60027B697 /* location@3x.png */; };
@@ -120,6 +121,7 @@
 		B6EE58A91CFF883B0027B697 /* UserRankingTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EE58A81CFF883B0027B697 /* UserRankingTagViewController.swift */; };
 		B6EE58AB1CFF8AF00027B697 /* UserRankingTagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EE58AA1CFF8AF00027B697 /* UserRankingTagTableViewCell.swift */; };
 		B6EE58AD1CFF91990027B697 /* UserTagBE.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EE58AC1CFF91990027B697 /* UserTagBE.swift */; };
+		B6F770141D37F8FA004F3607 /* UserDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F770131D37F8F9004F3607 /* UserDevice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -264,6 +266,7 @@
 		B6C09DAF1D134598006C1D43 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = Util/Localizable.strings; sourceTree = "<group>"; };
 		B6C152221D087E6800D8D180 /* SignUpBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpBC.swift; path = SignUp/Logic/SignUpBC.swift; sourceTree = "<group>"; };
 		B6C152251D08822B00D8D180 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Util.swift; path = Util/Util.swift; sourceTree = "<group>"; };
+		B6C369EB1D38332F006FCD73 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B6CA978F1D09B556005FF6D6 /* UserSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		B6CA97911D09BB43005FF6D6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Util/Constants.swift; sourceTree = "<group>"; };
 		B6EE58A41CFF4CD60027B697 /* location@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location@3x.png"; sourceTree = "<group>"; };
@@ -271,6 +274,7 @@
 		B6EE58A81CFF883B0027B697 /* UserRankingTagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRankingTagViewController.swift; sourceTree = "<group>"; };
 		B6EE58AA1CFF8AF00027B697 /* UserRankingTagTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRankingTagTableViewCell.swift; sourceTree = "<group>"; };
 		B6EE58AC1CFF91990027B697 /* UserTagBE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTagBE.swift; sourceTree = "<group>"; };
+		B6F770131D37F8F9004F3607 /* UserDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDevice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -408,6 +412,7 @@
 			children = (
 				96AC74961CDB73AF00D993E7 /* AppDelegate.swift */,
 				96AC74F11CDBEC6100D993E7 /* AllStars-Bridging-Header.h */,
+				B6C369EB1D38332F006FCD73 /* GoogleService-Info.plist */,
 				96AC74E31CDB9A3A00D993E7 /* CommonClasses */,
 				96AC74C41CDB743500D993E7 /* iPhone */,
 				96AC74DB1CDB7D4500D993E7 /* Entities */,
@@ -548,6 +553,7 @@
 				96AC74DC1CDB7D5E00D993E7 /* User.swift */,
 				B6CA978F1D09B556005FF6D6 /* UserSession.swift */,
 				B6A7AFC41D26CF000083883B /* UserGuest.swift */,
+				B6F770131D37F8F9004F3607 /* UserDevice.swift */,
 				9638EF3E1CDCF52800D07D51 /* StarSubCategoryBE.swift */,
 				96757BE61CE0DD5F00BA216A /* UserQualifyBE.swift */,
 				B6EE58AC1CFF91990027B697 /* UserTagBE.swift */,
@@ -749,6 +755,7 @@
 				B6DF767F1D22D1B70030D8BB /* ShellScript */,
 				6E60AC0DCEB5794B80835BCF /* [CP] Embed Pods Frameworks */,
 				C3F751A52F608FD829ED25FE /* [CP] Copy Pods Resources */,
+				FD10ECB49474997E3654DA81 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -807,6 +814,7 @@
 				TargetAttributes = {
 					96AC74921CDB73AF00D993E7 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = X3NTASB9PV;
 					};
 					96AC74A61CDB73AF00D993E7 = {
 						CreatedOnToolsVersion = 7.3;
@@ -871,6 +879,7 @@
 				9637DE141CE2306A002AA60E /* iconAdd@3x.png in Resources */,
 				96B2A0D51CE635DD00C8F97D /* iconTabBar_1@3x.png in Resources */,
 				9638EF461CDD0DA800D07D51 /* iconNext@3x.png in Resources */,
+				B6C369EC1D38332F006FCD73 /* GoogleService-Info.plist in Resources */,
 				9637DE121CE21EA2002AA60E /* iconBack@3x.png in Resources */,
 				9613BBFA1CE4BD9500533FAF /* check@2x.png in Resources */,
 				96AC74DA1CDB7C0800D993E7 /* logo@3x.png in Resources */,
@@ -961,6 +970,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AllStars/Pods-AllStars-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		FD10ECB49474997E3654DA81 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AllStars/Pods-AllStars-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1003,6 +1027,7 @@
 				B6C09DAE1D13453A006C1D43 /* ExtString.swift in Sources */,
 				9609D7461CE3A9A800BF6036 /* CategoryBE.swift in Sources */,
 				96757BE71CE0DD5F00BA216A /* UserQualifyBE.swift in Sources */,
+				B6F770141D37F8FA004F3607 /* UserDevice.swift in Sources */,
 				B6A7AFC51D26CF000083883B /* UserGuest.swift in Sources */,
 				B66FBC7D1D00D1E100C058F7 /* LocationBE.swift in Sources */,
 				96E41EED1CE24CC50071D49E /* SearchBC.swift in Sources */,
@@ -1183,7 +1208,7 @@
 				INFOPLIST_FILE = AllStars/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.belatrix.AllStars;
+				PRODUCT_BUNDLE_IDENTIFIER = com.belatrix.connect;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1203,7 +1228,7 @@
 				INFOPLIST_FILE = AllStars/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.belatrix.AllStars;
+				PRODUCT_BUNDLE_IDENTIFIER = com.belatrix.connect;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

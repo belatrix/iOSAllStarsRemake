@@ -46,13 +46,38 @@ class LogInBC: NSObject {
                     completion(userSession: userSession, accountState: Constants.PASSWORD_RESET_INCOMPLETE)
                 }
             } else if (errorResponse != nil) {
-                 OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
                 
                 completion(userSession: userSession, accountState: "")
             } else {
                 OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
                 
                 completion(userSession: userSession, accountState: "")
+            }
+        }
+    }
+    
+    class func registerUserDevice(userDevice : UserDevice, withCompletion completion : (userDevice : UserDevice?) -> Void) {
+        
+        let objUser = self.getCurrenteUserSession()
+        
+        if (objUser == nil || objUser!.user_token == nil) {
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
+            
+            completion(userDevice: nil)
+            return
+        }
+        
+        OSPWebModel.registerUserDevice(userDevice, withToken: objUser!.user_token!) {(userDevice, errorResponse, successful) in
+            
+            if (userDevice != nil) {
+                completion(userDevice: userDevice)
+            } else if (errorResponse != nil) {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
+                completion(userDevice: nil)
+            } else {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
+                completion(userDevice: nil)
             }
         }
     }

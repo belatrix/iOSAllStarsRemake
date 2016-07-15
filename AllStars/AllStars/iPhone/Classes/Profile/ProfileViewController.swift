@@ -38,13 +38,15 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         super.viewDidLoad()
         
         setViews()
-    }
-    
-    override func viewWillAppear(animated: Bool) {
+        
         if self.objUser == nil {
             self.objUser = LogInBC.getCurrenteUserSession()
         }
         
+        registerUserDevice()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         if self.objUser != nil {
             self.updateUserInfo()
         }
@@ -221,6 +223,19 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
         
         self.listSubCategories()
+    }
+    
+    func registerUserDevice() -> Void {
+        let userDev = UserDevice()
+        userDev.user_id = self.objUser!.user_pk!
+        userDev.user_ios_id = SessionUD.sharedInstance.getUserPushToken()
+        
+        LogInBC.registerUserDevice(userDev) { (userDevice) in
+            
+            if userDevice != nil {
+                print(userDevice!.user_ios_id!)
+            }
+        }
     }
     
     // MARK: - Navigation
