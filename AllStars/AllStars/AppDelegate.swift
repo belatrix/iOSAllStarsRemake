@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerForRemoteNotifications()
         
         // Firebase
-        FIRApp.configure()
+//        FIRApp.configure()
         
         // start Facebook
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -64,8 +64,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         }
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.tokenRefreshNotification),
-                                                         name: kFIRInstanceIDTokenRefreshNotification, object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.tokenRefreshNotification),
+//                                                         name: kFIRInstanceIDTokenRefreshNotification, object: nil)
         
         return true
     }
