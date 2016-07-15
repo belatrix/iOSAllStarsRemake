@@ -22,18 +22,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         // PUSH Notification
-        if #available(iOS 8.0, *) {
-            let settings: UIUserNotificationSettings =
-                UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-            application.registerUserNotificationSettings(settings)
-            application.registerForRemoteNotifications()
-        } else {
-            let types: UIRemoteNotificationType = [.Alert, .Badge, .Sound]
-            application.registerForRemoteNotificationTypes(types)
-        }
+        let settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
 
         // Firebase
         FIRApp.configure()
+        
+        // AddObserver
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.tokenRefreshNotification), name: kFIRInstanceIDTokenRefreshNotification, object: nil)
         
         // start Facebook
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -68,10 +65,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = nav
         }
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.tokenRefreshNotification),
-                                                         name: kFIRInstanceIDTokenRefreshNotification, object: nil)
-        
         return true
+    }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        print("DeviceToken: \(deviceToken.description)")
+
+        let tokenChars = UnsafePointer<CChar>(deviceToken.bytes)
+        var tokenString = ""
+        
+        for i in 0..<deviceToken.length {
+            tokenString += String(format: "%02.2hhx", arguments: [tokenChars[i]])
+        }
+        
+        FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: FIRInstanceIDAPNSTokenType.Unknown)
+        
+        print("DeviceTokenFormatted:", tokenString)
+        
+//        SessionUD.sharedInstance.setUserPushToken(token)
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        print("Error: \(error.localizedDescription)")
+//        SessionUD.sharedInstance.setUserPushToken("")
+    }
+    
+    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+        if notificationSettings.types != .None {
+            application.registerForRemoteNotifications()
+        }
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject],
+                     fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        print("userInfo: \(userInfo)")
+        
+        let dicPUSH = userInfo as NSDictionary
+        let title = dicPUSH["title"] as! String
+        let detail = dicPUSH["detail"] as! String
+        let from = dicPUSH["from"] as! String
+
+        let notification = UILocalNotification()
+        notification.alertTitle = title
+        notification.alertBody = detail
+        notification.alertAction = "Open"
+        notification.fireDate = nil
+        notification.soundName = UILocalNotificationDefaultSoundName
+//        notification.prior
+        notification.userInfo = ["title": title, "from": from]
+        
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     
     func tokenRefreshNotification(notification: NSNotification) {
@@ -92,47 +135,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("Connected to FCM.")
             }
         }
-    }
-    
-    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        print("DeviceToken: \(deviceToken.description)")
-//
-//        var token = deviceToken.description
-//        token = token.replace("<", withString: "")
-//        token = token.replace(">", withString: "")
-//        token = token.replace(" ", withString: "")
-//        
-//        print("DeviceTokenFormatted: \(token)")
-//        
-//        SessionUD.sharedInstance.setUserPushToken(token)
-    }
-    
-    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        print("Error: \(error.localizedDescription)")
-//        SessionUD.sharedInstance.setUserPushToken("")
-    }
-    
-    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
-        application.registerForRemoteNotifications()
-    }
-    
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        print("userInfo: \(userInfo)")
-        
-        let message_id = userInfo["gcm.message_id"]!
-        let dicPUSH = userInfo["aps"]!["alert"]! as! NSDictionary
-        let body = dicPUSH["body"] as! String
-        let title = dicPUSH["title"] as! String
-
-        let notification = UILocalNotification()
-        notification.alertTitle = title
-        notification.alertBody = body
-        notification.alertAction = "Open"
-        notification.fireDate = nil
-        notification.soundName = UILocalNotificationDefaultSoundName
-        notification.userInfo = ["title": title, "message_id": message_id]
-        
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
@@ -164,6 +166,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-    
-    
 }

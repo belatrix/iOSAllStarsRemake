@@ -795,6 +795,14 @@
 					96AC74921CDB73AF00D993E7 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = X3NTASB9PV;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					96AC74A61CDB73AF00D993E7 = {
 						CreatedOnToolsVersion = 7.3;
