@@ -7,14 +7,26 @@
 //
 
 import Foundation
+import MessageUI
 
-
-class AboutViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+class AboutViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, MFMailComposeViewControllerDelegate {
     
+    // MARK: - Main view variables
     var pageViewController = UIPageViewController()
     
     @IBOutlet weak var pageControl: UIPageControl!
     
+    // MARK: - Info Texts variables
+    
+    @IBOutlet weak var whatLabel: UILabel!
+    @IBOutlet weak var whatLabelText: UILabel!
+    @IBOutlet weak var whyLabel: UILabel!
+    @IBOutlet weak var whyLabelText: UILabel!
+    @IBOutlet weak var whoLabel: UILabel!
+    @IBOutlet weak var whoLabelText: UILabel!
+    
+    // MARK: - Lincense variables
+    @IBOutlet weak var licenseTextView: UITextView!
     
     lazy var arrayViewControllers : [UIViewController] = {
         
@@ -22,7 +34,9 @@ class AboutViewController: UIViewController, UIPageViewControllerDataSource, UIP
         
         let collaboratorsAbout = self.storyboard?.instantiateViewControllerWithIdentifier("CollaboratorsViewController")
         
-        return [controllerTextInfo!, collaboratorsAbout!]
+        let licenseAbout = self.storyboard?.instantiateViewControllerWithIdentifier("LicenseViewController")
+        
+        return [controllerTextInfo!, collaboratorsAbout!, licenseAbout!]
     }()
     
     // MARK: - Initialization
@@ -30,13 +44,48 @@ class AboutViewController: UIViewController, UIPageViewControllerDataSource, UIP
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        guard let pageControl = self.pageControl
+            else {                
+                settexts()
+                return
+        }
+        
         pageControl.numberOfPages = arrayViewControllers.count
-//        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "ic_nav_header.jpg")!)
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     // MARK: - Style
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
+    }
+    
+    func settexts() {
+        
+        setInfoTexts()
+        setLicenseText()
+    }
+    
+    func setInfoTexts() {
+        
+        guard let _ = self.whatLabel
+            else { return }
+        
+        whatLabel.text = "what".localized
+        whatLabelText.text = "about_what".localized
+        whyLabel.text = "why".localized
+        whyLabelText.text = "about_why".localized
+        whoLabel.text = "who".localized
+        whoLabelText.text = "about_who".localized
+    }
+    
+    func setLicenseText(){
+        
+        guard let license = self.licenseTextView
+            else { return }
+        
+        license.text = "about_license".localized
+        license.textColor = UIColor.whiteColor()
     }
     
     // MARK: - UIPageViewControllerDataSource
@@ -103,6 +152,39 @@ class AboutViewController: UIViewController, UIPageViewControllerDataSource, UIP
         let currentIndex = arrayViewControllers.indexOf((self.pageViewController.viewControllers?.first)!)
         
         self.pageViewController.setViewControllers([initialController], direction: currentIndex < newIndex ? UIPageViewControllerNavigationDirection.Forward : UIPageViewControllerNavigationDirection.Reverse, animated: true, completion: nil)
+    }
+    
+    @IBAction func sendMessage(sender: AnyObject) {
+        
+        self.sendEmail()
+    }
+    
+    func sendEmail() {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["email_support".localized])
+            mail.setSubject("email_subject".localized)
+            
+            presentViewController(mail, animated: true, completion: nil)
+        } else {
+            // show failure alert
+            
+            let alert: UIAlertController = UIAlertController(title: "email_error_message".localized, message: nil, preferredStyle: .ActionSheet)
+            
+            
+            let cancelAction = UIAlertAction(title: "ok".localized, style: .Cancel,
+                                             handler: nil)
+
+            alert.addAction(cancelAction)
+            
+            self.presentViewController(alert, animated: true, completion: {})
+        }
+    }
+    
+    // MARK: - MFMailComposeViewControllerDelegate
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: - Navigation

@@ -34,11 +34,12 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="AqH-qZ-qjj" kind="modal" id="5HH-xj-vUo"/>
                         <segue destination="wWs-rJ-wOl" kind="relationship" relationship="viewControllers" id="WeI-gG-m4D"/>
                         <segue destination="a4D-E0-X0S" kind="relationship" relationship="viewControllers" id="MJ9-cR-FoL"/>
                         <segue destination="NA1-BV-whf" kind="relationship" relationship="viewControllers" id="HjU-Jm-1o2"/>
                         <segue destination="JjQ-O3-wmn" kind="relationship" relationship="viewControllers" id="Vuz-R9-jhM"/>
-                        <segue destination="AqH-qZ-qjj" kind="modal" id="5HH-xj-vUo"/>
+                        <segue destination="YGB-HN-sqe" kind="relationship" relationship="viewControllers" id="BgH-yo-RHk"/>
                         <segue destination="387-2h-kvU" kind="relationship" relationship="viewControllers" id="CxC-Z0-yUn"/>
                     </connections>
                 </tabBarController>
@@ -75,6 +76,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tsE-Hy-2da" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="474.5" y="215"/>
+        </scene>
+        <!--Event-->
+        <scene sceneID="bgM-Cg-JVB">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Event" id="YGB-HN-sqe" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Events" id="aIM-63-jEA"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V5i-D9-gSV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="470.5" y="290"/>
         </scene>
         <!--LogInViewController-->
         <scene sceneID="HMu-zi-tHT">
