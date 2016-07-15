@@ -154,6 +154,10 @@ class AboutViewController: UIViewController, UIPageViewControllerDataSource, UIP
         self.pageViewController.setViewControllers([initialController], direction: currentIndex < newIndex ? UIPageViewControllerNavigationDirection.Forward : UIPageViewControllerNavigationDirection.Reverse, animated: true, completion: nil)
     }
     
+    @IBAction func goBack(sender: AnyObject) {
+        
+        self.navigationController?.popViewControllerAnimated(true)
+    }
     @IBAction func sendMessage(sender: AnyObject) {
         
         self.sendEmail()
