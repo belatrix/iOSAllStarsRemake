@@ -80,7 +80,7 @@
         <!--Page View Controller-->
         <scene sceneID="02h-UY-RgK">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="ekn-tI-s6Z" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="ekn-tI-s6Z" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hfy-Z2-l1h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="493" y="400"/>
@@ -97,9 +97,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_nav_header" translatesAutoresizingMaskIntoConstraints="NO" id="80e-CA-CVR">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                            </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OR7-2B-bA7">
                                 <rect key="frame" x="0.0" y="28" width="320" height="540"/>
                                 <subviews>
@@ -233,11 +230,7 @@
                             <constraint firstItem="OR7-2B-bA7" firstAttribute="top" secondItem="dBV-on-5S5" secondAttribute="bottom" constant="8" symbolic="YES" id="1mw-NQ-iJl"/>
                             <constraint firstItem="OR7-2B-bA7" firstAttribute="leading" secondItem="wlo-wD-9QC" secondAttribute="leading" id="Cjh-Ep-pJV"/>
                             <constraint firstItem="OR7-2B-bA7" firstAttribute="bottom" secondItem="fly-Nt-gno" secondAttribute="top" id="QeA-Ye-GvO"/>
-                            <constraint firstItem="fly-Nt-gno" firstAttribute="top" secondItem="80e-CA-CVR" secondAttribute="bottom" id="aIO-Nw-c7T"/>
                             <constraint firstAttribute="trailing" secondItem="OR7-2B-bA7" secondAttribute="trailing" id="bBd-tu-VW8"/>
-                            <constraint firstAttribute="trailing" secondItem="80e-CA-CVR" secondAttribute="trailing" id="iUG-YA-SSc"/>
-                            <constraint firstItem="80e-CA-CVR" firstAttribute="top" secondItem="wlo-wD-9QC" secondAttribute="top" id="ySp-V5-9z7"/>
-                            <constraint firstItem="80e-CA-CVR" firstAttribute="leading" secondItem="wlo-wD-9QC" secondAttribute="leading" id="ziU-jv-GjG"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -268,6 +261,7 @@
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="W33-ti-M7n">
                                 <rect key="frame" x="20" y="61" width="280" height="487"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7oC-2F-M4D">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -287,7 +281,7 @@
                                 </cells>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="W33-ti-M7n" firstAttribute="leading" secondItem="1qH-Ft-e6C" secondAttribute="leading" constant="20" id="3Tl-25-17q"/>
                             <constraint firstItem="UkK-fr-fwy" firstAttribute="leading" secondItem="1qH-Ft-e6C" secondAttribute="leading" constant="10" id="D5R-79-gRr"/>
