@@ -426,7 +426,7 @@
         <!--Navigation Controller-->
         <scene sceneID="DbG-78-WGa">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="38s-eJ-bmj" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="TagNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="38s-eJ-bmj" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="el0-yo-kuA">

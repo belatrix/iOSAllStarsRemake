@@ -34,7 +34,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="AqH-qZ-qjj" kind="modal" id="5HH-xj-vUo"/>
+                        <segue destination="AqH-qZ-qjj" kind="modal" identifier="Logout" id="5HH-xj-vUo"/>
                         <segue destination="wWs-rJ-wOl" kind="relationship" relationship="viewControllers" id="WeI-gG-m4D"/>
                         <segue destination="a4D-E0-X0S" kind="relationship" relationship="viewControllers" id="MJ9-cR-FoL"/>
                         <segue destination="NA1-BV-whf" kind="relationship" relationship="viewControllers" id="HjU-Jm-1o2"/>
