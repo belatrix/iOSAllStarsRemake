@@ -68,6 +68,16 @@ class OSPWebTranslator: NSObject {
         return objBE
     }
     
+    class func parseUserDevice(objDic : NSDictionary) -> UserDevice{
+        
+        let objBE = UserDevice()
+        
+        objBE.user_id                   = objDic["username"] != nil ? NSNumber(integer: objDic["username"]!.integerValue) : nil
+        objBE.user_ios_id               = (objDic["ios_device"] == nil || objDic["ios_device"] is NSNull) ? "" : objDic["ios_device"] as? String
+        
+        return objBE
+    }
+    
     class func parseUserGuestBE(objDic : NSDictionary) -> UserGuest{
         
         let objBE = UserGuest()

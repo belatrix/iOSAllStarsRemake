@@ -159,6 +159,27 @@ class OSPWebModel: NSObject {
         }
     }
     
+    class func registerUserDevice(userDevice : UserDevice, withToken token : String, withCompletion completion : (userDevice : UserDevice?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
+        
+        let dic : [String : AnyObject] =
+            ["employee_id" : userDevice.user_id!,
+             "ios_device" : userDevice.user_ios_id!]
+        
+        let path = "/api/employee/\(userDevice.user_id!)/register/device/"
+        
+        OSPWebSender.doPOSTWithTokenTemp(path, withParameters: dic, withToken: token) {(response, successful) in
+            if (response != nil) {
+                if (successful) {
+                    completion(userDevice: OSPWebTranslator.parseUserDevice(response as! [String : AnyObject]), errorResponse: nil, successful: successful)
+                } else {
+                    completion(userDevice: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
+                }
+            } else {
+                completion(userDevice: nil, errorResponse: nil, successful: successful)
+            }
+        }
+    }
+    
     class func createUser(email : String, withCompletion completion : (errorResponse : ErrorResponse?, successful : Bool) -> Void) {
         
         let dic : [String : AnyObject] =
