@@ -11,19 +11,25 @@ import Foundation
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var backButton: UIButton!
     
     
     lazy var options: [SettingsOptions] = {
         
-        let isGuest = false
+        let session_id                      : Int       = SessionUD.sharedInstance.getUserPk()
+        let session_tokken                  : String    = SessionUD.sharedInstance.getUserToken()
+        let session_base_profile_complete   : Bool      = SessionUD.sharedInstance.getUserBaseProfileComplete()
         
-        if isGuest {
+        if (session_id != -1 && session_tokken != "" && session_base_profile_complete == true) {
             
+            // Registered User
+            return [SettingsOptions.notification, SettingsOptions.logOut]
+            
+        } else {
+            // Guest User
             return [SettingsOptions.logOut]
             
         }
-        
-        return [SettingsOptions.notification, SettingsOptions.logOut]
         
     }()
     
@@ -33,6 +39,14 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 60
+        
+        if let nav = self.navigationController where nav.viewControllers.count > 1 {
+            
+            backButton.hidden = false
+        } else {
+            
+            backButton.hidden = true
+        }
     }
     
     override func viewWillAppear(animated: Bool) {

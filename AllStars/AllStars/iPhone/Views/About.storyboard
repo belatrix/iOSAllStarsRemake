@@ -83,6 +83,7 @@
                     <tabBarItem key="tabBarItem" title="About" image="iconTabBar_about" id="rTu-G0-4tU"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="backButton" destination="6uU-EI-sYQ" id="lIl-Yb-YF6"/>
                         <outlet property="pageControl" destination="u6k-uc-tpX" id="c0p-QH-hTy"/>
                     </connections>
                 </viewController>

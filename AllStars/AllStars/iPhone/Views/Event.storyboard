@@ -168,6 +168,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="actLoading" destination="Z6y-HY-JgY" id="sAr-1T-8lq"/>
+                        <outlet property="backButton" destination="iAs-BE-QZB" id="17B-FD-YBj"/>
                         <outlet property="lblErrorMessage" destination="taY-AJ-nMi" id="x4b-Ke-JFn"/>
                         <outlet property="tlbEvents" destination="622-ho-72g" id="4Ln-yt-CGe"/>
                         <outlet property="viewHeader" destination="sxJ-L4-O38" id="FpW-Jc-biM"/>

@@ -125,6 +125,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="backButton" destination="jfP-eO-azM" id="gby-b9-rcf"/>
                         <outlet property="tableView" destination="86s-oK-rwf" id="Ndd-DE-DG0"/>
                     </connections>
                 </viewController>

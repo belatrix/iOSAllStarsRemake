@@ -15,6 +15,7 @@ class AboutViewController: UIViewController, UIPageViewControllerDataSource, UIP
     var pageViewController = UIPageViewController()
     
     @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var backButton: UIButton!
     
     // MARK: - Info Texts variables
     
@@ -51,6 +52,14 @@ class AboutViewController: UIViewController, UIPageViewControllerDataSource, UIP
         }
         
         pageControl.numberOfPages = arrayViewControllers.count
+        
+        if let nav = self.navigationController where nav.viewControllers.count > 1 {
+            
+            backButton.hidden = false
+        } else {
+            
+            backButton.hidden = true
+        }
         
     }
     
