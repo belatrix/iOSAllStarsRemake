@@ -22,7 +22,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iAs-BE-QZB">
                                         <rect key="frame" x="0.0" y="20" width="29" height="44"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <state key="normal" image="iconDown.png"/>
+                                        <state key="normal" image="iconBack.png"/>
                                         <connections>
                                             <action selector="btnBackTUI:" destination="mIJ-pg-sUm" eventType="touchUpInside" id="9dF-eF-HmU"/>
                                         </connections>
@@ -180,7 +180,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="iconDown.png" width="15" height="15"/>
+        <image name="iconBack.png" width="15" height="15"/>
         <image name="placeholder_general.png" width="207" height="138"/>
     </resources>
 </document>
