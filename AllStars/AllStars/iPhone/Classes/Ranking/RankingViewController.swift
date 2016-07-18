@@ -40,7 +40,19 @@ class RankingViewController: UIViewController, UIPageViewControllerDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
         setViews()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if let rootVC = self.navigationController?.viewControllers.first where
+            rootVC == self.tabBarController?.moreNavigationController.viewControllers.first  {
+            
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+        }
     }
     
     // MARK: - Style

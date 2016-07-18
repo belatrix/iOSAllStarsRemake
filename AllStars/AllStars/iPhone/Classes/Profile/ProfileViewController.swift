@@ -44,6 +44,19 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
         
         registerUserDevice()
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.tabBarController?.moreNavigationController.navigationItem.rightBarButtonItem = nil
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if let rootVC = self.navigationController?.viewControllers.first where
+            rootVC == self.tabBarController?.moreNavigationController.viewControllers.first  {
+            
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {

@@ -22,18 +22,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         // PUSH Notification
-        if #available(iOS 8.0, *) {
-            let settings: UIUserNotificationSettings =
-                UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-            application.registerUserNotificationSettings(settings)
-            application.registerForRemoteNotifications()
-        } else {
-            let types: UIRemoteNotificationType = [.Alert, .Badge, .Sound]
-            application.registerForRemoteNotificationTypes(types)
-        }
-
+        let settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
+        
         // Firebase
-        FIRApp.configure()
+//        FIRApp.configure()
         
         // start Facebook
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -70,8 +64,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         }
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.tokenRefreshNotification),
-                                                         name: kFIRInstanceIDTokenRefreshNotification, object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.tokenRefreshNotification),
+//                                                         name: kFIRInstanceIDTokenRefreshNotification, object: nil)
         
         return true
     }

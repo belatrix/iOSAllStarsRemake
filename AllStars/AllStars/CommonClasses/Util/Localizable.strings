@@ -17,6 +17,9 @@ no = "No";
 server_error = "There is a error in server, try again in a few minutes";
 no_availables_locations = "Locations no availables";
 token_invalid = "Problems with your session. Logout and try again please";
+why = "Why";
+what = "What";
+Who = "Who";
 
 // SignUp
 mail_empty = "Email must not be empty";
@@ -46,3 +49,30 @@ first_name_empty = "First Name must not be empty";
 last_name_empty = "Last Name must not be empty";
 skype_id_empty = "Skype Id must not be empty";
 location_empty = "Must be select a location";
+
+// About
+about_what = "Belatrix Connect tries to motivated social engagement and teammate recognition through reputation points system based on technical criteria topics about Software Development, also Belatrix Connect wants to be a social connection between people interested in events or talks organized by Belatrix.";
+about_why = "Because we want to take action and improve our working environment. Because we can. Because we believe in technology and mobile world.";
+about_who = "Belatrix Connect was created by people really motivated doing geeky stuff and living passionated about mobile technology.";
+email_error_message = "Please configure your email.";
+email_support = "crash.allbelatrix@neosergio.net";
+email_subject = "AllStars - Support";
+about_license = "The MIT License (MIT)\
+Copyright 2016 BELATRIX\
+Permission is hereby granted, free of charge, to any person obtaining a copy\
+of this software and associated documentation files (the \"Software\"), to deal\
+in the Software without restriction, including without limitation the rights\
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\
+copies of the Software, and to permit persons to whom the Software is\
+furnished to do so, subject to the following conditions:\
+\
+The above copyright notice and this permission notice shall be included in all\
+copies or substantial portions of the Software.\
+\
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\
+SOFTWARE.";
