@@ -52,9 +52,12 @@ class AboutViewController: UIViewController, UIPageViewControllerDataSource, UIP
         
         pageControl.numberOfPages = arrayViewControllers.count
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        print(self.navigationController?.viewControllers.first)
-        print(self.tabBarController?.moreNavigationController.viewControllers.first)
     }
     
     override func viewWillDisappear(animated: Bool) {

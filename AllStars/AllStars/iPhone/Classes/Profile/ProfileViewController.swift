@@ -44,9 +44,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
         
         registerUserDevice()
-        
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
-        self.tabBarController?.moreNavigationController.navigationItem.rightBarButtonItem = nil
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -78,7 +75,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             self.btnLogout.hidden = false
         }
         
-        super.viewWillAppear(animated)
+        super.viewWillAppear(animated)        
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     // MARK: - Style

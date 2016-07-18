@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		19EB523AC5A4798F9BFA29B7 /* Pods_AllStars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B099B21DBCE77889351873A /* Pods_AllStars.framework */; };
+		347CE3BC1D3D6D2A0040CB19 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347CE3BB1D3D6D2A0040CB19 /* SettingsViewController.swift */; };
+		347CE3BE1D3D70660040CB19 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 347CE3BD1D3D70660040CB19 /* Settings.storyboard */; };
 		34D67C191D37E0C7002D1DC7 /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34D67C181D37E0C7002D1DC7 /* About.storyboard */; };
 		34D67C1C1D37FBCB002D1DC7 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D67C1B1D37FBCB002D1DC7 /* AboutViewController.swift */; };
 		34D67C1E1D382447002D1DC7 /* AboutCollaboratorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D67C1D1D382447002D1DC7 /* AboutCollaboratorsViewController.swift */; };
@@ -143,6 +145,8 @@
 
 /* Begin PBXFileReference section */
 		096506E97712267EE8D873B8 /* Pods-AllStars.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AllStars.release.xcconfig"; path = "Pods/Target Support Files/Pods-AllStars/Pods-AllStars.release.xcconfig"; sourceTree = "<group>"; };
+		347CE3BB1D3D6D2A0040CB19 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		347CE3BD1D3D70660040CB19 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		34D67C181D37E0C7002D1DC7 /* About.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = About.storyboard; sourceTree = "<group>"; };
 		34D67C1B1D37FBCB002D1DC7 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		34D67C1D1D382447002D1DC7 /* AboutCollaboratorsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutCollaboratorsViewController.swift; sourceTree = "<group>"; };
@@ -305,6 +309,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		347CE3BA1D3D6D080040CB19 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				347CE3BB1D3D6D2A0040CB19 /* SettingsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		34D67C1A1D37EB1B002D1DC7 /* About */ = {
 			isa = PBXGroup;
 			children = (
@@ -456,6 +468,7 @@
 		96AC74C51CDB745400D993E7 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				347CE3BA1D3D6D080040CB19 /* Settings */,
 				34D67C1A1D37EB1B002D1DC7 /* About */,
 				B6A7AFC81D2716DE0083883B /* Event */,
 				96B2A0CA1CE6161300C8F97D /* Ranking */,
@@ -481,6 +494,7 @@
 				96B2A0CB1CE6165900C8F97D /* Ranking.storyboard */,
 				B6A7AFCC1D27172F0083883B /* Event.storyboard */,
 				34D67C181D37E0C7002D1DC7 /* About.storyboard */,
+				347CE3BD1D3D70660040CB19 /* Settings.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -878,6 +892,7 @@
 				96AC749E1CDB73AF00D993E7 /* Assets.xcassets in Resources */,
 				9637DE141CE2306A002AA60E /* iconAdd@3x.png in Resources */,
 				96B2A0D51CE635DD00C8F97D /* iconTabBar_1@3x.png in Resources */,
+				347CE3BE1D3D70660040CB19 /* Settings.storyboard in Resources */,
 				9638EF461CDD0DA800D07D51 /* iconNext@3x.png in Resources */,
 				B6C369EC1D38332F006FCD73 /* GoogleService-Info.plist in Resources */,
 				9637DE121CE21EA2002AA60E /* iconBack@3x.png in Resources */,
@@ -1015,6 +1030,7 @@
 				B6A39C511CFDF80200DA42E3 /* TagTableViewCell.swift in Sources */,
 				B6A39C531CFE1BAE00DA42E3 /* StarKeywordBE.swift in Sources */,
 				9609D7441CE3A68F00BF6036 /* RecommendBC.swift in Sources */,
+				347CE3BC1D3D6D2A0040CB19 /* SettingsViewController.swift in Sources */,
 				96AC74D21CDB765800D993E7 /* OSPWebSender.swift in Sources */,
 				9613BBFF1CE4BD9500533FAF /* OSPOptionListItem.m in Sources */,
 				966BA8DD1CEA091900C240D7 /* UserRankingViewController.swift in Sources */,
