@@ -81,13 +81,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: FIRInstanceIDAPNSTokenType.Unknown)
         
         print("DeviceTokenFormatted:", tokenString)
-        
-//        SessionUD.sharedInstance.setUserPushToken(token)
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
         print("Error: \(error.localizedDescription)")
-//        SessionUD.sharedInstance.setUserPushToken("")
+        SessionUD.sharedInstance.setUserPushToken("")
     }
     
     func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
@@ -98,33 +96,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject],
                      fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-        print("userInfo: \(userInfo)")
         
-        let dicPUSH = userInfo as NSDictionary
-        let title = dicPUSH["title"] as! String
-        let detail = dicPUSH["detail"] as! String
-        let from = dicPUSH["from"] as! String
-
-        let notification = UILocalNotification()
-        notification.alertTitle = title
-        notification.alertBody = detail
-        notification.alertAction = "Open"
-        notification.fireDate = nil
-        notification.soundName = UILocalNotificationDefaultSoundName
-//        notification.prior
-        notification.userInfo = ["title": title, "from": from]
+        let session_id                      : Int       = SessionUD.sharedInstance.getUserPk()
+        let session_tokken                  : String    = SessionUD.sharedInstance.getUserToken()
+        let session_base_profile_complete   : Bool      = SessionUD.sharedInstance.getUserBaseProfileComplete()
         
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        if (session_id != -1 && session_tokken != "" && session_base_profile_complete == true) {
+            print("userInfo: \(userInfo)")
+            
+            let dicPUSH = userInfo["aps"]!["alert"] as! NSDictionary
+            let title = dicPUSH["title"] as! String
+            let body = dicPUSH["body"] as! String
+            
+            let notification = UILocalNotification()
+            notification.alertTitle = title
+            notification.alertBody = body
+            notification.alertAction = "Open"
+            notification.fireDate = nil
+            notification.soundName = UILocalNotificationDefaultSoundName
+            notification.userInfo = ["title": title, "from": ""]
+            
+            UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        }
     }
     
     func tokenRefreshNotification(notification: NSNotification) {
-        let refreshedToken = FIRInstanceID.instanceID().token()!
-        print("InstanceID token: \(refreshedToken)")
-        
-        // save in SessionUD
-        SessionUD.sharedInstance.setUserPushToken(refreshedToken)
-        
-        connectToFcm()
+        if let refreshedToken = FIRInstanceID.instanceID().token() {
+            print("InstanceID token: \(refreshedToken)")
+            
+            SessionUD.sharedInstance.setUserPushToken(refreshedToken)
+            
+            connectToFcm()
+        }
     }
     
     func connectToFcm() {
@@ -158,6 +161,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        application.applicationIconBadgeNumber = 0
+        
         FBSDKAppEvents.activateApp()
         
         connectToFcm()

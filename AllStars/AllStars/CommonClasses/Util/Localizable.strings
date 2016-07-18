@@ -46,3 +46,12 @@ first_name_empty = "First Name must not be empty";
 last_name_empty = "Last Name must not be empty";
 skype_id_empty = "Skype Id must not be empty";
 location_empty = "Must be select a location";
+
+// Ranking
+no_availables_employees = "Employees no availables";
+
+// Recommend
+category_empty = "Category must not be empty";
+subcategory_empty = "Subcategory must not be empty";
+keyword_empty = "Keyword must not be empty";
+description_empty = "Description must not be empty";

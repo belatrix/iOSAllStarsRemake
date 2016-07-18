@@ -10,79 +10,28 @@ import UIKit
 
 class RankingBC: NSObject {
     
-    class func listUserRankingWithKind(kind : String?, withCompletion completion : (arrayUsersRanking : NSMutableArray) -> Void) {
+    class func listUserRankingWithKind(kind : String?, withCompletion completion : (arrayUsersRanking : NSMutableArray?) -> Void) {
         
-        let currentUser = LogInBC.getCurrenteUserSession()
+        let objUser = LogInBC.getCurrenteUserSession()
         
-        if currentUser?.user_token == nil || kind == nil {
+        if objUser!.user_token == nil {
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
             completion(arrayUsersRanking: NSMutableArray())
             return
         }
         
-        OSPWebModel.listUserRankingToKind(kind!, withToken: currentUser!.user_token!) { (arrayUsersRanking) in
-            
-            completion(arrayUsersRanking: arrayUsersRanking)
+        OSPWebModel.listUserRankingToKind(kind!, withToken: objUser!.user_token!) { (arrayUsersRanking, errorResponse, successful) in
+            if (arrayUsersRanking != nil) {
+                completion(arrayUsersRanking: arrayUsersRanking!)
+            } else if (errorResponse != nil) {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
+                completion(arrayUsersRanking: NSMutableArray())
+            } else {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
+                completion(arrayUsersRanking: NSMutableArray())
+            }
         }
     }
-    
-    class func listUserRankingTotalScoreWithCompletion(completion : (arrayUsersRanking : NSMutableArray) -> Void) {
-        
-        let currentUser = LogInBC.getCurrenteUserSession()
-        
-        if currentUser?.user_token == nil {
-            completion(arrayUsersRanking: NSMutableArray())
-            return
-        }
-        
-        OSPWebModel.listUserRankingToKind("total_score", withToken: currentUser!.user_token!) { (arrayUsersRanking) in
-            
-            completion(arrayUsersRanking: arrayUsersRanking)
-        }
-    }
-    
-    class func listUserRankingLastMonthWithCompletion(completion : (arrayUsersRanking : NSMutableArray) -> Void) {
-        
-        let currentUser = LogInBC.getCurrenteUserSession()
-        
-        if currentUser?.user_token == nil {
-            completion(arrayUsersRanking: NSMutableArray())
-            return
-        }
-        
-        OSPWebModel.listUserRankingToKind("last_month_score", withToken: currentUser!.user_token!) { (arrayUsersRanking) in
-            
-            completion(arrayUsersRanking: arrayUsersRanking)
-        }
-    }
-    
-    class func listUserRankingCurrentMonthWithCompletion(completion : (arrayUsersRanking : NSMutableArray) -> Void) {
-        
-        let currentUser = LogInBC.getCurrenteUserSession()
-        
-        if currentUser?.user_token == nil {
-            completion(arrayUsersRanking: NSMutableArray())
-            return
-        }
-        
-        OSPWebModel.listUserRankingToKind("current_month_score", withToken: currentUser!.user_token!) { (arrayUsersRanking) in
-            
-            completion(arrayUsersRanking: arrayUsersRanking)
-        }
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
-    
-    
-    
     
     class func listStarKeywordWithCompletion(starKeyword : StarKeywordBE, withCompletion completion : (arrayUsers : NSMutableArray, nextPage : String?) -> Void) {
         

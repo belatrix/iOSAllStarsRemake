@@ -20,7 +20,6 @@ class ProfileBC: NSObject {
             return
         }
         
-        
         OSPWebModel.listLocations(objUser!.user_token!) { (arrayLocations, errorResponse, successful) in
             if (arrayLocations != nil) {
                 completion(arrayLocations: arrayLocations!)
@@ -165,47 +164,15 @@ class ProfileBC: NSObject {
             }
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        
     class func listStarUserSubCategoriesToUser(user : User, toSubCategory subCategory : StarSubCategoryBE, withCompletion completion : (arrayUsers : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask? {
         
-        let currentUser = LogInBC.getCurrenteUserSession()
+        let objUser = LogInBC.getCurrenteUserSession()
         
-        if currentUser?.user_token == nil {
-            completion(arrayUsers: NSMutableArray(), nextPage: nil)
-            return nil
+        if objUser!.user_token == nil {
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
+            completion(arrayCategories: NSMutableArray())
+            return
         }
         
         return OSPWebModel.listStarUserSubCategoriesToUser(user, toSubCategory: subCategory, withToken: currentUser!.user_token!) { (arrayUsers, nextPage) in
@@ -217,6 +184,12 @@ class ProfileBC: NSObject {
         }
         
     }
+    
+    
+    
+    
+    
+    
     
     class func listStarUserSubCategoriesToPage(page : String, withCompletion completion : (arrayUsers : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask? {
         
@@ -234,21 +207,13 @@ class ProfileBC: NSObject {
             
             completion(arrayUsers: arrayUsers, nextPage: nextPage)
         })
-        
-        
     }
     
     
-
-    
-    
-
     
     
     
-
     
-
     
     class func validateUser(user : User?, isEqualToUser newUser : User?) -> Bool {
         
