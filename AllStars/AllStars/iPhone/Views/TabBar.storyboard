@@ -25,6 +25,24 @@
             <point key="canvasLocation" x="164.5" y="755"/>
         </scene>
         <!--Tab Bar Controller-->
+        <scene sceneID="KxY-cS-anJ">
+            <objects>
+                <tabBarController storyboardIdentifier="GuestTabBarViewController" id="hia-1l-NGd" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="N6e-cQ-P7f">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="hkR-Io-24j" kind="relationship" relationship="viewControllers" id="0D3-bP-KVz"/>
+                        <segue destination="f1z-2L-Z6L" kind="relationship" relationship="viewControllers" id="MQY-sj-mUJ"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1xQ-bc-3II" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-126" y="1207"/>
+        </scene>
+        <!--Tab Bar Controller-->
         <scene sceneID="MCp-nV-B65">
             <objects>
                 <tabBarController storyboardIdentifier="CustomTabBarViewController" id="Q5r-Wo-hSf" sceneMemberID="viewController">
@@ -94,6 +112,26 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R6k-Ym-3zQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="399.5" y="403"/>
+        </scene>
+        <!--About-->
+        <scene sceneID="tBf-qk-GNd">
+            <objects>
+                <viewControllerPlaceholder storyboardName="About" id="f1z-2L-Z6L" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="About" id="RTk-uW-xGH"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yox-md-AKl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="213.5" y="1297"/>
+        </scene>
+        <!--Event-->
+        <scene sceneID="W4X-6E-Mop">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Event" id="hkR-Io-24j" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Events" id="j2b-RI-oCj"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oJH-vU-eDL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="213" y="1207"/>
         </scene>
     </scenes>
     <resources>
