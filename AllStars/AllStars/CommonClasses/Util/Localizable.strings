@@ -55,3 +55,5 @@ category_empty = "Category must not be empty";
 subcategory_empty = "Subcategory must not be empty";
 keyword_empty = "Keyword must not be empty";
 description_empty = "Description must not be empty";
+no_availables_categories = "Categories no availables";
+no_availables_keywords = "Keywords no availables";

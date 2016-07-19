@@ -11,186 +11,15 @@ import Alamofire
 
 class OSPWebSender: NSObject {
 
-    
-    //MARK:
-    //MARK: Configuración
-    //MARK:
-    
-    class func crearCabeceraPeticion() -> NSDictionary {
+    class func createHeaderWithToken(aToken : NSString) -> NSDictionary {
         
-        let diccionarioHeader = NSMutableDictionary()
+        let dicHeader = NSMutableDictionary()
+        dicHeader.setObject("Token \(aToken)", forKey: "Authorization")
         
-        diccionarioHeader.setObject("application/json; charset=UTF-8", forKey: "Content-Type")
-        diccionarioHeader.setObject("application/json", forKey: "Accept")
-        
-        return diccionarioHeader
-    }
-
-    
-    class func crearCabeceraPeticionConToken(aToken : NSString) -> NSDictionary {
-        
-        let diccionarioHeader = NSMutableDictionary()
-        
-//        diccionarioHeader.setObject("application/json; charset=UTF-8", forKey: "Content-Type")
-//        diccionarioHeader.setObject("application/json", forKey: "Accept")
-        diccionarioHeader.setObject("Token \(aToken)", forKey: "Authorization")
-        
-        return diccionarioHeader
+        return dicHeader
     }
     
-    class func crearCabeceraPeticionConCookie(aCookie : NSString) -> NSDictionary {
-        
-        let diccionarioHeader = NSMutableDictionary()
-        
-        diccionarioHeader.setObject("application/json; charset=UTF-8", forKey: "Content-Type")
-        diccionarioHeader.setObject("application/json", forKey: "Accept")
-        diccionarioHeader.setObject("Bearer \(aCookie)", forKey: "Cookie")
-        
-        return diccionarioHeader
-    }
-    
-    //MARK:
-    //MARK: Tratado de respuesta
-    //MARK:
-    class func obtenerRespuestaEnJSONConData(data : NSData) -> AnyObject? {
-        
-        do{
-            return try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
-        }catch{
-            return nil
-        }
-    }
-    
-    class func obtenerRespuestaServicioParaData(data : NSData?, response : NSURLResponse?, error : NSError?) -> OSPWebResponse{
-        
-        var respuesta : AnyObject? = nil
-        
-        if error == nil && data != nil {
-            respuesta = self.obtenerRespuestaEnJSONConData(data!)
-        }
-        
-        print(respuesta)
-        
-        let urlResponse = response as? NSHTTPURLResponse
-        
-        let headerFields : NSDictionary? = urlResponse?.allHeaderFields
-        let objRespuesta = OSPWebResponse()
-        
-        objRespuesta.respuestaJSON      = respuesta
-        objRespuesta.statusCode         = urlResponse?.statusCode
-        objRespuesta.respuestaNSData    = data
-        objRespuesta.error              = error
-        objRespuesta.datosCabezera      = headerFields
-        objRespuesta.token              = headerFields?["_token"] as? NSString
-        objRespuesta.cookie             = headerFields?["_token"] as? NSString
-        
-        return objRespuesta
-    }
-    
-    
-    
-    
-    //MARK: Consumo de servicios con token
-    class func doPOSTTokenToURL(conURL url : NSString, conPath path : NSString, conParametros parametros : AnyObject?, conToken token : NSString, conCompletion completion : (objRespuesta : OSPWebResponse) -> Void){
-        
-        let configuracionSesion = NSURLSessionConfiguration.defaultSessionConfiguration()
-        configuracionSesion.HTTPAdditionalHeaders = self.crearCabeceraPeticionConToken(token) as [NSObject : AnyObject]
-        
-        let sesion = NSURLSession.init(configuration: configuracionSesion)
-        
-        let urlServicio = NSURL(string: "\(url)/\(path)")
-        let request = NSMutableURLRequest(URL: urlServicio!)
-        request.addValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        
-        if parametros != nil {
-            do {
-                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(parametros!, options: NSJSONWritingOptions.PrettyPrinted)
-            }catch {}
-        }
-        
-        request.HTTPMethod = "POST"
-        
-        let postDataTask = sesion.dataTaskWithRequest(request) { (data : NSData?, response : NSURLResponse?, error : NSError?) in
-            
-            dispatch_async(dispatch_get_main_queue(), {
-                
-                completion(objRespuesta : self.obtenerRespuestaServicioParaData(data, response: response, error: error))
-            })
-        }
-        
-        
-        postDataTask.resume()
-    }
-    
-    
-    class func doGETTokenToURL(conURL url : NSString, conPath path : NSString, conParametros parametros : AnyObject?, conToken token : NSString, conCompletion completion : (objRespuesta : OSPWebResponse) -> Void) -> NSURLSessionDataTask {
-        
-        let configuracionSesion = NSURLSessionConfiguration.defaultSessionConfiguration()
-        configuracionSesion.HTTPAdditionalHeaders = self.crearCabeceraPeticionConToken(token) as [NSObject : AnyObject]
-        
-        let sesion = NSURLSession.init(configuration: configuracionSesion)
-        
-        var urlServicio = NSURL(string: "\(path)")
-        if (url != "") {
-            urlServicio = NSURL(string: "\(url)/\(path)")
-        }
-        let request = NSMutableURLRequest(URL: urlServicio!)
-        request.addValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        
-        if parametros != nil {
-            do {
-                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(parametros!, options: NSJSONWritingOptions.PrettyPrinted)
-            }catch {}
-        }
-        
-        request.HTTPMethod = "GET"
-        
-        let postDataTask = sesion.dataTaskWithRequest(request) { (data : NSData?, response : NSURLResponse?, error : NSError?) in
-            
-            dispatch_async(dispatch_get_main_queue(), {
-                
-                completion(objRespuesta : self.obtenerRespuestaServicioParaData(data, response: response, error: error))
-            })
-        }
-        
-        
-        postDataTask.resume()
-        return postDataTask
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    class func doGETTemp(path : String, withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
+    class func doGET(path : String, withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
         
         let URL = Constants.WEB_SERVICES + path
         
@@ -222,14 +51,14 @@ class OSPWebSender: NSObject {
         }
     }
     
-    class func doGETWithTokenTemp(path : String, withToken token : String, withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
+    class func doGETWithToken(path : String, withToken token : String, withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
         
         let URL = Constants.WEB_SERVICES + path
         
         Alamofire.request(
             .GET,
             URL,
-            headers: self.crearCabeceraPeticionConToken(token) as? [String : String],
+            headers: self.createHeaderWithToken(token) as? [String : String],
             parameters: nil)
             .validate(statusCode: 200..<501)
             .responseJSON { response in
@@ -255,7 +84,7 @@ class OSPWebSender: NSObject {
         }
     }
     
-    class func doPOSTTemp(path : String, withParameters parameters : [String : AnyObject], withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
+    class func doPOST(path : String, withParameters parameters : [String : AnyObject], withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
         
         let URL = Constants.WEB_SERVICES + path
         
@@ -287,14 +116,14 @@ class OSPWebSender: NSObject {
         }
     }
     
-    class func doPOSTWithTokenTemp(path : String, withParameters parameters : [String : AnyObject], withToken token : String, withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
+    class func doPOSTWithToken(path : String, withParameters parameters : [String : AnyObject], withToken token : String, withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
         
         let URL = Constants.WEB_SERVICES + path
         
         Alamofire.request(
             .POST,
             URL,
-            headers: self.crearCabeceraPeticionConToken(token) as? [String : String],
+            headers: self.createHeaderWithToken(token) as? [String : String],
             parameters: parameters)
             .validate(statusCode: 200..<501)
             .responseJSON { response in
@@ -320,14 +149,14 @@ class OSPWebSender: NSObject {
         }
     }
     
-    class func doPATCHWithTokenTemp(path : String, withParameters parameters : [String : AnyObject], withToken token : String, withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
+    class func doPATCHWithToken(path : String, withParameters parameters : [String : AnyObject], withToken token : String, withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
         
         let URL = Constants.WEB_SERVICES + path
         
         Alamofire.request(
             .PATCH,
             URL,
-            headers: self.crearCabeceraPeticionConToken(token) as? [String : String],
+            headers: self.createHeaderWithToken(token) as? [String : String],
             parameters: parameters)
             .validate(statusCode: 200..<501)
             .responseJSON { response in
@@ -353,14 +182,14 @@ class OSPWebSender: NSObject {
         }
     }
     
-    class func doMultipartTokenToURL(path : String, withParameters parameters : NSDictionary?, withImage image : NSData, withToken token : String, withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
+    class func doMultipartWithToken(path : String, withParameters parameters : NSDictionary?, withImage image : NSData, withToken token : String, withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
         
         let URL = Constants.WEB_SERVICES + path
         
         Alamofire.upload(
             .POST,
             URL,
-            headers: self.crearCabeceraPeticionConToken(token) as? [String : String],
+            headers: self.createHeaderWithToken(token) as? [String : String],
             multipartFormData: { multipartFormData in
                 multipartFormData.appendBodyPart(data: image, name: "image", fileName: "testName.jpg", mimeType: "image/jpg")
             },

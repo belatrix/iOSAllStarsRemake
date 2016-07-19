@@ -18,7 +18,7 @@ class OSPWebModel: NSObject {
         
         let path = "api/employee/authenticate/"
         
-        OSPWebSender.doPOSTTemp(path, withParameters: dic) {(response, successful) in
+        OSPWebSender.doPOST(path, withParameters: dic) {(response, successful) in
             if (response != nil) {
                 if (successful) {
                     completion(userSession: OSPWebTranslator.parseUserSessionBE(response as! [String : AnyObject]), errorResponse: nil, successful: successful)
@@ -39,7 +39,7 @@ class OSPWebModel: NSObject {
         
         let path = "/api/employee/\(userDevice.user_id!)/register/device/"
         
-        OSPWebSender.doPOSTWithTokenTemp(path, withParameters: dic, withToken: token) {(response, successful) in
+        OSPWebSender.doPOSTWithToken(path, withParameters: dic, withToken: token) {(response, successful) in
             if (response != nil) {
                 if (successful) {
                     completion(userDevice: OSPWebTranslator.parseUserDevice(response as! [String : AnyObject]), errorResponse: nil, successful: successful)
@@ -59,7 +59,7 @@ class OSPWebModel: NSObject {
         
         let path = "api/employee/create/"
         
-        OSPWebSender.doPOSTTemp(path, withParameters: dic) {(response, successful) in
+        OSPWebSender.doPOST(path, withParameters: dic) {(response, successful) in
             if (response != nil) {
                 if (successful) {
                     completion(errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
@@ -80,7 +80,7 @@ class OSPWebModel: NSObject {
             ["current_password" : currentPassword,
              "new_password" : newPassword]
         
-        OSPWebSender.doPOSTWithTokenTemp(path, withParameters: dic, withToken: userSession!.session_token!) {(response, successful) in
+        OSPWebSender.doPOSTWithToken(path, withParameters: dic, withToken: userSession!.session_token!) {(response, successful) in
             if (response != nil) {
                 if (successful) {
                     completion(user: OSPWebTranslator.parseUserBE(response as! [String : AnyObject]), errorResponse: nil, successful: successful)
@@ -110,7 +110,7 @@ class OSPWebModel: NSObject {
              socialNetworkIdKey : socialNetworkId]
         
 
-        OSPWebSender.doPOSTTemp(path, withParameters: dic) {(response, successful) in
+        OSPWebSender.doPOST(path, withParameters: dic) {(response, successful) in
             if (response != nil) {
                 if (successful) {
                     completion(userGuest: OSPWebTranslator.parseUserGuestBE(response as! [String : AnyObject]), errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
@@ -127,7 +127,7 @@ class OSPWebModel: NSObject {
         
         let path = "api/employee/\(user.user_pk!)/"
         
-        OSPWebSender.doGETWithTokenTemp(path, withToken: token) {(response, successful) in
+        OSPWebSender.doGETWithToken(path, withToken: token) {(response, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -147,7 +147,7 @@ class OSPWebModel: NSObject {
         
         let path = "api/employee/location/list/"
         
-        OSPWebSender.doGETWithTokenTemp(path, withToken: token) {(response, successful) in
+        OSPWebSender.doGETWithToken(path, withToken: token) {(response, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -178,7 +178,7 @@ class OSPWebModel: NSObject {
              "skype_id" : user.user_skype_id!,
              "location" : user.user_location_id!]
         
-        OSPWebSender.doPATCHWithTokenTemp(path, withParameters: dic, withToken: token) {(response, successful) in
+        OSPWebSender.doPATCHWithToken(path, withParameters: dic, withToken: token) {(response, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -196,7 +196,7 @@ class OSPWebModel: NSObject {
         
         let path = "api/employee/\(user.user_pk!)/avatar/"
         
-        OSPWebSender.doMultipartTokenToURL(path, withParameters: nil, withImage: image, withToken: token) {(response, successful) in
+        OSPWebSender.doMultipartWithToken(path, withParameters: nil, withImage: image, withToken: token) {(response, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -214,7 +214,7 @@ class OSPWebModel: NSObject {
         
         let path = "api/star/\(user.user_pk!)/subcategory/list/"
         
-        OSPWebSender.doGETWithTokenTemp(path, withToken: token) {(response, successful) in
+        OSPWebSender.doGETWithToken(path, withToken: token) {(response, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -240,7 +240,7 @@ class OSPWebModel: NSObject {
         
         let path = "api/employee/list/"
         
-        OSPWebSender.doGETWithTokenTemp(path, withToken: token) {(response, successful) in
+        OSPWebSender.doGETWithToken(path, withToken: token) {(response, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -267,7 +267,7 @@ class OSPWebModel: NSObject {
     
     class func listEmployeeToPage(page : String, withToken token : String, withCompletion completion : (arrayEmployees : NSMutableArray?, nextPage : String?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
         
-        OSPWebSender.doGETWithTokenTemp(page, withToken: token) {(response, successful) in
+        OSPWebSender.doGETWithToken(page, withToken: token) {(response, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -296,7 +296,7 @@ class OSPWebModel: NSObject {
         
         let path = "api/employee/list/?search=\(text)"
         
-        OSPWebSender.doGETWithTokenTemp(path, withToken: token) {(response, successful) in
+        OSPWebSender.doGETWithToken(path, withToken: token) {(response, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -325,7 +325,7 @@ class OSPWebModel: NSObject {
         
         let path = "api/star/keyword/list/"
         
-        OSPWebSender.doGETWithTokenTemp(path, withToken: token) {(response, successful) in
+        OSPWebSender.doGETWithToken(path, withToken: token) {(response, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -337,7 +337,7 @@ class OSPWebModel: NSObject {
                     let arrayTemp = NSMutableArray()
                     arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
                         
-                        arrayTemp.addObject(OSPWebTranslator.translateStarKeywordBE(obj as! NSDictionary))
+                        arrayTemp.addObject(OSPWebTranslator.parseStarKeywordBE(obj as! NSDictionary))
                     })
                     
                     completion(arrayKeywords: arrayTemp, nextPage: nextPage, errorResponse: nil, successful: true)
@@ -352,7 +352,7 @@ class OSPWebModel: NSObject {
     
     class func listStarKeywordToPage(page : String, withToken token : String, withCompletion completion : (arrayKeywords : NSMutableArray?, nextPage : String?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
         
-        OSPWebSender.doGETWithTokenTemp(page, withToken: token) {(response, successful) in
+        OSPWebSender.doGETWithToken(page, withToken: token) {(response, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -364,7 +364,7 @@ class OSPWebModel: NSObject {
                     let arrayTemp = NSMutableArray()
                     arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
                         
-                        arrayTemp.addObject(OSPWebTranslator.translateStarKeywordBE(obj as! NSDictionary))
+                        arrayTemp.addObject(OSPWebTranslator.parseStarKeywordBE(obj as! NSDictionary))
                     })
                     
                     completion(arrayKeywords: arrayTemp, nextPage: nextPage, errorResponse: nil, successful: true)
@@ -381,7 +381,7 @@ class OSPWebModel: NSObject {
         
         let path = "api/star/keyword/list/?search=\(text)"
         
-        OSPWebSender.doGETWithTokenTemp(path, withToken: token) {(response, successful) in
+        OSPWebSender.doGETWithToken(path, withToken: token) {(response, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -393,7 +393,7 @@ class OSPWebModel: NSObject {
                     let arrayTemp = NSMutableArray()
                     arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
                         
-                        arrayTemp.addObject(OSPWebTranslator.translateStarKeywordBE(obj as! NSDictionary))
+                        arrayTemp.addObject(OSPWebTranslator.parseStarKeywordBE(obj as! NSDictionary))
                     })
                     
                     completion(arrayEmployees: arrayTemp, nextPage: nextPage, errorResponse: nil, successful: true)
@@ -410,7 +410,7 @@ class OSPWebModel: NSObject {
         
         let path = "api/event/list/"
         
-        OSPWebSender.doGETTemp(path) {(response, successful) in
+        OSPWebSender.doGET(path) {(response, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -439,7 +439,7 @@ class OSPWebModel: NSObject {
         
         let path = "api/star/keyword/\(starKeyword.keyword_pk!)/list/"
         
-        OSPWebSender.doGETWithTokenTemp(path, withToken: token) {(response, successful) in
+        OSPWebSender.doGETWithToken(path, withToken: token) {(response, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -451,7 +451,7 @@ class OSPWebModel: NSObject {
                     let arrayTemp = NSMutableArray()
                     arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
                         
-                        arrayTemp.addObject(OSPWebTranslator.translateUserTagBE(obj as! NSDictionary))
+                        arrayTemp.addObject(OSPWebTranslator.parseUserTagBE(obj as! NSDictionary))
                     })
                     
                     completion(arrayEmployees: arrayTemp, nextPage: nextPage, errorResponse: nil, successful: true)
@@ -466,7 +466,7 @@ class OSPWebModel: NSObject {
     
     class func listEmployeeKeywordToPage(page : String, withToken token : String, withCompletion completion : (arrayEmployees : NSMutableArray?, nextPage : String?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
         
-        OSPWebSender.doGETWithTokenTemp(page, withToken: token) {(response, successful) in
+        OSPWebSender.doGETWithToken(page, withToken: token) {(response, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -478,7 +478,7 @@ class OSPWebModel: NSObject {
                     let arrayTemp = NSMutableArray()
                     arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
                         
-                        arrayTemp.addObject(OSPWebTranslator.translateUserTagBE(obj as! NSDictionary))
+                        arrayTemp.addObject(OSPWebTranslator.parseUserTagBE(obj as! NSDictionary))
                     })
                     
                     completion(arrayEmployees: arrayTemp, nextPage: nextPage, errorResponse: nil, successful: true)
@@ -495,7 +495,7 @@ class OSPWebModel: NSObject {
         
         let path = "api/employee/list/top/\(kind)/15/"
         
-        OSPWebSender.doGETWithTokenTemp(path, withToken: token) {(response, successful) in
+        OSPWebSender.doGETWithToken(path, withToken: token) {(response, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -529,7 +529,7 @@ class OSPWebModel: NSObject {
              "keyword"     : rate.rate_keyword!.keyword_pk!,
              "text"        : rate.rate_comment]
         
-        OSPWebSender.doPOSTWithTokenTemp(path, withParameters: dic, withToken: token) {(response, successful) in
+        OSPWebSender.doPOSTWithToken(path, withParameters: dic, withToken: token) {(response, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -548,7 +548,7 @@ class OSPWebModel: NSObject {
         
         let path = "api/category/keyword/list/"
         
-        OSPWebSender.doGETWithTokenTemp(path, withToken: token) {(response, successful) in
+        OSPWebSender.doGETWithToken(path, withToken: token) {(response, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -574,7 +574,7 @@ class OSPWebModel: NSObject {
         let userID = user.user_pk
         let path = "api/employee/\(userID!)/category/list/"
         
-        OSPWebSender.doGETWithTokenTemp(path, withToken: token) {(response, successful) in
+        OSPWebSender.doGETWithToken(path, withToken: token) {(response, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -600,7 +600,7 @@ class OSPWebModel: NSObject {
         let userID = user.user_pk
         let path = "api/star/\(userID!)/subcategory/\(subCategory.starSubCategoy_id!)/list/"
         
-        OSPWebSender.doGETWithTokenTemp(path, withToken: token) {(response, successful) in
+        OSPWebSender.doGETWithToken(path, withToken: token) {(response, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -628,7 +628,7 @@ class OSPWebModel: NSObject {
     
     class func listStarUserSubCategoriesToPage(page : String, withToken token : String, withCompletion completion : (arrayUsers : NSMutableArray?, nextPage : String?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
         
-        OSPWebSender.doGETWithTokenTemp(page, withToken: token) {(response, successful) in
+        OSPWebSender.doGETWithToken(page, withToken: token) {(response, successful) in
             
             if (response != nil) {
                 if (successful) {

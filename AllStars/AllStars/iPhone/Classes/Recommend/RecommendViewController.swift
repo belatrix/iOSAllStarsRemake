@@ -122,7 +122,7 @@ class RecommendViewController: UIViewController , OSPOptionListDelegate, UITextV
     @IBAction func clickBtnCategory(sender: AnyObject) {
         
         if self.arrayCategories.count == 0 {
-            OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "Categories no availables", conBotonCancelar: "Accept", enController: self, conCompletion: nil)
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "no_availables_categories".localized, withAcceptButton: "ok".localized)
             return
         }
         
@@ -182,7 +182,7 @@ class RecommendViewController: UIViewController , OSPOptionListDelegate, UITextV
     @IBAction func clickBtnKeyword(sender: AnyObject) {
         
         if self.arraykeyWords.count == 0 {
-            OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "Keywords no availables", conBotonCancelar: "Accept", enController: self, conCompletion: nil)
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "no_availables_keywords".localized, withAcceptButton: "ok".localized)
             return
         }
         

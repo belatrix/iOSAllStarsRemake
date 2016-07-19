@@ -22,7 +22,6 @@ class StarsCategoriesUserViewController: UIViewController, UITableViewDelegate, 
     var arrayUsers = NSMutableArray()
     var isDownload = false
     var nextPage    : String? = nil
-    var dataTaskRequest : NSURLSessionDataTask?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,50 +67,62 @@ class StarsCategoriesUserViewController: UIViewController, UITableViewDelegate, 
     // MARK: - WebServices
     func listStarsSubCategoriesUser() -> Void {
         
-        self.actLoading.startAnimating()
-        
-        if self.dataTaskRequest != nil {
-            self.dataTaskRequest?.suspend()
-        }
-        
-        self.dataTaskRequest = ProfileBC.listStarUserSubCategoriesToUser(self.objUser, toSubCategory: self.objStarSubCategory) { (arrayUsers, nextPage) in
+        if (!self.isDownload) {
+            self.isDownload = true
             
-            self.arrayUsers = arrayUsers
-            self.nextPage = nextPage
-            
-            self.refreshControl.endRefreshing()
-            
-            self.lblErrorMessage.text = "Information no available"
+            self.actLoading.startAnimating()
             self.viewLoading.alpha = CGFloat(!Bool(self.arrayUsers.count))
-            self.actLoading.stopAnimating()
+            self.lblErrorMessage.text = "Loading recommendations"
             
-            self.tlbUsers.reloadData()
+            ProfileBC.listStarUserSubCategoriesToUser(self.objUser, toSubCategory: self.objStarSubCategory) { (arrayUsers, nextPage) in
+                
+                self.refreshControl.endRefreshing()
+                
+                self.nextPage = nextPage
+                self.arrayUsers = arrayUsers!
+                self.tlbUsers.reloadData()
+                
+                self.actLoading.stopAnimating()
+                self.viewLoading.alpha = CGFloat(!Bool(self.arrayUsers.count))
+                self.lblErrorMessage.text = "Recommendations not found"
+                
+                self.isDownload = false
+            }
         }
     }
     
     func listStarsSubCategoriesUserNextPage() -> Void {
-        if self.dataTaskRequest != nil {
-            self.dataTaskRequest?.suspend()
-        }
         
-        self.isDownload = true
-        self.dataTaskRequest = ProfileBC.listStarUserSubCategoriesToPage(self.nextPage!, withCompletion: { (arrayUsers, nextPage) in
+        if (!self.isDownload) {
+            self.isDownload = true
             
-            self.isDownload = false
-            self.nextPage = nextPage
+            self.actLoading.startAnimating()
+            self.viewLoading.alpha = CGFloat(!Bool(self.arrayUsers.count))
+            self.lblErrorMessage.text = "Loading recommendations"
             
-            let userCountInitial = self.arrayUsers.count
-            self.arrayUsers.addObjectsFromArray(arrayUsers as [AnyObject])
-            let userCountFinal = self.arrayUsers.count - 1
-            
-            var arrayIndexPaths = [NSIndexPath]()
-            
-            for row in userCountInitial...userCountFinal {
-                arrayIndexPaths.append(NSIndexPath(forRow: row, inSection: 0))
-            }
-            
-            self.tlbUsers.insertRowsAtIndexPaths(arrayIndexPaths, withRowAnimation: .Fade)
-        })
+            ProfileBC.listStarUserSubCategoriesToPage(self.nextPage!, withCompletion: { (arrayUsers, nextPage) in
+                
+                self.nextPage = nextPage
+                
+                let userCountInitial = self.arrayUsers.count
+                self.arrayUsers.addObjectsFromArray(arrayUsers! as [AnyObject])
+                let userCountFinal = self.arrayUsers.count - 1
+                
+                var arrayIndexPaths = [NSIndexPath]()
+                
+                for row in userCountInitial...userCountFinal {
+                    arrayIndexPaths.append(NSIndexPath(forRow: row, inSection: 0))
+                }
+                
+                self.tlbUsers.insertRowsAtIndexPaths(arrayIndexPaths, withRowAnimation: .Fade)
+                
+                self.actLoading.stopAnimating()
+                self.viewLoading.alpha = CGFloat(!Bool(self.arrayUsers.count))
+                self.lblErrorMessage.text = "Recommendations not found"
+                
+                self.isDownload = false
+            })
+        }
     }
     
     // MARK: - UIScrollViewDelegate

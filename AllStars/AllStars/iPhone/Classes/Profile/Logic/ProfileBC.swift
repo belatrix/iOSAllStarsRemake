@@ -165,55 +165,55 @@ class ProfileBC: NSObject {
         }
     }
         
-    class func listStarUserSubCategoriesToUser(user : User, toSubCategory subCategory : StarSubCategoryBE, withCompletion completion : (arrayUsers : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask? {
+    class func listStarUserSubCategoriesToUser(user : User, toSubCategory subCategory : StarSubCategoryBE, withCompletion completion : (arrayUsers : NSMutableArray?, nextPage : String?) -> Void) {
         
         let objUser = LogInBC.getCurrenteUserSession()
         
         if objUser!.user_token == nil {
             OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
-            completion(arrayCategories: NSMutableArray())
+            completion(arrayUsers: NSMutableArray(), nextPage: nil)
             return
         }
         
-        return OSPWebModel.listStarUserSubCategoriesToUser(user, toSubCategory: subCategory, withToken: currentUser!.user_token!) { (arrayUsers, nextPage) in
+        OSPWebModel.listStarUserSubCategoriesToUser(user, toSubCategory: subCategory, withToken: objUser!.user_token!) { (arrayUsers, nextPage, errorResponse, successful) in
             
-            let sortDate = NSSortDescriptor.init(key: "userQualify_date", ascending: false)
-            arrayUsers.sortUsingDescriptors([sortDate])
-            
-            completion(arrayUsers: arrayUsers, nextPage: nextPage)
+            if (arrayUsers != nil) {
+                let sortDate = NSSortDescriptor.init(key: "userQualify_date", ascending: false)
+                arrayUsers!.sortUsingDescriptors([sortDate])
+                
+                completion(arrayUsers: arrayUsers!, nextPage: nextPage)
+            } else if (errorResponse != nil) {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
+                completion(arrayUsers: NSMutableArray(), nextPage: nil)
+            } else {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
+                completion(arrayUsers: NSMutableArray(), nextPage: nil)
+            }
         }
-        
     }
     
-    
-    
-    
-    
-    
-    
-    class func listStarUserSubCategoriesToPage(page : String, withCompletion completion : (arrayUsers : NSMutableArray, nextPage : String?) -> Void) -> NSURLSessionDataTask? {
+    class func listStarUserSubCategoriesToPage(page : String, withCompletion completion : (arrayUsers : NSMutableArray?, nextPage : String?) -> Void) {
         
-        let currentUser = LogInBC.getCurrenteUserSession()
+        let objUser = LogInBC.getCurrenteUserSession()
         
-        if currentUser?.user_token == nil {
+        if objUser!.user_token == nil {
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
             completion(arrayUsers: NSMutableArray(), nextPage: nil)
-            return nil
+            return
         }
         
-        return OSPWebModel.listStarUserSubCategoriesToPage(page, withToken: currentUser!.user_token!, withCompletion: { (arrayUsers, nextPage) in
-            
-            let sortDate = NSSortDescriptor.init(key: "userQualify_date", ascending: false)
-            arrayUsers.sortUsingDescriptors([sortDate])
-            
-            completion(arrayUsers: arrayUsers, nextPage: nextPage)
-        })
+        OSPWebModel.listStarUserSubCategoriesToPage(page, withToken: objUser!.user_token!) { (arrayUsers, nextPage, errorResponse, successful) in
+            if (arrayUsers != nil) {
+                completion(arrayUsers: arrayUsers!, nextPage: nextPage)
+            } else if (errorResponse != nil) {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
+                completion(arrayUsers: NSMutableArray(), nextPage: nil)
+            } else {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
+                completion(arrayUsers: NSMutableArray(), nextPage: nil)
+            }
+        }
     }
-    
-    
-    
-    
-    
-    
     
     class func validateUser(user : User?, isEqualToUser newUser : User?) -> Bool {
         
