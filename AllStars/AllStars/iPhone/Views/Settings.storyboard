@@ -69,13 +69,36 @@
                                             <outlet property="title" destination="td1-Kj-e0A" id="zex-95-8Q8"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="logoutCell" id="k7X-H3-1OF">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="logoutCell" id="k7X-H3-1OF" customClass="LogoutCell" customModule="AllStars" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="96" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="k7X-H3-1OF" id="pRU-B7-PJF">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LO1-8m-pQS">
+                                                    <rect key="frame" x="15" y="11" width="173" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="173" id="McB-NP-pIB"/>
+                                                        <constraint firstAttribute="height" constant="21" id="tYU-1r-ilC"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="5Js-m4-QPv">
+                                                    <rect key="frame" x="287" y="12" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="LO1-8m-pQS" firstAttribute="leading" secondItem="pRU-B7-PJF" secondAttribute="leading" constant="15" id="Zcg-3o-yJz"/>
+                                                <constraint firstItem="LO1-8m-pQS" firstAttribute="centerY" secondItem="pRU-B7-PJF" secondAttribute="centerY" id="qop-p2-aiZ"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="actLogout" destination="5Js-m4-QPv" id="c0O-yV-vKH"/>
+                                            <outlet property="title" destination="LO1-8m-pQS" id="3mq-Lo-H9a"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

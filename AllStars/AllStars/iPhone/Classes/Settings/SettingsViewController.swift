@@ -94,10 +94,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         case .logOut:
             
-            guard let cell = tableView.dequeueReusableCellWithIdentifier("logoutCell")
+            guard let cell = tableView.dequeueReusableCellWithIdentifier("logoutCell") as? LogoutCell
                 else { fatalError("Settings - No logout cell found") }
             
-            cell.textLabel?.text = "Logout"
+            cell.title.text = "logout_cell_title".localized
             
             cell.selectionStyle = .None
             
@@ -113,7 +113,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         switch option {
             
         case .logOut:
-            logout()
+            
+            let logoutCell = tableView.cellForRowAtIndexPath(indexPath) as! LogoutCell
+            
+            logout(logoutCell)
             
         default:
             return
@@ -126,14 +129,20 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         self.navigationController?.popViewControllerAnimated(true)
     }
-    func logout() {
+    func logout(logoutCell: LogoutCell!) {
         
         let alert: UIAlertController = UIAlertController(title: "logout_warning".localized, message: nil, preferredStyle: .Alert)
         
         let logoutAction = UIAlertAction(title: "ok".localized, style: .Destructive,
                                          handler: {(alert: UIAlertAction) in
                                             
+                                            self.view.userInteractionEnabled = false
+                                            logoutCell.actLogout.startAnimating()
+                                            
                                             LogInBC.doLogout { (successful) in
+                                                
+                                                self.view.userInteractionEnabled = true
+                                                logoutCell.actLogout.stopAnimating()
                                                 
                                                 if successful {
                                                     
@@ -180,4 +189,9 @@ class NotificationCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var subtitle: UILabel!
     
+}
+
+class LogoutCell: UITableViewCell {
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var actLogout: UIActivityIndicatorView!
 }
