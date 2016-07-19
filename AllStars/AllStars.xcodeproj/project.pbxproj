@@ -46,7 +46,6 @@
 		96AC74AC1CDB73AF00D993E7 /* AllStarsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AC74AB1CDB73AF00D993E7 /* AllStarsTests.swift */; };
 		96AC74B71CDB73AF00D993E7 /* AllStarsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AC74B61CDB73AF00D993E7 /* AllStarsUITests.swift */; };
 		96AC74D01CDB765800D993E7 /* OSPWebModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AC74CC1CDB765800D993E7 /* OSPWebModel.swift */; };
-		96AC74D11CDB765800D993E7 /* OSPWebResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AC74CD1CDB765800D993E7 /* OSPWebResponse.swift */; };
 		96AC74D21CDB765800D993E7 /* OSPWebSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AC74CE1CDB765800D993E7 /* OSPWebSender.swift */; };
 		96AC74D31CDB765800D993E7 /* OSPWebTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AC74CF1CDB765800D993E7 /* OSPWebTranslator.swift */; };
 		96AC74D51CDB76F800D993E7 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AC74D41CDB76F800D993E7 /* LogInViewController.swift */; };
@@ -195,7 +194,6 @@
 		96AC74B61CDB73AF00D993E7 /* AllStarsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllStarsUITests.swift; sourceTree = "<group>"; };
 		96AC74B81CDB73AF00D993E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96AC74CC1CDB765800D993E7 /* OSPWebModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSPWebModel.swift; sourceTree = "<group>"; };
-		96AC74CD1CDB765800D993E7 /* OSPWebResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSPWebResponse.swift; sourceTree = "<group>"; };
 		96AC74CE1CDB765800D993E7 /* OSPWebSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSPWebSender.swift; sourceTree = "<group>"; };
 		96AC74CF1CDB765800D993E7 /* OSPWebTranslator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSPWebTranslator.swift; sourceTree = "<group>"; };
 		96AC74D41CDB76F800D993E7 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -534,7 +532,6 @@
 			isa = PBXGroup;
 			children = (
 				96AC74CC1CDB765800D993E7 /* OSPWebModel.swift */,
-				96AC74CD1CDB765800D993E7 /* OSPWebResponse.swift */,
 				96AC74CE1CDB765800D993E7 /* OSPWebSender.swift */,
 				96AC74CF1CDB765800D993E7 /* OSPWebTranslator.swift */,
 			);
@@ -829,6 +826,14 @@
 					96AC74921CDB73AF00D993E7 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = X3NTASB9PV;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					96AC74A61CDB73AF00D993E7 = {
 						CreatedOnToolsVersion = 7.3;
@@ -1055,7 +1060,6 @@
 				964823391CE50C82007E58FE /* RateUserBE.swift in Sources */,
 				96AC74EE1CDBB60200D993E7 /* CustomTabBarViewController.swift in Sources */,
 				964823371CE4EF38007E58FE /* KeywordBE.swift in Sources */,
-				96AC74D11CDB765800D993E7 /* OSPWebResponse.swift in Sources */,
 				B6A36C711D09C56400222D1F /* ResetPasswordViewController.swift in Sources */,
 				9609D7411CE39AF400BF6036 /* RecommendViewController.swift in Sources */,
 				34D67C1C1D37FBCB002D1DC7 /* AboutViewController.swift in Sources */,

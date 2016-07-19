@@ -15,16 +15,11 @@ class UserRankingViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var lblErrorMessage          : UILabel!
     @IBOutlet weak var acitivityEmployees       : UIActivityIndicatorView!
     
-    var isDownload      = false
     var arrayUsers      = NSMutableArray()
     var kind            : String?
-    var nextPage        : String? = nil
-    var searchText      : String  = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.listTotalScore()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -66,29 +61,16 @@ class UserRankingViewController: UIViewController, UITableViewDelegate, UITableV
         self.viewLoading.alpha = CGFloat(!Bool(self.arrayUsers.count))
         self.lblErrorMessage.text = "Loading employees"
         
-        RankingBC.listUserRankingWithKind(self.kind) { (arrayUsersRanking) in
+        RankingBC.listUserRankingWithKind(self.kind) {(arrayUsersRanking) in
             
-            if self.arrayUsers.count == 0 {
-                
-                self.arrayUsers = arrayUsersRanking
-                self.tlbUsers.reloadData()
-            } else{
-                
-                self.arrayUsers = arrayUsersRanking
-                
-                var arrayIndexPath = [NSIndexPath]()
-                for i in 0...self.arrayUsers.count - 1 {
-                    arrayIndexPath.append(NSIndexPath(forRow: i, inSection: 0))
-                }
-                
-                self.tlbUsers.beginUpdates()
-                self.tlbUsers.reloadRowsAtIndexPaths(arrayIndexPath, withRowAnimation: UITableViewRowAnimation.Automatic)
-                self.tlbUsers.endUpdates()
-                
-                self.acitivityEmployees.stopAnimating()
-                self.viewLoading.alpha = CGFloat(!Bool(self.arrayUsers.count))
-                self.lblErrorMessage.text = "Employees not found"
-            }
+            self.acitivityEmployees.stopAnimating()
+            
+            self.arrayUsers = arrayUsersRanking!
+            
+            self.lblErrorMessage.text = "no_availables_employees".localized
+            self.viewLoading.alpha = CGFloat(!Bool(self.arrayUsers.count))
+            
+            self.tlbUsers.reloadData()
         }
     }
 }

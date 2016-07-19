@@ -42,26 +42,10 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             self.objUser = LogInBC.getCurrenteUserSession()
         }
         
-        registerUserDevice()
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        if let rootVC = self.navigationController?.viewControllers.first where
-            rootVC == self.tabBarController?.moreNavigationController.viewControllers.first  {
-            
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
-        }
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        if self.objUser != nil {
-            self.updateUserInfo()
-        }
-        
         if (ProfileBC.validateUser(self.objUser, isEqualToUser: LogInBC.getCurrenteUserSession())) {
             self.btnAction?.setTitle("Edit", forState: .Normal)
+            
+            registerUserDevice()
         } else {
             self.btnAction?.setTitle("Recommend", forState: .Normal)
         }
@@ -70,6 +54,12 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             self.btnBack.hidden = false
         } else {
             self.btnBack.hidden = true
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        if self.objUser != nil {
+            self.updateUserInfo()
         }
         
         super.viewWillAppear(animated)        

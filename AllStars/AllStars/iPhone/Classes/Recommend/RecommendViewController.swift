@@ -122,7 +122,7 @@ class RecommendViewController: UIViewController , OSPOptionListDelegate, UITextV
     @IBAction func clickBtnCategory(sender: AnyObject) {
         
         if self.arrayCategories.count == 0 {
-            OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "Categories no availables", conBotonCancelar: "Accept", enController: self, conCompletion: nil)
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "no_availables_categories".localized, withAcceptButton: "ok".localized)
             return
         }
         
@@ -152,7 +152,7 @@ class RecommendViewController: UIViewController , OSPOptionListDelegate, UITextV
     @IBAction func clickBtnSubCategory(sender: AnyObject) {
         
         if self.objCategorySelected == nil {
-            OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "You need select a Category", conBotonCancelar: "Accept", enController: self, conCompletion: nil)
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "category_empty".localized, withAcceptButton: "ok".localized)
             return
         }
         
@@ -182,7 +182,7 @@ class RecommendViewController: UIViewController , OSPOptionListDelegate, UITextV
     @IBAction func clickBtnKeyword(sender: AnyObject) {
         
         if self.arraykeyWords.count == 0 {
-            OSPUserAlerts.mostrarAlertaConTitulo("Error", conMensaje: "Keywords no availables", conBotonCancelar: "Accept", enController: self, conCompletion: nil)
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "no_availables_keywords".localized, withAcceptButton: "ok".localized)
             return
         }
         
@@ -244,11 +244,11 @@ class RecommendViewController: UIViewController , OSPOptionListDelegate, UITextV
     }
     
     // MARK: - WebServices
-    func listAllCategories() -> Void {
+    func listAllCategories() {
         
         self.activityCategory.startAnimating()
         
-        RecommendBC.listAllCatgoriesToUser(self.objUser!) { (arrayCategories) in
+        RecommendBC.listAllCategoriesToUser(self.objUser!) { (arrayCategories) in
             
             self.activityCategory.stopAnimating()
             self.arrayCategories = arrayCategories
