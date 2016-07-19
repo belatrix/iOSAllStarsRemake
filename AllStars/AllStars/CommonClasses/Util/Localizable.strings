@@ -50,6 +50,10 @@ last_name_empty = "Last Name must not be empty";
 skype_id_empty = "Skype Id must not be empty";
 location_empty = "Must be select a location";
 
+// Settings
+logout_warning = "Are you sure you want to logout?";
+logout_cell_title = "Logout";
+
 // About
 about_what = "Belatrix Connect tries to motivated social engagement and teammate recognition through reputation points system based on technical criteria topics about Software Development, also Belatrix Connect wants to be a social connection between people interested in events or talks organized by Belatrix.";
 about_why = "Because we want to take action and improve our working environment. Because we can. Because we believe in technology and mobile world.";

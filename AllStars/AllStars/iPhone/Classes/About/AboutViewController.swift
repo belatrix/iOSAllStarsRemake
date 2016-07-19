@@ -72,6 +72,9 @@ class AboutViewController: UIViewController, UIPageViewControllerDataSource, UIP
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
+        guard let _ = self.pageControl
+            else { return }
+        
         if let rootVC = self.navigationController?.viewControllers.first where
             rootVC == self.tabBarController?.moreNavigationController.viewControllers.first  {
             

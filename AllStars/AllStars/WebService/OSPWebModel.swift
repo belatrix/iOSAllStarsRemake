@@ -9,7 +9,8 @@
 import UIKit
 
 class OSPWebModel: NSObject {
-    
+   
+
     class func logInUser(user : User, withCompletion completion : (userSession : UserSession?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
         
         let dic : [String : AnyObject] =
@@ -649,6 +650,27 @@ class OSPWebModel: NSObject {
                 }
             } else {
                 completion(arrayUsers: nil, nextPage: nil, errorResponse: nil, successful: false)
+            }
+        }
+    }
+    
+    // MARK: - Logout
+    
+    class func doLogout(token : String, withCompletion completion : (errorResponse : ErrorResponse?, successful : Bool) -> Void) {
+        
+        let path = "/api/employee/logout/"
+        
+        OSPWebSender.doGETWithToken(path, withToken: token) {(response, successful) in
+            
+            if (response != nil) {
+                if (successful) {
+                    
+                    completion(errorResponse: nil, successful: successful)
+                } else {
+                    completion(errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
+                }
+            } else {
+                completion(errorResponse: nil, successful: successful)
             }
         }
     }

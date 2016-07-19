@@ -94,10 +94,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         case .logOut:
             
-            guard let cell = tableView.dequeueReusableCellWithIdentifier("logoutCell")
+            guard let cell = tableView.dequeueReusableCellWithIdentifier("logoutCell") as? LogoutCell
                 else { fatalError("Settings - No logout cell found") }
             
-            cell.textLabel?.text = "Logout"
+            cell.title.text = "logout_cell_title".localized
             
             cell.selectionStyle = .None
             
@@ -113,7 +113,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         switch option {
             
         case .logOut:
-            logout()
+            
+            let logoutCell = tableView.cellForRowAtIndexPath(indexPath) as! LogoutCell
+            
+            logout(logoutCell)
             
         default:
             return
@@ -122,13 +125,44 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     // MARK: - User Interaction
     
-    func logout() {
-    
-        SessionUD.sharedInstance.clearSession()
+    @IBAction func goBack(sender: AnyObject) {
         
-        let storyBoard : UIStoryboard = UIStoryboard(name: "LogIn", bundle:nil)
-        let logInViewController = storyBoard.instantiateViewControllerWithIdentifier("LogInViewController") as! LogInViewController
-        self.presentViewController(logInViewController, animated: true, completion: nil)
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    func logout(logoutCell: LogoutCell!) {
+        
+        let alert: UIAlertController = UIAlertController(title: "logout_warning".localized, message: nil, preferredStyle: .Alert)
+        
+        let logoutAction = UIAlertAction(title: "ok".localized, style: .Destructive,
+                                         handler: {(alert: UIAlertAction) in
+                                            
+                                            self.view.userInteractionEnabled = false
+                                            logoutCell.actLogout.startAnimating()
+                                            
+                                            LogInBC.doLogout { (successful) in
+                                                
+                                                self.view.userInteractionEnabled = true
+                                                logoutCell.actLogout.stopAnimating()
+                                                
+                                                if successful {
+                                                    
+                                                    SessionUD.sharedInstance.clearSession()
+                                                    
+                                                    let storyBoard : UIStoryboard = UIStoryboard(name: "LogIn", bundle:nil)
+                                                    let logInViewController = storyBoard.instantiateViewControllerWithIdentifier("LogInViewController") as! LogInViewController
+                                                    self.presentViewController(logInViewController, animated: true, completion: nil)
+                                                }
+                                            }
+                                        })
+        
+        let cancelAction = UIAlertAction(title: "cancel".localized, style: .Cancel,
+                                         handler: nil)
+        
+        alert.addAction(logoutAction)
+        alert.addAction(cancelAction)
+        
+        self.presentViewController(alert, animated: true, completion: {})
+        
     }
     
     @IBAction func enableNotificationChanged(sender: AnyObject) {
@@ -155,4 +189,9 @@ class NotificationCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var subtitle: UILabel!
     
+}
+
+class LogoutCell: UITableViewCell {
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var actLogout: UIActivityIndicatorView!
 }

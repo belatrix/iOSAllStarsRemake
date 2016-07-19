@@ -231,4 +231,29 @@ class LogInBC: NSObject {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         return appDelegate.objUserSession
     }
+    
+    // MARK: - Logout
+    class func doLogout(withCompletion completion : (successful : Bool) -> Void) {
+        
+        let objUser = LogInBC.getCurrenteUserSession()
+        
+        if objUser!.user_token == nil {
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
+            completion(successful: false)
+            return
+        }
+        
+        OSPWebModel.doLogout((objUser?.user_token)!) { (errorResponse, successful) in
+            
+            if successful {
+                completion(successful: true)
+            } else if (errorResponse != nil) {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
+                completion(successful: false)
+            } else {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
+                completion(successful: false)
+            }
+        }
+    }
 }
