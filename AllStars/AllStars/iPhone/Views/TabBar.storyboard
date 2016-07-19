@@ -97,10 +97,10 @@
             </objects>
             <point key="canvasLocation" x="474.5" y="215"/>
         </scene>
-        <!--Event-->
+        <!--EventsViewController-->
         <scene sceneID="bgM-Cg-JVB">
             <objects>
-                <viewControllerPlaceholder storyboardName="Event" id="YGB-HN-sqe" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Event" referencedIdentifier="EventsViewController" id="YGB-HN-sqe" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Events" id="aIM-63-jEA"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V5i-D9-gSV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -135,10 +135,10 @@
             </objects>
             <point key="canvasLocation" x="217.5" y="1387"/>
         </scene>
-        <!--Event-->
+        <!--EventsNavViewController-->
         <scene sceneID="W4X-6E-Mop">
             <objects>
-                <viewControllerPlaceholder storyboardName="Event" id="hkR-Io-24j" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Event" referencedIdentifier="EventsNavViewController" id="hkR-Io-24j" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Events" id="j2b-RI-oCj"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oJH-vU-eDL" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -139,20 +139,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                                             self.view.userInteractionEnabled = false
                                             logoutCell.actLogout.startAnimating()
                                             
-                                            LogInBC.doLogout { (successful) in
-                                                
-                                                self.view.userInteractionEnabled = true
-                                                logoutCell.actLogout.stopAnimating()
-                                                
-                                                if successful {
-                                                    
-                                                    SessionUD.sharedInstance.clearSession()
-                                                    
-                                                    let storyBoard : UIStoryboard = UIStoryboard(name: "LogIn", bundle:nil)
-                                                    let logInViewController = storyBoard.instantiateViewControllerWithIdentifier("LogInViewController") as! LogInViewController
-                                                    self.presentViewController(logInViewController, animated: true, completion: nil)
-                                                }
-                                            }
+                                            self.logoutAccordingToUserType(logoutCell)
                                         })
         
         let cancelAction = UIAlertAction(title: "cancel".localized, style: .Cancel,
@@ -172,6 +159,39 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         SessionUD.sharedInstance.setUserIsPushNotificationEnable(enableSwitch.on)
     }
     
+    func logoutAccordingToUserType(logoutCell: LogoutCell!) {
+        
+        let session_id                      : Int       = SessionUD.sharedInstance.getUserPk()
+        let session_tokken                  : String    = SessionUD.sharedInstance.getUserToken()
+        let session_base_profile_complete   : Bool      = SessionUD.sharedInstance.getUserBaseProfileComplete()
+        
+        if (session_id != -1 && session_tokken != "" && session_base_profile_complete == true) {
+            
+            LogInBC.doLogout { (successful) in
+                
+                self.view.userInteractionEnabled = true
+                logoutCell.actLogout.stopAnimating()
+                
+                if successful {
+                    
+                    self.showLoginViewController()
+                }
+            }
+            
+        } else {
+            
+            showLoginViewController()
+        }
+    }
+    
+    func showLoginViewController() {
+        
+        SessionUD.sharedInstance.clearSession()
+        
+        let storyBoard : UIStoryboard = UIStoryboard(name: "LogIn", bundle:nil)
+        let logInViewController = storyBoard.instantiateViewControllerWithIdentifier("LogInViewController") as! LogInViewController
+        self.presentViewController(logInViewController, animated: true, completion: nil)
+    }
 }
 
 extension SettingsViewController {
