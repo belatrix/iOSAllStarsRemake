@@ -137,7 +137,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                                          handler: {(alert: UIAlertAction) in
                                             
                                             self.view.userInteractionEnabled = false
-                                            logoutCell.actLogout.startAnimating()
                                             
                                             self.logoutAccordingToUserType(logoutCell)
                                         })
@@ -166,6 +165,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let session_base_profile_complete   : Bool      = SessionUD.sharedInstance.getUserBaseProfileComplete()
         
         if (session_id != -1 && session_tokken != "" && session_base_profile_complete == true) {
+            
+            logoutCell.actLogout.startAnimating()
             
             LogInBC.doLogout { (successful) in
                 
