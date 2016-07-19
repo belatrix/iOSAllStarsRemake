@@ -163,11 +163,12 @@
                             <constraint firstAttribute="trailing" secondItem="622-ho-72g" secondAttribute="trailing" id="vvY-N3-2QM"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Events" id="ahD-WT-qLR"/>
+                    <tabBarItem key="tabBarItem" title="Events" image="iconTabBar_event" id="ahD-WT-qLR"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="actLoading" destination="Z6y-HY-JgY" id="sAr-1T-8lq"/>
+                        <outlet property="backButton" destination="iAs-BE-QZB" id="17B-FD-YBj"/>
                         <outlet property="lblErrorMessage" destination="taY-AJ-nMi" id="x4b-Ke-JFn"/>
                         <outlet property="tlbEvents" destination="622-ho-72g" id="4Ln-yt-CGe"/>
                         <outlet property="viewHeader" destination="sxJ-L4-O38" id="FpW-Jc-biM"/>
@@ -181,6 +182,7 @@
     </scenes>
     <resources>
         <image name="iconBack.png" width="15" height="15"/>
+        <image name="iconTabBar_event" width="30" height="30"/>
         <image name="placeholder_general.png" width="207" height="138"/>
     </resources>
 </document>

@@ -28,7 +28,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var constraintHeightContent  : NSLayoutConstraint!
     @IBOutlet weak var btnAction                : UIButton?
     @IBOutlet weak var btnBack                  : UIButton!
-    @IBOutlet weak var btnLogout                : UIButton!
     
     var objUser : User?
     var backEnable : Bool?
@@ -44,9 +43,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
         
         registerUserDevice()
-        
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
-        self.tabBarController?.moreNavigationController.navigationItem.rightBarButtonItem = nil
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -72,13 +68,13 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         if backEnable != nil {
             self.btnBack.hidden = false
-            self.btnLogout.hidden = true
         } else {
             self.btnBack.hidden = true
-            self.btnLogout.hidden = false
         }
         
-        super.viewWillAppear(animated)
+        super.viewWillAppear(animated)        
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     // MARK: - Style

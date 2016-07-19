@@ -80,9 +80,10 @@
                             <constraint firstItem="uRa-VS-lxI" firstAttribute="leading" secondItem="Sg2-I4-9gJ" secondAttribute="leading" id="zfS-7M-0IL"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="About" id="rTu-G0-4tU"/>
+                    <tabBarItem key="tabBarItem" title="About" image="iconTabBar_about" id="rTu-G0-4tU"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="backButton" destination="6uU-EI-sYQ" id="lIl-Yb-YF6"/>
                         <outlet property="pageControl" destination="u6k-uc-tpX" id="c0p-QH-hTy"/>
                     </connections>
                 </viewController>
@@ -400,6 +401,7 @@
         <image name="ic_nav_header" width="1184" height="740"/>
         <image name="ic_user.png" width="133" height="133"/>
         <image name="iconBack.png" width="15" height="15"/>
+        <image name="iconTabBar_about" width="30" height="30"/>
         <image name="mail.png" width="85" height="85"/>
     </resources>
 </document>

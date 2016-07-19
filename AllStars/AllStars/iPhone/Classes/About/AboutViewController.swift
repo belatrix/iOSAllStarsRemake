@@ -15,6 +15,7 @@ class AboutViewController: UIViewController, UIPageViewControllerDataSource, UIP
     var pageViewController = UIPageViewController()
     
     @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var backButton: UIButton!
     
     // MARK: - Info Texts variables
     
@@ -52,9 +53,20 @@ class AboutViewController: UIViewController, UIPageViewControllerDataSource, UIP
         
         pageControl.numberOfPages = arrayViewControllers.count
         
+        if let nav = self.navigationController where nav.viewControllers.count > 1 {
+            
+            backButton.hidden = false
+        } else {
+            
+            backButton.hidden = true
+        }
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        print(self.navigationController?.viewControllers.first)
-        print(self.tabBarController?.moreNavigationController.viewControllers.first)
     }
     
     override func viewWillDisappear(animated: Bool) {

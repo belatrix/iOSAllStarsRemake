@@ -15,6 +15,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var lblErrorMessage          : UILabel!
     @IBOutlet weak var actLoading               : UIActivityIndicatorView!
     @IBOutlet weak var viewLoading              : UIView!
+    @IBOutlet weak var backButton: UIButton!
     
     var isDownload      = false
     var arrayEvents      = NSMutableArray()
@@ -23,11 +24,23 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
-        
         setViews()
         
         self.listAllEvents()
+        
+        if let nav = self.navigationController where nav.viewControllers.count > 1 {
+            
+            backButton.hidden = false
+        } else {
+            
+            backButton.hidden = true
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func viewWillDisappear(animated: Bool) {
