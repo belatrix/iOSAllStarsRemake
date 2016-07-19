@@ -13,7 +13,7 @@
                         <viewControllerLayoutGuide type="bottom" id="cyk-FC-GjB"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ou8-Ql-jZe">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w0A-jY-m8Z">
@@ -73,7 +73,6 @@
                             <constraint firstItem="bg1-V6-pt6" firstAttribute="leading" secondItem="ou8-Ql-jZe" secondAttribute="leading" id="rIf-2j-SBj"/>
                         </constraints>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <tabBarItem key="tabBarItem" title="Ranking" image="iconTabBar_1.png" id="pjc-vU-0NP"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
