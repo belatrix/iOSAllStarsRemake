@@ -105,38 +105,6 @@ class OSPWebModel: NSObject {
             completion(arrayUsers: arrayUsers, nextPage: nextPage)
         }
     }
-
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     class func logInUser(user : User, withCompletion completion : (userSession : UserSession?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
         
@@ -633,6 +601,27 @@ class OSPWebModel: NSObject {
             })
             
             completion(arrayUsersRanking: arrayUsersRanking)
+        }
+    }
+    
+    // MARK: - Logout
+    
+    class func doLogout(token : String, withCompletion completion : (errorResponse : ErrorResponse?, successful : Bool) -> Void) {
+        
+        let path = "/api/employee/logout/"
+        
+        OSPWebSender.doGETWithTokenTemp(path, withToken: token) {(response, successful) in
+            
+            if (response != nil) {
+                if (successful) {
+                    
+                    completion(errorResponse: nil, successful: successful)
+                } else {
+                    completion(errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
+                }
+            } else {
+                completion(errorResponse: nil, successful: successful)
+            }
         }
     }
 }

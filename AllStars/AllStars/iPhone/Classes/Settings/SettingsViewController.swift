@@ -123,12 +123,33 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: - User Interaction
     
     func logout() {
-    
-        SessionUD.sharedInstance.clearSession()
         
-        let storyBoard : UIStoryboard = UIStoryboard(name: "LogIn", bundle:nil)
-        let logInViewController = storyBoard.instantiateViewControllerWithIdentifier("LogInViewController") as! LogInViewController
-        self.presentViewController(logInViewController, animated: true, completion: nil)
+        let alert: UIAlertController = UIAlertController(title: "logout_warning".localized, message: nil, preferredStyle: .Alert)
+        
+        let logoutAction = UIAlertAction(title: "ok".localized, style: .Destructive,
+                                         handler: {(alert: UIAlertAction) in
+                                            
+                                            LogInBC.doLogout { (successful) in
+                                                
+                                                if successful {
+                                                    
+                                                    SessionUD.sharedInstance.clearSession()
+                                                    
+                                                    let storyBoard : UIStoryboard = UIStoryboard(name: "LogIn", bundle:nil)
+                                                    let logInViewController = storyBoard.instantiateViewControllerWithIdentifier("LogInViewController") as! LogInViewController
+                                                    self.presentViewController(logInViewController, animated: true, completion: nil)
+                                                }
+                                            }
+                                        })
+        
+        let cancelAction = UIAlertAction(title: "cancel".localized, style: .Cancel,
+                                         handler: nil)
+        
+        alert.addAction(logoutAction)
+        alert.addAction(cancelAction)
+        
+        self.presentViewController(alert, animated: true, completion: {})
+        
     }
     
     @IBAction func enableNotificationChanged(sender: AnyObject) {
