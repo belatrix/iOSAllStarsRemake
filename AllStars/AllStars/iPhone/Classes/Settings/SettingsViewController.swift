@@ -122,6 +122,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     // MARK: - User Interaction
     
+    @IBAction func goBack(sender: AnyObject) {
+        
+        self.navigationController?.popViewControllerAnimated(true)
+    }
     func logout() {
         
         let alert: UIAlertController = UIAlertController(title: "logout_warning".localized, message: nil, preferredStyle: .Alert)
