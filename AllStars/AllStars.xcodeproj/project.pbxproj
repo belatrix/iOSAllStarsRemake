@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		19EB523AC5A4798F9BFA29B7 /* Pods_AllStars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B099B21DBCE77889351873A /* Pods_AllStars.framework */; };
+		3432CC211D3ED07600FF2F3B /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3432CC201D3ED07600FF2F3B /* EventDetailViewController.swift */; };
 		347CE3BC1D3D6D2A0040CB19 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347CE3BB1D3D6D2A0040CB19 /* SettingsViewController.swift */; };
 		347CE3BE1D3D70660040CB19 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 347CE3BD1D3D70660040CB19 /* Settings.storyboard */; };
 		34D67C191D37E0C7002D1DC7 /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34D67C181D37E0C7002D1DC7 /* About.storyboard */; };
@@ -144,6 +145,7 @@
 
 /* Begin PBXFileReference section */
 		096506E97712267EE8D873B8 /* Pods-AllStars.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AllStars.release.xcconfig"; path = "Pods/Target Support Files/Pods-AllStars/Pods-AllStars.release.xcconfig"; sourceTree = "<group>"; };
+		3432CC201D3ED07600FF2F3B /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventDetailViewController.swift; path = Event/EventDetailViewController.swift; sourceTree = "<group>"; };
 		347CE3BB1D3D6D2A0040CB19 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		347CE3BD1D3D70660040CB19 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		34D67C181D37E0C7002D1DC7 /* About.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = About.storyboard; sourceTree = "<group>"; };
@@ -708,6 +710,7 @@
 				B6A7AFCB1D2717170083883B /* Logic */,
 				B6A7AFC91D2717140083883B /* EventsViewController.swift */,
 				B66204CF1D2D6E7000841573 /* EventTableViewCell.swift */,
+				3432CC201D3ED07600FF2F3B /* EventDetailViewController.swift */,
 			);
 			name = Event;
 			sourceTree = "<group>";
@@ -1038,6 +1041,7 @@
 				347CE3BC1D3D6D2A0040CB19 /* SettingsViewController.swift in Sources */,
 				96AC74D21CDB765800D993E7 /* OSPWebSender.swift in Sources */,
 				9613BBFF1CE4BD9500533FAF /* OSPOptionListItem.m in Sources */,
+				3432CC211D3ED07600FF2F3B /* EventDetailViewController.swift in Sources */,
 				966BA8DD1CEA091900C240D7 /* UserRankingViewController.swift in Sources */,
 				96B2A0D31CE632B300C8F97D /* RankingBC.swift in Sources */,
 				96757BE31CE0CA6000BA216A /* StarsCategoriesUserViewController.swift in Sources */,

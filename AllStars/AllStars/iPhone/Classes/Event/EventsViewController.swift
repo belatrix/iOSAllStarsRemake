@@ -20,7 +20,18 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var isDownload      = false
     var arrayEvents      = NSMutableArray()
     var nextPage        : String? = nil
+    var selectedEvent   : Event!
     
+    lazy var refreshControl : UIRefreshControl = {
+        let _refreshControl = UIRefreshControl()
+        _refreshControl.backgroundColor = .clearColor()
+        _refreshControl.tintColor = UIColor.belatrix()
+        _refreshControl.addTarget(self, action: #selector(EventsViewController.listAllEvents), forControlEvents: .ValueChanged)
+        
+        return _refreshControl
+    }()
+    
+    // MARK: - Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,6 +46,11 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             backButton.hidden = true
         }
+        
+        tlbEvents.rowHeight = UITableViewAutomaticDimension
+        tlbEvents.estimatedRowHeight = 60
+        
+        tlbEvents.addSubview(self.refreshControl)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -106,18 +122,15 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-//        let cell = tableView.cellForRowAtIndexPath(indexPath)
-//        cell?.setSelected(false, animated: true)
-//        
-//        let objBE = self.arrayEvents[indexPath.row]
-//        self.performSegueWithIdentifier("ProfileViewController", sender: objBE)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        guard let selectedEvent = arrayEvents[indexPath.row] as? Event
+            else { return }
+        
+        self.selectedEvent = selectedEvent
+        
+        self.performSegueWithIdentifier("ToEventDetail", sender: nil)
     }
-    
-//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        
-//        let objBE = self.arrayEvents[indexPath.row] as! UserQualifyBE
-//        return StarUserInfoTableViewCell.getHeightToCellWithTextDescription(objBE.userQualify_text!)
-//    }
     
     // MARK: - WebServices
     func listAllEvents() {
@@ -129,6 +142,8 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.lblErrorMessage.text = "Loading events"
             
             EventBC.listEventsWithCompletion { (arrayEvents, nextPage) in
+                
+                self.refreshControl.endRefreshing()
                 
                 self.nextPage = nextPage
                 self.arrayEvents = arrayEvents!
@@ -180,10 +195,9 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-//        if segue.identifier == "ProfileViewController" {
-//            let controller = segue.destinationViewController as! ProfileViewController
-//            controller.objUser = sender as? User
-//            controller.backEnable = true
-//        }
+        if segue.identifier == "ToEventDetail" {
+            let eventDetailController = segue.destinationViewController as! EventDetailViewController
+            eventDetailController.event = selectedEvent
+        }
     }
 }
