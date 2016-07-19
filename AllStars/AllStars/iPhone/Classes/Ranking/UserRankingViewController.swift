@@ -54,6 +54,27 @@ class UserRankingViewController: UIViewController, UITableViewDelegate, UITableV
         return cell
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        cell?.setSelected(false, animated: true)
+        
+        let objBE = self.arrayUsers[indexPath.row] as! UserRankingBE
+        
+        let objUser : User = User()
+        objUser.user_pk = objBE.userRanking_pk
+        objUser.user_username = objBE.userRanking_userName
+        objUser.user_first_name = objBE.userRanking_firstName
+        objUser.user_last_name = objBE.userRanking_lastName
+        objUser.user_avatar = objBE.userRanking_avatar
+        
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Profile", bundle:nil)
+        let profileViewController = storyBoard.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
+        profileViewController.objUser = objUser
+        profileViewController.backEnable = true
+        self.navigationController?.pushViewController(profileViewController, animated: true)
+    }
+    
     //MARK: - WebService
     func listTotalScore(){
         

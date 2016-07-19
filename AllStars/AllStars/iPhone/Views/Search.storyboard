@@ -171,7 +171,7 @@
                         <outlet property="tlbUsers" destination="TQG-TZ-OvM" id="fkM-y3-Esr"/>
                         <outlet property="viewHeader" destination="LDf-Be-SjQ" id="Vxw-9x-yGc"/>
                         <outlet property="viewLoading" destination="vh0-YR-GOP" id="MsA-Uh-1WE"/>
-                        <segue destination="UaW-dN-oFn" kind="push" identifier="ProfileViewController" id="uKn-yK-2hK"/>
+                        <segue destination="UaW-dN-oFn" kind="push" identifier="segueProfileViewController" id="uKn-yK-2hK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Zd-Br-eDy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -351,7 +351,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uT0-ze-Vsn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="884" y="998"/>
+            <point key="canvasLocation" x="1016" y="1014"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="b8p-WE-xHO">

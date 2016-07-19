@@ -77,10 +77,10 @@
             </objects>
             <point key="canvasLocation" x="435.5" y="701"/>
         </scene>
-        <!--RankingViewController-->
+        <!--navRanking-->
         <scene sceneID="kqI-ha-5zj">
             <objects>
-                <viewControllerPlaceholder storyboardName="Ranking" referencedIdentifier="RankingViewController" id="a4D-E0-X0S" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Ranking" referencedIdentifier="navRanking" id="a4D-E0-X0S" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Ranking" image="iconTabBar_1.png" id="K47-z0-Gzh"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kTk-jq-cCO" userLabel="First Responder" sceneMemberID="firstResponder"/>
