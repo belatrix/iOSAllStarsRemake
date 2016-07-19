@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Ranking-->
+        <!--Ranking View Controller-->
         <scene sceneID="Iro-PO-N4i">
             <objects>
                 <viewController storyboardIdentifier="RankingViewController" id="HFw-Ol-dK1" customClass="RankingViewController" customModule="AllStars" customModuleProvider="target" sceneMemberID="viewController">
@@ -73,7 +73,7 @@
                             <constraint firstItem="bg1-V6-pt6" firstAttribute="leading" secondItem="ou8-Ql-jZe" secondAttribute="leading" id="rIf-2j-SBj"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Ranking" image="iconTabBar_1.png" id="pjc-vU-0NP"/>
+                    <navigationItem key="navigationItem" id="F1F-U1-Lon"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
@@ -83,7 +83,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="96B-4Y-klQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="697" y="477"/>
+            <point key="canvasLocation" x="1509" y="477"/>
         </scene>
         <!--User Ranking Tag View Controller-->
         <scene sceneID="ijx-13-1E5">
@@ -283,7 +283,7 @@
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KDP-BL-BHk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1099" y="477"/>
+            <point key="canvasLocation" x="1911" y="477"/>
         </scene>
         <!--User Ranking View Controller-->
         <scene sceneID="LP8-z3-cb9">
@@ -301,7 +301,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="UserRankingTableViewCell" rowHeight="66" id="cts-W7-jaT" customClass="UserRankingTableViewCell" customModule="AllStars" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="UserRankingTableViewCell" rowHeight="66" id="cts-W7-jaT" customClass="UserRankingTableViewCell" customModule="AllStars" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cts-W7-jaT" id="DxY-0M-OE0">
@@ -420,7 +420,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PSI-0J-9qA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1514" y="477"/>
+            <point key="canvasLocation" x="2326" y="477"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DbG-78-WGa">
@@ -440,6 +440,26 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gse-V6-Ebw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="666" y="1136"/>
+        </scene>
+        <!--Ranking-->
+        <scene sceneID="abs-dC-Jn3">
+            <objects>
+                <navigationController storyboardIdentifier="navRanking" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="vP7-WJ-ZBW" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Ranking" image="iconTabBar_1.png" id="pjc-vU-0NP"/>
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aOR-zQ-OKW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="HFw-Ol-dK1" kind="relationship" relationship="rootViewController" id="2fA-E8-moe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cLz-kg-Icv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1062" y="477"/>
         </scene>
     </scenes>
     <resources>

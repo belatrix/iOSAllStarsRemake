@@ -118,7 +118,7 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
         cell?.setSelected(false, animated: true)
         
         let objBE = self.arrayUsers[indexPath.row]
-        self.performSegueWithIdentifier("ProfileViewController", sender: objBE)
+        self.performSegueWithIdentifier("segueProfileViewController", sender: objBE)
     }
     
     // MARK: - WebServices
@@ -204,7 +204,7 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if segue.identifier == "ProfileViewController" {
+        if segue.identifier == "segueProfileViewController" {
             let controller = segue.destinationViewController as! ProfileViewController
             controller.objUser = sender as? User
             controller.backEnable = true
