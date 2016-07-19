@@ -50,7 +50,64 @@ last_name_empty = "Last Name must not be empty";
 skype_id_empty = "Skype Id must not be empty";
 location_empty = "Must be select a location";
 
-// Ranking
+// About
+about_what = "Belatrix Connect tries to motivated social engagement and teammate recognition through reputation points system based on technical criteria topics about Software Development, also Belatrix Connect wants to be a social connection between people interested in events or talks organized by Belatrix.";
+about_why = "Because we want to take action and improve our working environment. Because we can. Because we believe in technology and mobile world.";
+about_who = "Belatrix Connect was created by people really motivated doing geeky stuff and living passionated about mobile technology.";
+email_error_message = "Please configure your email.";
+email_support = "crash.allbelatrix@neosergio.net";
+email_subject = "AllStars - Support";
+about_license = "The MIT License (MIT)\
+Copyright 2016 BELATRIX\
+Permission is hereby granted, free of charge, to any person obtaining a copy\
+of this software and associated documentation files (the \"Software\"), to deal\
+in the Software without restriction, including without limitation the rights\
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\
+copies of the Software, and to permit persons to whom the Software is\
+furnished to do so, subject to the following conditions:\
+\
+The above copyright notice and this permission notice shall be included in all\
+copies or substantial portions of the Software.\
+\
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\
+SOFTWARE.";// Ranking
+no_availables_employees = "Employees no availables";
+
+// Recommend
+category_empty = "Category must not be empty";
+subcategory_empty = "Subcategory must not be empty";
+keyword_empty = "Keyword must not be empty";
+description_empty = "Description must not be empty";
+no_availables_categories = "Categories no availables";
+no_availables_keywords = "Keywords no availables";about_why = "Because we want to take action and improve our working environment. Because we can. Because we believe in technology and mobile world.";
+about_who = "Belatrix Connect was created by people really motivated doing geeky stuff and living passionated about mobile technology.";
+email_error_message = "Please configure your email.";
+email_support = "crash.allbelatrix@neosergio.net";
+email_subject = "AllStars - Support";
+about_license = "The MIT License (MIT)\
+Copyright 2016 BELATRIX\
+Permission is hereby granted, free of charge, to any person obtaining a copy\
+of this software and associated documentation files (the \"Software\"), to deal\
+in the Software without restriction, including without limitation the rights\
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\
+copies of the Software, and to permit persons to whom the Software is\
+furnished to do so, subject to the following conditions:\
+\
+The above copyright notice and this permission notice shall be included in all\
+copies or substantial portions of the Software.\
+\
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\
+SOFTWARE.";// Ranking
 no_availables_employees = "Employees no availables";
 
 // Recommend
