@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		19EB523AC5A4798F9BFA29B7 /* Pods_AllStars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B099B21DBCE77889351873A /* Pods_AllStars.framework */; };
+		347CE3BC1D3D6D2A0040CB19 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347CE3BB1D3D6D2A0040CB19 /* SettingsViewController.swift */; };
+		347CE3BE1D3D70660040CB19 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 347CE3BD1D3D70660040CB19 /* Settings.storyboard */; };
+		34D67C191D37E0C7002D1DC7 /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34D67C181D37E0C7002D1DC7 /* About.storyboard */; };
+		34D67C1C1D37FBCB002D1DC7 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D67C1B1D37FBCB002D1DC7 /* AboutViewController.swift */; };
+		34D67C1E1D382447002D1DC7 /* AboutCollaboratorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D67C1D1D382447002D1DC7 /* AboutCollaboratorsViewController.swift */; };
+		34E0DC501D392ECD00281B56 /* Collaborators.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34E0DC4F1D392ECD00281B56 /* Collaborators.plist */; };
 		9609D73E1CE364D300BF6036 /* textBelatrix@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9609D73D1CE364D300BF6036 /* textBelatrix@3x.png */; };
 		9609D7411CE39AF400BF6036 /* RecommendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9609D7401CE39AF400BF6036 /* RecommendViewController.swift */; };
 		9609D7441CE3A68F00BF6036 /* RecommendBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9609D7431CE3A68F00BF6036 /* RecommendBC.swift */; };
@@ -138,6 +144,12 @@
 
 /* Begin PBXFileReference section */
 		096506E97712267EE8D873B8 /* Pods-AllStars.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AllStars.release.xcconfig"; path = "Pods/Target Support Files/Pods-AllStars/Pods-AllStars.release.xcconfig"; sourceTree = "<group>"; };
+		347CE3BB1D3D6D2A0040CB19 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		347CE3BD1D3D70660040CB19 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		34D67C181D37E0C7002D1DC7 /* About.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = About.storyboard; sourceTree = "<group>"; };
+		34D67C1B1D37FBCB002D1DC7 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		34D67C1D1D382447002D1DC7 /* AboutCollaboratorsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutCollaboratorsViewController.swift; sourceTree = "<group>"; };
+		34E0DC4F1D392ECD00281B56 /* Collaborators.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Collaborators.plist; sourceTree = "<group>"; };
 		6891701F3BB249E13689ABBA /* Pods-AllStars.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AllStars.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AllStars/Pods-AllStars.debug.xcconfig"; sourceTree = "<group>"; };
 		6B099B21DBCE77889351873A /* Pods_AllStars.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AllStars.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9609D73D1CE364D300BF6036 /* textBelatrix@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textBelatrix@3x.png"; sourceTree = "<group>"; };
@@ -295,6 +307,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		347CE3BA1D3D6D080040CB19 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				347CE3BB1D3D6D2A0040CB19 /* SettingsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		34D67C1A1D37EB1B002D1DC7 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				34D67C1B1D37FBCB002D1DC7 /* AboutViewController.swift */,
+				34D67C1D1D382447002D1DC7 /* AboutCollaboratorsViewController.swift */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
 		74929EA0904086B92140D449 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -437,6 +466,8 @@
 		96AC74C51CDB745400D993E7 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				347CE3BA1D3D6D080040CB19 /* Settings */,
+				34D67C1A1D37EB1B002D1DC7 /* About */,
 				B6A7AFC81D2716DE0083883B /* Event */,
 				96B2A0CA1CE6161300C8F97D /* Ranking */,
 				9609D73F1CE39AD500BF6036 /* Recommend */,
@@ -460,6 +491,8 @@
 				96E41EF01CE2604C0071D49E /* Search.storyboard */,
 				96B2A0CB1CE6165900C8F97D /* Ranking.storyboard */,
 				B6A7AFCC1D27172F0083883B /* Event.storyboard */,
+				34D67C181D37E0C7002D1DC7 /* About.storyboard */,
+				347CE3BD1D3D70660040CB19 /* Settings.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -705,6 +738,7 @@
 				B62AA0EA1D144576008FB75A /* QualityImage.swift */,
 				B62AA0EB1D144576008FB75A /* UIColorExtension.swift */,
 				B6C09DAF1D134598006C1D43 /* Localizable.strings */,
+				34E0DC4F1D392ECD00281B56 /* Collaborators.plist */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -841,12 +875,14 @@
 				96E41EE51CE2368F0071D49E /* Recommend.storyboard in Resources */,
 				9613BBFC1CE4BD9500533FAF /* OSPOptionList.xib in Resources */,
 				96757BED1CE0EF2300BA216A /* iconDown@3x.png in Resources */,
+				34D67C191D37E0C7002D1DC7 /* About.storyboard in Resources */,
 				96C68EBF1CE65B2100F072AA /* iconCup_3@3x.png in Resources */,
 				96AC74E81CDB9F4700D993E7 /* TabBar.storyboard in Resources */,
 				96C68EBC1CE65B2100F072AA /* iconCup_0@3x.png in Resources */,
 				B66FBC791D00CB9200C058F7 /* camera@3x.png in Resources */,
 				96C68EBD1CE65B2100F072AA /* iconCup_1@3x.png in Resources */,
 				B66204DA1D2DAE2600841573 /* placeholder_general@3x.png in Resources */,
+				34E0DC501D392ECD00281B56 /* Collaborators.plist in Resources */,
 				B6C09DB01D134598006C1D43 /* Localizable.strings in Resources */,
 				96E41EF11CE2604C0071D49E /* Search.storyboard in Resources */,
 				96AC74A11CDB73AF00D993E7 /* LaunchScreen.storyboard in Resources */,
@@ -861,6 +897,7 @@
 				96AC749E1CDB73AF00D993E7 /* Assets.xcassets in Resources */,
 				9637DE141CE2306A002AA60E /* iconAdd@3x.png in Resources */,
 				96B2A0D51CE635DD00C8F97D /* iconTabBar_1@3x.png in Resources */,
+				347CE3BE1D3D70660040CB19 /* Settings.storyboard in Resources */,
 				9638EF461CDD0DA800D07D51 /* iconNext@3x.png in Resources */,
 				B6C369EC1D38332F006FCD73 /* GoogleService-Info.plist in Resources */,
 				9637DE121CE21EA2002AA60E /* iconBack@3x.png in Resources */,
@@ -998,6 +1035,7 @@
 				B6A39C511CFDF80200DA42E3 /* TagTableViewCell.swift in Sources */,
 				B6A39C531CFE1BAE00DA42E3 /* StarKeywordBE.swift in Sources */,
 				9609D7441CE3A68F00BF6036 /* RecommendBC.swift in Sources */,
+				347CE3BC1D3D6D2A0040CB19 /* SettingsViewController.swift in Sources */,
 				96AC74D21CDB765800D993E7 /* OSPWebSender.swift in Sources */,
 				9613BBFF1CE4BD9500533FAF /* OSPOptionListItem.m in Sources */,
 				966BA8DD1CEA091900C240D7 /* UserRankingViewController.swift in Sources */,
@@ -1024,6 +1062,7 @@
 				964823371CE4EF38007E58FE /* KeywordBE.swift in Sources */,
 				B6A36C711D09C56400222D1F /* ResetPasswordViewController.swift in Sources */,
 				9609D7411CE39AF400BF6036 /* RecommendViewController.swift in Sources */,
+				34D67C1C1D37FBCB002D1DC7 /* AboutViewController.swift in Sources */,
 				96E41EF71CE27A2A0071D49E /* EmployeeTableViewCell.swift in Sources */,
 				96B2A0CE1CE6167F00C8F97D /* RankingViewController.swift in Sources */,
 				B6CA97901D09B556005FF6D6 /* UserSession.swift in Sources */,
@@ -1036,6 +1075,7 @@
 				B6A7AFC11D26BC5D0083883B /* LogInGuestViewController.swift in Sources */,
 				9609D7491CE3AE5400BF6036 /* OSPCrop.swift in Sources */,
 				96E41EF31CE2715B0071D49E /* EmployeeBE.swift in Sources */,
+				34D67C1E1D382447002D1DC7 /* AboutCollaboratorsViewController.swift in Sources */,
 				B6C152261D08822B00D8D180 /* Util.swift in Sources */,
 				B6C09DAC1D133800006C1D43 /* ErrorResponse.swift in Sources */,
 				B66FBC7B1D00D0FD00C058F7 /* LocationTableViewCell.swift in Sources */,
@@ -1105,6 +1145,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -1151,7 +1192,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1197,8 +1239,8 @@
 			baseConfigurationReference = 096506E97712267EE8D873B8 /* Pods-AllStars.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AllStars",

@@ -40,7 +40,19 @@ class RankingViewController: UIViewController, UIPageViewControllerDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
         setViews()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if let rootVC = self.navigationController?.viewControllers.first where
+            rootVC == self.tabBarController?.moreNavigationController.viewControllers.first  {
+            
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+        }
     }
     
     // MARK: - Style
@@ -61,12 +73,12 @@ class RankingViewController: UIViewController, UIPageViewControllerDataSource {
     
     func assignArrayTableToIndex(index : Int) {
         
-        let controllerInitial = self.arrayViewControllers[index] as! UIViewController
-        self.pageViewController.setViewControllers([controllerInitial], direction: self.currentIndex < index ? UIPageViewControllerNavigationDirection.Forward : UIPageViewControllerNavigationDirection.Reverse, animated: true, completion: nil)
+        let initialController = self.arrayViewControllers[index] as! UIViewController
+        self.pageViewController.setViewControllers([initialController], direction: self.currentIndex < index ? UIPageViewControllerNavigationDirection.Forward : UIPageViewControllerNavigationDirection.Reverse, animated: true, completion: nil)
         self.currentIndex = index
     }
     
-    // MARK - UIPageViewControllerDataSource
+    // MARK: - UIPageViewControllerDataSource
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         
         let index = self.arrayViewControllers.indexOfObject(viewController)

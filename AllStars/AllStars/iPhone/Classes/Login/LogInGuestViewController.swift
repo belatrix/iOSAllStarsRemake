@@ -174,9 +174,11 @@ class LogInGuestViewController: UIViewController, FBSDKLoginButtonDelegate {
             self.unlockScreenTW()
             
             if (fieldsCompleted) {
-                let sb = UIStoryboard(name: "Event", bundle: nil)
-                let eventsViewController = sb.instantiateViewControllerWithIdentifier("EventsViewController") as! EventsViewController
-                self.presentViewController(eventsViewController, animated: true, completion: nil)
+                // Login success
+                
+                let sb = UIStoryboard(name: "TabBar", bundle: nil)
+                let guestTabController = sb.instantiateViewControllerWithIdentifier("GuestTabBarViewController") as! UITabBarController
+                self.presentViewController(guestTabController, animated: true, completion: nil)
             } else {
                 print("no complete")
                 let sb = UIStoryboard(name: "LogIn", bundle: nil)

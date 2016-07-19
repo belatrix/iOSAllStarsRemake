@@ -15,6 +15,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var lblErrorMessage          : UILabel!
     @IBOutlet weak var actLoading               : UIActivityIndicatorView!
     @IBOutlet weak var viewLoading              : UIView!
+    @IBOutlet weak var backButton: UIButton!
     
     var isDownload      = false
     var arrayEvents      = NSMutableArray()
@@ -26,6 +27,30 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         setViews()
         
         self.listAllEvents()
+        
+        if let nav = self.navigationController where nav.viewControllers.count > 1 {
+            
+            backButton.hidden = false
+        } else {
+            
+            backButton.hidden = true
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if let rootVC = self.navigationController?.viewControllers.first where
+            rootVC == self.tabBarController?.moreNavigationController.viewControllers.first  {
+            
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+        }
     }
     
     // MARK: - Style
@@ -46,7 +71,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: - IBActions    
     @IBAction func btnBackTUI(sender: UIButton) {
         self.view.endEditing(true)
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     // MARK: - UIScrollViewDelegate

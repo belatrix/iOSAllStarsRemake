@@ -17,6 +17,7 @@ class SessionUD: NSUserDefaults {
     let UD_USER_SKYPE_ID                : String = "user_skype_id"
     let UD_USER_BASE_PROFILE_COMPLETE   : String = "base_profile_complete"
     let UD_USER_PUSH_TOKEN              : String = "push_token"
+    let UD_USER_PUSH_ENABLE              : String = "push_notification_enable"
     
     static let sharedInstance = SessionUD()
     
@@ -101,6 +102,18 @@ class SessionUD: NSUserDefaults {
             return userPUSHToken
         } else {
             return ""
+        }
+    }
+    
+    func setUserIsPushNotificationEnable (value : Bool) {
+        self.setBool(value, forKey: UD_USER_PUSH_ENABLE)
+    }
+    
+    func getUserIsPushNotificationEnable () -> Bool {
+        if let userIsPushNotificationEnable : Bool = self.boolForKey(UD_USER_PUSH_ENABLE) {
+            return userIsPushNotificationEnable
+        } else {
+            return false
         }
     }
     

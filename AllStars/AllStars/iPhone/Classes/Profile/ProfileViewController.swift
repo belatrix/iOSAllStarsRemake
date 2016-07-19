@@ -28,7 +28,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var constraintHeightContent  : NSLayoutConstraint!
     @IBOutlet weak var btnAction                : UIButton?
     @IBOutlet weak var btnBack                  : UIButton!
-    @IBOutlet weak var btnLogout                : UIButton!
     
     var objUser : User?
     var backEnable : Bool?
@@ -53,10 +52,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         if backEnable != nil {
             self.btnBack.hidden = false
-            self.btnLogout.hidden = true
         } else {
             self.btnBack.hidden = true
-            self.btnLogout.hidden = false
         }
     }
     
@@ -65,7 +62,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             self.updateUserInfo()
         }
         
-        super.viewWillAppear(animated)
+        super.viewWillAppear(animated)        
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     // MARK: - Style
@@ -81,9 +80,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         for view in self.scoreViews{
             view.layer.borderWidth = 1
             view.layer.borderColor = UIColor.score().CGColor
-        }
-        
-        self.view.backgroundColor = UIColor.colorPrimary()
+        }        
         viewHeader.backgroundColor = UIColor.colorPrimary()
     }
     
