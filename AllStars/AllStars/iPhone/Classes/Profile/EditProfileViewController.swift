@@ -260,10 +260,9 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
     // MARK: - Other
     func openTabBar() {
         let storyBoard : UIStoryboard = UIStoryboard(name: "TabBar", bundle:nil)
-        let customTabBarViewController = storyBoard.instantiateViewControllerWithIdentifier("CustomTabBarViewController") as! CustomTabBarViewController
-        let nav : UINavigationController = UINavigationController.init(rootViewController: customTabBarViewController)
-        nav.navigationBarHidden = true
-        self.presentViewController(nav, animated: true, completion: nil)
+        let tabBarViewController = storyBoard.instantiateViewControllerWithIdentifier("CustomTabBarViewController") as! UITabBarController
+        
+        self.presentViewController(tabBarViewController, animated: true, completion: nil)
     }
     
     // MARK: - Configuration
