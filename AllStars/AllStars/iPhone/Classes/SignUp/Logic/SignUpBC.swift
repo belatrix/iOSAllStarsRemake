@@ -24,14 +24,14 @@ class SignUpBC: NSObject {
             return
         }
         
-        OSPWebModel.createUser(mail) { (errorResponse, successful) in
+        OSPWebModel.createUser(mail) { (response, successful) in
             
-            if (errorResponse != nil) {
+            if (response != nil) {
                 if (successful) {
-                    OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: errorResponse!.message!, withAcceptButton: "got_it".localized)
+                    OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: response!.message!, withAcceptButton: "got_it".localized)
                     completion(successful: true)
                 } else {
-                    OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
+                    OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: response!.message!, withAcceptButton: "ok".localized)
                     completion(successful: false)
                 }
             } else {
