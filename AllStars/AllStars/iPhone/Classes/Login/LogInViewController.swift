@@ -18,6 +18,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var btnLogin             : UIButton!
     @IBOutlet weak var btnLogInGuest        : UIButton!
     @IBOutlet weak var btnNewUser           : UIButton!
+    @IBOutlet weak var btnforgotPassword    : UIButton!
     @IBOutlet weak var lblTitleApp          : UILabel!
     @IBOutlet weak var imgLogoBelatrix      : UIImageView!
     @IBOutlet weak var viewUserName         : UIView!
@@ -43,6 +44,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         btnLogin.backgroundColor = UIColor.colorPrimary()
         btnLogInGuest.backgroundColor = UIColor.colorAccent()
         btnNewUser.setTitleColor(UIColor.colorPrimaryDark(), forState: .Normal)
+        btnforgotPassword.setTitleColor(UIColor.colorPrimaryDark(), forState: .Normal)
         
         let image = UIImage(named: "logo")
         imgLogoBelatrix.image = image?.imageWithRenderingMode(.AlwaysTemplate)

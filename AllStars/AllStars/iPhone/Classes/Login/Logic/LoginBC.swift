@@ -232,6 +232,7 @@ class LogInBC: NSObject {
         return appDelegate.objUserSession
     }
     
+    
     // MARK: - Logout
     class func doLogout(withCompletion completion : (successful : Bool) -> Void) {
         
@@ -250,6 +251,38 @@ class LogInBC: NSObject {
             } else if (errorResponse != nil) {
                 OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
                 completion(successful: false)
+            } else {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
+                completion(successful: false)
+            }
+        }
+    }
+    
+    // MARK: - Forgot Password
+    class func forgotPassword(mail : String, withCompletion completion : (successful : Bool) -> Void) {
+        
+        if (mail.trim().isEmpty) {
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "mail_empty".localized, withAcceptButton: "ok".localized)
+            completion(successful: false)
+            return
+        }
+        
+        if (!Util.isValidEmail(mail)) {
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "mail_invalid".localized, withAcceptButton: "ok".localized)
+            completion(successful: false)
+            return
+        }
+        
+        OSPWebModel.forgotPassword(mail) { (response, successful) in
+            
+            if (response != nil) {
+                if (successful) {
+                    OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: response!.message!, withAcceptButton: "got_it".localized)
+                    completion(successful: true)
+                } else {
+                    OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: response!.message!, withAcceptButton: "ok".localized)
+                    completion(successful: false)
+                }
             } else {
                 OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
                 completion(successful: false)

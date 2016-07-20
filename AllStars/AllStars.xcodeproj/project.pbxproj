@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		19EB523AC5A4798F9BFA29B7 /* Pods_AllStars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B099B21DBCE77889351873A /* Pods_AllStars.framework */; };
+		340474351D40195800939847 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340474341D40195800939847 /* ForgotPasswordViewController.swift */; };
 		3432CC211D3ED07600FF2F3B /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3432CC201D3ED07600FF2F3B /* EventDetailViewController.swift */; };
 		347CE3BC1D3D6D2A0040CB19 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347CE3BB1D3D6D2A0040CB19 /* SettingsViewController.swift */; };
 		347CE3BE1D3D70660040CB19 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 347CE3BD1D3D70660040CB19 /* Settings.storyboard */; };
@@ -145,6 +146,7 @@
 
 /* Begin PBXFileReference section */
 		096506E97712267EE8D873B8 /* Pods-AllStars.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AllStars.release.xcconfig"; path = "Pods/Target Support Files/Pods-AllStars/Pods-AllStars.release.xcconfig"; sourceTree = "<group>"; };
+		340474341D40195800939847 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		3432CC201D3ED07600FF2F3B /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventDetailViewController.swift; path = Event/EventDetailViewController.swift; sourceTree = "<group>"; };
 		347CE3BB1D3D6D2A0040CB19 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		347CE3BD1D3D70660040CB19 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
@@ -548,6 +550,7 @@
 				B6A36C701D09C56400222D1F /* ResetPasswordViewController.swift */,
 				B6A7AFC01D26BC5D0083883B /* LogInGuestViewController.swift */,
 				B6A7AFC61D270A590083883B /* LogInGuestEmailViewController.swift */,
+				340474341D40195800939847 /* ForgotPasswordViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1047,6 +1050,7 @@
 				96757BE31CE0CA6000BA216A /* StarsCategoriesUserViewController.swift in Sources */,
 				B6EE58AB1CFF8AF00027B697 /* UserRankingTagTableViewCell.swift in Sources */,
 				96AC74D31CDB765800D993E7 /* OSPWebTranslator.swift in Sources */,
+				340474351D40195800939847 /* ForgotPasswordViewController.swift in Sources */,
 				96AC74F01CDBB65400D993E7 /* ProfileViewController.swift in Sources */,
 				B6B3408E1D0B283400495CD2 /* SessionUD.swift in Sources */,
 				B6C09DAE1D13453A006C1D43 /* ExtString.swift in Sources */,

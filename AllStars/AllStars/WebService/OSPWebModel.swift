@@ -73,6 +73,23 @@ class OSPWebModel: NSObject {
         }
     }
     
+    class func forgotPassword(email : String, withCompletion completion : (errorResponse : ErrorResponse?, successful : Bool) -> Void) {
+        
+        let path = "/api/employee/reset/password/" + email + "/"
+        
+        OSPWebSender.doGET(path) {(response, successful) in
+            if (response != nil) {
+                if (successful) {
+                    completion(errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
+                } else {
+                    completion(errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
+                }
+            } else {
+                completion(errorResponse: nil, successful: successful)
+            }
+        }
+    }
+    
     class func resetUserPassword(userSession : UserSession?, currentPassword : String, newPassword : String, withCompletion completion : (user : User?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
         
         let path = "api/employee/\(userSession!.session_user_id!)/update/password/"

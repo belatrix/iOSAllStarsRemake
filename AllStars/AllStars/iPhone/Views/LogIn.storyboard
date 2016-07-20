@@ -140,10 +140,18 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="IaT-JW-ip6"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                 <state key="normal" title="New user? Sign Up!"/>
                                 <connections>
                                     <action selector="btnNewUserTUI:" destination="Vo9-8w-xjF" eventType="touchUpInside" id="gl9-Fp-h60"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dby-9D-uva">
+                                <rect key="frame" x="28" y="473" width="265" height="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                <state key="normal" title="Forgot Password?"/>
+                                <connections>
+                                    <segue destination="gbM-RZ-rRj" kind="presentation" id="76e-nJ-orS"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -182,6 +190,7 @@
                         <outlet property="btnLogInGuest" destination="lja-Qr-b5B" id="isX-ow-io5"/>
                         <outlet property="btnLogin" destination="Eoa-WX-Bu4" id="UhO-JQ-zNj"/>
                         <outlet property="btnNewUser" destination="an4-XA-MEK" id="DlR-lV-AzV"/>
+                        <outlet property="btnforgotPassword" destination="dby-9D-uva" id="twb-kD-MnE"/>
                         <outlet property="constraintCenterForm" destination="VSp-my-9QA" id="eMi-NC-6h9"/>
                         <outlet property="edtPassword" destination="wZc-uY-E5o" id="tAd-W6-mRJ"/>
                         <outlet property="edtUser" destination="shE-7e-xby" id="5n8-0k-aWS"/>
@@ -417,10 +426,10 @@
             </objects>
             <point key="canvasLocation" x="796" y="374"/>
         </scene>
-        <!--View Controller-->
+        <!--Forgot Password View Controller-->
         <scene sceneID="rtN-Xw-zZy">
             <objects>
-                <viewController storyboardIdentifier="ForgotPasswordViewController" id="gbM-RZ-rRj" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ForgotPasswordViewController" id="gbM-RZ-rRj" customClass="ForgotPasswordViewController" customModule="AllStars" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="97h-5X-E9s"/>
                         <viewControllerLayoutGuide type="bottom" id="plm-gb-L9k"/>
@@ -494,6 +503,9 @@
                                         <integer key="value" value="6"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="requestNewPassword:" destination="gbM-RZ-rRj" eventType="touchUpInside" id="hKp-2Z-NZG"/>
+                                </connections>
                             </button>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="lock.png" translatesAutoresizingMaskIntoConstraints="NO" id="JmV-Mm-czn">
                                 <rect key="frame" x="118" y="81" width="85" height="85"/>
@@ -502,22 +514,54 @@
                                     <constraint firstAttribute="width" constant="85" id="fxy-1T-hDZ"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QD8-Wk-4pu">
+                                <rect key="frame" x="0.0" y="20" width="29" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="29" id="MsE-sP-jTQ"/>
+                                    <constraint firstAttribute="height" constant="44" id="czz-Wd-Oap"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" image="iconDown.png"/>
+                                <connections>
+                                    <action selector="btnBackTUI:" destination="sub-UR-vdl" eventType="touchUpInside" id="Por-Ar-Bor"/>
+                                    <action selector="goBack:" destination="gbM-RZ-rRj" eventType="touchUpInside" id="hFm-hV-tqf"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="SUR-Eo-beU">
+                                <rect key="frame" x="264" y="316" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="3Oq-1b-Ie4"/>
+                                </constraints>
+                                <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="mwL-DB-ivW" firstAttribute="centerX" secondItem="9Bc-dY-7yA" secondAttribute="centerX" id="0qE-uH-YDl"/>
                             <constraint firstItem="JmV-Mm-czn" firstAttribute="top" secondItem="97h-5X-E9s" secondAttribute="bottom" constant="61" id="5IA-4r-SMg"/>
+                            <constraint firstItem="mwL-DB-ivW" firstAttribute="centerX" secondItem="I4v-Ww-mwq" secondAttribute="centerX" id="Gp4-DD-yKo"/>
+                            <constraint firstItem="QD8-Wk-4pu" firstAttribute="top" secondItem="97h-5X-E9s" secondAttribute="bottom" id="JVc-lv-hpo"/>
                             <constraint firstItem="Abv-LQ-jfK" firstAttribute="top" secondItem="JmV-Mm-czn" secondAttribute="bottom" constant="20" id="MKd-uv-R6C"/>
                             <constraint firstItem="Abv-LQ-jfK" firstAttribute="centerX" secondItem="I4v-Ww-mwq" secondAttribute="centerX" id="QQB-Bt-7Gk"/>
+                            <constraint firstItem="QD8-Wk-4pu" firstAttribute="leading" secondItem="I4v-Ww-mwq" secondAttribute="leading" id="cUs-gF-y8g"/>
                             <constraint firstItem="JmV-Mm-czn" firstAttribute="centerX" secondItem="I4v-Ww-mwq" secondAttribute="centerX" id="fX5-5z-jHQ"/>
                             <constraint firstItem="mwL-DB-ivW" firstAttribute="top" secondItem="bdY-wJ-6BQ" secondAttribute="bottom" constant="16" id="fnN-1k-fk9"/>
                             <constraint firstItem="9Bc-dY-7yA" firstAttribute="top" secondItem="Abv-LQ-jfK" secondAttribute="bottom" id="gsv-cI-4qw"/>
                             <constraint firstItem="bdY-wJ-6BQ" firstAttribute="centerX" secondItem="9Bc-dY-7yA" secondAttribute="centerX" id="joI-St-I2f"/>
                             <constraint firstItem="bdY-wJ-6BQ" firstAttribute="top" secondItem="9Bc-dY-7yA" secondAttribute="bottom" constant="17" id="lOn-gO-fQj"/>
                             <constraint firstItem="9Bc-dY-7yA" firstAttribute="centerX" secondItem="Abv-LQ-jfK" secondAttribute="centerX" id="vu0-Re-kLa"/>
+                            <constraint firstItem="SUR-Eo-beU" firstAttribute="trailing" secondItem="mwL-DB-ivW" secondAttribute="trailing" constant="-9" id="vzd-cg-LCk"/>
+                            <constraint firstItem="SUR-Eo-beU" firstAttribute="centerY" secondItem="mwL-DB-ivW" secondAttribute="centerY" id="xa2-6M-a60"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="vOT-3g-2O7" id="C7k-mc-LuB"/>
+                        <outlet property="forgotPwdIndicator" destination="SUR-Eo-beU" id="LDM-O7-JvU"/>
+                        <outlet property="requestButton" destination="mwL-DB-ivW" id="O2K-BT-25U"/>
+                        <outlet property="subtitleLabel" destination="9Bc-dY-7yA" id="UB6-x6-f1H"/>
+                        <outlet property="titleLabel" destination="Abv-LQ-jfK" id="sV2-xC-PwQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQB-EZ-gLb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
