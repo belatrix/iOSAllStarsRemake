@@ -124,5 +124,7 @@ class SessionUD: NSUserDefaults {
         self.setUserLastName("")
         self.setUserSkypeId("")
         self.setUserBaseProfileComplete(false)
+        
+        FBSDKLoginManager().logOut()
     }
 }

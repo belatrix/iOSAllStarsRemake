@@ -17,14 +17,66 @@ class LogInGuestViewController: UIViewController, FBSDKLoginButtonDelegate {
     @IBOutlet weak var btnLogInFacebook     : FBSDKLoginButton!
     @IBOutlet weak var btnLogInTwitter      : TWTRLogInButton!
     
+    // MARK: - Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setViews()
+        
+        setupSocialLogins()
+    }
+    
+    // MARK: - Login Setup
+    func setupSocialLogins() {
         
         // Set FBSDKLoginButton
         btnLogInFacebook.readPermissions = ["public_profile", "email", "user_friends"]
         btnLogInFacebook.delegate = self
         
-        setViews()
+        // Set completion for login with twitter
+        btnLogInTwitter.logInCompletion = { (session, error) in
+            
+            if (session != nil) {
+                let userID = session!.userID
+                print("userID: \(userID)");
+                let username = session!.userName
+                print("userName: \(username)");
+                
+                let client = TWTRAPIClient.clientWithCurrentUser()
+                let request = client.URLRequestWithMethod("GET",
+                                                          URL: "https://api.twitter.com/1.1/account/verify_credentials.json",
+                                                          parameters: ["include_email": "true", "skip_status": "true"],
+                                                          error: nil)
+                
+                client.sendTwitterRequest(request) { response, data, connectionError in
+                    if (connectionError == nil) {
+                        do{
+                            let parsedResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
+                            //                            print("parsedResult: \(parsedResult)")
+                            let email : String = parsedResult.valueForKey("email") as! String
+                            let name : String = parsedResult.valueForKey("name") as! String
+                            
+                            print("email: \(email)")
+                            print("name: \(name)")
+                            
+                            self.createParticipant(name, email: email, socialNetworkType: 2, socialNetworkId: userID)
+                        } catch let error1 as NSError {
+                            print("error: \(error1.localizedDescription)");
+                            
+                            self.unlockScreenTW()
+                        }
+                    } else {
+                        print("error: cancelled");
+                        
+                        self.unlockScreenTW()
+                    }
+                }
+            } else {
+                print("error: \(error!.localizedDescription)");
+                
+                self.unlockScreenTW()
+            }
+        }
     }
     
     // MARK: - UI
@@ -57,52 +109,7 @@ class LogInGuestViewController: UIViewController, FBSDKLoginButtonDelegate {
     // MARK: - IBActions
     @IBAction func btnTwitterTUI(sender: TWTRLogInButton) {
         lockScreenTW()
-        
-        Twitter.sharedInstance().logInWithMethods([.WebBased]) { session, error in
-            
-            if (session != nil) {
-                let userID = session!.userID
-                print("userID: \(userID)");
-                let username = session!.userName
-                print("userName: \(username)");
-                
-                let client = TWTRAPIClient.clientWithCurrentUser()
-                let request = client.URLRequestWithMethod("GET",
-                                                          URL: "https://api.twitter.com/1.1/account/verify_credentials.json",
-                                                          parameters: ["include_email": "true", "skip_status": "true"],
-                                                          error: nil)
-                
-                client.sendTwitterRequest(request) { response, data, connectionError in
-                    if (connectionError == nil) {
-                        do{
-                            let parsedResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
-                            //                            print("parsedResult: \(parsedResult)")
-                            let email : String = parsedResult.valueForKey("email") as! String
-                            let name : String = parsedResult.valueForKey("name") as! String
-                            
-                            print("email: \(email)")
-                            print("name: \(name)")
-                            
-//                            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "\(username)\n\(name)\n\(email)", withAcceptButton: "ok".localized)
-                            
-                            self.createParticipant(name, email: email, socialNetworkType: 2, socialNetworkId: userID)
-                        } catch let error1 as NSError {
-                            print("error: \(error1.localizedDescription)");
-                            
-                            self.unlockScreenTW()
-                        }
-                    } else {
-                        print("error: cancelled");
-                        
-                        self.unlockScreenTW()
-                    }
-                }
-            } else {
-                print("error: \(error!.localizedDescription)");
-                
-                self.unlockScreenTW()
-            }
-        }
+ 
     }
     
     @IBAction func btnBackTUI(sender: UIButton) {

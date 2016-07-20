@@ -168,6 +168,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FBSDKAppEvents.activateApp()
         
         connectToFcm()
+        
+        FBSDKLoginManager().logOut()        
     }
 
     func applicationWillTerminate(application: UIApplication) {
