@@ -70,6 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    // MARK: - UIUserNotification
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         print("DeviceToken: \(deviceToken.description)")
 
@@ -142,6 +143,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    // MARK: - Lifecycle
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         return FBSDKApplicationDelegate.sharedInstance().application( application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
     }
@@ -169,7 +171,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         connectToFcm()
         
-        FBSDKLoginManager().logOut()        
+        FBSDKLoginManager().logOut()
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("applicationDidBecomeActive", object: nil)
     }
 
     func applicationWillTerminate(application: UIApplication) {
