@@ -28,9 +28,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         } else {
             // Guest User
             return [SettingsOptions.logOut]
-            
         }
-        
     }()
     
     // MARK: - Initialization
@@ -47,14 +45,14 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             
             backButton.hidden = true
         }
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(SettingsViewController.applicationDidBecomeActiveNotification(_:)) , name: "applicationDidBecomeActive", object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        
-        tableView.reloadData()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -65,6 +63,11 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             
             self.navigationController?.setNavigationBarHidden(false, animated: true)
         }
+    }
+    
+    deinit {
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "applicationDidBecomeActive", object: nil)
     }
     
     // MARK: - Style
@@ -225,6 +228,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         } else {
             return UIApplication.sharedApplication().isRegisteredForRemoteNotifications()
         }
+    }
+    
+    // MARK: - Notification handler
+    func applicationDidBecomeActiveNotification(notification: NSNotification?){
+        
+        self.tableView.reloadData()
     }
 }
 
