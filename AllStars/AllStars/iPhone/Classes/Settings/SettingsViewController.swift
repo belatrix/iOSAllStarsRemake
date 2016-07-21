@@ -61,6 +61,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewWillAppear(animated)
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        tableView.reloadData()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -158,6 +160,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         self.navigationController?.popViewControllerAnimated(true)
     }
+    
     func logout(logoutCell: LogoutCell!) {
         
         let alert: UIAlertController = UIAlertController(title: "logout_warning".localized, message: nil, preferredStyle: .Alert)
@@ -178,13 +181,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         self.presentViewController(alert, animated: true, completion: {})
         
-    }
-    
-    @IBAction func enableNotificationChanged(sender: AnyObject) {
-        
-        let enableSwitch = sender as! UISwitch
-        
-        SessionUD.sharedInstance.setUserIsPushNotificationEnable(enableSwitch.on)
     }
     
     func logoutAccordingToUserType(logoutCell: LogoutCell!) {
