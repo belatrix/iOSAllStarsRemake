@@ -146,8 +146,11 @@
                                     <action selector="btnNewUserTUI:" destination="Vo9-8w-xjF" eventType="touchUpInside" id="gl9-Fp-h60"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dby-9D-uva">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dby-9D-uva">
                                 <rect key="frame" x="28" y="473" width="265" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="qwc-2o-n5d"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                 <state key="normal" title="Forgot Password?"/>
                                 <connections>
@@ -161,6 +164,8 @@
                             <constraint firstItem="lja-Qr-b5B" firstAttribute="leading" secondItem="a0S-Lh-H3G" secondAttribute="leading" constant="28" id="0hR-nD-psY"/>
                             <constraint firstAttribute="trailing" secondItem="Eoa-WX-Bu4" secondAttribute="trailing" constant="27" id="3Qb-0L-53k"/>
                             <constraint firstItem="n1H-Ya-l8w" firstAttribute="leading" secondItem="a0S-Lh-H3G" secondAttribute="leading" constant="20" id="6eK-Qt-O8C"/>
+                            <constraint firstItem="dby-9D-uva" firstAttribute="top" secondItem="an4-XA-MEK" secondAttribute="bottom" constant="8" id="Axo-l7-CCA"/>
+                            <constraint firstItem="dby-9D-uva" firstAttribute="centerX" secondItem="an4-XA-MEK" secondAttribute="centerX" id="Bar-iT-1jK"/>
                             <constraint firstItem="an4-XA-MEK" firstAttribute="leading" secondItem="a0S-Lh-H3G" secondAttribute="leading" constant="28" id="Iwq-UE-Io7"/>
                             <constraint firstItem="Cyi-m8-GQs" firstAttribute="top" secondItem="n1H-Ya-l8w" secondAttribute="bottom" constant="26" id="Lpl-C3-KcW"/>
                             <constraint firstItem="wOe-Ru-4fs" firstAttribute="leading" secondItem="a0S-Lh-H3G" secondAttribute="leading" constant="20" id="Mit-pb-IZI"/>
@@ -176,9 +181,11 @@
                             <constraint firstItem="Eoa-WX-Bu4" firstAttribute="leading" secondItem="a0S-Lh-H3G" secondAttribute="leading" constant="28" id="j9E-r0-C5b"/>
                             <constraint firstAttribute="trailing" secondItem="wOe-Ru-4fs" secondAttribute="trailing" constant="20" id="k7m-Xc-iWM"/>
                             <constraint firstAttribute="trailing" secondItem="an4-XA-MEK" secondAttribute="trailing" constant="27" id="myh-wJ-JaE"/>
+                            <constraint firstItem="dby-9D-uva" firstAttribute="trailing" secondItem="an4-XA-MEK" secondAttribute="trailing" id="rbl-jj-cbK"/>
                             <constraint firstAttribute="trailing" secondItem="Cyi-m8-GQs" secondAttribute="trailing" constant="27" id="vsh-4T-AHJ"/>
                             <constraint firstItem="an4-XA-MEK" firstAttribute="top" secondItem="lja-Qr-b5B" secondAttribute="bottom" constant="8" id="xSg-8X-2Pw"/>
                             <constraint firstAttribute="trailing" secondItem="n1H-Ya-l8w" secondAttribute="trailing" constant="20" id="yp6-eS-Efw"/>
+                            <constraint firstItem="dby-9D-uva" firstAttribute="leading" secondItem="an4-XA-MEK" secondAttribute="leading" id="zzC-Le-8fK"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="39z-SX-L8R" appends="YES" id="n5D-si-0Rw"/>
