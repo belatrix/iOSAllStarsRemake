@@ -131,14 +131,28 @@
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal" image="textBelatrix.png"/>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cl7-zU-HCq">
+                                        <rect key="frame" x="0.0" y="20" width="29" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="24Y-o5-Da9"/>
+                                            <constraint firstAttribute="width" constant="29" id="HBy-EB-LMr"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="iconBack.png"/>
+                                        <connections>
+                                            <action selector="goBack:" destination="5Kt-MF-mnU" eventType="touchUpInside" id="B5I-QJ-7m5"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.36862745099999999" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="e7H-ky-EYe" secondAttribute="trailing" id="DaU-9p-mTF"/>
+                                    <constraint firstItem="pvy-7S-Hf6" firstAttribute="top" secondItem="cl7-zU-HCq" secondAttribute="bottom" id="FMF-0c-iw8"/>
                                     <constraint firstAttribute="height" constant="108" id="Zsx-RL-sTR"/>
                                     <constraint firstAttribute="trailing" secondItem="pvy-7S-Hf6" secondAttribute="trailing" id="b64-9X-wqt"/>
                                     <constraint firstItem="pvy-7S-Hf6" firstAttribute="top" secondItem="e7H-ky-EYe" secondAttribute="bottom" id="dnh-dX-Odf"/>
                                     <constraint firstItem="e7H-ky-EYe" firstAttribute="leading" secondItem="LDf-Be-SjQ" secondAttribute="leading" id="fB9-fd-gzw"/>
+                                    <constraint firstItem="cl7-zU-HCq" firstAttribute="leading" secondItem="LDf-Be-SjQ" secondAttribute="leading" id="iQH-Od-KLr"/>
                                     <constraint firstItem="pvy-7S-Hf6" firstAttribute="top" secondItem="LDf-Be-SjQ" secondAttribute="top" constant="64" id="iWU-nX-MFM"/>
                                     <constraint firstItem="pvy-7S-Hf6" firstAttribute="leading" secondItem="LDf-Be-SjQ" secondAttribute="leading" id="lVp-qo-gTn"/>
                                     <constraint firstItem="e7H-ky-EYe" firstAttribute="top" secondItem="LDf-Be-SjQ" secondAttribute="top" constant="20" id="o9m-gY-EaE"/>
@@ -160,12 +174,13 @@
                             <constraint firstItem="LDf-Be-SjQ" firstAttribute="top" secondItem="pf3-6u-1yd" secondAttribute="top" id="xNO-wG-ug3"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="People" image="iconTabBar_2.png" id="MSK-uz-uMg"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="People" image="iconTabBar_2.png" id="MSK-uz-uMg"/>
                     <navigationItem key="navigationItem" id="nCO-76-Dok"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="acitivityEmployees" destination="XHK-Xm-Lbf" id="yMd-fU-FEe"/>
+                        <outlet property="backButton" destination="cl7-zU-HCq" id="ayd-hz-wse"/>
                         <outlet property="lblErrorMessage" destination="GQ4-qc-di7" id="6JD-ig-0ar"/>
                         <outlet property="searchUsers" destination="pvy-7S-Hf6" id="qEb-zi-bIm"/>
                         <outlet property="tlbUsers" destination="TQG-TZ-OvM" id="fkM-y3-Esr"/>
@@ -296,6 +311,18 @@
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal" image="textBelatrix.png"/>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FYa-vP-B5p">
+                                        <rect key="frame" x="0.0" y="20" width="29" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="29" id="5lg-xE-rfC"/>
+                                            <constraint firstAttribute="height" constant="44" id="t4S-tO-qMo"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="iconBack.png"/>
+                                        <connections>
+                                            <action selector="goBack:" destination="jQt-mV-AbO" eventType="touchUpInside" id="mF8-c9-7aR"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.36862745099999999" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -303,10 +330,12 @@
                                     <constraint firstItem="D6y-Lf-yz7" firstAttribute="leading" secondItem="5FL-3U-LSi" secondAttribute="leading" id="HPk-Fz-9za"/>
                                     <constraint firstItem="nI3-aY-pMx" firstAttribute="leading" secondItem="5FL-3U-LSi" secondAttribute="leading" id="I8G-Rc-1CN"/>
                                     <constraint firstAttribute="trailing" secondItem="D6y-Lf-yz7" secondAttribute="trailing" id="KfY-kH-n2b"/>
+                                    <constraint firstItem="nI3-aY-pMx" firstAttribute="top" secondItem="FYa-vP-B5p" secondAttribute="bottom" id="TgW-Uc-Xup"/>
                                     <constraint firstAttribute="trailing" secondItem="nI3-aY-pMx" secondAttribute="trailing" id="UEO-G1-xea"/>
                                     <constraint firstItem="nI3-aY-pMx" firstAttribute="top" secondItem="5FL-3U-LSi" secondAttribute="top" constant="64" id="X9j-kF-May"/>
                                     <constraint firstItem="nI3-aY-pMx" firstAttribute="top" secondItem="D6y-Lf-yz7" secondAttribute="bottom" id="eCT-gk-ojT"/>
                                     <constraint firstItem="D6y-Lf-yz7" firstAttribute="top" secondItem="5FL-3U-LSi" secondAttribute="top" constant="20" id="pvk-5P-hLX"/>
+                                    <constraint firstItem="FYa-vP-B5p" firstAttribute="leading" secondItem="5FL-3U-LSi" secondAttribute="leading" id="zi1-7d-Qii"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -325,12 +354,13 @@
                             <constraint firstItem="5FL-3U-LSi" firstAttribute="top" secondItem="z9I-h8-FVW" secondAttribute="top" id="xGy-IR-1uv"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Tags" image="iconTabBar_3.png" id="H1D-Me-Nz4"/>
+                    <tabBarItem key="tabBarItem" tag="3" title="Tags" image="iconTabBar_3.png" id="H1D-Me-Nz4"/>
                     <navigationItem key="navigationItem" id="YLG-ML-C2K"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="acitivityTags" destination="1bb-zW-f1E" id="fbN-Uz-NCX"/>
+                        <outlet property="backButton" destination="FYa-vP-B5p" id="JRT-sX-FBh"/>
                         <outlet property="lblErrorMessage" destination="LH5-26-0Ma" id="e89-xe-1xP"/>
                         <outlet property="searchTags" destination="nI3-aY-pMx" id="KKa-1L-PwN"/>
                         <outlet property="tableTags" destination="hGv-uh-foX" id="HBQ-pO-SZl"/>
@@ -396,6 +426,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="iconBack.png" width="15" height="15"/>
         <image name="iconNext.png" width="15" height="15"/>
         <image name="iconTabBar_2.png" width="30" height="30"/>
         <image name="iconTabBar_3.png" width="30" height="30"/>

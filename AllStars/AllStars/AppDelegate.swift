@@ -14,7 +14,7 @@ import FirebaseInstanceID
 import FirebaseMessaging
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate, UINavigationControllerDelegate {
 
     var window: UIWindow?
     var objUserSession : User?
@@ -41,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // UI
         self.window!.tintColor = UIColor.belatrix()
         self.window!.backgroundColor = UIColor.colorPrimary()
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
         
         let session_id                      : Int       = SessionUD.sharedInstance.getUserPk()
         let session_tokken                  : String    = SessionUD.sharedInstance.getUserToken()
@@ -62,6 +63,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let tabBarViewController = storyBoard.instantiateViewControllerWithIdentifier("CustomTabBarViewController") as! UITabBarController
             
             UITabBar.appearance().tintColor = UIColor.belatrix()
+            
+            tabBarViewController.delegate = self
+            tabBarViewController.moreNavigationController.delegate = self
+            
+            // Verify TabbarController Order
+            let tabBarOrder = NSUserDefaults.standardUserDefaults().arrayForKey("tabBarOrder")
+            
+            if tabBarOrder != nil {
+                
+                let defaultViewControllers = tabBarViewController.viewControllers
+                var sortedViewControllers = [UIViewController]()
+                
+                for sortNumber in tabBarOrder! {
+                    
+                    sortedViewControllers.append(defaultViewControllers![sortNumber .integerValue])
+                }
+                
+                tabBarViewController.viewControllers = sortedViewControllers
+            }
             
             self.window?.rootViewController = tabBarViewController
 
@@ -178,5 +198,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func tabBarController(tabBarController: UITabBarController, didEndCustomizingViewControllers viewControllers: [UIViewController], changed: Bool) {
+        
+        guard changed
+            else { return }
+        
+        var tabOrderArray = [NSNumber]()
+        
+        for vc in viewControllers {
+            
+            tabOrderArray.append(NSNumber(integer: vc.tabBarItem.tag))
+        }
+
+        NSUserDefaults.standardUserDefaults().setObject(tabOrderArray, forKey:"tabBarOrder")
+        NSUserDefaults.standardUserDefaults().synchronize()        
+        
+    }
+    
+    func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
+        
+        let moreNavBar = navigationController.navigationBar
+        
+        moreNavBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor(), NSFontAttributeName : UIFont(name: "Helvetica Neue", size: 19.0)! ]
+        moreNavBar.tintColor = .whiteColor()
+        moreNavBar.barTintColor = UIColor.colorPrimary()
     }
 }

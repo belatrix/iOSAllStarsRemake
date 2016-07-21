@@ -16,6 +16,7 @@ class UserRankingTagViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var lblErrorMessage          : UILabel!
     @IBOutlet weak var acitivityEmployees       : UIActivityIndicatorView!
     @IBOutlet weak var lblTitle                 : UILabel!
+    @IBOutlet weak var backButton               : UIButton!
     
     var objStarKeyword : StarKeywordBE?
     
@@ -36,11 +37,23 @@ class UserRankingTagViewController: UIViewController, UITableViewDelegate, UITab
         lblTitle.text = "\(objStarKeyword!.keyword_name!) Top"
         
         self.listAllUsers()
+        setViews()
     }
     
     // MARK: - UI
     func setViews() {
         viewHeader.backgroundColor = UIColor.colorPrimary()
+        
+        if let backButton = self.backButton {
+            
+            if let nav = self.navigationController where nav.viewControllers.count > 1 {
+                
+                backButton.hidden = false
+            } else {
+                
+                backButton.hidden = true
+            }
+        }
     }
     
     // MARK: - UIScrollViewDelegate

@@ -12,6 +12,7 @@ class RankingViewController: UIViewController, UIPageViewControllerDataSource {
     
     @IBOutlet weak var viewHeader   : UIView!
     @IBOutlet weak var sgmRanking   : UISegmentedControl!
+    @IBOutlet weak var backButton   : UIButton!
     
     var pageViewController = UIPageViewController()
     var currentIndex = 0
@@ -41,8 +42,6 @@ class RankingViewController: UIViewController, UIPageViewControllerDataSource {
         super.viewDidLoad()
         
         self.navigationController?.setNavigationBarHidden(true, animated: true)
-        
-        setViews()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -51,8 +50,16 @@ class RankingViewController: UIViewController, UIPageViewControllerDataSource {
         if let rootVC = self.navigationController?.viewControllers.first where
             rootVC == self.tabBarController?.moreNavigationController.viewControllers.first  {
             
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            self.navigationController?.setNavigationBarHidden(false, animated: false)
         }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        setViews()
     }
     
     // MARK: - Style
@@ -63,12 +70,28 @@ class RankingViewController: UIViewController, UIPageViewControllerDataSource {
     // MARK: - UI
     func setViews() {
         viewHeader.backgroundColor = UIColor.colorPrimary()
+        
+        if let backButton = self.backButton {
+            
+            if let nav = self.navigationController where nav.viewControllers.count > 1 {
+                
+                backButton.hidden = false
+            } else {
+                
+                backButton.hidden = true
+            }
+        }
     }
     
     // MARK: - IBActions
     @IBAction func tapSegmented(sender: UISegmentedControl) {
         
         self.assignArrayTableToIndex(sender.selectedSegmentIndex)
+    }
+    
+    @IBAction func goBack(sender: UIButton) {
+        self.view.endEditing(true)
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     func assignArrayTableToIndex(index : Int) {

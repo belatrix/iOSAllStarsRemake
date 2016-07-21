@@ -126,5 +126,7 @@ class SessionUD: NSUserDefaults {
         self.setUserBaseProfileComplete(false)
         
         FBSDKLoginManager().logOut()
+        
+        NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "tabBarOrder")
     }
 }

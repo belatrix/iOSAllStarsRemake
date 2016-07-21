@@ -38,14 +38,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 60
         
-        if let nav = self.navigationController where nav.viewControllers.count > 1 {
-            
-            backButton.hidden = false
-        } else {
-            
-            backButton.hidden = true
-        }
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(SettingsViewController.applicationDidBecomeActiveNotification(_:)) , name: "applicationDidBecomeActive", object: nil)
     }
     
@@ -53,6 +45,17 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewWillAppear(animated)
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        if let backButton = self.backButton {
+            
+            if let nav = self.navigationController where nav.viewControllers.count > 1 {
+                
+                backButton.hidden = false
+            } else {
+                
+                backButton.hidden = true
+            }
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {

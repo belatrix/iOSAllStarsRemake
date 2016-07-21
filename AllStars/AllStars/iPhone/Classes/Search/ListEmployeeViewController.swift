@@ -16,6 +16,7 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var viewLoading              : UIView!
     @IBOutlet weak var lblErrorMessage          : UILabel!
     @IBOutlet weak var acitivityEmployees       : UIActivityIndicatorView!
+    @IBOutlet weak var backButton               : UIButton!
     
     var isDownload      = false
     var arrayUsers      = NSMutableArray()
@@ -38,8 +39,14 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
         if let rootVC = self.navigationController?.viewControllers.first where
             rootVC == self.tabBarController?.moreNavigationController.viewControllers.first  {
             
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            self.navigationController?.setNavigationBarHidden(false, animated: false)
         }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     // MARK: - Style
@@ -59,6 +66,17 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
         viewHeader.layer.shadowOpacity = 1
         viewHeader.layer.shadowColor = UIColor.orangeColor().CGColor
         viewHeader.backgroundColor = UIColor.colorPrimary()
+        
+        if let backButton = self.backButton {
+            
+            if let nav = self.navigationController where nav.viewControllers.count > 1 {
+                
+                backButton.hidden = false
+            } else {
+                
+                backButton.hidden = true
+            }
+        }
     }
     
     // MARK: - UISearchBarDelegate
@@ -119,6 +137,12 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
         
         let objBE = self.arrayUsers[indexPath.row]
         self.performSegueWithIdentifier("segueProfileViewController", sender: objBE)
+    }
+    
+    // MARK: - User Interaction
+    @IBAction func goBack(sender: UIButton) {
+        self.view.endEditing(true)
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     // MARK: - WebServices

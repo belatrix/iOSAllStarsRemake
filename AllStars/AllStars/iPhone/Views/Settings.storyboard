@@ -126,7 +126,7 @@
                             <constraint firstAttribute="trailing" secondItem="Ajm-71-Fkv" secondAttribute="trailing" id="y2D-XM-e2k"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" image="iconTabBar_settings" id="Qkh-Ik-XxY"/>
+                    <tabBarItem key="tabBarItem" tag="6" title="Settings" image="iconTabBar_settings" id="Qkh-Ik-XxY"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
