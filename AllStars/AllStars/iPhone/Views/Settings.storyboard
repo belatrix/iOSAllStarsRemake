@@ -7,7 +7,7 @@
         <!--Settings-->
         <scene sceneID="Co0-c3-0rT">
             <objects>
-                <viewController id="qfZ-qi-wux" customClass="SettingsViewController" customModule="AllStars" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="qfZ-qi-wux" customClass="SettingsViewController" customModule="AllStars" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7zm-bA-95L"/>
                         <viewControllerLayoutGuide type="bottom" id="eDs-Sl-WBW"/>
@@ -20,15 +20,15 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="notificationCell" rowHeight="68" id="TNf-Tu-d1e" customClass="NotificationCell" customModule="AllStars" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="68"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="notificationCell" rowHeight="42" id="TNf-Tu-d1e" customClass="NotificationCell" customModule="AllStars" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TNf-Tu-d1e" id="FBg-pY-JPD">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="67"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="41"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="td1-Kj-e0A">
-                                                    <rect key="frame" x="15" y="10" width="234" height="21"/>
+                                                    <rect key="frame" x="15" y="10" width="158" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="fgP-MC-SRI"/>
                                                     </constraints>
@@ -36,41 +36,20 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CKi-ke-yfW">
-                                                    <rect key="frame" x="261" y="18" width="51" height="31"/>
-                                                    <color key="tintColor" red="1" green="0.61721249089999997" blue="0.04759951447" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="onTintColor" red="1" green="0.61721249089999997" blue="0.04759951447" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <connections>
-                                                        <action selector="enableNotificationChanged:" destination="qfZ-qi-wux" eventType="valueChanged" id="9Gq-H9-5gZ"/>
-                                                    </connections>
-                                                </switch>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn on/off the notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YGY-Xp-o23">
-                                                    <rect key="frame" x="15" y="36" width="234" height="21"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="CKi-ke-yfW" firstAttribute="leading" secondItem="td1-Kj-e0A" secondAttribute="trailing" constant="12" id="85L-Yt-Mta"/>
-                                                <constraint firstAttribute="trailing" secondItem="CKi-ke-yfW" secondAttribute="trailing" constant="10" id="DhM-Tr-OsY"/>
-                                                <constraint firstItem="CKi-ke-yfW" firstAttribute="centerY" secondItem="FBg-pY-JPD" secondAttribute="centerY" id="ES5-4N-IOY"/>
-                                                <constraint firstItem="YGY-Xp-o23" firstAttribute="top" secondItem="td1-Kj-e0A" secondAttribute="bottom" constant="5" id="Sq0-sY-f94"/>
+                                                <constraint firstItem="td1-Kj-e0A" firstAttribute="centerY" secondItem="FBg-pY-JPD" secondAttribute="centerY" id="6Bs-nL-xu9"/>
                                                 <constraint firstItem="td1-Kj-e0A" firstAttribute="top" secondItem="FBg-pY-JPD" secondAttribute="top" constant="10" id="eG1-qa-6ES"/>
                                                 <constraint firstItem="td1-Kj-e0A" firstAttribute="leading" secondItem="FBg-pY-JPD" secondAttribute="leading" constant="15" id="oLl-U1-ZgM"/>
-                                                <constraint firstAttribute="bottom" secondItem="YGY-Xp-o23" secondAttribute="bottom" constant="10" id="y4W-5A-h8s"/>
-                                                <constraint firstItem="YGY-Xp-o23" firstAttribute="leading" secondItem="td1-Kj-e0A" secondAttribute="leading" id="z3V-Ei-KL6"/>
-                                                <constraint firstItem="YGY-Xp-o23" firstAttribute="trailing" secondItem="td1-Kj-e0A" secondAttribute="trailing" id="zcx-0N-5EP"/>
+                                                <constraint firstAttribute="bottom" secondItem="td1-Kj-e0A" secondAttribute="bottom" constant="10" id="rPI-J0-NaI"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="notificationSwitch" destination="CKi-ke-yfW" id="XeC-Oe-c8Q"/>
-                                            <outlet property="subtitle" destination="YGY-Xp-o23" id="vbF-Dg-M2H"/>
                                             <outlet property="title" destination="td1-Kj-e0A" id="zex-95-8Q8"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="logoutCell" id="k7X-H3-1OF" customClass="LogoutCell" customModule="AllStars" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="96" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="70" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="k7X-H3-1OF" id="pRU-B7-PJF">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -82,8 +61,8 @@
                                                         <constraint firstAttribute="width" constant="173" id="McB-NP-pIB"/>
                                                         <constraint firstAttribute="height" constant="21" id="tYU-1r-ilC"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="5Js-m4-QPv">

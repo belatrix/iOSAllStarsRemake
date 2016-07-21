@@ -47,6 +47,14 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             
             backButton.hidden = true
         }
+        
+        if UIApplication.sharedApplication().isRegisteredForRemoteNotifications() {
+            
+            print("Turned on")
+        } else {
+            
+            print("Turned off")
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -86,9 +94,13 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             guard let cell = tableView.dequeueReusableCellWithIdentifier("notificationCell") as? NotificationCell
                 else { fatalError("Settings - No notification cell found") }
             
-            cell.notificationSwitch.setOn(SessionUD.sharedInstance.getUserIsPushNotificationEnable(), animated: true)
+            var titleText = "Turn on push Notifications"
             
-            cell.selectionStyle = .None
+            if UIApplication.sharedApplication().isRegisteredForRemoteNotifications() {
+                titleText = "Turn off push Notifications"
+            }
+            
+            cell.title.text = titleText
             
             return cell
         
@@ -99,8 +111,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             
             cell.title.text = "logout_cell_title".localized
             
-            cell.selectionStyle = .None
-            
             return cell
             
         }
@@ -108,18 +118,37 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
         let option = options[indexPath.row]
         
         switch option {
+            
+        case .notification:
+            
+            let alert = UIAlertController(title: "app_name".localized, message: "Go to Settings -> Belatrix Connect -> Notifications", preferredStyle: .Alert)
+            
+            let openSettingsAction = UIAlertAction(title: "Settings", style: .Default, handler: { (alert) in
+                
+                let settingsUrl = NSURL(string: UIApplicationOpenSettingsURLString)
+                if let url = settingsUrl where UIApplication.sharedApplication().canOpenURL(url) {
+                    UIApplication.sharedApplication().openURL(url)
+                }
+            })
+            
+            let cancelAction = UIAlertAction(title: "cancel".localized, style: .Default, handler: nil)
+            
+            alert.addAction(openSettingsAction)
+            alert.addAction(cancelAction)
+            
+            self.presentViewController(alert, animated: true, completion: nil)
             
         case .logOut:
             
             let logoutCell = tableView.cellForRowAtIndexPath(indexPath) as! LogoutCell
             
             logout(logoutCell)
-            
-        default:
-            return
+        
         }
     }
     
