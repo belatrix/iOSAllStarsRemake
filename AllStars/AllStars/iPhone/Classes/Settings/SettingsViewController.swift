@@ -47,14 +47,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             
             backButton.hidden = true
         }
-        
-        if UIApplication.sharedApplication().isRegisteredForRemoteNotifications() {
-            
-            print("Turned on")
-        } else {
-            
-            print("Turned off")
-        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -98,7 +90,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             
             var titleText = "Turn on push Notifications"
             
-            if UIApplication.sharedApplication().isRegisteredForRemoteNotifications() {
+            if self.hasPushEnabled() {
                 titleText = "Turn off push Notifications"
             }
             
@@ -218,6 +210,22 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let logInViewController = storyBoard.instantiateViewControllerWithIdentifier("LogInViewController") as! LogInViewController
         self.presentViewController(logInViewController, animated: true, completion: nil)
     }
+    
+    // MARK: - Push Notification handler
+    func hasPushEnabled() -> Bool {
+        //ios 8+
+        if UIApplication.sharedApplication().respondsToSelector(#selector(UIApplication.currentUserNotificationSettings)) == true {
+            let settings = UIApplication.sharedApplication().currentUserNotificationSettings()
+            if (settings?.types.contains(.Alert) == true){
+                return true
+            }
+            else {
+                return false
+            }
+        } else {
+            return UIApplication.sharedApplication().isRegisteredForRemoteNotifications()
+        }
+    }
 }
 
 extension SettingsViewController {
@@ -231,9 +239,7 @@ extension SettingsViewController {
 
 class NotificationCell: UITableViewCell {
     
-    @IBOutlet weak var notificationSwitch: UISwitch!
     @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var subtitle: UILabel!
     
 }
 
