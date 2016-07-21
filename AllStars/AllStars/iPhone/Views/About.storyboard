@@ -81,7 +81,7 @@
                             <constraint firstItem="uRa-VS-lxI" firstAttribute="leading" secondItem="Sg2-I4-9gJ" secondAttribute="leading" id="zfS-7M-0IL"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="About" image="iconTabBar_about" id="rTu-G0-4tU"/>
+                    <tabBarItem key="tabBarItem" tag="5" title="About" image="iconTabBar_about" id="rTu-G0-4tU"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="backButton" destination="6uU-EI-sYQ" id="lIl-Yb-YF6"/>

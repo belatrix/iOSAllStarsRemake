@@ -12,7 +12,7 @@
                         <viewControllerLayoutGuide type="top" id="Qsp-1o-ZyP"/>
                         <viewControllerLayoutGuide type="bottom" id="cyk-FC-GjB"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ou8-Ql-jZe">
+                    <view key="view" tag="1" contentMode="scaleToFill" id="ou8-Ql-jZe">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -43,12 +43,26 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7FH-aq-Ufi">
+                                        <rect key="frame" x="0.0" y="20" width="29" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="29" id="upd-0j-fq5"/>
+                                            <constraint firstAttribute="height" constant="44" id="ypX-XD-eF6"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="iconBack.png"/>
+                                        <connections>
+                                            <action selector="goBack:" destination="HFw-Ol-dK1" eventType="touchUpInside" id="Jzx-fw-Xpf"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.36862745099999999" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="Pq8-qs-A7H" firstAttribute="leading" secondItem="w0A-jY-m8Z" secondAttribute="leading" constant="40" id="3Vf-55-Sgh"/>
                                     <constraint firstAttribute="trailing" secondItem="Pq8-qs-A7H" secondAttribute="trailing" constant="39" id="8t7-GP-Rb7"/>
+                                    <constraint firstItem="7FH-aq-Ufi" firstAttribute="leading" secondItem="w0A-jY-m8Z" secondAttribute="leading" id="9qy-90-Dbt"/>
                                     <constraint firstItem="Pq8-qs-A7H" firstAttribute="top" secondItem="w0A-jY-m8Z" secondAttribute="top" constant="20" id="Fte-O3-H24"/>
+                                    <constraint firstItem="7FH-aq-Ufi" firstAttribute="top" secondItem="w0A-jY-m8Z" secondAttribute="top" constant="20" id="ZaT-ic-8KQ"/>
                                     <constraint firstItem="jtF-n9-nSs" firstAttribute="top" secondItem="w0A-jY-m8Z" secondAttribute="top" constant="69" id="aZu-fd-du2"/>
                                     <constraint firstAttribute="trailing" secondItem="jtF-n9-nSs" secondAttribute="trailing" constant="8" id="psH-zL-O2S"/>
                                     <constraint firstItem="jtF-n9-nSs" firstAttribute="leading" secondItem="w0A-jY-m8Z" secondAttribute="leading" constant="8" id="rEq-ad-5xu"/>
@@ -77,6 +91,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="backButton" destination="7FH-aq-Ufi" id="qSj-uZ-qUH"/>
                         <outlet property="sgmRanking" destination="jtF-n9-nSs" id="EA6-Yr-PIy"/>
                         <outlet property="viewHeader" destination="w0A-jY-m8Z" id="aL4-xE-aH5"/>
                     </connections>
@@ -252,6 +267,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="acitivityEmployees" destination="dhw-Oe-oL1" id="zox-ge-ULk"/>
+                        <outlet property="backButton" destination="PYO-uq-icR" id="VSX-oN-EO1"/>
                         <outlet property="lblErrorMessage" destination="grl-s5-A99" id="13o-Cx-c7I"/>
                         <outlet property="lblTitle" destination="0Dr-3k-ypW" id="mEs-kZ-kDV"/>
                         <outlet property="tableUsers" destination="Ohy-8x-CYd" id="IaV-nY-VO9"/>
@@ -445,7 +461,7 @@
         <scene sceneID="abs-dC-Jn3">
             <objects>
                 <navigationController storyboardIdentifier="navRanking" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="vP7-WJ-ZBW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Ranking" image="iconTabBar_1.png" id="pjc-vU-0NP"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Ranking" image="iconTabBar_1.png" id="pjc-vU-0NP"/>
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aOR-zQ-OKW">

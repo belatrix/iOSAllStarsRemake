@@ -53,20 +53,23 @@ class AboutViewController: UIViewController, UIPageViewControllerDataSource, UIP
         
         pageControl.numberOfPages = arrayViewControllers.count
         
-        if let nav = self.navigationController where nav.viewControllers.count > 1 {
-            
-            backButton.hidden = false
-        } else {
-            
-            backButton.hidden = true
-        }
-        
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        if let backButton = self.backButton {
+            
+            if let nav = self.navigationController where nav.viewControllers.count > 1 {
+                
+                backButton.hidden = false
+            } else {
+                
+                backButton.hidden = true
+            }
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {

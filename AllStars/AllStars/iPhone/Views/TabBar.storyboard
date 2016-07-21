@@ -105,7 +105,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V5i-D9-gSV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="470.5" y="290"/>
+            <point key="canvasLocation" x="481.5" y="290"/>
         </scene>
         <!--LogInViewController-->
         <scene sceneID="HMu-zi-tHT">

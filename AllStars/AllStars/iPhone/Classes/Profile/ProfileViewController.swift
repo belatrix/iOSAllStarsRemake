@@ -55,6 +55,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         } else {
             self.btnBack.hidden = true
         }
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -64,7 +65,27 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         super.viewWillAppear(animated)        
         
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+        
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        if let nav = self.navigationController where nav.viewControllers.count > 1 {
+            
+            self.btnBack.hidden = false
+        } else {
+            
+            self.btnBack.hidden = true
+        }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if let rootVC = self.navigationController?.viewControllers.first where
+            rootVC == self.tabBarController?.moreNavigationController.viewControllers.first  {
+            
+            self.navigationController?.setNavigationBarHidden(false, animated: false)
+        }
     }
     
     // MARK: - Style

@@ -491,7 +491,6 @@
                                     <constraint firstAttribute="trailing" secondItem="vOT-3g-2O7" secondAttribute="trailing" id="e78-To-CSQ"/>
                                     <constraint firstItem="vOT-3g-2O7" firstAttribute="top" secondItem="bdY-wJ-6BQ" secondAttribute="top" constant="1" id="iVC-uC-iGh"/>
                                     <constraint firstItem="XXs-cp-gxH" firstAttribute="top" secondItem="vOT-3g-2O7" secondAttribute="bottom" constant="2" id="jY2-fB-b53"/>
-                                    <constraint firstAttribute="width" constant="265" id="kS6-g6-RH8"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mwL-DB-ivW">
@@ -499,7 +498,6 @@
                                 <color key="backgroundColor" red="0.0" green="0.36862745099999999" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="3C7-4s-pIS"/>
-                                    <constraint firstAttribute="width" constant="265" id="be4-xl-afU"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                 <state key="normal" title="Request new password">
@@ -551,14 +549,18 @@
                             <constraint firstItem="Abv-LQ-jfK" firstAttribute="top" secondItem="JmV-Mm-czn" secondAttribute="bottom" constant="20" id="MKd-uv-R6C"/>
                             <constraint firstItem="Abv-LQ-jfK" firstAttribute="centerX" secondItem="I4v-Ww-mwq" secondAttribute="centerX" id="QQB-Bt-7Gk"/>
                             <constraint firstItem="QD8-Wk-4pu" firstAttribute="leading" secondItem="I4v-Ww-mwq" secondAttribute="leading" id="cUs-gF-y8g"/>
+                            <constraint firstAttribute="trailing" secondItem="mwL-DB-ivW" secondAttribute="trailing" constant="27" id="dEK-bS-rt3"/>
                             <constraint firstItem="JmV-Mm-czn" firstAttribute="centerX" secondItem="I4v-Ww-mwq" secondAttribute="centerX" id="fX5-5z-jHQ"/>
+                            <constraint firstItem="bdY-wJ-6BQ" firstAttribute="leading" secondItem="I4v-Ww-mwq" secondAttribute="leading" constant="28" id="ffv-wm-7XV"/>
                             <constraint firstItem="mwL-DB-ivW" firstAttribute="top" secondItem="bdY-wJ-6BQ" secondAttribute="bottom" constant="16" id="fnN-1k-fk9"/>
                             <constraint firstItem="9Bc-dY-7yA" firstAttribute="top" secondItem="Abv-LQ-jfK" secondAttribute="bottom" id="gsv-cI-4qw"/>
                             <constraint firstItem="bdY-wJ-6BQ" firstAttribute="centerX" secondItem="9Bc-dY-7yA" secondAttribute="centerX" id="joI-St-I2f"/>
                             <constraint firstItem="bdY-wJ-6BQ" firstAttribute="top" secondItem="9Bc-dY-7yA" secondAttribute="bottom" constant="17" id="lOn-gO-fQj"/>
+                            <constraint firstItem="mwL-DB-ivW" firstAttribute="leading" secondItem="I4v-Ww-mwq" secondAttribute="leading" constant="28" id="ns6-ar-vFf"/>
                             <constraint firstItem="9Bc-dY-7yA" firstAttribute="centerX" secondItem="Abv-LQ-jfK" secondAttribute="centerX" id="vu0-Re-kLa"/>
                             <constraint firstItem="SUR-Eo-beU" firstAttribute="trailing" secondItem="mwL-DB-ivW" secondAttribute="trailing" constant="-9" id="vzd-cg-LCk"/>
                             <constraint firstItem="SUR-Eo-beU" firstAttribute="centerY" secondItem="mwL-DB-ivW" secondAttribute="centerY" id="xa2-6M-a60"/>
+                            <constraint firstAttribute="trailing" secondItem="bdY-wJ-6BQ" secondAttribute="trailing" constant="27" id="y6v-oE-7Pm"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

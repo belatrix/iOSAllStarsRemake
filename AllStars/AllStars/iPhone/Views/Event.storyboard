@@ -213,7 +213,7 @@
                             <constraint firstAttribute="trailing" secondItem="622-ho-72g" secondAttribute="trailing" id="vvY-N3-2QM"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Events" image="iconTabBar_event" id="VQF-83-0bh"/>
+                    <tabBarItem key="tabBarItem" tag="4" title="Events" image="iconTabBar_event" id="VQF-83-0bh"/>
                     <navigationItem key="navigationItem" id="94n-Mh-gUr"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
