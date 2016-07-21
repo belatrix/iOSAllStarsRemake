@@ -249,8 +249,17 @@ class LogInBC: NSObject {
             if successful {
                 completion(successful: true)
             } else if (errorResponse != nil) {
-                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
-                completion(successful: false)
+                
+                if let errorMessage = errorResponse!.message where errorMessage != "Invalid token." {
+                    
+                    OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorMessage, withAcceptButton: "ok".localized)
+                    completion(successful: false)
+                } else {
+                    
+                    completion(successful: true)
+                }
+                
+                
             } else {
                 OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
                 completion(successful: false)
