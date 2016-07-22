@@ -67,7 +67,6 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
         
         viewFirstName.backgroundColor = UIColor.colorPrimary()
         viewLastName.backgroundColor = UIColor.colorPrimary()
-        viewSkypeId.backgroundColor = UIColor.colorPrimary()
         
         btnUploadPhoto.backgroundColor = UIColor.belatrix()
     }
