@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
+class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, UISearchBarDelegate {
 
     @IBOutlet weak var viewHeader               : UIView!
     @IBOutlet weak var tlbEvents                : UITableView!
@@ -16,11 +16,13 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var actLoading               : UIActivityIndicatorView!
     @IBOutlet weak var viewLoading              : UIView!
     @IBOutlet weak var backButton               : UIButton!
+    @IBOutlet weak var searchEvents             : UISearchBar!
     
     var isDownload      = false
     var arrayEvents      = NSMutableArray()
     var nextPage        : String? = nil
     var selectedEvent   : Event!
+    var searchText : String  = ""
     
     lazy var refreshControl : UIRefreshControl = {
         let _refreshControl = UIRefreshControl()
@@ -86,6 +88,10 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         viewHeader.layer.shadowOpacity = 1
         viewHeader.layer.shadowColor = UIColor.orangeColor().CGColor
         viewHeader.backgroundColor = UIColor.colorPrimary()
+        
+        searchEvents.backgroundImage = UIImage()
+        searchEvents.backgroundColor = .clearColor()
+        searchEvents.barTintColor = .clearColor()
     }
     
     // MARK: - IBActions    
@@ -101,6 +107,39 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             self.listEventsInNextPage()
         }
+    }
+    
+    // MARK: - UISearchBarDelegate
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        self.searchEvents.text = ""
+        self.listAllEvents()
+        self.searchEvents.resignFirstResponder()
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        
+        searchEvents.resignFirstResponder()
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        self.searchText = searchText.characters.count > 0 ? searchText : ""
+        
+        if self.searchText.characters.count == 0 {
+            self.listAllEvents()
+        }else{
+            self.listEventsToSearchText()
+        }
+    }
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        
+        searchBar.showsCancelButton = true
+    }
+    
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        
+        searchBar.showsCancelButton = false
     }
     
     // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -145,21 +184,41 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.viewLoading.alpha = CGFloat(!Bool(self.arrayEvents.count))
             self.lblErrorMessage.text = "Loading events"
             
-            EventBC.listEventsWithCompletion { (arrayEvents, nextPage) in
+            EventBC.listAllEventsWithCompletion { (arrayEvents, nextPage) in
                 
-                self.refreshControl.endRefreshing()
-                
-                self.nextPage = nextPage
-                self.arrayEvents = arrayEvents!
-                self.tlbEvents.reloadData()
-                
-                self.actLoading.stopAnimating()
-                self.viewLoading.alpha = CGFloat(!Bool(self.arrayEvents.count))
-                self.lblErrorMessage.text = "Events not found"
-                
-                self.isDownload = false
+                self.updateUIAfterSearch(arrayEvents, nextPage: nextPage ?? "")
             }
         }
+    }
+    
+    func listEventsToSearchText() {
+        if (!self.isDownload) {
+            self.isDownload = true
+            
+            self.actLoading.startAnimating()
+            self.viewLoading.alpha = CGFloat(!Bool(self.arrayEvents.count))
+            self.lblErrorMessage.text = "Loading events"
+            
+            EventBC.listEventsWithKeyword(self.searchText) { (arrayEvents, nextPage) in
+                
+                self.updateUIAfterSearch(arrayEvents, nextPage: nextPage ?? "")
+            }
+        }
+    }
+    
+    func updateUIAfterSearch(arrayEvents: NSMutableArray?, nextPage: String) {
+        
+        self.refreshControl.endRefreshing()
+        
+        self.nextPage = nextPage
+        self.arrayEvents = arrayEvents!
+        self.tlbEvents.reloadData()
+        
+        self.actLoading.stopAnimating()
+        self.viewLoading.alpha = CGFloat(!Bool(self.arrayEvents.count))
+        self.lblErrorMessage.text = "Events not found"
+        
+        self.isDownload = false
     }
     
     func listEventsInNextPage() {
