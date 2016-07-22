@@ -39,7 +39,7 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
         requestButton.backgroundColor = UIColor.colorPrimary()
         emailTextField.delegate = self
         
-        let image = UIImage(named: "lock.png")
+        let image = UIImage(named: "key.png")
         imgPwd.image = image?.imageWithRenderingMode(.AlwaysTemplate)
         imgPwd.tintColor = UIColor.colorPrimary()
     }

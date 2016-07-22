@@ -19,7 +19,7 @@ no_availables_locations = "Locations no availables";
 token_invalid = "Problems with your session. Logout and try again please";
 why = "Why";
 what = "What";
-Who = "Who";
+who = "Who";
 
 // SignUp
 mail_empty = "Email must not be empty";
@@ -79,7 +79,9 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\
-SOFTWARE.";// Ranking
+SOFTWARE.";
+
+// Ranking
 no_availables_employees = "Employees no availables";
 
 // Recommend

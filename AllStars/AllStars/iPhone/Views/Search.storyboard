@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--People-->
+        <!--Contacts-->
         <scene sceneID="QS5-07-9ua">
             <objects>
                 <viewController storyboardIdentifier="ListEmployeeViewController" automaticallyAdjustsScrollViewInsets="NO" id="5Kt-MF-mnU" customClass="ListEmployeeViewController" customModule="AllStars" customModuleProvider="target" sceneMemberID="viewController">
@@ -174,7 +174,7 @@
                             <constraint firstItem="LDf-Be-SjQ" firstAttribute="top" secondItem="pf3-6u-1yd" secondAttribute="top" id="xNO-wG-ug3"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="2" title="People" image="iconTabBar_2.png" id="MSK-uz-uMg"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="Contacts" image="iconTabBar_2.png" id="MSK-uz-uMg"/>
                     <navigationItem key="navigationItem" id="nCO-76-Dok"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

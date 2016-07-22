@@ -18,7 +18,7 @@
         <scene sceneID="INh-lr-yIh">
             <objects>
                 <viewControllerPlaceholder storyboardName="Search" referencedIdentifier="ListEmployeeNavViewController" id="NA1-BV-whf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="People" image="iconTabBar_2.png" id="Elk-f9-tzy"/>
+                    <tabBarItem key="tabBarItem" title="Contacts" image="iconTabBar_2.png" id="Elk-f9-tzy"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7cR-r6-JsN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
