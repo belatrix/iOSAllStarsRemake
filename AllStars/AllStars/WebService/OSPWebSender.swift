@@ -9,9 +9,15 @@
 import UIKit
 import Alamofire
 
-class OSPWebSender: NSObject {
+class OSPWebSender {
+    
+    static let sharedInstance = OSPWebSender()
+    
+    private init() {}
+    
+    let manager = Alamofire.Manager.sharedInstance
 
-    class func createHeaderWithToken(aToken : NSString) -> NSDictionary {
+    func createHeaderWithToken(aToken : NSString) -> NSDictionary {
         
         let dicHeader = NSMutableDictionary()
         dicHeader.setObject("Token \(aToken)", forKey: "Authorization")
@@ -19,11 +25,11 @@ class OSPWebSender: NSObject {
         return dicHeader
     }
     
-    class func doGET(path : String, withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
+    func doGET(path : String, withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
         
         let URL = Constants.WEB_SERVICES + path
         
-        Alamofire.request(
+        manager.request(
             .GET,
             URL,
             parameters: nil)
@@ -51,11 +57,11 @@ class OSPWebSender: NSObject {
         }
     }
     
-    class func doGETWithToken(path : String, withToken token : String, withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
+    func doGETWithToken(path : String, withToken token : String, withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
         
         let URL = Constants.WEB_SERVICES + path
         
-        Alamofire.request(
+        manager.request(
             .GET,
             URL,
             headers: self.createHeaderWithToken(token) as? [String : String],
@@ -84,11 +90,11 @@ class OSPWebSender: NSObject {
         }
     }
     
-    class func doPOST(path : String, withParameters parameters : [String : AnyObject], withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
+    func doPOST(path : String, withParameters parameters : [String : AnyObject], withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
         
         let URL = Constants.WEB_SERVICES + path
         
-        Alamofire.request(
+        manager.request(
             .POST,
             URL,
             parameters: parameters)
@@ -116,11 +122,11 @@ class OSPWebSender: NSObject {
         }
     }
     
-    class func doPOSTWithToken(path : String, withParameters parameters : [String : AnyObject], withToken token : String, withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
+    func doPOSTWithToken(path : String, withParameters parameters : [String : AnyObject], withToken token : String, withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
         
         let URL = Constants.WEB_SERVICES + path
         
-        Alamofire.request(
+        manager.request(
             .POST,
             URL,
             headers: self.createHeaderWithToken(token) as? [String : String],
@@ -149,11 +155,11 @@ class OSPWebSender: NSObject {
         }
     }
     
-    class func doPATCHWithToken(path : String, withParameters parameters : [String : AnyObject], withToken token : String, withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
+    func doPATCHWithToken(path : String, withParameters parameters : [String : AnyObject], withToken token : String, withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
         
         let URL = Constants.WEB_SERVICES + path
         
-        Alamofire.request(
+        manager.request(
             .PATCH,
             URL,
             headers: self.createHeaderWithToken(token) as? [String : String],
@@ -182,11 +188,11 @@ class OSPWebSender: NSObject {
         }
     }
     
-    class func doMultipartWithToken(path : String, withParameters parameters : NSDictionary?, withImage image : NSData, withToken token : String, withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
+    func doMultipartWithToken(path : String, withParameters parameters : NSDictionary?, withImage image : NSData, withToken token : String, withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
         
         let URL = Constants.WEB_SERVICES + path
         
-        Alamofire.upload(
+        manager.upload(
             .POST,
             URL,
             headers: self.createHeaderWithToken(token) as? [String : String],

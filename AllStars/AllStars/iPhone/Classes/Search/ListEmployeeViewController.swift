@@ -203,9 +203,9 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func listEmployessToSearchText() {
-        if (!self.isDownload) {
-            self.isDownload = true
-            
+//        if (!self.isDownload) {
+//            self.isDownload = true
+        
             self.acitivityEmployees.startAnimating()
             self.viewLoading.alpha = CGFloat(!Bool(self.arrayUsers.count))
             self.lblErrorMessage.text = "Loading employees"
@@ -222,7 +222,7 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
                 
                 self.isDownload = false
             }
-        }
+//        }
     }
     
     // MARK: - Navigation

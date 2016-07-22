@@ -203,9 +203,9 @@ class ListTagsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func listTagsToSearchText() {
-        if (!self.isDownload) {
-            self.isDownload = true
-            
+//        if (!self.isDownload) {
+//            self.isDownload = true
+        
             self.acitivityTags.startAnimating()
             self.viewLoading.alpha = CGFloat(!Bool(self.arrayTags.count))
             self.lblErrorMessage.text = "Loading tags"
@@ -222,7 +222,7 @@ class ListTagsViewController: UIViewController, UITableViewDelegate, UITableView
                 
                 self.isDownload = false
             }
-        }
+//        }
     }
     
     // MARK: - Navigation
