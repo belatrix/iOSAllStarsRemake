@@ -83,6 +83,7 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         self.searchUsers.text = ""
         self.listAllEmployees()
+        self.searchUsers.resignFirstResponder()
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
@@ -99,6 +100,16 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
         }else{
             self.listEmployessToSearchText()
         }
+    }
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        
+        searchBar.showsCancelButton = true
+    }
+    
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        
+        searchBar.showsCancelButton = false
     }
     
     // MARK: - UIScrollViewDelegate

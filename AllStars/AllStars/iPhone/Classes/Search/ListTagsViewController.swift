@@ -26,8 +26,6 @@ class ListTagsViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setViews()
-        
         self.listAllTags()
         
         self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -47,6 +45,8 @@ class ListTagsViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewWillAppear(animated)
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        setViews()
     }
     
     // MARK: - Style
@@ -83,6 +83,7 @@ class ListTagsViewController: UIViewController, UITableViewDelegate, UITableView
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         self.searchTags.text = ""
         self.listAllTags()
+        self.searchTags.resignFirstResponder()
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
@@ -99,6 +100,16 @@ class ListTagsViewController: UIViewController, UITableViewDelegate, UITableView
         }else{
             self.listTagsToSearchText()
         }
+    }
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        
+        searchBar.showsCancelButton = true
+    }
+    
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        
+        searchBar.showsCancelButton = false
     }
     
     // MARK: - UIScrollViewDelegate

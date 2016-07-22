@@ -9,9 +9,10 @@
 import UIKit
 
 class EventBC: NSObject {
-    class func listEventsWithCompletion(completion : (arrayEvents : NSMutableArray?, nextPage : String?) -> Void) {
+    
+    class func listEventsWithKeyword(searchString: String?, withCompletion completion : (arrayEvents : NSMutableArray?, nextPage : String?) -> Void) {
         
-        OSPWebModel.listEvents() { (arrayEvents, nextPage, errorResponse, successful) in
+        OSPWebModel.listEvents(searchString) { (arrayEvents, nextPage, errorResponse, successful) in
             
             if (arrayEvents != nil) {
                 completion(arrayEvents: arrayEvents!, nextPage: nextPage)
@@ -22,6 +23,13 @@ class EventBC: NSObject {
                 OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
                 completion(arrayEvents: NSMutableArray(), nextPage: nil)
             }
+        }
+    }
+    
+    class func listAllEventsWithCompletion(completion : (arrayEvents : NSMutableArray?, nextPage : String?) -> Void) {
+        
+        listEventsWithKeyword("") { (arrayEvents, nextPage) in
+            completion(arrayEvents: arrayEvents, nextPage: nextPage)
         }
     }
 }
