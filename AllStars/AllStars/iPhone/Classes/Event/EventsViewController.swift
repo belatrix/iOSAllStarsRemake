@@ -49,6 +49,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewWillAppear(animated)
         
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
         
         if let backButton = self.backButton {
             

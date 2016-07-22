@@ -63,7 +63,7 @@ class LogInGuestEmailViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func btnBackTUI(sender: UIButton) {
         self.view.endEditing(true)
-        self.navigationController?.popViewControllerAnimated(true)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func tapCloseKeyboard(sender: AnyObject) {
@@ -79,9 +79,9 @@ class LogInGuestEmailViewController: UIViewController, UITextFieldDelegate {
             self.unlockScreen()
             
             if (fieldsCompleted) {
-                let sb = UIStoryboard(name: "Event", bundle: nil)
-                let eventsViewController = sb.instantiateViewControllerWithIdentifier("EventsViewController") as! EventsViewController
-                self.presentViewController(eventsViewController, animated: true, completion: nil)
+                let sb = UIStoryboard(name: "TabBar", bundle: nil)
+                let guestTabController = sb.instantiateViewControllerWithIdentifier("GuestTabBarViewController") as! UITabBarController
+                self.presentViewController(guestTabController, animated: true, completion: nil)
             }
         }
     }
