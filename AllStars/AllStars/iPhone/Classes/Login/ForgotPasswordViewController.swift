@@ -8,24 +8,40 @@
 
 import Foundation
 
-class ForgotPasswordViewController: UIViewController {
+class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var titleLabel         : UILabel!
     @IBOutlet weak var subtitleLabel      : UILabel!
     @IBOutlet weak var emailTextField     : UITextField!
     @IBOutlet weak var requestButton      : UIButton!
     @IBOutlet weak var forgotPwdIndicator : UIActivityIndicatorView!
+    @IBOutlet weak var imgPwd : UIImageView!
     
     // MARK: - Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setViews()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ForgotPasswordViewController.tapCloseKeyboard))
+        
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.tapCloseKeyboard()
     }
     
     // MARK: - UI
     func setViews() {
-        emailTextField.backgroundColor = UIColor.colorPrimary()
+        
         requestButton.backgroundColor = UIColor.colorPrimary()
+        emailTextField.delegate = self
+        
+        let image = UIImage(named: "lock.png")
+        imgPwd.image = image?.imageWithRenderingMode(.AlwaysTemplate)
+        imgPwd.tintColor = UIColor.colorPrimary()
     }
     
     func lockScreen() {
@@ -51,9 +67,15 @@ class ForgotPasswordViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    func tapCloseKeyboard() {
+        self.view.endEditing(true)
+    }
+    
     // MARK: - WebServices
     func requestPassword(email : String) -> Void {
         lockScreen()
+        
+        tapCloseKeyboard()
         
         LogInBC.forgotPassword(email) { (successful) in
             self.unlockScreen()

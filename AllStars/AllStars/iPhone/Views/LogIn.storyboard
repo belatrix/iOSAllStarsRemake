@@ -567,6 +567,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="vOT-3g-2O7" id="C7k-mc-LuB"/>
                         <outlet property="forgotPwdIndicator" destination="SUR-Eo-beU" id="LDM-O7-JvU"/>
+                        <outlet property="imgPwd" destination="JmV-Mm-czn" id="IqS-Kp-3Ca"/>
                         <outlet property="requestButton" destination="mwL-DB-ivW" id="O2K-BT-25U"/>
                         <outlet property="subtitleLabel" destination="9Bc-dY-7yA" id="UB6-x6-f1H"/>
                         <outlet property="titleLabel" destination="Abv-LQ-jfK" id="sV2-xC-PwQ"/>
