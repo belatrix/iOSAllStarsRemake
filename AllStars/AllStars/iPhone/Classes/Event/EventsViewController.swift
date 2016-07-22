@@ -192,9 +192,9 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func listEventsToSearchText() {
-        if (!self.isDownload) {
-            self.isDownload = true
-            
+//        if (!self.isDownload) {
+//            self.isDownload = true
+//            
             self.actLoading.startAnimating()
             self.viewLoading.alpha = CGFloat(!Bool(self.arrayEvents.count))
             self.lblErrorMessage.text = "Loading events"
@@ -203,7 +203,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 
                 self.updateUIAfterSearch(arrayEvents, nextPage: nextPage ?? "")
             }
-        }
+//        }
     }
     
     func updateUIAfterSearch(arrayEvents: NSMutableArray?, nextPage: String) {

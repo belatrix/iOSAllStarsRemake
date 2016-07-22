@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7JB-Ot-AUC">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7JB-Ot-AUC">
                                 <rect key="frame" x="0.0" y="284" width="320" height="284"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -362,7 +362,7 @@
                             <constraint firstItem="7JB-Ot-AUC" firstAttribute="leading" secondItem="xdq-eq-ViY" secondAttribute="leading" id="lLU-H1-xzG"/>
                             <constraint firstItem="fse-8Y-enM" firstAttribute="top" secondItem="xdq-eq-ViY" secondAttribute="top" id="mMX-Sp-Mi7"/>
                             <constraint firstItem="qeW-k9-TB5" firstAttribute="top" secondItem="fse-8Y-enM" secondAttribute="bottom" id="rMn-HH-fFp"/>
-                            <constraint firstItem="qeW-k9-TB5" firstAttribute="top" secondItem="7JB-Ot-AUC" secondAttribute="bottom" id="y1w-T6-N2M"/>
+                            <constraint firstItem="qeW-k9-TB5" firstAttribute="top" secondItem="7JB-Ot-AUC" secondAttribute="bottom" constant="-49" id="y1w-T6-N2M"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="iconTabBar_0.png" id="o9d-T3-Wiz"/>

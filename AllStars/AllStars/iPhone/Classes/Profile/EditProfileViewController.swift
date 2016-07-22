@@ -26,7 +26,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var btnUploadPhoto           : UIButton!
     @IBOutlet weak var viewFirstName            : UIView!
     @IBOutlet weak var viewLastName             : UIView!
-    @IBOutlet weak var viewSkypeId              : UITextField!
+    @IBOutlet weak var viewSkypeId              : UIView!
 
     // photo
     var imagePickerController = UIImagePickerController()
@@ -66,8 +66,8 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
         viewHeader.backgroundColor = UIColor.colorPrimary()
         
         viewFirstName.backgroundColor = UIColor.colorPrimary()
-        viewFirstName.backgroundColor = UIColor.colorPrimary()
-        viewFirstName.backgroundColor = UIColor.colorPrimary()
+        viewLastName.backgroundColor = UIColor.colorPrimary()
+        viewSkypeId.backgroundColor = UIColor.colorPrimary()
         
         btnUploadPhoto.backgroundColor = UIColor.belatrix()
     }

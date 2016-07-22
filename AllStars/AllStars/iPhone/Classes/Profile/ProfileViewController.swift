@@ -98,10 +98,13 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         self.scrollContent.addSubview(self.refreshControl)
         OSPCrop.makeRoundView(self.imgProfile)
         
+        self.view.backgroundColor = UIColor.colorPrimary()
+        
         for view in self.scoreViews{
             view.layer.borderWidth = 1
             view.layer.borderColor = UIColor.score().CGColor
-        }        
+        }
+        
         viewHeader.backgroundColor = UIColor.colorPrimary()
     }
     
