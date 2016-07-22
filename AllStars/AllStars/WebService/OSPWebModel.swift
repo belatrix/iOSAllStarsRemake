@@ -424,9 +424,16 @@ class OSPWebModel: NSObject {
         }
     }
     
-    class func listEvents(completion : (arrayEmployees : NSMutableArray?, nextPage : String?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
+    class func listEvents(searchstring: String?, withCompletion completion : (arrayEmployees : NSMutableArray?, nextPage : String?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
         
-        let path = "api/event/list/"
+        var searchPostfix = ""
+        
+        if let keyWord = searchstring where keyWord != "" {
+            
+            searchPostfix = "?search=" + keyWord
+        }
+        
+        let path = "api/event/list/" + searchPostfix
         
         OSPWebSender.doGET(path) {(response, successful) in
             
