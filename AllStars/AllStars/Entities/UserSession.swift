@@ -10,7 +10,7 @@ import UIKit
 
 class UserSession: NSObject {
     
-    var session_reset_password_code     : String?
+    var session_pwd_reset_required      : Bool?
     var session_base_profile_complete   : Bool?
     var session_user_id                 : NSNumber?
     var session_token                   : String?

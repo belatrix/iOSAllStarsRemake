@@ -25,7 +25,7 @@ class OSPWebTranslator: NSObject {
         
         let objBE = UserSession()
         
-        objBE.session_reset_password_code   = objDic["reset_password_code"] != nil ? objDic["reset_password_code"] as? String : ""
+        objBE.session_pwd_reset_required   = objDic["is_password_reset_required"] != nil ? objDic["is_password_reset_required"] as? Bool : false
         objBE.session_base_profile_complete = objDic["is_base_profile_complete"] != nil ? objDic["is_base_profile_complete"] as? Bool : false
         objBE.session_user_id               = objDic["user_id"] != nil ? NSNumber(integer: objDic["user_id"]!.integerValue) : nil
         objBE.session_token                 = objDic["token"] != nil ? objDic["token"] as? String : ""

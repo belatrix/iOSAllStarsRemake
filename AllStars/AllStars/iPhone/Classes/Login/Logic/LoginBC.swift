@@ -33,11 +33,11 @@ class LogInBC: NSObject {
                 userTemp.user_token = userSession!.session_token!
                 userTemp.user_pk = userSession!.session_user_id!
                 userTemp.user_base_profile_complete = userSession!.session_base_profile_complete!
-                userTemp.user_needs_reset_password = (userSession!.session_reset_password_code != nil)
+                userTemp.user_needs_reset_password = userSession!.session_pwd_reset_required!
                 
                 self.saveSessionOfUser(userTemp)
                 
-                if (userSession!.session_reset_password_code == nil) {
+                if (userSession!.session_pwd_reset_required == false) {
                     if (userSession!.session_base_profile_complete!) {
                         completion(userSession: userSession, accountState: Constants.PROFILE_COMPLETE)
                     } else {
