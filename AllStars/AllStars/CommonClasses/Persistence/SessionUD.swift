@@ -16,6 +16,7 @@ class SessionUD: NSUserDefaults {
     let UD_USER_LAST_NAME               : String = "user_last_name"
     let UD_USER_SKYPE_ID                : String = "user_skype_id"
     let UD_USER_BASE_PROFILE_COMPLETE   : String = "base_profile_complete"
+    let UD_USER_NEEDS_RESET_PWD         : String = "reset_password_needed"
     let UD_USER_PUSH_TOKEN              : String = "push_token"
     let UD_USER_PUSH_ENABLE              : String = "push_notification_enable"
     
@@ -93,6 +94,18 @@ class SessionUD: NSUserDefaults {
         }
     }
     
+    func setUserNeedsResetPwd (value : Bool) {
+        self.setBool(value, forKey: UD_USER_NEEDS_RESET_PWD)
+    }
+    
+    func getUserNeedsResetPwd () -> Bool {
+        if let userNeedsResetPwd : Bool = self.boolForKey(UD_USER_NEEDS_RESET_PWD) {
+            return userNeedsResetPwd
+        } else {
+            return false
+        }
+    }
+    
     func setUserPushToken (value : String) {
         self.setValue(value, forKey: UD_USER_PUSH_TOKEN)
     }
@@ -124,6 +137,7 @@ class SessionUD: NSUserDefaults {
         self.setUserLastName("")
         self.setUserSkypeId("")
         self.setUserBaseProfileComplete(false)
+        self.setUserNeedsResetPwd(false)
         
         FBSDKLoginManager().logOut()
         

@@ -33,6 +33,7 @@ class LogInBC: NSObject {
                 userTemp.user_token = userSession!.session_token!
                 userTemp.user_pk = userSession!.session_user_id!
                 userTemp.user_base_profile_complete = userSession!.session_base_profile_complete!
+                userTemp.user_needs_reset_password = (userSession!.session_reset_password_code != nil)
                 
                 self.saveSessionOfUser(userTemp)
                 
@@ -196,6 +197,10 @@ class LogInBC: NSObject {
         
         if let base_profile_complete = user!.user_base_profile_complete {
             SessionUD.sharedInstance.setUserBaseProfileComplete(base_profile_complete)
+        }
+        
+        if let user_needs_reset_pwd = user!.user_needs_reset_password {
+            SessionUD.sharedInstance.setUserNeedsResetPwd(user_needs_reset_pwd)
         }
         
         if let first_name = user!.user_first_name {

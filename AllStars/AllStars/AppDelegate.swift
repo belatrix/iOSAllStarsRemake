@@ -46,8 +46,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         let session_id                      : Int       = SessionUD.sharedInstance.getUserPk()
         let session_tokken                  : String    = SessionUD.sharedInstance.getUserToken()
         let session_base_profile_complete   : Bool      = SessionUD.sharedInstance.getUserBaseProfileComplete()
+        let session_reset_pwd_needed        : Bool      = SessionUD.sharedInstance.getUserNeedsResetPwd()
         
-        if (session_id != -1 && session_tokken != "" && session_base_profile_complete == true) {
+        if (session_id != -1 && session_tokken != "" && session_base_profile_complete == true && session_reset_pwd_needed == false) {
             let session : User = User()
             session.user_pk = session_id
             session.user_token = session_tokken

@@ -74,6 +74,9 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
             self.unlockScreen()
             
             if (user != nil) {
+                
+                SessionUD.sharedInstance.setUserNeedsResetPwd(false)
+                
                 if (user!.user_base_profile_complete!) {
                     self.getInfoCurrentUser()
                 } else {
