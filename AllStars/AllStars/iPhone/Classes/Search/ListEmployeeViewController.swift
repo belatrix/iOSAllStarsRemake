@@ -26,8 +26,6 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setViews()
-        
         self.listAllEmployees()
         
         self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -47,6 +45,8 @@ class ListEmployeeViewController: UIViewController, UITableViewDelegate, UITable
         super.viewWillAppear(animated)
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        setViews()
     }
     
     // MARK: - Style
