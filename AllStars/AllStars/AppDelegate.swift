@@ -39,10 +39,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         Fabric.with([Twitter.self])
         
         // UI
-        self.window!.tintColor = UIColor.belatrix()
-        self.window!.backgroundColor = UIColor.colorPrimary()
+        self.window!.tintColor = .belatrix()
+        self.window!.backgroundColor = .colorPrimary()
         UIApplication.sharedApplication().statusBarStyle = .LightContent
-        
+
         let session_id                      : Int       = SessionUD.sharedInstance.getUserPk()
         let session_tokken                  : String    = SessionUD.sharedInstance.getUserToken()
         let session_base_profile_complete   : Bool      = SessionUD.sharedInstance.getUserBaseProfileComplete()
@@ -225,5 +225,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         moreNavBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor(), NSFontAttributeName : UIFont(name: "Helvetica Neue", size: 19.0)! ]
         moreNavBar.tintColor = .whiteColor()
         moreNavBar.barTintColor = UIColor.colorPrimary()
+        
+        if let rootViewController = navigationController.topViewController as? UITableViewController{
+            
+            rootViewController.tableView.separatorStyle = .None
+        }
+        
+        
     }
 }

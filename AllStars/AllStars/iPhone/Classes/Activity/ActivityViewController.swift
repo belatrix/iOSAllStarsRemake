@@ -45,6 +45,8 @@ class ActivityViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView.addSubview(self.refreshControl)
         setViews()
         listActivities()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(ActivityViewController.listActivities), name: "applicationDidBecomeActive", object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -62,6 +64,8 @@ class ActivityViewController: UIViewController, UITableViewDelegate, UITableView
                 backButton.hidden = true
             }
         }
+        
+        listActivities()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -74,6 +78,11 @@ class ActivityViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         self.refreshControl.endRefreshing()
+    }
+    
+    deinit {
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "applicationDidBecomeActive", object: nil)
     }
     
     // MARK: - UI
