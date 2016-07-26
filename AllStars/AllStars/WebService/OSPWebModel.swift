@@ -10,7 +10,7 @@ import UIKit
 
 class OSPWebModel: NSObject {
    
-
+    // MARK: - User
     class func logInUser(user : User, withCompletion completion : (userSession : UserSession?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
         
         let dic : [String : AnyObject] =
@@ -161,31 +161,6 @@ class OSPWebModel: NSObject {
         }
     }
     
-    class func listLocations(token : String, withCompletion completion : (arrayLocations : NSMutableArray?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
-        
-        let path = "api/employee/location/list/"
-        
-        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, successful) in
-            
-            if (response != nil) {
-                if (successful) {
-                    let arrayResponse : NSArray? = response as? NSArray
-                    let arrayTemp = NSMutableArray()
-                    
-                    arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
-                        arrayTemp.addObject(OSPWebTranslator.parseLocationBE(obj as! NSDictionary))
-                    })
-                    
-                    completion(arrayLocations: arrayTemp, errorResponse: nil, successful: successful)
-                } else {
-                    completion(arrayLocations: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
-                }
-            } else {
-                completion(arrayLocations: nil, errorResponse: nil, successful: successful)
-            }
-        }
-    }
-    
     class func updateUser(user : User, withToken token : String, withCompletion completion : (user : User?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
         
         let path = "api/employee/\(user.user_pk!)/update/"
@@ -228,6 +203,169 @@ class OSPWebModel: NSObject {
         }
     }
     
+    class func rateUser(rate : RateUserBE, withToken token : String, withCompletion completion : (errorResponse : ErrorResponse?, successful : Bool) -> Void) {
+        
+        let userFromID = rate.rate_fromUser!.user_pk
+        let userToID = rate.rate_toUser!.user_pk
+        
+        let path = "api/star/\(userFromID!)/give/star/to/\(userToID!)/"
+        
+        let dic : [String : AnyObject] =
+            ["category"    : rate.rate_category!.category_pk!,
+             "subcategory" : rate.rate_subCategory!.subCategory_pk!,
+             "keyword"     : rate.rate_keyword!.keyword_pk!,
+             "text"        : rate.rate_comment]
+        
+        OSPWebSender.sharedInstance.doPOSTWithToken(path, withParameters: dic, withToken: token) {(response, successful) in
+            
+            if (response != nil) {
+                if (successful) {
+                    let errorResponse = ErrorResponse()
+                    completion(errorResponse: errorResponse, successful: successful)
+                } else {
+                    completion(errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
+                }
+            } else {
+                completion(errorResponse: nil, successful: successful)
+            }
+        }
+    }
+    
+    class func listKeyWordsWithToken(token : String, withCompletion completion : (arrayKeywords : NSMutableArray?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
+        
+        let path = "api/category/keyword/list/"
+        
+        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, successful) in
+            
+            if (response != nil) {
+                if (successful) {
+                    let arrayResponse : NSArray? = response as? NSArray
+                    let arrayTemp = NSMutableArray()
+                    
+                    arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
+                        arrayTemp.addObject(OSPWebTranslator.parseKeywordBE(obj as! NSDictionary))
+                    })
+                    
+                    completion(arrayKeywords: arrayTemp, errorResponse: nil, successful: successful)
+                } else {
+                    completion(arrayKeywords: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
+                }
+            } else {
+                completion(arrayKeywords: nil, errorResponse: nil, successful: successful)
+            }
+        }
+    }
+    
+    class func listAllCategoriesToUser(user : User, withToken token : String, withCompletion completion : (arrayCategories : NSMutableArray?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
+        
+        let userID = user.user_pk
+        let path = "api/employee/\(userID!)/category/list/"
+        
+        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, successful) in
+            
+            if (response != nil) {
+                if (successful) {
+                    let arrayResponse : NSArray? = response as? NSArray
+                    let arrayTemp = NSMutableArray()
+                    
+                    arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
+                        arrayTemp.addObject(OSPWebTranslator.parseCategoryBE(obj as! NSDictionary))
+                    })
+                    
+                    completion(arrayCategories: arrayTemp, errorResponse: nil, successful: successful)
+                } else {
+                    completion(arrayCategories: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
+                }
+            } else {
+                completion(arrayCategories: nil, errorResponse: nil, successful: successful)
+            }
+        }
+    }
+    
+    class func listStarUserSubCategoriesToUser(user : User, toSubCategory subCategory : StarSubCategoryBE, withToken token : String, withCompletion completion : (arrayUsers : NSMutableArray?, nextPage : String?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
+        
+        let userID = user.user_pk
+        let path = "api/star/\(userID!)/subcategory/\(subCategory.starSubCategoy_id!)/list/"
+        
+        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, successful) in
+            
+            if (response != nil) {
+                if (successful) {
+                    
+                    let dic = response as! NSDictionary
+                    var nextPage = dic["next"] as? String
+                    nextPage = nextPage?.replace(Constants.WEB_SERVICES, withString: "")
+                    let arrayResponse = dic["results"] as? NSArray
+                    
+                    let arrayTemp = NSMutableArray()
+                    arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
+                        
+                        arrayTemp.addObject(OSPWebTranslator.parseUserQualifyBE(obj as! NSDictionary))
+                    })
+                    
+                    completion(arrayUsers: arrayTemp, nextPage: nextPage, errorResponse: nil, successful: true)
+                } else {
+                    completion(arrayUsers: nil, nextPage: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
+                }
+            } else {
+                completion(arrayUsers: nil, nextPage: nil, errorResponse: nil, successful: successful)
+            }
+        }
+    }
+    
+    class func listStarUserSubCategoriesToPage(page : String, withToken token : String, withCompletion completion : (arrayUsers : NSMutableArray?, nextPage : String?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
+        
+        OSPWebSender.sharedInstance.doGETWithToken(page, withToken: token) {(response, successful) in
+            
+            if (response != nil) {
+                if (successful) {
+                    let dic = response as! NSDictionary
+                    var nextPage = dic["next"] as? String
+                    nextPage = nextPage?.replace(Constants.WEB_SERVICES, withString: "")
+                    let arrayResponse = dic["results"] as? NSArray
+                    
+                    let arrayTemp = NSMutableArray()
+                    arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
+                        
+                        arrayTemp.addObject(OSPWebTranslator.parseUserQualifyBE(obj as! NSDictionary))
+                    })
+                    
+                    completion(arrayUsers: arrayTemp, nextPage: nextPage, errorResponse: nil, successful: true)
+                } else {
+                    completion(arrayUsers: nil, nextPage: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: false)
+                }
+            } else {
+                completion(arrayUsers: nil, nextPage: nil, errorResponse: nil, successful: false)
+            }
+        }
+    }
+    
+    // MARK: - List
+    class func listLocations(token : String, withCompletion completion : (arrayLocations : NSMutableArray?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
+        
+        let path = "api/employee/location/list/"
+        
+        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, successful) in
+            
+            if (response != nil) {
+                if (successful) {
+                    let arrayResponse : NSArray? = response as? NSArray
+                    let arrayTemp = NSMutableArray()
+                    
+                    arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
+                        arrayTemp.addObject(OSPWebTranslator.parseLocationBE(obj as! NSDictionary))
+                    })
+                    
+                    completion(arrayLocations: arrayTemp, errorResponse: nil, successful: successful)
+                } else {
+                    completion(arrayLocations: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
+                }
+            } else {
+                completion(arrayLocations: nil, errorResponse: nil, successful: successful)
+            }
+        }
+    }
+    
     class func listStarSubCategoriesToUser(user : User, withToken token : String, withCompletion completion : (arrayCategories : NSMutableArray?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
         
         let path = "api/star/\(user.user_pk!)/subcategory/list/"
@@ -254,6 +392,7 @@ class OSPWebModel: NSObject {
         }
     }
     
+    // MARK: - Employee
     class func listEmployeeWithToken(token : String, withCompletion completion : (arrayEmployees : NSMutableArray?, nextPage : String?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
         
         let path = "api/employee/list/"
@@ -541,119 +680,12 @@ class OSPWebModel: NSObject {
         }
     }
     
-    class func rateUser(rate : RateUserBE, withToken token : String, withCompletion completion : (errorResponse : ErrorResponse?, successful : Bool) -> Void) {
+    // MARK: - Activities
+    class func listActivities(userID: String, withToken token : String, withCompletion completion : (arrayActivities : [Activity]?, nextPage : String?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
         
-        let userFromID = rate.rate_fromUser!.user_pk
-        let userToID = rate.rate_toUser!.user_pk
+        let path = "/api/activity/get/notification/employee/" + userID + "/all/"
         
-        let path = "api/star/\(userFromID!)/give/star/to/\(userToID!)/"
-        
-        let dic : [String : AnyObject] =
-            ["category"    : rate.rate_category!.category_pk!,
-             "subcategory" : rate.rate_subCategory!.subCategory_pk!,
-             "keyword"     : rate.rate_keyword!.keyword_pk!,
-             "text"        : rate.rate_comment]
-        
-        OSPWebSender.sharedInstance.doPOSTWithToken(path, withParameters: dic, withToken: token) {(response, successful) in
-            
-            if (response != nil) {
-                if (successful) {
-                    let errorResponse = ErrorResponse()
-                    completion(errorResponse: errorResponse, successful: successful)
-                } else {
-                    completion(errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
-                }
-            } else {
-                completion(errorResponse: nil, successful: successful)
-            }
-        }
-    }
-    
-    class func listKeyWordsWithToken(token : String, withCompletion completion : (arrayKeywords : NSMutableArray?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
-        
-        let path = "api/category/keyword/list/"
-        
-        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, successful) in
-            
-            if (response != nil) {
-                if (successful) {
-                    let arrayResponse : NSArray? = response as? NSArray
-                    let arrayTemp = NSMutableArray()
-                    
-                    arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
-                        arrayTemp.addObject(OSPWebTranslator.parseKeywordBE(obj as! NSDictionary))
-                    })
-                    
-                    completion(arrayKeywords: arrayTemp, errorResponse: nil, successful: successful)
-                } else {
-                    completion(arrayKeywords: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
-                }
-            } else {
-                completion(arrayKeywords: nil, errorResponse: nil, successful: successful)
-            }
-        }
-    }
-    
-    class func listAllCategoriesToUser(user : User, withToken token : String, withCompletion completion : (arrayCategories : NSMutableArray?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
-        
-        let userID = user.user_pk
-        let path = "api/employee/\(userID!)/category/list/"
-        
-        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, successful) in
-            
-            if (response != nil) {
-                if (successful) {
-                    let arrayResponse : NSArray? = response as? NSArray
-                    let arrayTemp = NSMutableArray()
-                    
-                    arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
-                        arrayTemp.addObject(OSPWebTranslator.parseCategoryBE(obj as! NSDictionary))
-                    })
-                    
-                    completion(arrayCategories: arrayTemp, errorResponse: nil, successful: successful)
-                } else {
-                    completion(arrayCategories: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
-                }
-            } else {
-                completion(arrayCategories: nil, errorResponse: nil, successful: successful)
-            }
-        }
-    }
-    
-    class func listStarUserSubCategoriesToUser(user : User, toSubCategory subCategory : StarSubCategoryBE, withToken token : String, withCompletion completion : (arrayUsers : NSMutableArray?, nextPage : String?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
-        
-        let userID = user.user_pk
-        let path = "api/star/\(userID!)/subcategory/\(subCategory.starSubCategoy_id!)/list/"
-        
-        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, successful) in
-            
-            if (response != nil) {
-                if (successful) {
-                    
-                    let dic = response as! NSDictionary
-                    var nextPage = dic["next"] as? String
-                    nextPage = nextPage?.replace(Constants.WEB_SERVICES, withString: "")
-                    let arrayResponse = dic["results"] as? NSArray
-                    
-                    let arrayTemp = NSMutableArray()
-                    arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
-                        
-                        arrayTemp.addObject(OSPWebTranslator.parseUserQualifyBE(obj as! NSDictionary))
-                    })
-                    
-                    completion(arrayUsers: arrayTemp, nextPage: nextPage, errorResponse: nil, successful: true)
-                } else {
-                    completion(arrayUsers: nil, nextPage: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
-                }
-            } else {
-                completion(arrayUsers: nil, nextPage: nil, errorResponse: nil, successful: successful)
-            }
-        }
-    }
-    
-    class func listStarUserSubCategoriesToPage(page : String, withToken token : String, withCompletion completion : (arrayUsers : NSMutableArray?, nextPage : String?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
-        
-        OSPWebSender.sharedInstance.doGETWithToken(page, withToken: token) {(response, successful) in
+        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) { (response, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -662,18 +694,45 @@ class OSPWebModel: NSObject {
                     nextPage = nextPage?.replace(Constants.WEB_SERVICES, withString: "")
                     let arrayResponse = dic["results"] as? NSArray
                     
-                    let arrayTemp = NSMutableArray()
+                    var arrayTemp = [Activity]()
                     arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
                         
-                        arrayTemp.addObject(OSPWebTranslator.parseUserQualifyBE(obj as! NSDictionary))
+                        arrayTemp.append(OSPWebTranslator.parseActivity(obj as! NSDictionary))
                     })
                     
-                    completion(arrayUsers: arrayTemp, nextPage: nextPage, errorResponse: nil, successful: true)
+                    completion(arrayActivities: arrayTemp, nextPage: nextPage, errorResponse: nil, successful: true)
                 } else {
-                    completion(arrayUsers: nil, nextPage: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: false)
+                    completion(arrayActivities: nil, nextPage: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: false)
                 }
             } else {
-                completion(arrayUsers: nil, nextPage: nil, errorResponse: nil, successful: false)
+                completion(arrayActivities: nil, nextPage: nil, errorResponse: nil, successful: false)
+            }
+        }
+    }
+    
+    class func listActivitiesToPage(page: String, withToken token : String, withCompletion completion : (arrayActivities : [Activity]?, nextPage : String?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
+        
+        OSPWebSender.sharedInstance.doGETWithToken(page, withToken: token) { (response, successful) in
+            
+            if (response != nil) {
+                if (successful) {
+                    let dic = response as! NSDictionary
+                    var nextPage = dic["next"] as? String
+                    nextPage = nextPage?.replace(Constants.WEB_SERVICES, withString: "")
+                    let arrayResponse = dic["results"] as? NSArray
+                    
+                    var arrayTemp = [Activity]()
+                    arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
+                        
+                        arrayTemp.append(OSPWebTranslator.parseActivity(obj as! NSDictionary))
+                    })
+                    
+                    completion(arrayActivities: arrayTemp, nextPage: nextPage, errorResponse: nil, successful: true)
+                } else {
+                    completion(arrayActivities: nil, nextPage: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: false)
+                }
+            } else {
+                completion(arrayActivities: nil, nextPage: nil, errorResponse: nil, successful: false)
             }
         }
     }

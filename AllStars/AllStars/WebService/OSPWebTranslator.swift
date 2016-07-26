@@ -144,6 +144,24 @@ class OSPWebTranslator: NSObject {
         return objBE
     }
     
+    class func parseActivity(objDic : NSDictionary) -> Activity {
+
+        let activityDate: NSDate?
+        
+        if let datetime = objDic["datetime"] as? String{
+            activityDate            = OSPDateManager.convertirTexto(datetime, conFormato: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+        } else {
+            activityDate            = nil
+        }
+        
+        let text = objDic["text"] as? String
+        let avatarURL = objDic["avatar"] as? String
+        
+        let objBE                   = Activity(activity_dateTime: activityDate, activity_text: text ?? "", activity_avatarURL: avatarURL ?? "")
+        
+        return objBE
+    }
+    
     class func parseUserRankingBE(objDic : NSDictionary) -> UserRankingBE {
         
         let objBE = UserRankingBE()
