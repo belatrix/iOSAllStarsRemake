@@ -226,9 +226,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         moreNavBar.tintColor = .whiteColor()
         moreNavBar.barTintColor = UIColor.colorPrimary()
         
-        if let rootViewController = navigationController.topViewController as? UITableViewController{
+        if let rootViewController = navigationController.topViewController?.view as? UITableView{
             
-            rootViewController.tableView.separatorStyle = .None
+            rootViewController.separatorStyle = .None
         }
         
         
