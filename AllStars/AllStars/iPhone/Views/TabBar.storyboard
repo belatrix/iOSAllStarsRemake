@@ -57,10 +57,10 @@
                         <segue destination="a4D-E0-X0S" kind="relationship" relationship="viewControllers" id="MJ9-cR-FoL"/>
                         <segue destination="NA1-BV-whf" kind="relationship" relationship="viewControllers" id="HjU-Jm-1o2"/>
                         <segue destination="JjQ-O3-wmn" kind="relationship" relationship="viewControllers" id="Vuz-R9-jhM"/>
+                        <segue destination="fGq-RN-H2f" kind="relationship" relationship="viewControllers" id="mLe-zF-NJ2"/>
                         <segue destination="YGB-HN-sqe" kind="relationship" relationship="viewControllers" id="BgH-yo-RHk"/>
                         <segue destination="387-2h-kvU" kind="relationship" relationship="viewControllers" id="CxC-Z0-yUn"/>
                         <segue destination="f1t-C2-Iqo" kind="relationship" relationship="viewControllers" id="kpw-gJ-n6W"/>
-                        <segue destination="fGq-RN-H2f" kind="relationship" relationship="viewControllers" id="mLe-zF-NJ2"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BdS-Tu-jam" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -151,7 +151,7 @@
         <scene sceneID="Fzv-HW-oW5">
             <objects>
                 <viewControllerPlaceholder storyboardName="Activity" id="fGq-RN-H2f" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Mtq-PG-hXi"/>
+                    <tabBarItem key="tabBarItem" title="Activities" id="Mtq-PG-hXi"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bNw-w1-0Az" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

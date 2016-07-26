@@ -203,7 +203,7 @@
             </objects>
             <point key="canvasLocation" x="1053" y="392"/>
         </scene>
-        <!--Tags-->
+        <!--Top Tags-->
         <scene sceneID="y8n-vc-TCQ">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="jQt-mV-AbO" customClass="ListTagsViewController" customModule="AllStars" customModuleProvider="target" sceneMemberID="viewController">
@@ -354,7 +354,7 @@
                             <constraint firstItem="5FL-3U-LSi" firstAttribute="top" secondItem="z9I-h8-FVW" secondAttribute="top" id="xGy-IR-1uv"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="3" title="Tags" image="iconTabBar_3.png" id="H1D-Me-Nz4"/>
+                    <tabBarItem key="tabBarItem" tag="3" title="Top Tags" image="iconTabBar_3.png" id="H1D-Me-Nz4"/>
                     <navigationItem key="navigationItem" id="YLG-ML-C2K"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -400,7 +400,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0zq-38-C6H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="149.86666666666667" y="998.73333333333335"/>
+            <point key="canvasLocation" x="149" y="1014"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aHN-8N-lZ3">
