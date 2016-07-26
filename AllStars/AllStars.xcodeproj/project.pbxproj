@@ -10,8 +10,12 @@
 		19EB523AC5A4798F9BFA29B7 /* Pods_AllStars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B099B21DBCE77889351873A /* Pods_AllStars.framework */; };
 		340474351D40195800939847 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340474341D40195800939847 /* ForgotPasswordViewController.swift */; };
 		3432CC211D3ED07600FF2F3B /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3432CC201D3ED07600FF2F3B /* EventDetailViewController.swift */; };
+		344EBF7C1D46CC660009505E /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EBF7B1D46CC660009505E /* ActivityViewController.swift */; };
+		344EBF7E1D46CCD90009505E /* ActivityBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EBF7D1D46CCD90009505E /* ActivityBC.swift */; };
 		347CE3BC1D3D6D2A0040CB19 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347CE3BB1D3D6D2A0040CB19 /* SettingsViewController.swift */; };
 		347CE3BE1D3D70660040CB19 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 347CE3BD1D3D70660040CB19 /* Settings.storyboard */; };
+		34BF52E21D4797A600123794 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BF52E11D4797A600123794 /* Activity.swift */; };
+		34BF52E41D47AD1800123794 /* Activity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34BF52E31D47AD1800123794 /* Activity.storyboard */; };
 		34D67C191D37E0C7002D1DC7 /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34D67C181D37E0C7002D1DC7 /* About.storyboard */; };
 		34D67C1C1D37FBCB002D1DC7 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D67C1B1D37FBCB002D1DC7 /* AboutViewController.swift */; };
 		34D67C1E1D382447002D1DC7 /* AboutCollaboratorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D67C1D1D382447002D1DC7 /* AboutCollaboratorsViewController.swift */; };
@@ -149,8 +153,12 @@
 		096506E97712267EE8D873B8 /* Pods-AllStars.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AllStars.release.xcconfig"; path = "Pods/Target Support Files/Pods-AllStars/Pods-AllStars.release.xcconfig"; sourceTree = "<group>"; };
 		340474341D40195800939847 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		3432CC201D3ED07600FF2F3B /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventDetailViewController.swift; path = Event/EventDetailViewController.swift; sourceTree = "<group>"; };
+		344EBF7B1D46CC660009505E /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		344EBF7D1D46CCD90009505E /* ActivityBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityBC.swift; sourceTree = "<group>"; };
 		347CE3BB1D3D6D2A0040CB19 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		347CE3BD1D3D70660040CB19 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		34BF52E11D4797A600123794 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		34BF52E31D47AD1800123794 /* Activity.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Activity.storyboard; sourceTree = "<group>"; };
 		34D67C181D37E0C7002D1DC7 /* About.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = About.storyboard; sourceTree = "<group>"; };
 		34D67C1B1D37FBCB002D1DC7 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		34D67C1D1D382447002D1DC7 /* AboutCollaboratorsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutCollaboratorsViewController.swift; sourceTree = "<group>"; };
@@ -313,6 +321,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		344EBF791D46CBA90009505E /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				344EBF7A1D46CBC30009505E /* Logic */,
+				344EBF7B1D46CC660009505E /* ActivityViewController.swift */,
+			);
+			path = Activity;
+			sourceTree = "<group>";
+		};
+		344EBF7A1D46CBC30009505E /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				344EBF7D1D46CCD90009505E /* ActivityBC.swift */,
+			);
+			path = Logic;
+			sourceTree = "<group>";
+		};
 		347CE3BA1D3D6D080040CB19 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -472,6 +497,7 @@
 		96AC74C51CDB745400D993E7 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				344EBF791D46CBA90009505E /* Activity */,
 				347CE3BA1D3D6D080040CB19 /* Settings */,
 				34D67C1A1D37EB1B002D1DC7 /* About */,
 				B6A7AFC81D2716DE0083883B /* Event */,
@@ -499,6 +525,7 @@
 				B6A7AFCC1D27172F0083883B /* Event.storyboard */,
 				34D67C181D37E0C7002D1DC7 /* About.storyboard */,
 				347CE3BD1D3D70660040CB19 /* Settings.storyboard */,
+				34BF52E31D47AD1800123794 /* Activity.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -586,6 +613,7 @@
 				B66FBC7C1D00D1E100C058F7 /* LocationBE.swift */,
 				B6C09DAB1D133800006C1D43 /* ErrorResponse.swift */,
 				B66204D31D2D93B400841573 /* Event.swift */,
+				34BF52E11D4797A600123794 /* Activity.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -882,6 +910,7 @@
 				B6BCC42F1D42629F0072684F /* key@3x.png in Resources */,
 				96AC74EB1CDB9FCA00D993E7 /* Profile.storyboard in Resources */,
 				9609D73E1CE364D300BF6036 /* textBelatrix@3x.png in Resources */,
+				34BF52E41D47AD1800123794 /* Activity.storyboard in Resources */,
 				96E41EE51CE2368F0071D49E /* Recommend.storyboard in Resources */,
 				9613BBFC1CE4BD9500533FAF /* OSPOptionList.xib in Resources */,
 				96757BED1CE0EF2300BA216A /* iconDown@3x.png in Resources */,
@@ -1028,6 +1057,8 @@
 				96AC74971CDB73AF00D993E7 /* AppDelegate.swift in Sources */,
 				B6EE58A91CFF883B0027B697 /* UserRankingTagViewController.swift in Sources */,
 				B6EE58AD1CFF91990027B697 /* UserTagBE.swift in Sources */,
+				344EBF7C1D46CC660009505E /* ActivityViewController.swift in Sources */,
+				344EBF7E1D46CCD90009505E /* ActivityBC.swift in Sources */,
 				96757BEB1CE0E1DB00BA216A /* OSPDateManager.m in Sources */,
 				96B2A0D71CE63AD800C8F97D /* UserRankingTableViewCell.swift in Sources */,
 				B6A7AFC71D270A590083883B /* LogInGuestEmailViewController.swift in Sources */,
@@ -1068,6 +1099,7 @@
 				9613BBFB1CE4BD9500533FAF /* OSPOptionList.m in Sources */,
 				B6A39C4B1CFDDE5E00DA42E3 /* SignUpViewController.swift in Sources */,
 				B6A39C4F1CFDF04800DA42E3 /* ListTagsViewController.swift in Sources */,
+				34BF52E21D4797A600123794 /* Activity.swift in Sources */,
 				96B2A0D01CE6307200C8F97D /* UserRankingBE.swift in Sources */,
 				964823391CE50C82007E58FE /* RateUserBE.swift in Sources */,
 				96AC74EE1CDBB60200D993E7 /* CustomTabBarViewController.swift in Sources */,
