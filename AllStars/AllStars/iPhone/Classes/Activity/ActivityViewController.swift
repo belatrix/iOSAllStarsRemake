@@ -72,6 +72,8 @@ class ActivityViewController: UIViewController, UITableViewDelegate, UITableView
             
             self.navigationController?.setNavigationBarHidden(false, animated: true)
         }
+        
+        self.refreshControl.endRefreshing()
     }
     
     // MARK: - UI

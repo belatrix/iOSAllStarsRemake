@@ -17,10 +17,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l93-WU-FeI">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VuW-fw-q18">
-                                        <rect key="frame" x="0.0" y="16" width="29" height="44"/>
+                                        <rect key="frame" x="0.0" y="20" width="29" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="ajw-fj-P3n"/>
                                             <constraint firstAttribute="width" constant="29" id="kcE-R5-lj3"/>
@@ -44,15 +44,15 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.36862745099999999" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="uZN-te-pCJ" secondAttribute="bottom" id="5FO-2E-fMr"/>
+                                    <constraint firstAttribute="bottom" secondItem="uZN-te-pCJ" secondAttribute="bottom" constant="4" id="5FO-2E-fMr"/>
                                     <constraint firstItem="VuW-fw-q18" firstAttribute="leading" secondItem="l93-WU-FeI" secondAttribute="leading" id="82w-Wl-uOA"/>
                                     <constraint firstItem="uZN-te-pCJ" firstAttribute="centerX" secondItem="l93-WU-FeI" secondAttribute="centerX" id="RlD-bB-jUg"/>
-                                    <constraint firstAttribute="height" constant="60" id="o3Y-8L-HNI"/>
+                                    <constraint firstAttribute="height" constant="64" id="o3Y-8L-HNI"/>
                                     <constraint firstAttribute="bottom" secondItem="VuW-fw-q18" secondAttribute="bottom" id="whK-Ro-F8y"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="71" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="q87-a3-NzE">
-                                <rect key="frame" x="0.0" y="60" width="320" height="459"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="activityCell" rowHeight="71" id="AFh-wV-iHl" customClass="ActivityCell" customModule="AllStars" customModuleProvider="target">
