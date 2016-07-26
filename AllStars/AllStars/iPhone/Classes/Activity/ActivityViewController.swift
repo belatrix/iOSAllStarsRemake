@@ -64,6 +64,16 @@ class ActivityViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if let rootVC = self.navigationController?.viewControllers.first where
+            rootVC == self.tabBarController?.moreNavigationController.viewControllers.first  {
+            
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+        }
+    }
+    
     // MARK: - UI
     func setViews() {
         
