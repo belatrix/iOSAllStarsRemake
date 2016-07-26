@@ -14,6 +14,9 @@ class ActivityViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var viewHeader               : UIView!
     @IBOutlet weak var backButton               : UIButton!
     @IBOutlet weak var tableView                : UITableView!
+    @IBOutlet weak var viewLoading              : UIView!
+    @IBOutlet weak var lblErrorMessage          : UILabel!
+    @IBOutlet weak var activityActivities      : UIActivityIndicatorView!
     
     // MARK: - Properties
     lazy var refreshControl : UIRefreshControl = {
@@ -169,6 +172,10 @@ class ActivityViewController: UIViewController, UITableViewDelegate, UITableView
             
             let activityBC = ActivityBC()
             
+            self.activityActivities.startAnimating()
+            self.viewLoading.alpha = CGFloat(!Bool(self.activities.count))
+            self.lblErrorMessage.text = "Loading Activities"
+            
             activityBC.listActivities { (arrayActivities, nextPage) in
                 
                 self.refreshControl.endRefreshing()
@@ -178,6 +185,10 @@ class ActivityViewController: UIViewController, UITableViewDelegate, UITableView
                     else { return }
                 
                 self.activities = activities
+                
+                self.activityActivities.stopAnimating()
+                self.viewLoading.alpha = CGFloat(!Bool(self.activities.count))
+                self.lblErrorMessage.text = "Activities not found"
                 
                 self.isDownload = false
             }
@@ -191,6 +202,10 @@ class ActivityViewController: UIViewController, UITableViewDelegate, UITableView
             
             let activityBC = ActivityBC()
             
+            self.activityActivities.startAnimating()
+            self.viewLoading.alpha = CGFloat(!Bool(self.activities.count))
+            self.lblErrorMessage.text = "Loading activities"
+            
             activityBC.listActivitiesToPage (self.nextPage!) { (arrayActivities, nextPage) in
                 
                 self.refreshControl.endRefreshing()
@@ -200,6 +215,10 @@ class ActivityViewController: UIViewController, UITableViewDelegate, UITableView
                     else { return }
                 
                 self.activities.appendContentsOf(activities)
+                
+                self.activityActivities.stopAnimating()
+                self.viewLoading.alpha = CGFloat(!Bool(self.activities.count))
+                self.lblErrorMessage.text = "Activities not found"
                 
                 self.isDownload = false
             }

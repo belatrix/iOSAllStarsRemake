@@ -118,24 +118,61 @@
                                     <outlet property="delegate" destination="WdK-Wc-ykT" id="4KY-0S-DWm"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tz5-Ex-Q77" userLabel="Loading View">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading activities" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cba-ke-lgb">
+                                        <rect key="frame" x="41" y="8" width="239" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="Zzm-kf-3d7"/>
+                                            <constraint firstAttribute="width" constant="239" id="zhW-sI-oyH"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="vM5-se-8Xs">
+                                        <rect key="frame" x="150" y="37" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="lGS-ir-9Qo"/>
+                                            <constraint firstAttribute="height" constant="20" id="qPg-dx-kzD"/>
+                                        </constraints>
+                                        <color key="color" red="1" green="0.61721249089999997" blue="0.04759951447" alpha="1" colorSpace="calibratedRGB"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="vM5-se-8Xs" firstAttribute="top" secondItem="Cba-ke-lgb" secondAttribute="bottom" constant="8" id="1ST-dW-obW"/>
+                                    <constraint firstItem="Cba-ke-lgb" firstAttribute="centerX" secondItem="Tz5-Ex-Q77" secondAttribute="centerX" id="7E7-Pw-iU8"/>
+                                    <constraint firstItem="vM5-se-8Xs" firstAttribute="centerX" secondItem="Tz5-Ex-Q77" secondAttribute="centerX" id="Efl-1C-uib"/>
+                                    <constraint firstItem="Cba-ke-lgb" firstAttribute="top" secondItem="Tz5-Ex-Q77" secondAttribute="top" constant="8" id="c7G-RN-MbF"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="q87-a3-NzE" secondAttribute="trailing" id="A55-qT-42X"/>
                             <constraint firstAttribute="trailing" secondItem="l93-WU-FeI" secondAttribute="trailing" id="BtA-qo-4Y6"/>
+                            <constraint firstItem="Tz5-Ex-Q77" firstAttribute="leading" secondItem="IFc-Ml-gxa" secondAttribute="leading" id="Ehq-hD-UL5"/>
                             <constraint firstItem="q87-a3-NzE" firstAttribute="leading" secondItem="IFc-Ml-gxa" secondAttribute="leading" id="H8N-rY-kWT"/>
                             <constraint firstItem="l93-WU-FeI" firstAttribute="leading" secondItem="IFc-Ml-gxa" secondAttribute="leading" id="N8H-AN-Kf2"/>
+                            <constraint firstItem="Tz5-Ex-Q77" firstAttribute="top" secondItem="l93-WU-FeI" secondAttribute="bottom" id="Tam-1h-WpE"/>
                             <constraint firstItem="q87-a3-NzE" firstAttribute="top" secondItem="l93-WU-FeI" secondAttribute="bottom" id="UQE-tZ-tyM"/>
                             <constraint firstItem="PDX-Hz-ATS" firstAttribute="top" secondItem="q87-a3-NzE" secondAttribute="bottom" id="Vca-pW-y0O"/>
+                            <constraint firstAttribute="trailing" secondItem="Tz5-Ex-Q77" secondAttribute="trailing" id="h0p-r3-fLp"/>
+                            <constraint firstItem="PDX-Hz-ATS" firstAttribute="top" secondItem="Tz5-Ex-Q77" secondAttribute="bottom" id="nrw-T3-je9"/>
                             <constraint firstItem="l93-WU-FeI" firstAttribute="top" secondItem="IFc-Ml-gxa" secondAttribute="top" id="rZJ-rj-0u5"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" tag="7" title="Activities" image="iconTabBar_activity" id="qee-Bi-jhr"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="activityActivities" destination="vM5-se-8Xs" id="gg2-Ym-ZbM"/>
                         <outlet property="backButton" destination="VuW-fw-q18" id="aHE-2c-kE1"/>
+                        <outlet property="lblErrorMessage" destination="Cba-ke-lgb" id="HWG-vy-Oqa"/>
                         <outlet property="tableView" destination="q87-a3-NzE" id="FZ8-5T-yWc"/>
                         <outlet property="viewHeader" destination="l93-WU-FeI" id="z7J-Of-U3h"/>
+                        <outlet property="viewLoading" destination="Tz5-Ex-Q77" id="nXY-9B-5n1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K30-NH-aoh" userLabel="First Responder" sceneMemberID="firstResponder"/>
