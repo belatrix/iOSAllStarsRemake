@@ -18,10 +18,7 @@ class OSPWebTranslator: NSObject {
             errorResponse.message = message
         }
         
-        if statuscode != 0 {
-            
-            errorResponse.state = NSNumber(integer: statuscode)
-        }
+        errorResponse.state = NSNumber(integer: statuscode)
         
         // Validate if Session Expired
         if statuscode == 401 {
