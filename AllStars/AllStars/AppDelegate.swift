@@ -238,7 +238,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     
     // MARK - Public methods
     
-    internal func sessionExpiredHandler() {
+    internal func logOut() {
         
         let storyBoard : UIStoryboard = UIStoryboard(name: "LogIn", bundle:nil)
         let loginVC = storyBoard.instantiateViewControllerWithIdentifier("LogInViewController") as! LogInViewController

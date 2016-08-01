@@ -210,11 +210,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func showLoginViewController() {
         
-        SessionUD.sharedInstance.clearSession()
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
-        let storyBoard : UIStoryboard = UIStoryboard(name: "LogIn", bundle:nil)
-        let logInViewController = storyBoard.instantiateViewControllerWithIdentifier("LogInViewController") as! LogInViewController
-        self.presentViewController(logInViewController, animated: true, completion: nil)
+        appDelegate.logOut()
     }
     
     // MARK: - Push Notification handler

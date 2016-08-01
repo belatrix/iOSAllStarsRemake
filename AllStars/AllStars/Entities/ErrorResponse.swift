@@ -24,7 +24,7 @@ class ErrorResponse: NSObject {
             
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             
-            appDelegate.sessionExpiredHandler()
+            appDelegate.logOut()
         }
     }
 }
