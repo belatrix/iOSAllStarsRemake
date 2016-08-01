@@ -18,15 +18,7 @@ class OSPWebTranslator: NSObject {
             errorResponse.message = message
         }
         
-        errorResponse.state = NSNumber(integer: statuscode)
-        
-        // Validate if Session Expired
-        if statuscode == 401 {
-            
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            
-            appDelegate.sessionExpiredHandler()
-        }
+        errorResponse.state = NSNumber(integer: statuscode)        
         
         return errorResponse
     }
