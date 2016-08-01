@@ -145,7 +145,7 @@ class OSPWebModel: NSObject {
         
         let path = "api/employee/\(user.user_pk!)/"
         
-        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, successful) in
+        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, statusCode, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -153,7 +153,7 @@ class OSPWebModel: NSObject {
                     objUsuario.user_pk = user.user_pk
                     completion(user: objUsuario, errorResponse: nil, successful: successful)
                 } else {
-                    completion(user: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
+                    completion(user: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject], withCode: statusCode ?? 0), successful: successful)
                 }
             } else {
                 completion(user: nil, errorResponse: nil, successful: successful)
@@ -235,7 +235,7 @@ class OSPWebModel: NSObject {
         
         let path = "api/category/keyword/list/"
         
-        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, successful) in
+        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, statusCode, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -261,7 +261,7 @@ class OSPWebModel: NSObject {
         let userID = user.user_pk
         let path = "api/employee/\(userID!)/category/list/"
         
-        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, successful) in
+        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, statusCode, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -287,7 +287,7 @@ class OSPWebModel: NSObject {
         let userID = user.user_pk
         let path = "api/star/\(userID!)/subcategory/\(subCategory.starSubCategoy_id!)/list/"
         
-        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, successful) in
+        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, statusCode, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -315,7 +315,7 @@ class OSPWebModel: NSObject {
     
     class func listStarUserSubCategoriesToPage(page : String, withToken token : String, withCompletion completion : (arrayUsers : NSMutableArray?, nextPage : String?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
         
-        OSPWebSender.sharedInstance.doGETWithToken(page, withToken: token) {(response, successful) in
+        OSPWebSender.sharedInstance.doGETWithToken(page, withToken: token) {(response, statusCode, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -345,7 +345,7 @@ class OSPWebModel: NSObject {
         
         let path = "api/employee/location/list/"
         
-        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, successful) in
+        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, statusCode, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -370,7 +370,7 @@ class OSPWebModel: NSObject {
         
         let path = "api/star/\(user.user_pk!)/subcategory/list/"
         
-        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, successful) in
+        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, statusCode, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -397,7 +397,7 @@ class OSPWebModel: NSObject {
         
         let path = "api/employee/list/"
         
-        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, successful) in
+        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, statusCode, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -424,7 +424,7 @@ class OSPWebModel: NSObject {
     
     class func listEmployeeToPage(page : String, withToken token : String, withCompletion completion : (arrayEmployees : NSMutableArray?, nextPage : String?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
         
-        OSPWebSender.sharedInstance.doGETWithToken(page, withToken: token) {(response, successful) in
+        OSPWebSender.sharedInstance.doGETWithToken(page, withToken: token) {(response, statusCode, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -453,7 +453,7 @@ class OSPWebModel: NSObject {
         
         let path = "api/employee/list/?search=\(text)"
         
-        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, successful) in
+        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, statusCode, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -482,7 +482,7 @@ class OSPWebModel: NSObject {
         
         let path = "api/star/keyword/list/"
         
-        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, successful) in
+        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, statusCode, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -509,7 +509,7 @@ class OSPWebModel: NSObject {
     
     class func listStarKeywordToPage(page : String, withToken token : String, withCompletion completion : (arrayKeywords : NSMutableArray?, nextPage : String?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
         
-        OSPWebSender.sharedInstance.doGETWithToken(page, withToken: token) {(response, successful) in
+        OSPWebSender.sharedInstance.doGETWithToken(page, withToken: token) {(response, statusCode, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -538,7 +538,7 @@ class OSPWebModel: NSObject {
         
         let path = "api/star/keyword/list/?search=\(text)"
         
-        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, successful) in
+        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, statusCode, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -603,7 +603,7 @@ class OSPWebModel: NSObject {
         
         let path = "api/star/keyword/\(starKeyword.keyword_pk!)/list/"
         
-        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, successful) in
+        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, statusCode, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -630,7 +630,7 @@ class OSPWebModel: NSObject {
     
     class func listEmployeeKeywordToPage(page : String, withToken token : String, withCompletion completion : (arrayEmployees : NSMutableArray?, nextPage : String?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
         
-        OSPWebSender.sharedInstance.doGETWithToken(page, withToken: token) {(response, successful) in
+        OSPWebSender.sharedInstance.doGETWithToken(page, withToken: token) {(response, statusCode, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -659,7 +659,7 @@ class OSPWebModel: NSObject {
         
         let path = "api/employee/list/top/\(kind)/15/"
         
-        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, successful) in
+        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, statusCode, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -685,7 +685,7 @@ class OSPWebModel: NSObject {
         
         let path = "/api/activity/get/notification/employee/" + userID + "/all/"
         
-        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) { (response, successful) in
+        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) { (response, statusCode, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -712,7 +712,7 @@ class OSPWebModel: NSObject {
     
     class func listActivitiesToPage(page: String, withToken token : String, withCompletion completion : (arrayActivities : [Activity]?, nextPage : String?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
         
-        OSPWebSender.sharedInstance.doGETWithToken(page, withToken: token) { (response, successful) in
+        OSPWebSender.sharedInstance.doGETWithToken(page, withToken: token) { (response, statusCode, successful) in
             
             if (response != nil) {
                 if (successful) {
@@ -743,14 +743,14 @@ class OSPWebModel: NSObject {
         
         let path = "/api/employee/logout/"
         
-        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, successful) in
+        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, statusCode, successful) in
             
             if (response != nil) {
                 if (successful) {
                     
                     completion(errorResponse: nil, successful: successful)
                 } else {
-                    completion(errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
+                    completion(errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject], withCode: statusCode), successful: successful)
                 }
             } else {
                 completion(errorResponse: nil, successful: successful)

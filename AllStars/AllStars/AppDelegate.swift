@@ -201,6 +201,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    // MARK: - UITabBarControllerDelegate
     func tabBarController(tabBarController: UITabBarController, didEndCustomizingViewControllers viewControllers: [UIViewController], changed: Bool) {
         
         guard changed
@@ -218,6 +219,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         
     }
     
+    // MARK: - UINavigationControllerDelegate
     func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
         
         let moreNavBar = navigationController.navigationBar
@@ -234,5 +236,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         }
         
         
+    }
+    
+    // MARK - Public methods
+    
+    internal func logOut() {
+        
+        let storyBoard : UIStoryboard = UIStoryboard(name: "LogIn", bundle:nil)
+        let loginVC = storyBoard.instantiateViewControllerWithIdentifier("LogInViewController") as! LogInViewController
+        
+        self.window?.rootViewController = loginVC
+        
+        SessionUD.sharedInstance.clearSession()
     }
 }

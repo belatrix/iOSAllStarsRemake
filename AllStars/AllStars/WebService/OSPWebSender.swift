@@ -57,7 +57,7 @@ class OSPWebSender {
         }
     }
     
-    func doGETWithToken(path : String, withToken token : String, withCompletion completion : (response : AnyObject?, successful : Bool) -> Void) {
+    func doGETWithToken(path : String, withToken token : String, withCompletion completion : (response : AnyObject?, statusCode: Int , successful : Bool) -> Void) {
         
         let URL = Constants.WEB_SERVICES + path
         
@@ -75,17 +75,17 @@ class OSPWebSender {
                     
                     if let JSON = response.result.value {
                         if(response.response!.statusCode >= 200 && response.response!.statusCode <= 299) {
-                            completion(response : JSON, successful: true)
+                            completion(response : JSON, statusCode: response.response?.statusCode ?? 0, successful: true)
                         } else {
-                            completion(response : JSON, successful: false)
+                            completion(response : JSON, statusCode: response.response?.statusCode ?? 0, successful: false)
                         }
                     } else {
-                        completion(response : nil, successful: false)
+                        completion(response : nil, statusCode: response.response?.statusCode ?? 0, successful: false)
                     }
                 case .Failure(let error):
                     print("error: \(error)")
                     
-                    completion(response : nil, successful: false)
+                    completion(response : nil, statusCode: response.response?.statusCode ?? 0, successful: false)
                 }
         }
     }
