@@ -228,6 +228,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         moreNavBar.tintColor = .whiteColor()
         moreNavBar.barTintColor = UIColor.colorPrimary()
         
+        moreNavBar.topItem?.rightBarButtonItem = nil
+        
         if let rootViewController = navigationController.topViewController?.view as? UITableView{
             
             rootViewController.separatorStyle = .None
