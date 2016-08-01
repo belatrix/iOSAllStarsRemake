@@ -10,12 +10,25 @@ import UIKit
 
 class OSPWebTranslator: NSObject {
     
-    class func parseErrorMessage(objDic : NSDictionary) -> ErrorResponse {
+    class func parseErrorMessage(objDic : NSDictionary, withCode statuscode: Int = 0) -> ErrorResponse {
         
         let errorResponse = ErrorResponse()
         
         if let message = objDic["detail"] as? String {
             errorResponse.message = message
+        }
+        
+        if statuscode != 0 {
+            
+            errorResponse.state = NSNumber(integer: statuscode)
+        }
+        
+        // Validate if Session Expired
+        if statuscode == 401 {
+            
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            
+            appDelegate.sessionExpiredHandler()
         }
         
         return errorResponse

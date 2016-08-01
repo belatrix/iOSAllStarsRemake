@@ -255,7 +255,8 @@ class LogInBC: NSObject {
                 completion(successful: true)
             } else if (errorResponse != nil) {
                 
-                if let errorMessage = errorResponse!.message where errorMessage != "Invalid token." {
+                if let errorMessage = errorResponse!.message,
+                   let statusCode = errorResponse?.state?.integerValue where statusCode != 401 {
                     
                     OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorMessage, withAcceptButton: "ok".localized)
                     completion(successful: false)

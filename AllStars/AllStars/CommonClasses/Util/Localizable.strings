@@ -20,6 +20,7 @@ token_invalid = "Problems with your session. Logout and try again please";
 why = "Why";
 what = "What";
 who = "Who";
+invalid_token = "Invalid token.";
 
 // SignUp
 mail_empty = "Email must not be empty";
