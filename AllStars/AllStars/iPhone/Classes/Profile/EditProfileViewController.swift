@@ -258,13 +258,11 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
 
     // MARK: - Other
     func openTabBar() {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "TabBar", bundle:nil)
-        let tabBarViewController = storyBoard.instantiateViewControllerWithIdentifier("CustomTabBarViewController") as! UITabBarController
         
-        tabBarViewController.delegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        tabBarViewController.moreNavigationController.delegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        self.presentViewController(tabBarViewController, animated: true, completion: nil)
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    
+        appDelegate.login()
+        appDelegate.addShortcutItems()
     }
     
     // MARK: - Configuration

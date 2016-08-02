@@ -53,6 +53,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - IBActions
     @IBAction func btnResetTUI(sender: UIButton) {
+        self.view.endEditing(true)
         resetPassword(userSession!)
     }
     
@@ -99,13 +100,11 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
             self.unlockScreen()
             
             if (user != nil) {
-                let storyBoard : UIStoryboard = UIStoryboard(name: "TabBar", bundle:nil)
-                let tabBarViewController = storyBoard.instantiateViewControllerWithIdentifier("CustomTabBarViewController") as! UITabBarController
 
-                tabBarViewController.delegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                tabBarViewController.moreNavigationController.delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                 
-                self.presentViewController(tabBarViewController, animated: true, completion: nil)
+                appDelegate.login()
+                appDelegate.addShortcutItems()
             }
         }
     }

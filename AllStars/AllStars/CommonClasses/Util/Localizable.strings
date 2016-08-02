@@ -126,3 +126,15 @@ keyword_empty = "Keyword must not be empty";
 description_empty = "Description must not be empty";
 no_availables_categories = "Categories no availables";
 no_availables_keywords = "Keywords no availables";
+
+// Tabbar
+activities = "Activities";
+contacts = "Contacts";
+
+// ShortCutItems
+activities_sub = "See your last activities";
+contacts_sub = "Select and recommend";
+
+
+
+

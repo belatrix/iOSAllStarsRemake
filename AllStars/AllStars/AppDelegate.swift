@@ -19,6 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     var window: UIWindow?
     var objUserSession : User?
 
+    // MARK: Static Properties
+    
+    static let applicationShortcutUserInfoIconKey = "applicationShortcutUserInfoIconKey"
+    
+    /// Saved shortcut item used as a result of an app launch, used later when app is activated.
+    var launchedShortcutItem: UIApplicationShortcutItem?
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         // PUSH Notification
@@ -26,6 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
 
+        
+        
         // Firebase
         FIRApp.configure()
         
@@ -37,6 +46,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         
         // start Twitter
         Fabric.with([Twitter.self])
+        
+        // If a shortcut was launched, display its information and take the appropriate action
+        if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] as? UIApplicationShortcutItem {
+            
+            launchedShortcutItem = shortcutItem
+        }
         
         // UI
         self.window!.tintColor = .belatrix()
@@ -60,31 +75,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
             
             objUserSession = session
             
-            let storyBoard : UIStoryboard = UIStoryboard(name: "TabBar", bundle:nil)
-            let tabBarViewController = storyBoard.instantiateViewControllerWithIdentifier("CustomTabBarViewController") as! UITabBarController
+            self.addShortcutItems()
             
-            UITabBar.appearance().tintColor = UIColor.belatrix()
-            
-            tabBarViewController.delegate = self
-            tabBarViewController.moreNavigationController.delegate = self
-            
-            // Verify TabbarController Order
-            let tabBarOrder = NSUserDefaults.standardUserDefaults().arrayForKey("tabBarOrder")
-            
-            if tabBarOrder != nil {
-                
-                let defaultViewControllers = tabBarViewController.viewControllers
-                var sortedViewControllers = [UIViewController]()
-                
-                for sortNumber in tabBarOrder! {
-                    
-                    sortedViewControllers.append(defaultViewControllers![sortNumber .integerValue])
-                }
-                
-                tabBarViewController.viewControllers = sortedViewControllers
-            }
-            
-            self.window?.rootViewController = tabBarViewController
+            self.login()
 
         }
         
@@ -195,6 +188,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         FBSDKLoginManager().logOut()
         
         NSNotificationCenter.defaultCenter().postNotificationName("applicationDidBecomeActive", object: nil)
+        
+        guard let shortcut = launchedShortcutItem else { return }
+        
+        handleShortCutItem(shortcut)
+        
+        launchedShortcutItem = nil
     }
 
     func applicationWillTerminate(application: UIApplication) {
@@ -234,8 +233,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
             
             rootViewController.separatorStyle = .None
         }
-        
-        
     }
     
     // MARK - Public methods
@@ -248,5 +245,115 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         self.window?.rootViewController = loginVC
         
         SessionUD.sharedInstance.clearSession()
+        
+        let application = UIApplication.sharedApplication()
+        application.shortcutItems = []
+    }
+    
+    internal func login() {
+        
+        let storyBoard : UIStoryboard = UIStoryboard(name: "TabBar", bundle:nil)
+        let tabBarViewController = storyBoard.instantiateViewControllerWithIdentifier("CustomTabBarViewController") as! UITabBarController
+        
+        UITabBar.appearance().tintColor = UIColor.belatrix()
+        
+        tabBarViewController.delegate = self
+        tabBarViewController.moreNavigationController.delegate = self
+        
+        // Verify TabbarController Order
+        let tabBarOrder = NSUserDefaults.standardUserDefaults().arrayForKey("tabBarOrder")
+        
+        if tabBarOrder != nil {
+            
+            let defaultViewControllers = tabBarViewController.viewControllers
+            var sortedViewControllers = [UIViewController]()
+            
+            for sortNumber in tabBarOrder! {
+                
+                sortedViewControllers.append(defaultViewControllers![sortNumber .integerValue])
+            }
+            
+            tabBarViewController.viewControllers = sortedViewControllers
+        }
+        
+        self.window?.rootViewController = tabBarViewController
+    }
+    
+    // MARK: - Shortcut methods
+    internal func addShortcutItems() {
+        
+        let application = UIApplication.sharedApplication()
+        
+        // Install initial versions of our two extra dynamic shortcuts.
+        if let shortcutItems = application.shortcutItems where shortcutItems.isEmpty {
+            
+            // Construct the items.
+            
+            let shortcut3 = UIMutableApplicationShortcutItem(type: ShortcutType.Activities.rawValue, localizedTitle: "activities".localized, localizedSubtitle: "activities_sub".localized,
+                                                             icon: UIApplicationShortcutIcon(templateImageName: "iconTabBar_activity"),
+                                                             userInfo: nil
+            )
+            
+            let shortcut4 = UIMutableApplicationShortcutItem(type: ShortcutType.Contacts.rawValue, localizedTitle: "contacts".localized,
+                                                             localizedSubtitle: "contacts_sub".localized,
+                                                             icon: UIApplicationShortcutIcon(templateImageName: "iconTabBar_2@3x.png"),
+                                                             userInfo: nil
+            )
+            
+            // Update the application providing the initial 'dynamic' shortcut items.
+            application.shortcutItems = [shortcut3, shortcut4]
+        }
+    }
+    
+    func handleShortCutItem(shortcutItem: UIApplicationShortcutItem) -> Bool {
+        
+        guard let tabBarController = self.window?.rootViewController as? UITabBarController
+            else { return false }
+        
+        switch shortcutItem.type {
+        case ShortcutType.Activities.rawValue:
+            
+            tabBarController.selectedViewController = tabBarController.viewControllers![Tabs.Activities.rawValue]
+            
+        case ShortcutType.Contacts.rawValue:
+            tabBarController.selectedViewController = tabBarController.viewControllers![Tabs.Contacts.rawValue]
+            
+        default:
+            fatalError("Unhandled shortcut")
+        }
+        
+        return true
+    }
+    
+    /*
+     Called when the user activates your application by selecting a shortcut on the home screen, except when
+     application(_:,willFinishLaunchingWithOptions:) or application(_:didFinishLaunchingWithOptions) returns `false`.
+     You should handle the shortcut in those callbacks and return `false` if possible. In that case, this
+     callback is used if your application is already launched in the background.
+     */
+    func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: Bool -> Void) {
+        let handledShortCutItem = handleShortCutItem(shortcutItem)
+        
+        completionHandler(handledShortCutItem)
+    }
+}
+
+extension AppDelegate {
+    
+    enum Tabs: Int {
+        case Profile = 0
+        case Ranking
+        case Contacts
+        case Tags
+        case Activities
+        case Events
+        case About
+        case Settings
+    }
+    
+    enum ShortcutType: String {
+        
+        case Activities
+        case Contacts
     }
 }
