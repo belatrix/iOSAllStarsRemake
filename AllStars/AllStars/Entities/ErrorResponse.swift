@@ -25,6 +25,11 @@ class ErrorResponse: NSObject {
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             
             appDelegate.logOut()
+            
+            if self.message == "invalid_token".localized {
+                
+                self.message = "session_expired".localized
+            }
         }
     }
 }

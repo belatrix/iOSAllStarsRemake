@@ -21,6 +21,7 @@ why = "Why";
 what = "What";
 who = "Who";
 invalid_token = "Invalid token.";
+session_expired = "Your session has expired.";
 
 // SignUp
 mail_empty = "Email must not be empty";
