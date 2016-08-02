@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--ProfileNavViewController-->
         <scene sceneID="asp-8E-Qam">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Esl-8X-LsF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileNavViewController" id="wWs-rJ-wOl" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="iconTabBar_0.png" id="m7d-Z9-ge5"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Esl-8X-LsF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-226.5" y="750"/>
         </scene>
         <!--ListEmployeeNavViewController-->
         <scene sceneID="INh-lr-yIh">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7cR-r6-JsN" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="Search" referencedIdentifier="ListEmployeeNavViewController" id="NA1-BV-whf" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Contacts" image="iconTabBar_2.png" id="Elk-f9-tzy"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7cR-r6-JsN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="98" y="750"/>
         </scene>
@@ -70,90 +71,90 @@
         <!--ListTagsViewController-->
         <scene sceneID="goc-MD-Vvf">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h5v-JT-v0R" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="Search" referencedIdentifier="ListTagsViewController" id="JjQ-O3-wmn" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Tags" image="iconTabBar_3.png" id="lqm-w8-go2"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="h5v-JT-v0R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="319.5" y="750"/>
         </scene>
         <!--navRanking-->
         <scene sceneID="kqI-ha-5zj">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kTk-jq-cCO" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="Ranking" referencedIdentifier="navRanking" id="a4D-E0-X0S" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Ranking" image="iconTabBar_1.png" id="K47-z0-Gzh"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kTk-jq-cCO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-76.5" y="750"/>
         </scene>
         <!--About-->
         <scene sceneID="GYY-tV-FmK">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tsE-Hy-2da" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="About" id="387-2h-kvU" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="About" id="9fa-ar-8Gu"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tsE-Hy-2da" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="434.5" y="216"/>
         </scene>
         <!--EventsViewController-->
         <scene sceneID="bgM-Cg-JVB">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V5i-D9-gSV" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="Event" referencedIdentifier="EventsViewController" id="YGB-HN-sqe" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Events" id="aIM-63-jEA"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="V5i-D9-gSV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="481.5" y="290"/>
         </scene>
         <!--About-->
         <scene sceneID="tBf-qk-GNd">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yox-md-AKl" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="About" id="f1z-2L-Z6L" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="About" id="RTk-uW-xGH"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Yox-md-AKl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="213.5" y="1297"/>
         </scene>
         <!--Settings-->
         <scene sceneID="vbG-zB-Ibb">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xhi-ap-gSH" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardIdentifier="Settings" storyboardName="Settings" id="Lde-ih-ngS" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" id="XHM-8a-xtn"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Xhi-ap-gSH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="217.5" y="1387"/>
         </scene>
         <!--EventsNavViewController-->
         <scene sceneID="W4X-6E-Mop">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oJH-vU-eDL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="Event" referencedIdentifier="EventsNavViewController" id="hkR-Io-24j" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Events" id="j2b-RI-oCj"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oJH-vU-eDL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="213" y="1207"/>
         </scene>
         <!--Settings-->
         <scene sceneID="0xY-X6-mfT">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wPI-yH-U8L" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="Settings" id="f1t-C2-Iqo" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" id="g8Q-aW-UlH"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wPI-yH-U8L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="441.5" y="349"/>
         </scene>
         <!--Activity-->
         <scene sceneID="Fzv-HW-oW5">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bNw-w1-0Az" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="Activity" id="fGq-RN-H2f" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Activities" id="Mtq-PG-hXi"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bNw-w1-0Az" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="439.5" y="396"/>
         </scene>
