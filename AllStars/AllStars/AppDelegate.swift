@@ -28,12 +28,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        var tabPos = Tabs.Profile
+        
         // PUSH Notification
         let settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
-
-        
         
         // Firebase
         FIRApp.configure()
@@ -51,6 +51,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] as? UIApplicationShortcutItem {
             
             launchedShortcutItem = shortcutItem
+        }
+        
+        // Opened with notification
+        if let options = launchOptions,
+            let _ = options[UIApplicationLaunchOptionsRemoteNotificationKey] {
+            
+            tabPos = Tabs.Activities
         }
         
         // UI
@@ -77,10 +84,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
             
             self.addShortcutItems()
             
-            self.login()
+            self.login(tabPos)
 
         }
-        
         return true
     }
     
@@ -250,7 +256,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         application.shortcutItems = []
     }
     
-    internal func login() {
+    internal func login(selectedTab: Tabs = Tabs.Profile) {
         
         let storyBoard : UIStoryboard = UIStoryboard(name: "TabBar", bundle:nil)
         let tabBarViewController = storyBoard.instantiateViewControllerWithIdentifier("CustomTabBarViewController") as! UITabBarController
@@ -259,6 +265,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         
         tabBarViewController.delegate = self
         tabBarViewController.moreNavigationController.delegate = self
+        
+        tabBarViewController.selectedViewController = tabBarViewController.viewControllers![selectedTab.rawValue]
         
         // Verify TabbarController Order
         let tabBarOrder = NSUserDefaults.standardUserDefaults().arrayForKey("tabBarOrder")
