@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -956,7 +956,7 @@
                         <outlet property="viewHeader" destination="hod-WH-nXn" id="0jq-zQ-po2"/>
                         <outlet property="viewLastName" destination="KSm-50-DBZ" id="vBX-5a-9Bf"/>
                         <outlet property="viewLoading" destination="kOt-2E-Mq5" id="tor-sd-yb2"/>
-                        <outlet property="viewSkypeId" destination="c06-Hb-4pC" id="3QN-n2-1Xf"/>
+                        <outlet property="viewSkypeId" destination="Ydq-Gd-ULB" id="MB4-S7-YKN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XxL-iK-vQv" userLabel="First Responder" sceneMemberID="firstResponder"/>

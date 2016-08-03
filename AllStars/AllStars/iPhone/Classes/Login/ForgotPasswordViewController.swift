@@ -15,7 +15,8 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailTextField     : UITextField!
     @IBOutlet weak var requestButton      : UIButton!
     @IBOutlet weak var forgotPwdIndicator : UIActivityIndicatorView!
-    @IBOutlet weak var imgPwd : UIImageView!
+    @IBOutlet weak var imgPwd             : UIImageView!
+    @IBOutlet weak var viewEdtEmail       : UIView!
     
     // MARK: - Initialization
     override func viewDidLoad() {
@@ -36,6 +37,7 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
     // MARK: - UI
     func setViews() {
         
+        viewEdtEmail.backgroundColor = UIColor.colorPrimary()
         requestButton.backgroundColor = UIColor.colorPrimary()
         emailTextField.delegate = self
         

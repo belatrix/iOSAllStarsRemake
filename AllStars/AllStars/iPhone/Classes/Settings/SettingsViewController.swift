@@ -10,8 +10,9 @@ import Foundation
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var viewHeader       : UIView!
+    @IBOutlet weak var tableView        : UITableView!
+    @IBOutlet weak var backButton       : UIButton!
     
     
     lazy var options: [SettingsOptions] = {
@@ -39,6 +40,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.estimatedRowHeight = 60
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(SettingsViewController.applicationDidBecomeActiveNotification(_:)) , name: "applicationDidBecomeActive", object: nil)
+        
+        setViewsStyle()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -76,6 +79,16 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: - Style
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
+    }
+    
+    func setViewsStyle() {
+        
+        viewHeader.layer.shadowOffset = CGSizeMake(0, 0)
+        viewHeader.layer.shadowRadius = 2
+        viewHeader.layer.masksToBounds = false
+        viewHeader.layer.shadowOpacity = 1
+        viewHeader.layer.shadowColor = UIColor.orangeColor().CGColor
+        viewHeader.backgroundColor = UIColor.colorPrimary()
     }
     
     // MARK: - UITableViewDelegate, UITableViewDataSource

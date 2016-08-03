@@ -11,7 +11,7 @@ import UIKit
 extension UIColor {
     
     class func colorPrimary() -> UIColor {
-        return UIColor(rgba: 0x005E7A, alphaCGFloat: 1)
+        return UIColor(rgba: 0xF3743E, alphaCGFloat: 1)
     }
     
     class func colorPrimaryLight() -> UIColor {
@@ -31,7 +31,7 @@ extension UIColor {
     }
     
     class func darkAccent() -> UIColor {
-        return UIColor(rgba: 0xFF3D00, alphaCGFloat: 1)
+        return UIColor(rgba: 0x1A4F9F, alphaCGFloat: 1)
     }
     
     class func belatrix() -> UIColor {
