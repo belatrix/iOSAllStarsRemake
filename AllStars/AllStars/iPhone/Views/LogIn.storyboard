@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Vo9-8w-xjF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Vo9-8w-xjF">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
@@ -546,7 +546,6 @@
                             <constraint firstItem="JmV-Mm-czn" firstAttribute="top" secondItem="97h-5X-E9s" secondAttribute="bottom" constant="44" id="5IA-4r-SMg"/>
                             <constraint firstItem="bdY-wJ-6BQ" firstAttribute="top" secondItem="9Bc-dY-7yA" secondAttribute="bottom" constant="8" id="5M5-hm-hTV"/>
                             <constraint firstAttribute="trailing" secondItem="SUR-Eo-beU" secondAttribute="trailing" constant="34" id="7nW-SS-uAl"/>
-                            <constraint firstItem="mwL-DB-ivW" firstAttribute="centerX" secondItem="I4v-Ww-mwq" secondAttribute="centerX" id="Gp4-DD-yKo"/>
                             <constraint firstItem="QD8-Wk-4pu" firstAttribute="top" secondItem="97h-5X-E9s" secondAttribute="bottom" id="JVc-lv-hpo"/>
                             <constraint firstAttribute="trailing" secondItem="Abv-LQ-jfK" secondAttribute="trailing" constant="27" id="LLA-e3-xym"/>
                             <constraint firstItem="9Bc-dY-7yA" firstAttribute="leading" secondItem="I4v-Ww-mwq" secondAttribute="leading" constant="28" id="PHa-cU-xSB"/>
@@ -572,6 +571,7 @@
                         <outlet property="requestButton" destination="mwL-DB-ivW" id="O2K-BT-25U"/>
                         <outlet property="subtitleLabel" destination="9Bc-dY-7yA" id="UB6-x6-f1H"/>
                         <outlet property="titleLabel" destination="Abv-LQ-jfK" id="sV2-xC-PwQ"/>
+                        <outlet property="viewEdtEmail" destination="XXs-cp-gxH" id="ocm-gR-nbm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQB-EZ-gLb" userLabel="First Responder" sceneMemberID="firstResponder"/>

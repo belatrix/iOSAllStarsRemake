@@ -11,11 +11,12 @@ import Foundation
 class EventDetailViewController: UIViewController {
     
     // MARK: - Variables
-    @IBOutlet weak var eventTitleLabel: UILabel!
-    @IBOutlet weak var eventImage: UIImageView!
-    @IBOutlet weak var eventDateLabel: UILabel!
-    @IBOutlet weak var eventLocationLabel: UILabel!
-    @IBOutlet weak var eventDescriptionTextView: UITextView!
+    @IBOutlet weak var viewHeader               : UIView!
+    @IBOutlet weak var eventTitleLabel          : UILabel!
+    @IBOutlet weak var eventImage               : UIImageView!
+    @IBOutlet weak var eventDateLabel           : UILabel!
+    @IBOutlet weak var eventLocationLabel       : UILabel!
+    @IBOutlet weak var eventDescriptionTextView : UITextView!
     
     // MARK: - Public variables
     var event: Event! {
@@ -38,11 +39,22 @@ class EventDetailViewController: UIViewController {
         fillUI()
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.setViewsStyle()
     }
     
     // MARK: - Style
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
+    }
+    
+    func setViewsStyle() {
+        
+        viewHeader.layer.shadowOffset = CGSizeMake(0, 0)
+        viewHeader.layer.shadowRadius = 2
+        viewHeader.layer.masksToBounds = false
+        viewHeader.layer.shadowOpacity = 1
+        viewHeader.layer.shadowColor = UIColor.orangeColor().CGColor
+        viewHeader.backgroundColor = UIColor.colorPrimary()
     }
     
     // MARK: - UI
