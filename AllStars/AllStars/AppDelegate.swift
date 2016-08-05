@@ -140,6 +140,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
             notification.userInfo = ["title": title, "from": ""]
             
             UIApplication.sharedApplication().scheduleLocalNotification(notification)
+            
+            if ( application.applicationState != .Active ) {
+                // app was already in the foreground
+                guard let tabbarcontroller = self.window?.rootViewController as? UITabBarController
+                    else { return }
+                
+                tabbarcontroller.selectedViewController = tabbarcontroller.viewControllers![Tabs.Activities.rawValue]
+            }
         }
     }
     
