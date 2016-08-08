@@ -10,6 +10,7 @@ import UIKit
 
 class ProfileBC: NSObject {
     
+    // MARK: - Userinfo
     class func listLocations(completion : (arrayLocations : NSMutableArray?) -> Void) {
         
         let objUser = LogInBC.getCurrenteUserSession()
@@ -142,6 +143,31 @@ class ProfileBC: NSObject {
         }
     }
     
+    class func getUserSkills(user : User, withCompletion completion : (skills : [KeywordBE]?) -> Void) {
+        
+        let objUser = LogInBC.getCurrenteUserSession()
+        
+        guard let token = objUser!.user_token
+            else {
+                OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
+                completion(skills: [KeywordBE]())
+                return
+        }
+        
+        OSPWebModel.listUserSkills(user, withToken: token) { (skills, errorResponse, successful) in
+            if (skills != nil) {
+                completion(skills: skills!)
+            } else if (errorResponse != nil) {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
+                completion(skills: [KeywordBE]())
+            } else {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
+                completion(skills: [KeywordBE]())
+            }
+        }
+    }
+    
+    // MARK: - Keywords
     class func listStarSubCategoriesToUser(user : User, withCompletion completion : (arrayCategories : NSMutableArray?) -> Void) {
         
         let objUser = LogInBC.getCurrenteUserSession()
@@ -215,6 +241,7 @@ class ProfileBC: NSObject {
         }
     }
     
+    // MARK: - Utils
     class func validateUser(user : User?, isEqualToUser newUser : User?) -> Bool {
         
         let userID1 = user?.user_pk

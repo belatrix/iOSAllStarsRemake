@@ -309,4 +309,17 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
         textField.resignFirstResponder()
         return true
     }
+    
+    // MARK: - Navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "SkillsViewController" {
+            
+            let skillsNC = segue.destinationViewController as! UINavigationController
+            let skillsVC = skillsNC.topViewController as! UserSkillsViewController
+            
+            skillsVC.objUser = self.objUser!
+        }
+        
+    }
 }
