@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UserSkillsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class UserSkillsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UserSkillsViewControllerDelegate {
     
     // MARK: - IBOutlets
     @IBOutlet weak var backButton               : UIButton!
@@ -52,6 +52,11 @@ class UserSkillsViewController: UIViewController, UITableViewDelegate, UITableVi
     func setTexts() {
         
         self.titleLabel.text = "skills".localized
+    }
+    
+    // MARK: - UserSkillsViewControllerDelegate
+    func newSkillAdded() {
+        listAllSkills()
     }
     
     // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -115,22 +120,24 @@ class UserSkillsViewController: UIViewController, UITableViewDelegate, UITableVi
         if (!self.isDownload) {
             self.isDownload = true
             
-//            self.acitivityTags.startAnimating()
-//            self.viewLoading.alpha = CGFloat(!Bool(self.arrayTags.count))
-//            self.lblErrorMessage.text = "Loading tags"
-            
             ProfileBC.getUserSkills(self.objUser, withCompletion: { (skills) in
                 
-//                self.nextPage = nextPage
                 self.userSkills = skills ?? [KeywordBE]()
                 self.tableView.reloadData()
                 
-//                self.acitivityTags.stopAnimating()
-//                self.viewLoading.alpha = CGFloat(!Bool(self.arrayTags.count))
-//                self.lblErrorMessage.text = "Tags not found"
-                
                 self.isDownload = false
             })
+        }
+    }
+    
+    // MARK: - Navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "AddSkillsViewController" {
+            
+            let addSkillVC = segue.destinationViewController as? AddSkillsViewController
+            
+            addSkillVC?.delegate = self
         }
     }
 }
@@ -143,4 +150,9 @@ extension UserSkillsViewController {
         case numberOfSections
     }
     
+}
+
+protocol UserSkillsViewControllerDelegate {
+    
+    func newSkillAdded()
 }

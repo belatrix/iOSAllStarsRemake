@@ -25,6 +25,8 @@ class AddSkillsViewController: UIViewController, UISearchBarDelegate {
     var arraySkills = NSMutableArray()
     var allSkills = NSMutableArray()
     var searchText : String  = ""
+    var shouldAddNew = false
+    var delegate: UserSkillsViewControllerDelegate?
     
     // MAKR: - Initialization
     override func viewDidLoad() {
@@ -48,6 +50,7 @@ class AddSkillsViewController: UIViewController, UISearchBarDelegate {
         self.searchSkills.backgroundImage = UIImage()
         self.searchSkills.backgroundColor = .clearColor()
         self.searchSkills.barTintColor = .clearColor()
+        self.searchSkills.tintColor = .whiteColor()
     }
     
     func setTexts() {
@@ -58,6 +61,7 @@ class AddSkillsViewController: UIViewController, UISearchBarDelegate {
     // MARK: - UISearchBarDelegate
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         self.searchSkills.text = ""
+        shouldAddNew = false
         self.listAllSkills()
         self.searchSkills.resignFirstResponder()
     }
@@ -94,10 +98,21 @@ class AddSkillsViewController: UIViewController, UISearchBarDelegate {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.arraySkills.count
+        return (shouldAddNew == true) ? 1 : self.arraySkills.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        if shouldAddNew {
+            
+            let cell = UITableViewCell(style: .Default, reuseIdentifier: "AddSkillCell")
+            
+            cell.textLabel?.textAlignment = .Center
+            cell.textLabel?.text = "Add " + searchText + " as a new Skill"
+            cell.textLabel?.textColor = UIColor.colorAccent()
+            
+            return cell
+        }
         
         let cellIdentifier = "SkillTableViewCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! TagTableViewCell
@@ -114,9 +129,28 @@ class AddSkillsViewController: UIViewController, UISearchBarDelegate {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         cell?.setSelected(false, animated: true)
         
-        let _ = self.arraySkills[indexPath.row]
+        // The searched skill wasn't found
+        if shouldAddNew {
+            
+            self.addSkillToUser(searchText)
+            return
+        }
         
-        // TODO: Send selected skill through delegate
+        let skill = self.arraySkills[indexPath.row] as! KeywordBE
+        
+        let alert = UIAlertController(title: "app_name".localized , message: "Do you want to add " + skill.keyword_name! + "as a new Skill?", preferredStyle: .Alert)
+        
+        let addAction = UIAlertAction(title: "yes".localized, style: .Default) { (action) in
+            
+            self.addSkillToUser(skill.keyword_name!)
+        }
+        
+        let cancelAction = UIAlertAction(title: "no".localized, style: .Cancel, handler: nil)
+        
+        alert.addAction(addAction)
+        alert.addAction(cancelAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     // MARK: - User Interaction
@@ -136,6 +170,8 @@ class AddSkillsViewController: UIViewController, UISearchBarDelegate {
         
         self.arraySkills.removeAllObjects()
         self.arraySkills.addObjectsFromArray(filteredSkills)
+        
+        self.shouldAddNew = (self.arraySkills.count == 0)
         
         self.tableView.reloadData()
     }
@@ -166,6 +202,23 @@ class AddSkillsViewController: UIViewController, UISearchBarDelegate {
             self.arraySkills.removeAllObjects()
             self.arraySkills.addObjectsFromArray(self.allSkills as [AnyObject])
             self.tableView.reloadData()
+        }
+    }
+    
+    func addSkillToUser(skillName: String) {
+        
+        ProfileBC.addUserSkill(skillName) { (skills) in
+            
+            let alert = UIAlertController(title: "app_name".localized , message: "Skill added", preferredStyle: .Alert)
+            
+            let cancelAction = UIAlertAction(title: "ok".localized, style: .Cancel) { (action) in
+                
+                self.delegate?.newSkillAdded()
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+            alert.addAction(cancelAction)
+            
+            self.presentViewController(alert, animated: true, completion: nil)
         }
     }
 }

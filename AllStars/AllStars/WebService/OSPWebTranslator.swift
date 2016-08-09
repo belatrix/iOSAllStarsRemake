@@ -183,7 +183,7 @@ class OSPWebTranslator: NSObject {
         let objBE = KeywordBE()
         
         objBE.keyword_name  = objDic["name"] as? String
-        objBE.keyword_pk    = NSNumber(integer: (objDic["pk"] ?? objDic["id"]!).integerValue)
+        objBE.keyword_pk    = NSNumber(integer: (objDic["pk"])!.integerValue)
         
         return objBE
     }

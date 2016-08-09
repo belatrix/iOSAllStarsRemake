@@ -167,6 +167,31 @@ class ProfileBC: NSObject {
         }
     }
     
+    class func addUserSkill(skillName: String, withCompletion completion : (skills : [KeywordBE]?) -> Void) {
+        
+        let objUser = LogInBC.getCurrenteUserSession()
+        
+        guard let token = objUser!.user_token
+            else {
+                OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
+                completion(skills: [KeywordBE]())
+                return
+        }
+        
+        OSPWebModel.addSkillToUser(objUser!, skillName: skillName, withToken: token) { (skills, errorResponse, successful) in
+         
+            if (skills != nil) {
+                completion(skills: skills!)
+            } else if (errorResponse != nil) {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
+                completion(skills: [KeywordBE]())
+            } else {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
+                completion(skills: [KeywordBE]())
+            }
+        }
+    }
+    
     // MARK: - Keywords
     class func listStarSubCategoriesToUser(user : User, withCompletion completion : (arrayCategories : NSMutableArray?) -> Void) {
         
