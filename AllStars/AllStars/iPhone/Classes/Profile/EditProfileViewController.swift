@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
+class EditProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, EditProfileViewControllerDelegate {
 
     @IBOutlet weak var viewHeader               : UIView!
     @IBOutlet weak var imgUser                  : UIImageView!
@@ -36,6 +36,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
     var objUser : User?
     var arrayLocations = NSMutableArray()
     var isNewUser : Bool?
+    var hasSkills = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +48,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
         imagePickerController.allowsEditing = true
         
         self.updateUserInfo()
+        hasSkills = (objUser?.user_base_profile_complete)!
     }
     
     // MARK: - Style
@@ -134,6 +136,11 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
+    // MARK: - EditProfileViewControllerDelegate
+    func skillsListUpdated(hasSkills: Bool) {
+        self.hasSkills = hasSkills
+    }
+    
     // MARK: - UITableViewDelegate, UITableViewDataSource
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -214,6 +221,11 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func updateDataUser() -> Void {
+        if hasSkills == false {
+            OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "skills_error".localized, withAcceptButton: "ok".localized)
+            return
+        }
+        
         ProfileBC.updateInfoToUser(objUser!, newUser: isNewUser!, hasImage: hasNewImage, withController: self, withCompletion: {(user) in
             
             self.view.userInteractionEnabled = true
@@ -319,7 +331,13 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
             let skillsVC = skillsNC.topViewController as! UserSkillsViewController
             
             skillsVC.objUser = self.objUser!
+            skillsVC.delegate = self
         }
         
     }
+}
+
+protocol EditProfileViewControllerDelegate {
+    
+    func skillsListUpdated(hasSkills: Bool)
 }

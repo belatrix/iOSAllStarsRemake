@@ -138,6 +138,7 @@ contacts_sub = "Select and recommend";
 // UserSkills
 skills = "Skills";
 add_skill = "Select a skill to add";
+skills_error = "Add a skill";
 
 
 

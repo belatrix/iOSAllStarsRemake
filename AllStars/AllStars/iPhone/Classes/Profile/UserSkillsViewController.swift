@@ -28,6 +28,8 @@ class UserSkillsViewController: UIViewController, UITableViewDelegate, UITableVi
     
     var isDownload = false
     var objUser = User()
+    var delegate: EditProfileViewControllerDelegate?
+    
     
     // MAKR: - Initialization
     override func viewDidLoad() {
@@ -170,6 +172,8 @@ class UserSkillsViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.tableView.reloadData()
                 
                 self.isDownload = false
+                
+                self.delegate?.skillsListUpdated(self.userSkills.count > 0)
             })
         }
     }
