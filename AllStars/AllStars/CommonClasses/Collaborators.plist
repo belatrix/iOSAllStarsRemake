@@ -66,6 +66,12 @@
 		</dict>
 		<dict>
 			<key>Name</key>
+			<string>Karla Cerron</string>
+			<key>Pic</key>
+			<string>kcerron</string>
+		</dict>
+		<dict>
+			<key>Name</key>
 			<string>Kenyi Rodriguez</string>
 			<key>Pic</key>
 			<string>KRodriguez</string>
