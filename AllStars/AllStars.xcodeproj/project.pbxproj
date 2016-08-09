@@ -19,6 +19,8 @@
 		34D67C191D37E0C7002D1DC7 /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34D67C181D37E0C7002D1DC7 /* About.storyboard */; };
 		34D67C1C1D37FBCB002D1DC7 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D67C1B1D37FBCB002D1DC7 /* AboutViewController.swift */; };
 		34D67C1E1D382447002D1DC7 /* AboutCollaboratorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D67C1D1D382447002D1DC7 /* AboutCollaboratorsViewController.swift */; };
+		34E0A36D1D58DD0000262D27 /* UserSkillsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E0A36C1D58DD0000262D27 /* UserSkillsViewController.swift */; };
+		34E0A36F1D58DD3000262D27 /* AddSkillsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E0A36E1D58DD3000262D27 /* AddSkillsViewController.swift */; };
 		34E0DC501D392ECD00281B56 /* Collaborators.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34E0DC4F1D392ECD00281B56 /* Collaborators.plist */; };
 		9609D73E1CE364D300BF6036 /* textBelatrix@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9609D73D1CE364D300BF6036 /* textBelatrix@3x.png */; };
 		9609D7411CE39AF400BF6036 /* RecommendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9609D7401CE39AF400BF6036 /* RecommendViewController.swift */; };
@@ -162,6 +164,8 @@
 		34D67C181D37E0C7002D1DC7 /* About.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = About.storyboard; sourceTree = "<group>"; };
 		34D67C1B1D37FBCB002D1DC7 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		34D67C1D1D382447002D1DC7 /* AboutCollaboratorsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutCollaboratorsViewController.swift; sourceTree = "<group>"; };
+		34E0A36C1D58DD0000262D27 /* UserSkillsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSkillsViewController.swift; sourceTree = "<group>"; };
+		34E0A36E1D58DD3000262D27 /* AddSkillsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSkillsViewController.swift; sourceTree = "<group>"; };
 		34E0DC4F1D392ECD00281B56 /* Collaborators.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Collaborators.plist; sourceTree = "<group>"; };
 		6891701F3BB249E13689ABBA /* Pods-AllStars.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AllStars.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AllStars/Pods-AllStars.debug.xcconfig"; sourceTree = "<group>"; };
 		6B099B21DBCE77889351873A /* Pods_AllStars.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AllStars.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -650,6 +654,8 @@
 				9638EF431CDCFBCC00D07D51 /* StarSubCategoriesCollectionViewCell.swift */,
 				96757BE21CE0CA6000BA216A /* StarsCategoriesUserViewController.swift */,
 				96757BE41CE0D56E00BA216A /* StarUserInfoTableViewCell.swift */,
+				34E0A36C1D58DD0000262D27 /* UserSkillsViewController.swift */,
+				34E0A36E1D58DD3000262D27 /* AddSkillsViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1079,6 +1085,7 @@
 				347CE3BC1D3D6D2A0040CB19 /* SettingsViewController.swift in Sources */,
 				96AC74D21CDB765800D993E7 /* OSPWebSender.swift in Sources */,
 				9613BBFF1CE4BD9500533FAF /* OSPOptionListItem.m in Sources */,
+				34E0A36D1D58DD0000262D27 /* UserSkillsViewController.swift in Sources */,
 				3432CC211D3ED07600FF2F3B /* EventDetailViewController.swift in Sources */,
 				966BA8DD1CEA091900C240D7 /* UserRankingViewController.swift in Sources */,
 				96B2A0D31CE632B300C8F97D /* RankingBC.swift in Sources */,
@@ -1124,6 +1131,7 @@
 				B6C09DAC1D133800006C1D43 /* ErrorResponse.swift in Sources */,
 				B66FBC7B1D00D0FD00C058F7 /* LocationTableViewCell.swift in Sources */,
 				96AC74DD1CDB7D5E00D993E7 /* User.swift in Sources */,
+				34E0A36F1D58DD3000262D27 /* AddSkillsViewController.swift in Sources */,
 				B66204D41D2D93B400841573 /* Event.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

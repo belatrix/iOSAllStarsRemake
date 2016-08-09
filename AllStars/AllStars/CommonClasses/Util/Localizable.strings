@@ -135,6 +135,11 @@ contacts = "Contacts";
 activities_sub = "See your last activities";
 contacts_sub = "Select and recommend";
 
+// UserSkills
+skills = "Skills";
+add_skill = "Select a skill to add";
+skills_error = "Add a skill";
+
 
 
 

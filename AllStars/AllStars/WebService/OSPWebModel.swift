@@ -366,6 +366,32 @@ class OSPWebModel: NSObject {
         }
     }
     
+    class func listUserSkills(user : User, withToken token : String, withCompletion completion : (skills : [KeywordBE]?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
+        
+        let path = "/api/employee/\(user.user_pk!)/skills/list/"
+        
+        OSPWebSender.sharedInstance.doGETWithToken(path, withToken: token) {(response, statusCode, successful) in
+            
+            if (response != nil) {
+                if (successful) {
+                    let dic = response as! NSDictionary
+                    let arrayResponse = dic["results"] as? NSArray
+                    
+                    var skillsTemp = [KeywordBE]()
+                    arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
+                        skillsTemp.append(OSPWebTranslator.parseKeywordBE(obj as! NSDictionary))
+                    })
+                    
+                    completion(skills: skillsTemp, errorResponse: nil, successful: successful)
+                } else {
+                    completion(skills: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
+                }
+            } else {
+                completion(skills: nil, errorResponse: nil, successful: successful)
+            }
+        }
+    }
+    
     class func listStarSubCategoriesToUser(user : User, withToken token : String, withCompletion completion : (arrayCategories : NSMutableArray?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
         
         let path = "api/star/\(user.user_pk!)/subcategory/list/"
@@ -676,6 +702,63 @@ class OSPWebModel: NSObject {
                 }
             } else {
                 completion(arrayUsersRanking: nil, errorResponse: nil, successful: successful)
+            }
+        }
+    }
+    
+    class func addSkillToUser(user : User, skillName: String, withToken token : String, withCompletion completion : (skills : [KeywordBE]?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
+        
+        let path = "/api/employee/\(user.user_pk!)/skills/add/"
+        
+        let dic : [String : AnyObject] =
+            ["skill" : skillName]
+        
+        OSPWebSender.sharedInstance.doPATCHWithToken(path, withParameters: dic, withToken: token) {(response, successful) in
+            
+            if (response != nil) {
+                if (successful) {
+                    let dic = response as! NSDictionary
+                    let arrayResponse = dic["results"] as? NSArray
+                    
+                    var skillsTemp = [KeywordBE]()
+                    arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
+                        skillsTemp.append(OSPWebTranslator.parseKeywordBE(obj as! NSDictionary))
+                    })
+                    
+                    completion(skills: skillsTemp, errorResponse: nil, successful: successful)
+                } else {
+                    completion(skills: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
+                }
+            } else {
+                completion(skills: nil, errorResponse: nil, successful: successful)
+            }
+        }
+    }
+    
+    class func deleteUserSkill(user : User, skillName: String, withToken token : String, withCompletion completion : (skills : [KeywordBE]?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
+        
+        let path = "api/employee/\(user.user_pk!)/skills/remove/"
+        
+        let dic : [String : AnyObject] = ["skill" : skillName]
+        
+        OSPWebSender.sharedInstance.doPATCHWithToken(path, withParameters: dic, withToken: token) {(response, successful) in
+            
+            if (response != nil) {
+                if (successful) {
+                    let dic = response as! NSDictionary
+                    let arrayResponse = dic["results"] as? NSArray
+                    
+                    var skillsTemp = [KeywordBE]()
+                    arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
+                        skillsTemp.append(OSPWebTranslator.parseKeywordBE(obj as! NSDictionary))
+                    })
+                    
+                    completion(skills: skillsTemp, errorResponse: nil, successful: successful)
+                } else {
+                    completion(skills: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
+                }
+            } else {
+                completion(skills: nil, errorResponse: nil, successful: successful)
             }
         }
     }
