@@ -209,7 +209,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             self.lblLocation.text = "Location: \(location)"
         }
         
-        if let monthScore = self.objUser!.user_last_month_score {
+        if let monthScore = self.objUser!.user_current_month_score {
             self.lblMothScore.text = "\(monthScore)"
         }
         
