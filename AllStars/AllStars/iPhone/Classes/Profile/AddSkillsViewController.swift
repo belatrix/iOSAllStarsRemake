@@ -211,16 +211,8 @@ class AddSkillsViewController: UIViewController, UISearchBarDelegate {
         ProfileBC.addUserSkill(skillName) { (skills) in
             
             self.view.userInteractionEnabled = true
-            let alert = UIAlertController(title: "app_name".localized , message: "Skill added", preferredStyle: .Alert)
-            
-            let cancelAction = UIAlertAction(title: "ok".localized, style: .Cancel) { (action) in
-                
-                self.delegate?.newSkillAdded()
-                self.navigationController?.popViewControllerAnimated(true)
-            }
-            alert.addAction(cancelAction)
-            
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.delegate?.newSkillAdded()
+            self.navigationController?.popViewControllerAnimated(true)
         }
     }
 }

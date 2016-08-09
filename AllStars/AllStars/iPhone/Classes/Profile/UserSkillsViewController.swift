@@ -96,6 +96,8 @@ class UserSkillsViewController: UIViewController, UITableViewDelegate, UITableVi
             
             cell.textLabel?.text = skill.keyword_name
             cell.selectionStyle = .None
+            cell.textLabel?.textColor = UIColor.darkGrayColor()
+            cell.textLabel?.font = UIFont(name: "Helvetica Neue", size: 14.0)
             
             return cell
             
@@ -107,6 +109,48 @@ class UserSkillsViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        
+        let section = Section(rawValue: indexPath.section)!
+        
+        switch section {
+        case .addSkill:
+            return false
+            
+        case .userSkills:
+            return true
+            
+        default:
+            fatalError("Invalid section for User skills")
+        }
+    }
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        
+        let section = Section(rawValue: indexPath.section)!
+        
+        switch section {
+            
+        case .userSkills:
+            let action = UITableViewRowAction(style: .Default, title: "Delete", handler: { (action, indexPath) in
+                
+                let skill = self.userSkills[indexPath.row]
+                
+                ProfileBC.deleteUserSkill(skill.keyword_name!, withCompletion: { (skills) in
+                    
+                    self.listAllSkills()
+                })
+            })
+            
+            return [action]
+            
+        default:
+            fatalError("Invalid section for User skills action")
+        }
+        
+        return nil
     }
     
     // MARK: - User Interaction
