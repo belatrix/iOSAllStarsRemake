@@ -19,6 +19,7 @@ class AddSkillsViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var viewLoading              : UIView!
     @IBOutlet weak var lblErrorMessage          : UILabel!
     @IBOutlet weak var acitivitySkills          : UIActivityIndicatorView!
+    @IBOutlet weak var actUpdating              : UIActivityIndicatorView!
     
     // MARK: - Properties
     var isDownload = false
@@ -138,10 +139,11 @@ class AddSkillsViewController: UIViewController, UISearchBarDelegate {
         
         let skill = self.arraySkills[indexPath.row] as! KeywordBE
         
-        let alert = UIAlertController(title: "app_name".localized , message: "Do you want to add " + skill.keyword_name! + "as a new Skill?", preferredStyle: .Alert)
+        let alert = UIAlertController(title: "app_name".localized , message: "Do you want to add " + skill.keyword_name! + " as a new Skill?", preferredStyle: .Alert)
         
         let addAction = UIAlertAction(title: "yes".localized, style: .Default) { (action) in
             
+            self.actUpdating.startAnimating()
             self.addSkillToUser(skill.keyword_name!)
         }
         
@@ -207,10 +209,12 @@ class AddSkillsViewController: UIViewController, UISearchBarDelegate {
     
     func addSkillToUser(skillName: String) {
         
+        self.actUpdating.startAnimating()
         self.view.userInteractionEnabled = false
         ProfileBC.addUserSkill(skillName) { (skills) in
             
             self.view.userInteractionEnabled = true
+            self.actUpdating.stopAnimating()
             self.delegate?.newSkillAdded()
             self.navigationController?.popViewControllerAnimated(true)
         }

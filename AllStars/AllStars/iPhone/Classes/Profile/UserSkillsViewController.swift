@@ -15,6 +15,7 @@ class UserSkillsViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var tableView                : UITableView!
     @IBOutlet weak var titleLabel               : UILabel!
     @IBOutlet weak var viewHeader               : UIView!
+    @IBOutlet weak var actUpdating              : UIActivityIndicatorView!
     
     // MARK: - Properties
     var userSkills = [KeywordBE]() {
@@ -140,8 +141,12 @@ class UserSkillsViewController: UIViewController, UITableViewDelegate, UITableVi
                 
                 let skill = self.userSkills[indexPath.row]
                 
+                self.actUpdating.startAnimating()
+                self.view.userInteractionEnabled = false
                 ProfileBC.deleteUserSkill(skill.keyword_name!, withCompletion: { (skills) in
                     
+                    self.view.userInteractionEnabled = true
+                    self.actUpdating.stopAnimating()
                     self.listAllSkills()
                 })
             })
