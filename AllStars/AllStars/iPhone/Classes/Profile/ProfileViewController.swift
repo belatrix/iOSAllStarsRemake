@@ -28,6 +28,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var constraintHeightContent  : NSLayoutConstraint!
     @IBOutlet weak var btnAction                : UIButton?
     @IBOutlet weak var btnBack                  : UIButton!
+    @IBOutlet weak var viewUserPhoto            : UIView!
     
     var objUser : User?
     var backEnable : Bool?
@@ -144,7 +145,43 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     func tapProfileImage() {
         
-        self.imgProfile.transform = CGAffineTransformMakeScale(2, 2)
+        var newFrame = self.viewHeader.frame
+        
+        newFrame.size.height = 64.0
+        self.view.backgroundColor = UIColor.whiteColor()
+        
+        UIView.animateWithDuration(0.5, delay: 0.0,
+                                   options: [], animations: {
+                                    
+                                    self.viewUserPhoto.transform = CGAffineTransformMakeScale(3.2, 3.2)
+                                    self.viewUserPhoto.center = self.view.center
+                                    self.viewHeader.frame = newFrame
+        }) { (success) in
+            
+            newFrame.size.height = 114.0
+            self.viewHeader.frame = newFrame
+            self.view.backgroundColor = UIColor.colorPrimary()
+            
+            self.viewUserPhoto.transform = CGAffineTransformMakeScale(1.0, 1.0)
+            self.viewUserPhoto.center = CGPointMake(self.view.center.x, self.viewHeader.frame.maxY)
+            
+            self.imgProfile.transform = CGAffineTransformMakeScale(1.0, 1.0)
+            self.imgProfile.center = CGPointMake(self.viewUserPhoto.frame.size.width/2, self.viewUserPhoto.frame.size.height/2)
+        }
+        
+        self.performSelector(#selector(showUserImageViewController), withObject: nil, afterDelay: 0.5)
+    }
+    
+    func showUserImageViewController() {
+        
+        let storyboard = self.storyboard
+        let userImageVC = storyboard?.instantiateViewControllerWithIdentifier("UserProfileImageViewController") as! UserProfileImageViewController
+        
+        userImageVC.userImage = self.imgProfile.image
+        
+        userImageVC.modalPresentationStyle = .PageSheet
+        
+        self.presentViewController(userImageVC, animated: false, completion: nil)
     }
     
     // MARK: - UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout

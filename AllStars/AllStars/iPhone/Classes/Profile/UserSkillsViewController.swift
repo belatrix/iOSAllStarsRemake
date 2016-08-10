@@ -91,6 +91,8 @@ class UserSkillsViewController: UIViewController, UITableViewDelegate, UITableVi
             guard let cell = tableView.dequeueReusableCellWithIdentifier("newSkillCell")
                 else { fatalError("Add Skill Cell doesn't exists") }
             
+            cell.textLabel?.textColor = UIColor.colorAccent()
+            
             return cell
         case .userSkills:
             
