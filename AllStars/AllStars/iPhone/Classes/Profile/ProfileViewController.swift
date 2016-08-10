@@ -56,6 +56,10 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             self.btnBack.hidden = true
         }
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.tapProfileImage))
+        
+        self.imgProfile.userInteractionEnabled = true
+        self.imgProfile.addGestureRecognizer(tapGesture)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -136,6 +140,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         let storyBoard : UIStoryboard = UIStoryboard(name: "LogIn", bundle:nil)
         let logInViewController = storyBoard.instantiateViewControllerWithIdentifier("LogInViewController") as! LogInViewController
         self.presentViewController(logInViewController, animated: true, completion: nil)
+    }
+    
+    func tapProfileImage() {
+        
+        self.imgProfile.transform = CGAffineTransformMakeScale(2, 2)
     }
     
     // MARK: - UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
