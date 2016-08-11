@@ -23,7 +23,7 @@ extension UIColor {
     }
     
     class func colorAccent() -> UIColor {
-        return UIColor(rgba: 0xFC5632, alphaCGFloat: 1)
+        return UIColor(rgba: 0x448AFF, alphaCGFloat: 1)
     }
     
     class func lightAccent() -> UIColor {

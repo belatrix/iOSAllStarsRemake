@@ -14,6 +14,7 @@
 		344EBF7E1D46CCD90009505E /* ActivityBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EBF7D1D46CCD90009505E /* ActivityBC.swift */; };
 		347CE3BC1D3D6D2A0040CB19 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347CE3BB1D3D6D2A0040CB19 /* SettingsViewController.swift */; };
 		347CE3BE1D3D70660040CB19 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 347CE3BD1D3D70660040CB19 /* Settings.storyboard */; };
+		34BDCFF81D5B7B82009EA1A1 /* UserProfileImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BDCFF71D5B7B82009EA1A1 /* UserProfileImageViewController.swift */; };
 		34BF52E21D4797A600123794 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BF52E11D4797A600123794 /* Activity.swift */; };
 		34BF52E41D47AD1800123794 /* Activity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34BF52E31D47AD1800123794 /* Activity.storyboard */; };
 		34D67C191D37E0C7002D1DC7 /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34D67C181D37E0C7002D1DC7 /* About.storyboard */; };
@@ -159,6 +160,7 @@
 		344EBF7D1D46CCD90009505E /* ActivityBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityBC.swift; sourceTree = "<group>"; };
 		347CE3BB1D3D6D2A0040CB19 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		347CE3BD1D3D70660040CB19 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		34BDCFF71D5B7B82009EA1A1 /* UserProfileImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileImageViewController.swift; sourceTree = "<group>"; };
 		34BF52E11D4797A600123794 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		34BF52E31D47AD1800123794 /* Activity.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Activity.storyboard; sourceTree = "<group>"; };
 		34D67C181D37E0C7002D1DC7 /* About.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = About.storyboard; sourceTree = "<group>"; };
@@ -651,6 +653,7 @@
 				B66FBC761D00C7E600C058F7 /* EditProfileViewController.swift */,
 				B66FBC7A1D00D0FD00C058F7 /* LocationTableViewCell.swift */,
 				96AC74EF1CDBB65400D993E7 /* ProfileViewController.swift */,
+				34BDCFF71D5B7B82009EA1A1 /* UserProfileImageViewController.swift */,
 				9638EF431CDCFBCC00D07D51 /* StarSubCategoriesCollectionViewCell.swift */,
 				96757BE21CE0CA6000BA216A /* StarsCategoriesUserViewController.swift */,
 				96757BE41CE0D56E00BA216A /* StarUserInfoTableViewCell.swift */,
@@ -1090,6 +1093,7 @@
 				966BA8DD1CEA091900C240D7 /* UserRankingViewController.swift in Sources */,
 				96B2A0D31CE632B300C8F97D /* RankingBC.swift in Sources */,
 				96757BE31CE0CA6000BA216A /* StarsCategoriesUserViewController.swift in Sources */,
+				34BDCFF81D5B7B82009EA1A1 /* UserProfileImageViewController.swift in Sources */,
 				B6EE58AB1CFF8AF00027B697 /* UserRankingTagTableViewCell.swift in Sources */,
 				96AC74D31CDB765800D993E7 /* OSPWebTranslator.swift in Sources */,
 				340474351D40195800939847 /* ForgotPasswordViewController.swift in Sources */,
