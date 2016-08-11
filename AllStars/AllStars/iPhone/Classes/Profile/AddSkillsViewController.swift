@@ -211,12 +211,23 @@ class AddSkillsViewController: UIViewController, UISearchBarDelegate {
         
         self.actUpdating.startAnimating()
         self.view.userInteractionEnabled = false
-        ProfileBC.addUserSkill(skillName) { (skills) in
+        ProfileBC.addUserSkill(skillName) { (skills, successful) in
             
             self.view.userInteractionEnabled = true
             self.actUpdating.stopAnimating()
-            self.delegate?.newSkillAdded()
-            self.navigationController?.popViewControllerAnimated(true)
+            
+            if successful {
+                
+                self.delegate?.newSkillAdded()
+                
+                let alert = UIAlertController(title: "app_name".localized , message: skillName + " added", preferredStyle: .Alert)
+                
+                let acceptAction = UIAlertAction(title: "got_it".localized, style: .Cancel, handler: nil)
+                
+                alert.addAction(acceptAction)
+                
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
         }
     }
 }
