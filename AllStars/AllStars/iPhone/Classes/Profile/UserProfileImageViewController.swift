@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UserProfileImageViewController: UIViewController {
+class UserProfileImageViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var btnBack                  : UIButton!
     @IBOutlet weak var userImageView            : UIImageView!
@@ -55,16 +55,22 @@ class UserProfileImageViewController: UIViewController {
                                    options: [], animations: {
                                     
                                     self.userImageView.frame.size = CGSizeMake(120.0, 120.0)
-                                    self.userImageView.center = CGPointMake(self.view.center.x, 115.0)
+                                    self.userImageView.center = CGPointMake(self.view.center.x, 70.0)
                                     self.viewHeader.frame = newFrame
         }) { (success) in
             self.userImageView.layer.cornerRadius = 60.0
+            self.dismissViewController()
         }
-        self.performSelector(#selector(dismissViewController), withObject: nil, afterDelay: 0.5)
     }
     
+    // MARK: - Navigation
     func dismissViewController() {
         
         self.dismissViewControllerAnimated(false, completion: nil)
+    }
+    
+    // MARK: - UIScrollViewDelegate
+    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+        return self.userImageView
     }
 }

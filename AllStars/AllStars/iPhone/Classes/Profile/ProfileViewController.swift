@@ -11,6 +11,7 @@ import UIKit
 class ProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var viewHeader               : UIView!
+    @IBOutlet weak var viewBody                 : UIView!
     @IBOutlet weak var imgProfile               : UIImageView!
     @IBOutlet weak var lblNameUser              : UILabel!
     @IBOutlet weak var lblMail                  : UILabel!
@@ -156,6 +157,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
                                     self.viewUserPhoto.transform = CGAffineTransformMakeScale(3.2, 3.2)
                                     self.viewUserPhoto.center = self.view.center
                                     self.viewHeader.frame = newFrame
+                                    self.viewBody.alpha = 0.0
         }) { (success) in
             
             newFrame.size.height = 114.0
@@ -167,21 +169,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             
             self.imgProfile.transform = CGAffineTransformMakeScale(1.0, 1.0)
             self.imgProfile.center = CGPointMake(self.viewUserPhoto.frame.size.width/2, self.viewUserPhoto.frame.size.height/2)
+            
+            self.viewBody.alpha = 1.0
         }
         
         self.performSelector(#selector(showUserImageViewController), withObject: nil, afterDelay: 0.5)
-    }
-    
-    func showUserImageViewController() {
-        
-        let storyboard = self.storyboard
-        let userImageVC = storyboard?.instantiateViewControllerWithIdentifier("UserProfileImageViewController") as! UserProfileImageViewController
-        
-        userImageVC.userImage = self.imgProfile.image
-        
-        userImageVC.modalPresentationStyle = .PageSheet
-        
-        self.presentViewController(userImageVC, animated: false, completion: nil)
     }
     
     // MARK: - UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
@@ -324,5 +316,17 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             controller.objUser = self.objUser
             controller.isNewUser = false
         }
+    }
+    
+    func showUserImageViewController() {
+        
+        let storyboard = self.storyboard
+        let userImageVC = storyboard?.instantiateViewControllerWithIdentifier("UserProfileImageViewController") as! UserProfileImageViewController
+        
+        userImageVC.userImage = self.imgProfile.image
+        
+        userImageVC.modalPresentationStyle = .PageSheet
+        
+        self.presentViewController(userImageVC, animated: false, completion: nil)
     }
 }

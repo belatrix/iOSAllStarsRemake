@@ -384,6 +384,7 @@
                         <outlet property="lblScore" destination="Jhz-WX-dXv" id="juN-n5-de4"/>
                         <outlet property="lblSkype" destination="Cgd-GY-81C" id="52I-VA-nkO"/>
                         <outlet property="scrollContent" destination="fse-8Y-enM" id="74n-96-v3q"/>
+                        <outlet property="viewBody" destination="FtJ-3a-30Y" id="Hue-dL-l79"/>
                         <outlet property="viewHeader" destination="DrU-B1-znD" id="VPu-0g-Dmp"/>
                         <outlet property="viewLoading" destination="hop-ed-cRA" id="5eI-1R-IIv"/>
                         <outlet property="viewUserPhoto" destination="5Gv-dI-d1N" id="DQP-Qz-XTD"/>
@@ -658,19 +659,35 @@
                                     <constraint firstAttribute="height" constant="64" id="y0i-4v-jZd"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X3q-5n-3U2">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" maximumZoomScale="10" translatesAutoresizingMaskIntoConstraints="NO" id="kWE-zq-UqD">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                            </imageView>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X3q-5n-3U2">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="X3q-5n-3U2" firstAttribute="leading" secondItem="kWE-zq-UqD" secondAttribute="leading" id="2YU-a7-VlJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="X3q-5n-3U2" secondAttribute="trailing" id="4CB-Q6-s0k"/>
+                                    <constraint firstItem="X3q-5n-3U2" firstAttribute="top" secondItem="kWE-zq-UqD" secondAttribute="top" id="Mh8-dz-kMs"/>
+                                    <constraint firstAttribute="bottom" secondItem="X3q-5n-3U2" secondAttribute="bottom" id="Ujv-xJ-sUy"/>
+                                    <constraint firstItem="X3q-5n-3U2" firstAttribute="centerX" secondItem="kWE-zq-UqD" secondAttribute="centerX" id="j3a-KV-6VY"/>
+                                    <constraint firstItem="X3q-5n-3U2" firstAttribute="centerY" secondItem="kWE-zq-UqD" secondAttribute="centerY" id="kei-yN-7Tb"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="E0F-6e-0qP" id="t2E-Rk-NCT"/>
+                                </connections>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="X3q-5n-3U2" secondAttribute="trailing" id="Cyb-hV-N5O"/>
-                            <constraint firstItem="X3q-5n-3U2" firstAttribute="leading" secondItem="ia3-bq-x7G" secondAttribute="leading" id="Nxb-bu-Pq9"/>
-                            <constraint firstItem="Hi9-ur-reM" firstAttribute="top" secondItem="X3q-5n-3U2" secondAttribute="bottom" id="Ok3-BJ-TmA"/>
+                            <constraint firstItem="kWE-zq-UqD" firstAttribute="top" secondItem="kLS-Ld-EUl" secondAttribute="bottom" id="8cx-8z-Dcx"/>
                             <constraint firstItem="kLS-Ld-EUl" firstAttribute="top" secondItem="ia3-bq-x7G" secondAttribute="top" id="QYa-Fh-qSs"/>
+                            <constraint firstItem="kWE-zq-UqD" firstAttribute="leading" secondItem="kLS-Ld-EUl" secondAttribute="leading" id="RDV-Te-dt7"/>
                             <constraint firstAttribute="trailing" secondItem="kLS-Ld-EUl" secondAttribute="trailing" id="VFJ-WI-9Oq"/>
+                            <constraint firstItem="kWE-zq-UqD" firstAttribute="trailing" secondItem="kLS-Ld-EUl" secondAttribute="trailing" id="p3P-JA-iwI"/>
+                            <constraint firstItem="kWE-zq-UqD" firstAttribute="bottom" secondItem="Hi9-ur-reM" secondAttribute="top" id="u6h-H1-pDt"/>
                             <constraint firstItem="kLS-Ld-EUl" firstAttribute="leading" secondItem="ia3-bq-x7G" secondAttribute="leading" id="uzC-8V-zxx"/>
-                            <constraint firstItem="X3q-5n-3U2" firstAttribute="top" secondItem="kLS-Ld-EUl" secondAttribute="bottom" id="wLv-Ld-QcL"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
