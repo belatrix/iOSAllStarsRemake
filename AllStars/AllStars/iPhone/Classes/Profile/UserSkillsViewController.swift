@@ -18,14 +18,7 @@ class UserSkillsViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var actUpdating              : UIActivityIndicatorView!
     
     // MARK: - Properties
-    var userSkills = [KeywordBE]() {
-        
-        didSet {
-            if self.isViewLoaded() {
-                self.tableView.reloadData()
-            }
-        }
-    }
+    var userSkills = [KeywordBE]()
     
     var isDownload = false
     var objUser = User()
@@ -132,34 +125,42 @@ class UserSkillsViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
-    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        
+    func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
         let section = Section(rawValue: indexPath.section)!
         
         switch section {
+        case .addSkill:
+            return .None
             
         case .userSkills:
-            let action = UITableViewRowAction(style: .Default, title: "Delete", handler: { (action, indexPath) in
-                
-                let skill = self.userSkills[indexPath.row]
-                
-                self.actUpdating.startAnimating()
-                self.view.userInteractionEnabled = false
-                ProfileBC.deleteUserSkill(skill.keyword_name!, withCompletion: { (skills) in
-                    
-                    self.view.userInteractionEnabled = true
-                    self.actUpdating.stopAnimating()
-                    self.listAllSkills()
-                })
-            })
-            
-            return [action]
+            return .Delete
             
         default:
-            fatalError("Invalid section for User skills action")
+            fatalError("Invalid section for User skills")
         }
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
-        return nil
+        if editingStyle == .Delete {
+            
+            let skill = self.userSkills[indexPath.row]
+            
+            self.actUpdating.startAnimating()
+            self.view.userInteractionEnabled = false
+            ProfileBC.deleteUserSkill(skill.keyword_name!, withCompletion: { (skills, successful) in
+                
+                self.view.userInteractionEnabled = true
+                self.actUpdating.stopAnimating()
+                
+                if successful {
+                    self.userSkills.removeAtIndex(indexPath.row)
+                    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+                    
+                    self.delegate?.skillsListUpdated(self.userSkills.count > 0)
+                }
+            })
+        }
     }
     
     // MARK: - User Interaction
@@ -176,11 +177,12 @@ class UserSkillsViewController: UIViewController, UITableViewDelegate, UITableVi
             ProfileBC.getUserSkills(self.objUser, withCompletion: { (skills) in
                 
                 self.userSkills = skills ?? [KeywordBE]()
-                self.tableView.reloadData()
                 
                 self.isDownload = false
                 
                 self.delegate?.skillsListUpdated(self.userSkills.count > 0)
+                
+                self.tableView.reloadData()
             })
         }
     }

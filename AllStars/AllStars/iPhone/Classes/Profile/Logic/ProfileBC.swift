@@ -192,27 +192,27 @@ class ProfileBC: NSObject {
         }
     }
     
-    class func deleteUserSkill(skillName: String, withCompletion completion : (skills : [KeywordBE]?) -> Void) {
+    class func deleteUserSkill(skillName: String, withCompletion completion : (skills : [KeywordBE]?, successful: Bool) -> Void) {
         
         let objUser = LogInBC.getCurrenteUserSession()
         
         guard let token = objUser!.user_token
             else {
                 OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
-                completion(skills: [KeywordBE]())
+                completion(skills: [KeywordBE](), successful: false)
                 return
         }
         
         OSPWebModel.deleteUserSkill(objUser!, skillName: skillName, withToken: token) { (skills, errorResponse, successful) in
             
             if (skills != nil) {
-                completion(skills: skills!)
+                completion(skills: skills!, successful: successful)
             } else if (errorResponse != nil) {
                 OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
-                completion(skills: [KeywordBE]())
+                completion(skills: [KeywordBE](), successful: successful)
             } else {
                 OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
-                completion(skills: [KeywordBE]())
+                completion(skills: [KeywordBE](), successful: successful)
             }
         }
     }
