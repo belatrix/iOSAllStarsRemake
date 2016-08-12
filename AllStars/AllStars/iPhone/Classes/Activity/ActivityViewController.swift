@@ -127,9 +127,7 @@ class ActivityViewController: UIViewController, UITableViewDelegate, UITableView
             }
         } else {
             cell.senderImage.image = UIImage(named: "server_icon")
-        }
-        
-        
+        }        
     }
     
     // MARK: - UIScrollViewDelegate
@@ -211,6 +209,8 @@ class ActivityViewController: UIViewController, UITableViewDelegate, UITableView
                 self.refreshControl.endRefreshing()
                 self.nextPage = nextPage
                 
+                self.isDownload = false
+                
                 guard let activities = arrayActivities where activities.count > 0
                     else { return }
                 
@@ -220,7 +220,6 @@ class ActivityViewController: UIViewController, UITableViewDelegate, UITableView
                 self.viewLoading.alpha = CGFloat(!Bool(self.activities.count))
                 self.lblErrorMessage.text = "Activities not found"
                 
-                self.isDownload = false
             }
         }
     }

@@ -143,26 +143,50 @@ class ProfileBC: NSObject {
         }
     }
     
-    class func getUserSkills(user : User, withCompletion completion : (skills : [KeywordBE]?) -> Void) {
+    class func getUserSkills(user : User, withCompletion completion : (skills : [KeywordBE]?, nextPage : String?) -> Void) {
         
         let objUser = LogInBC.getCurrenteUserSession()
         
         guard let token = objUser!.user_token
             else {
                 OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
-                completion(skills: [KeywordBE]())
+                completion(skills: [KeywordBE](), nextPage :nil)
                 return
         }
         
-        OSPWebModel.listUserSkills(user, withToken: token) { (skills, errorResponse, successful) in
+        OSPWebModel.listUserSkills(user, withToken: token) { (skills, nextPage, errorResponse, successful) in
             if (skills != nil) {
-                completion(skills: skills!)
+                completion(skills: skills!, nextPage: nextPage)
             } else if (errorResponse != nil) {
                 OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
-                completion(skills: [KeywordBE]())
+                completion(skills: [KeywordBE](), nextPage: nil)
             } else {
                 OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
-                completion(skills: [KeywordBE]())
+                completion(skills: [KeywordBE](), nextPage: nil)
+            }
+        }
+    }
+    
+    class func getUserSkillsToPage(page : String, withCompletion completion : (skills : [KeywordBE]?, nextPage : String?) -> Void) {
+        
+        let objUser = LogInBC.getCurrenteUserSession()
+        
+        guard let token = objUser!.user_token
+            else {
+                OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "token_invalid".localized, withAcceptButton: "ok".localized)
+                completion(skills: [KeywordBE](), nextPage :nil)
+                return
+        }
+        
+        OSPWebModel.listUserSkillsToPage(page, withToken: token) { (skills, nextPage, errorResponse, successful) in
+            if (skills != nil) {
+                completion(skills: skills!, nextPage: nextPage)
+            } else if (errorResponse != nil) {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
+                completion(skills: [KeywordBE](), nextPage: nil)
+            } else {
+                OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: "server_error".localized, withAcceptButton: "ok".localized)
+                completion(skills: [KeywordBE](), nextPage: nil)
             }
         }
     }

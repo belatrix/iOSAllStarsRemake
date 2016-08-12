@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UserSkillsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UserSkillsViewControllerDelegate {
+class UserSkillsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UserSkillsViewControllerDelegate, UIScrollViewDelegate {
     
     // MARK: - IBOutlets
     @IBOutlet weak var backButton               : UIButton!
@@ -16,18 +16,38 @@ class UserSkillsViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var titleLabel               : UILabel!
     @IBOutlet weak var viewHeader               : UIView!
     @IBOutlet weak var actUpdating              : UIActivityIndicatorView!
+    @IBOutlet weak var viewLoading              : UIView!
+    @IBOutlet weak var lblErrorMessage          : UILabel!
+    @IBOutlet weak var acitivitySkills          : UIActivityIndicatorView!
     
     // MARK: - Properties
     var userSkills = [KeywordBE]()
     
-    var isDownload = false
-    var objUser = User()
-    var delegate: EditProfileViewControllerDelegate?
+    var isDownload      = false
+    var nextPage        : String? = nil
+    var objUser         : User?
+    var delegate        : EditProfileViewControllerDelegate?
+    var isLoggedUser    = false
     
+    lazy var refreshControl : UIRefreshControl = {
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.backgroundColor = .clearColor()
+        refreshControl.tintColor = UIColor.belatrix()
+        refreshControl.addTarget(self, action: #selector(UserSkillsViewController.listAllSkills), forControlEvents: .ValueChanged)
+        
+        return refreshControl
+    }()
     
     // MAKR: - Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if self.objUser?.user_pk == SessionUD.sharedInstance.getUserPk() {
+            
+            isLoggedUser = true
+        }
+        self.tableView.addSubview(self.refreshControl)
         
         setViewsStyle()
         listAllSkills()
@@ -55,6 +75,15 @@ class UserSkillsViewController: UIViewController, UITableViewDelegate, UITableVi
         listAllSkills()
     }
     
+    // MARK: - UIScrollViewDelegate
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        if (self.nextPage != nil && self.isDownload == false && scrollView.contentOffset.y + scrollView.frame.size.height  > scrollView.contentSize.height + 40) {
+            
+            self.listSkillsInNextPage()
+        }
+    }
+    
     // MARK: - UITableViewDelegate, UITableViewDataSource
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
@@ -67,7 +96,7 @@ class UserSkillsViewController: UIViewController, UITableViewDelegate, UITableVi
         
         switch selectedSection {
         case .addSkill:
-            return 1
+            return (isLoggedUser) ? 1 : 0
         case .userSkills:
             return userSkills.count
         default:
@@ -118,7 +147,7 @@ class UserSkillsViewController: UIViewController, UITableViewDelegate, UITableVi
             return false
             
         case .userSkills:
-            return true
+            return isLoggedUser
             
         default:
             fatalError("Invalid section for User skills")
@@ -166,19 +195,54 @@ class UserSkillsViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: - User Interaction
     @IBAction func btnBackTUI(sender: UIButton) {
         self.view.endEditing(true)
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     // MARK: - WebServices
     func listAllSkills() {
         if (!self.isDownload) {
+            
+            guard let user = self.objUser
+                else { return }
+            
             self.isDownload = true
             
-            ProfileBC.getUserSkills(self.objUser, withCompletion: { (skills) in
+            self.viewLoading.alpha = CGFloat(!Bool(self.userSkills.count))
+            self.lblErrorMessage.text = "Loading skills"
+            ProfileBC.getUserSkills(user, withCompletion: { (skills, nextPage) in
                 
                 self.userSkills = skills ?? [KeywordBE]()
+                self.nextPage = nextPage
                 
                 self.isDownload = false
+                self.refreshControl.endRefreshing()
+                
+                self.delegate?.skillsListUpdated(self.userSkills.count > 0)
+                
+                self.tableView.reloadData()
+                
+                self.acitivitySkills.stopAnimating()
+                self.viewLoading.alpha = CGFloat(!Bool(self.userSkills.count))
+                self.lblErrorMessage.text = "skills not found"
+            })
+        }
+    }
+    
+    func listSkillsInNextPage() {
+        
+        if (!self.isDownload && self.nextPage != nil) {
+            self.isDownload = true
+            
+            ProfileBC.getUserSkillsToPage(self.nextPage!, withCompletion: { (skills, nextPage) in
+                
+                self.nextPage = nextPage
+                
+                self.isDownload = false
+                
+                guard let skillsList = skills
+                    else { return }
+                
+                self.userSkills.appendContentsOf(skillsList)
                 
                 self.delegate?.skillsListUpdated(self.userSkills.count > 0)
                 
