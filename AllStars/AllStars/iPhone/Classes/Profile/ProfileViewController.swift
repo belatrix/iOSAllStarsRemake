@@ -31,6 +31,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var btnAction                : UIButton?
     @IBOutlet weak var btnBack                  : UIButton!
     @IBOutlet weak var viewUserPhoto            : UIView!
+    @IBOutlet weak var skillsLeftConstraint     : NSLayoutConstraint!
     
     var objUser : User?
     var backEnable : Bool?
@@ -45,6 +46,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             self.objUser = LogInBC.getCurrenteUserSession()
         }
         
+        self.btnSkills.setTitle("Skills", forState: .Normal)
+        
         if (ProfileBC.validateUser(self.objUser, isEqualToUser: LogInBC.getCurrenteUserSession())) {
             self.btnAction?.setTitle("Edit", forState: .Normal)
             
@@ -54,10 +57,12 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
         
         if backEnable != nil {
-//            self.btnSkills.hidden = true
+            
+            self.skillsLeftConstraint.constant = self.btnBack.frame.maxX
             self.btnBack.hidden = false
         } else {
-//            self.btnSkills.hidden = false
+
+            self.skillsLeftConstraint.constant = 8.0
             self.btnBack.hidden = true
         }
         
