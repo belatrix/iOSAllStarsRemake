@@ -13,6 +13,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var viewHeader               : UIView!
     @IBOutlet weak var viewBody                 : UIView!
     @IBOutlet weak var imgProfile               : UIImageView!
+    @IBOutlet weak var btnSkills                : UIButton!
     @IBOutlet weak var lblNameUser              : UILabel!
     @IBOutlet weak var lblMail                  : UILabel!
     @IBOutlet weak var lblSkype                 : UILabel!
@@ -30,6 +31,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var btnAction                : UIButton?
     @IBOutlet weak var btnBack                  : UIButton!
     @IBOutlet weak var viewUserPhoto            : UIView!
+    @IBOutlet weak var skillsLeftConstraint     : NSLayoutConstraint!
     
     var objUser : User?
     var backEnable : Bool?
@@ -44,6 +46,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             self.objUser = LogInBC.getCurrenteUserSession()
         }
         
+        self.btnSkills.setTitle("Skills", forState: .Normal)
+        
         if (ProfileBC.validateUser(self.objUser, isEqualToUser: LogInBC.getCurrenteUserSession())) {
             self.btnAction?.setTitle("Edit", forState: .Normal)
             
@@ -53,8 +57,12 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
         
         if backEnable != nil {
+            
+            self.skillsLeftConstraint.constant = self.btnBack.frame.maxX
             self.btnBack.hidden = false
         } else {
+
+            self.skillsLeftConstraint.constant = 8.0
             self.btnBack.hidden = true
         }
         
@@ -62,6 +70,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         self.imgProfile.userInteractionEnabled = true
         self.imgProfile.addGestureRecognizer(tapGesture)
+        
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -315,6 +325,10 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             let controller = segue.destinationViewController as! EditProfileViewController
             controller.objUser = self.objUser
             controller.isNewUser = false
+        } else if segue.identifier == "UserSkillsViewController" {
+            
+            let controller = segue.destinationViewController as! UserSkillsViewController
+            controller.objUser = self.objUser
         }
     }
     

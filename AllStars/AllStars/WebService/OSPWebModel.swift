@@ -366,7 +366,8 @@ class OSPWebModel: NSObject {
         }
     }
     
-    class func listUserSkills(user : User, withToken token : String, withCompletion completion : (skills : [KeywordBE]?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
+    class func listUserSkills(user : User, withToken token : String,
+                              withCompletion completion : (skills : [KeywordBE]?, nextPage : String?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
         
         let path = "/api/employee/\(user.user_pk!)/skills/list/"
         
@@ -375,6 +376,8 @@ class OSPWebModel: NSObject {
             if (response != nil) {
                 if (successful) {
                     let dic = response as! NSDictionary
+                    var nextPage = dic["next"] as? String
+                    nextPage = nextPage?.replace(Constants.WEB_SERVICES, withString: "")
                     let arrayResponse = dic["results"] as? NSArray
                     
                     var skillsTemp = [KeywordBE]()
@@ -382,12 +385,39 @@ class OSPWebModel: NSObject {
                         skillsTemp.append(OSPWebTranslator.parseKeywordBE(obj as! NSDictionary))
                     })
                     
-                    completion(skills: skillsTemp, errorResponse: nil, successful: successful)
+                    completion(skills: skillsTemp, nextPage: nextPage, errorResponse: nil, successful: successful)
                 } else {
-                    completion(skills: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
+                    completion(skills: nil, nextPage: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
                 }
             } else {
-                completion(skills: nil, errorResponse: nil, successful: successful)
+                completion(skills: nil, nextPage: nil, errorResponse: nil, successful: successful)
+            }
+        }
+    }
+    
+    class func listUserSkillsToPage(page : String, withToken token : String,
+                                    withCompletion completion : (skills : [KeywordBE]?, nextPage : String?, errorResponse : ErrorResponse?, successful : Bool) -> Void) {
+        
+        OSPWebSender.sharedInstance.doGETWithToken(page, withToken: token) {(response, statusCode, successful) in
+            
+            if (response != nil) {
+                if (successful) {
+                    let dic = response as! NSDictionary
+                    var nextPage = dic["next"] as? String
+                    nextPage = nextPage?.replace(Constants.WEB_SERVICES, withString: "")
+                    let arrayResponse = dic["results"] as? NSArray
+                    
+                    var skillsTemp = [KeywordBE]()
+                    arrayResponse?.enumerateObjectsUsingBlock({ (obj, idx, stop) in
+                        skillsTemp.append(OSPWebTranslator.parseKeywordBE(obj as! NSDictionary))
+                    })
+                    
+                    completion(skills: skillsTemp, nextPage: nextPage, errorResponse: nil, successful: successful)
+                } else {
+                    completion(skills: nil, nextPage: nil, errorResponse: OSPWebTranslator.parseErrorMessage(response as! [String : AnyObject]), successful: successful)
+                }
+            } else {
+                completion(skills: nil, nextPage: nil, errorResponse: nil, successful: successful)
             }
         }
     }
