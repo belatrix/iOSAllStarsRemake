@@ -26,7 +26,6 @@ class UserSkillsViewController: UIViewController, UITableViewDelegate, UITableVi
     var isDownload      = false
     var nextPage        : String? = nil
     var objUser         : User?
-    var delegate        : EditProfileViewControllerDelegate?
     var isLoggedUser    = false
     
     lazy var refreshControl : UIRefreshControl = {
@@ -186,7 +185,6 @@ class UserSkillsViewController: UIViewController, UITableViewDelegate, UITableVi
                     self.userSkills.removeAtIndex(indexPath.row)
                     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
                     
-                    self.delegate?.skillsListUpdated(self.userSkills.count > 0)
                 }
             })
         }
@@ -217,8 +215,6 @@ class UserSkillsViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.isDownload = false
                 self.refreshControl.endRefreshing()
                 
-                self.delegate?.skillsListUpdated(self.userSkills.count > 0)
-                
                 self.tableView.reloadData()
                 
                 self.acitivitySkills.stopAnimating()
@@ -243,8 +239,6 @@ class UserSkillsViewController: UIViewController, UITableViewDelegate, UITableVi
                     else { return }
                 
                 self.userSkills.appendContentsOf(skillsList)
-                
-                self.delegate?.skillsListUpdated(self.userSkills.count > 0)
                 
                 self.tableView.reloadData()
             })
