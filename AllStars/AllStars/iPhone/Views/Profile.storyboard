@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -40,11 +40,11 @@
                                                     <action selector="btnActionProfileTUI:" destination="6E1-nW-whj" eventType="touchUpInside" id="nXq-KV-n0x"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cgE-lA-Z6o">
-                                                <rect key="frame" x="8" y="20" width="86" height="44"/>
+                                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cgE-lA-Z6o">
+                                                <rect key="frame" x="226" y="62" width="86" height="44"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="86" id="bI2-dt-Mhj"/>
-                                                    <constraint firstAttribute="height" constant="44" id="gLh-Ro-KDM"/>
+                                                    <constraint firstAttribute="height" constant="44" id="nkF-sQ-rI3"/>
+                                                    <constraint firstAttribute="width" constant="86" id="pYn-Fu-4UV"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <state key="normal" title="Skills"/>
@@ -55,10 +55,10 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.0" green="0.36862745098039218" blue="0.47843137254901957" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstItem="cgE-lA-Z6o" firstAttribute="top" secondItem="DrU-B1-znD" secondAttribute="top" constant="20" id="X18-aj-Rfj"/>
-                                            <constraint firstItem="cgE-lA-Z6o" firstAttribute="leading" secondItem="DrU-B1-znD" secondAttribute="leading" constant="8" id="bWk-iR-4VP"/>
+                                            <constraint firstItem="cgE-lA-Z6o" firstAttribute="top" secondItem="TPc-sw-XWM" secondAttribute="bottom" constant="-2" id="02a-Vd-Y7q"/>
                                             <constraint firstAttribute="trailing" secondItem="TPc-sw-XWM" secondAttribute="trailing" constant="8" id="feC-gv-fan"/>
                                             <constraint firstItem="TPc-sw-XWM" firstAttribute="top" secondItem="DrU-B1-znD" secondAttribute="top" constant="20" id="gvv-5G-HNI"/>
+                                            <constraint firstAttribute="trailing" secondItem="cgE-lA-Z6o" secondAttribute="trailing" constant="8" id="iWZ-ao-mkh"/>
                                             <constraint firstAttribute="height" constant="114" id="l7e-6N-tig"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -399,7 +399,6 @@
                         <outlet property="lblScore" destination="Jhz-WX-dXv" id="juN-n5-de4"/>
                         <outlet property="lblSkype" destination="Cgd-GY-81C" id="52I-VA-nkO"/>
                         <outlet property="scrollContent" destination="fse-8Y-enM" id="74n-96-v3q"/>
-                        <outlet property="skillsLeftConstraint" destination="bWk-iR-4VP" id="EXa-l7-tBB"/>
                         <outlet property="viewBody" destination="FtJ-3a-30Y" id="Hue-dL-l79"/>
                         <outlet property="viewHeader" destination="DrU-B1-znD" id="VPu-0g-Dmp"/>
                         <outlet property="viewLoading" destination="hop-ed-cRA" id="5eI-1R-IIv"/>

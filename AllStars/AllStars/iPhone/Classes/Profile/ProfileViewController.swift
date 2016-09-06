@@ -31,7 +31,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var btnAction                : UIButton?
     @IBOutlet weak var btnBack                  : UIButton!
     @IBOutlet weak var viewUserPhoto            : UIView!
-    @IBOutlet weak var skillsLeftConstraint     : NSLayoutConstraint!
     
     var objUser : User?
     var backEnable : Bool?
@@ -58,11 +57,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         if backEnable != nil {
             
-            self.skillsLeftConstraint.constant = self.btnBack.frame.maxX
             self.btnBack.hidden = false
         } else {
 
-            self.skillsLeftConstraint.constant = 8.0
             self.btnBack.hidden = true
         }
         
