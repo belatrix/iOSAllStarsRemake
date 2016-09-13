@@ -206,6 +206,7 @@ class UserSkillsViewController: UIViewController, UITableViewDelegate, UITableVi
             self.isDownload = true
             
             self.viewLoading.alpha = CGFloat(!Bool(self.userSkills.count))
+            self.tableView.alpha = CGFloat(Bool(self.userSkills.count))
             self.lblErrorMessage.text = "Loading skills"
             ProfileBC.getUserSkills(user, withCompletion: { (skills, nextPage) in
                 
@@ -219,6 +220,7 @@ class UserSkillsViewController: UIViewController, UITableViewDelegate, UITableVi
                 
                 self.acitivitySkills.stopAnimating()
                 self.viewLoading.alpha = (self.userSkills.count <= 0 && !self.isLoggedUser) ? 1 : 0
+                self.tableView.alpha = (self.userSkills.count <= 0 && !self.isLoggedUser) ? 0 : 1
                 self.lblErrorMessage.text = "skills not found"
             })
         }
