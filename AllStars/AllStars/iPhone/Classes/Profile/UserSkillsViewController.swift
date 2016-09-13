@@ -218,7 +218,7 @@ class UserSkillsViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.tableView.reloadData()
                 
                 self.acitivitySkills.stopAnimating()
-                self.viewLoading.alpha = CGFloat(!Bool(self.userSkills.count))
+                self.viewLoading.alpha = (self.userSkills.count <= 0 && !self.isLoggedUser) ? 1 : 0
                 self.lblErrorMessage.text = "skills not found"
             })
         }
