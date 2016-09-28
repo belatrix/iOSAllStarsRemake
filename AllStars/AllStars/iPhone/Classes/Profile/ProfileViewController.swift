@@ -7,12 +7,22 @@
 //
 
 import UIKit
+import CoreSpotlight
+import MobileCoreServices
 
 class ProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var viewHeader               : UIView!
     @IBOutlet weak var viewBody                 : UIView!
-    @IBOutlet weak var imgProfile               : UIImageView!
+    @IBOutlet weak var imgProfile               : UIImageView! {
+        
+        didSet{
+            if isViewLoaded() {
+                
+                print("DidSet imgProfile")
+            }
+        }
+    }
     @IBOutlet weak var btnSkills                : UIButton!
     @IBOutlet weak var lblNameUser              : UILabel!
     @IBOutlet weak var lblMail                  : UILabel!
@@ -36,6 +46,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     var backEnable : Bool?
     var arrayCategories = NSMutableArray()
     
+    // MARK: - Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -70,7 +81,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         if self.objUser != nil {
             self.updateUserInfo()
@@ -304,6 +315,37 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
                 print(userDevice!.user_ios_id!)
             }
         }
+    }
+    
+    func registerUserForSpotlight() {
+        
+        guard let user = self.objUser
+            else { return }
+        
+        // It's recommended that you use reverse DNS notation for the required activity type property.
+        let activity = NSUserActivity(activityType: "com.belatrix.belatrixconnect")
+        
+        activity.userInfo = ["userId" : user.user_pk!] as [NSObject : AnyObject]
+        // Set properties that describe the activity and that can be used in search.
+        activity.keywords = NSSet(objects: (user.user_first_name)!, (user.user_last_name)!, (user.user_email)!) as! Set<String>
+        
+        let attributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeData as String)
+        
+        attributeSet.title = (user.user_first_name)! + " " + (user.user_last_name)!
+        attributeSet.contentDescription = "Belatrix connect contact"
+        attributeSet.thumbnailData = UIImageJPEGRepresentation(self.imgProfile.image!, 0.9)
+        if let email = user.user_email {
+            
+            attributeSet.emailAddresses = [email]
+        }
+        
+        activity.contentAttributeSet = attributeSet;
+        
+        
+        // Add the item to the private on-device index.
+        activity.eligibleForSearch = true;
+        
+        self.userActivity = activity;
     }
     
     // MARK: - Navigation
