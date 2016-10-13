@@ -12,6 +12,7 @@ import TwitterKit
 import Firebase
 import FirebaseInstanceID
 import FirebaseMessaging
+import FBSDKLoginKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate, UINavigationControllerDelegate {

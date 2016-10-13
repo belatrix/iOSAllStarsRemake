@@ -92,8 +92,6 @@
 		B62AA0EE1D144576008FB75A /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62AA0EB1D144576008FB75A /* UIColorExtension.swift */; };
 		B62AA0F01D145465008FB75A /* lock@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B62AA0EF1D145465008FB75A /* lock@3x.png */; };
 		B62AA0F21D147EA4008FB75A /* mail@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B62AA0F11D147EA4008FB75A /* mail@3x.png */; };
-		B63FA5B01D1C3202009D0EE3 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B63FA5AE1D1C3202009D0EE3 /* FBSDKCoreKit.framework */; };
-		B63FA5B11D1C3202009D0EE3 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B63FA5AF1D1C3202009D0EE3 /* FBSDKLoginKit.framework */; };
 		B66204D01D2D6E7000841573 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66204CF1D2D6E7000841573 /* EventTableViewCell.swift */; };
 		B66204D41D2D93B400841573 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66204D31D2D93B400841573 /* Event.swift */; };
 		B66204D61D2DA53300841573 /* EventBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66204D51D2DA53300841573 /* EventBC.swift */; };
@@ -133,6 +131,7 @@
 		B6EE58AB1CFF8AF00027B697 /* UserRankingTagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EE58AA1CFF8AF00027B697 /* UserRankingTagTableViewCell.swift */; };
 		B6EE58AD1CFF91990027B697 /* UserTagBE.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EE58AC1CFF91990027B697 /* UserTagBE.swift */; };
 		B6F770141D37F8FA004F3607 /* UserDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F770131D37F8F9004F3607 /* UserDevice.swift */; };
+		FBE5822BFD2AA99ADDE49623 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15245C7BC1B99EA8D4B1F0C0 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,6 +153,7 @@
 
 /* Begin PBXFileReference section */
 		096506E97712267EE8D873B8 /* Pods-AllStars.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AllStars.release.xcconfig"; path = "Pods/Target Support Files/Pods-AllStars/Pods-AllStars.release.xcconfig"; sourceTree = "<group>"; };
+		15245C7BC1B99EA8D4B1F0C0 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		340474341D40195800939847 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		3432CC201D3ED07600FF2F3B /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventDetailViewController.swift; path = Event/EventDetailViewController.swift; sourceTree = "<group>"; };
 		344EBF7B1D46CC660009505E /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
@@ -256,8 +256,6 @@
 		B63FA5A51D1C2D7F009D0EE3 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../../FacebookSDKs-iOS-4.13.1/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		B63FA5AA1D1C2F19009D0EE3 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = AllStars/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		B63FA5AB1D1C2F19009D0EE3 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = AllStars/FBSDKLoginKit.framework; sourceTree = "<group>"; };
-		B63FA5AE1D1C3202009D0EE3 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		B63FA5AF1D1C3202009D0EE3 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		B66204CF1D2D6E7000841573 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventTableViewCell.swift; path = Event/EventTableViewCell.swift; sourceTree = "<group>"; };
 		B66204D31D2D93B400841573 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		B66204D51D2DA53300841573 /* EventBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventBC.swift; path = Event/Logic/EventBC.swift; sourceTree = "<group>"; };
@@ -304,9 +302,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B63FA5B01D1C3202009D0EE3 /* FBSDKCoreKit.framework in Frameworks */,
-				B63FA5B11D1C3202009D0EE3 /* FBSDKLoginKit.framework in Frameworks */,
 				19EB523AC5A4798F9BFA29B7 /* Pods_AllStars.framework in Frameworks */,
+				FBE5822BFD2AA99ADDE49623 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,6 +366,7 @@
 				B63FA5A41D1C2D7F009D0EE3 /* FBSDKCoreKit.framework */,
 				B63FA5A51D1C2D7F009D0EE3 /* FBSDKLoginKit.framework */,
 				6B099B21DBCE77889351873A /* Pods_AllStars.framework */,
+				15245C7BC1B99EA8D4B1F0C0 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -724,8 +722,6 @@
 		B63FA5B21D1C3214009D0EE3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B63FA5AE1D1C3202009D0EE3 /* FBSDKCoreKit.framework */,
-				B63FA5AF1D1C3202009D0EE3 /* FBSDKLoginKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -805,6 +801,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 96AC74BB1CDB73AF00D993E7 /* Build configuration list for PBXNativeTarget "AllStars" */;
 			buildPhases = (
+				B88A92FADFCE5F16DC52F80E /* Check Pods Manifest.lock */,
 				38B2E1123EA6D512A9994113 /* [CP] Check Pods Manifest.lock */,
 				96AC748F1CDB73AF00D993E7 /* Sources */,
 				96AC74901CDB73AF00D993E7 /* Frameworks */,
@@ -813,6 +810,7 @@
 				6E60AC0DCEB5794B80835BCF /* [CP] Embed Pods Frameworks */,
 				C3F751A52F608FD829ED25FE /* [CP] Copy Pods Resources */,
 				FD10ECB49474997E3654DA81 /* Embed Pods Frameworks */,
+				2735C52239B190F5DADA94BB /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -980,6 +978,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2735C52239B190F5DADA94BB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		38B2E1123EA6D512A9994113 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1023,6 +1036,21 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" 83904d594d841085dfdf6bbd32107cf91f6dfd35 6632dc3ee24be36cc118ea0b101148696c2cee44988112d73f4cc552b2ed0a3a";
 		};
+		B88A92FADFCE5F16DC52F80E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		C3F751A52F608FD829ED25FE /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1050,7 +1078,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AllStars/Pods-AllStars-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1221,6 +1249,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1262,6 +1291,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -1281,6 +1311,24 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AllStars",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_ROOT}/Firebase/Core/Sources",
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Fabric\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAnalytics\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCore\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseInstanceID\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseMessaging\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleIPhoneUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleInterchangeUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleSymbolUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/TwitterCore\"",
+					"\"${PODS_ROOT}/Headers/Public/TwitterKit\"",
 				);
 				INFOPLIST_FILE = AllStars/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1302,6 +1350,24 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AllStars",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_ROOT}/Firebase/Core/Sources",
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Fabric\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAnalytics\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCore\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseInstanceID\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseMessaging\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleIPhoneUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleInterchangeUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleSymbolUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/TwitterCore\"",
+					"\"${PODS_ROOT}/Headers/Public/TwitterKit\"",
 				);
 				INFOPLIST_FILE = AllStars/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

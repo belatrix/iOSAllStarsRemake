@@ -8,6 +8,8 @@
 
 import UIKit
 import TwitterKit
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class LogInGuestViewController: UIViewController, FBSDKLoginButtonDelegate {
 

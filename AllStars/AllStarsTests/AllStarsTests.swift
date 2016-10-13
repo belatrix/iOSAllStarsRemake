@@ -7,6 +7,7 @@
 //
 
 import XCTest
+
 @testable import AllStars
 
 class AllStarsTests: XCTestCase {
