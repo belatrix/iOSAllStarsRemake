@@ -54,7 +54,7 @@ class RecommendBC: NSObject {
                     OSPUserAlerts.showSimpleAlert("app_name".localized, withMessage: "recommendation_completed".localized, withAcceptButton: "got_it".localized)
                     completion(successful: true)
                 } else {
-                    OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message!, withAcceptButton: "ok".localized)
+                    OSPUserAlerts.showSimpleAlert("generic_title_problem".localized, withMessage: errorResponse!.message ?? "server_error".localized, withAcceptButton: "ok".localized)
                     completion(successful: false)
                 }
             } else {
