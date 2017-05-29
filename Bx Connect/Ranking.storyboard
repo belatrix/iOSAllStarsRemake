@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="iBo-SN-ai8">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Ranking-->
+        <scene sceneID="WmX-mU-lv0">
+            <objects>
+                <viewController id="vXf-be-2d2" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eJq-Ht-mrE"/>
+                        <viewControllerLayoutGuide type="bottom" id="HTU-ll-rH4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Unf-p1-z0a">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Ranking" id="qbj-JL-RLL"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nDy-z4-maQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1311" y="221"/>
+        </scene>
+        <!--Ranking-->
+        <scene sceneID="Mo1-ay-GJz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iBo-SN-ai8" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Ranking" image="RankingIcon" id="dtD-XN-vCa"/>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics">
+                        <color key="tintColor" red="0.56107233509999999" green="0.56107233509999999" blue="0.56107233509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </simulatedTabBarMetrics>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4_7.fullscreen"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="kDc-94-9OF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.94504719969999995" green="0.36054679750000002" blue="0.04605709761" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vXf-be-2d2" kind="relationship" relationship="rootViewController" id="cfO-dc-ySy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dP3-2x-61v" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="382" y="221"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="RankingIcon" width="25" height="25"/>
+    </resources>
+</document>

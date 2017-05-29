@@ -3,20 +3,46 @@ PODS:
   - AlamofireImage (3.2.0):
     - Alamofire (~> 4.1)
   - DZNEmptyDataSet (1.8.1)
+  - IQKeyboardManagerSwift (4.0.9)
+  - PromiseKit (4.2.0):
+    - PromiseKit/Foundation (= 4.2.0)
+    - PromiseKit/QuartzCore (= 4.2.0)
+    - PromiseKit/UIKit (= 4.2.0)
+  - PromiseKit/Alamofire (4.2.0):
+    - Alamofire (~> 4.0)
+    - PromiseKit/CorePromise
+  - PromiseKit/CorePromise (4.2.0)
+  - PromiseKit/Foundation (4.2.0):
+    - PromiseKit/CorePromise
+  - PromiseKit/QuartzCore (4.2.0):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (4.2.0):
+    - PromiseKit/CorePromise
+  - SwiftyBeaver (1.2.2)
   - SwiftyJSON (3.1.4)
+  - SwiftyUserDefaults (3.0.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
   - AlamofireImage (~> 3.1)
   - DZNEmptyDataSet
+  - IQKeyboardManagerSwift
+  - PromiseKit (~> 4.0)
+  - PromiseKit/Alamofire
+  - SwiftyBeaver
   - SwiftyJSON
+  - SwiftyUserDefaults
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  IQKeyboardManagerSwift: 2eefe6c429b86aa08bfbc1b5c891164d754adf91
+  PromiseKit: 08dfb783c161ddcd95b7912421f14c5113fd8318
+  SwiftyBeaver: 90a39e3dc5136b7285f2e4c870b107e3933b8b84
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
 
-PODFILE CHECKSUM: beda4735f1e2a8ad603cd4742d6ed555156f1d4f
+PODFILE CHECKSUM: f9ca9fe23b1c7ee0f892a28121141e27eb403190
 
 COCOAPODS: 1.2.1

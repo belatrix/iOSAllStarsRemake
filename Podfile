@@ -9,7 +9,12 @@ target 'Bx Connect' do
   pod 'Alamofire', '~> 4.4'
   pod 'AlamofireImage', '~> 3.1'
   pod 'SwiftyJSON'
+  pod 'PromiseKit', '~> 4.0'
+  pod 'PromiseKit/Alamofire'
   pod 'DZNEmptyDataSet'
+  pod 'IQKeyboardManagerSwift'
+  pod 'SwiftyBeaver'
+  pod 'SwiftyUserDefaults'
 
   target 'Bx ConnectTests' do
     inherit! :search_paths

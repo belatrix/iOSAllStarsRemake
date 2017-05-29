@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="rMp-EG-Mtc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Activities-->
+        <scene sceneID="aIC-Hr-hFd">
+            <objects>
+                <viewController id="hBH-h7-BR4" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="54g-ob-x6s"/>
+                        <viewControllerLayoutGuide type="bottom" id="Yaq-jg-vgJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="68O-UJ-sL0">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Activities" id="9jT-yj-Z7j"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B07-x8-LJi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1359" y="1108"/>
+        </scene>
+        <!--Activites-->
+        <scene sceneID="Log-sn-5gi">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rMp-EG-Mtc" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Activites" image="ActivitiesIcon" id="Bwt-pw-Dly"/>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics">
+                        <color key="tintColor" red="0.56107233509999999" green="0.56107233509999999" blue="0.56107233509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </simulatedTabBarMetrics>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4_7.fullscreen"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="TJg-nH-t56">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.94504719969999995" green="0.36054679750000002" blue="0.04605709761" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="hBH-h7-BR4" kind="relationship" relationship="rootViewController" id="q6q-9E-QGh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wxs-Xg-21M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="450" y="1108"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ActivitiesIcon" width="25" height="25"/>
+    </resources>
+</document>
