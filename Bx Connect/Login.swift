@@ -9,9 +9,13 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import PromiseKit
 import SwiftyBeaver
 import SafariServices
+
+enum LoginError:Error {
+    case invalidUser
+    case invalidPassword
+}
 
 class Login: UIViewController {
     
@@ -29,25 +33,28 @@ class Login: UIViewController {
     
     // MARK: - Actions
     @IBAction func login(_ sender: UIButton) {
-        
-        guard let userValue = self.userTextField.text, userValue.isValidName else {
-            self.showAlert(with: "Wrong User")
-            return
+        do {
+            let textField = try self.validateTextField(user: self.userTextField, password: self.passwordTextField)
+            let activity = Please.showActivityButton(in: sender)
+            self.authenticationFor(user: textField.0, with: textField.1, completionHandler: { json in
+                activity.stopAnimating()
+                if let detail = json["detail"].string {
+                    Please.showAlert(withMessage: detail, in: self)
+                    return
+                }
+                self.log.verbose(json)
+            })
+        } catch let error as LoginError{
+            self.handle(error)
+        } catch {
+            self.log.error("Login Error")
         }
         
-        guard let passwordValue = self.passwordTextField.text, passwordValue.isValidPassword else {
-            self.showAlert(with: "Wrong Password")
-            return
-        }
-        
-        self.showActivity(in: sender)
-        
-        self.performSegue(withIdentifier: K.segue.tabController, sender: nil)
-        
+        //self.performSegue(withIdentifier: K.Segue.tabController, sender: nil)
     }
     
     @IBAction func showPrivacyPolicy(_ sender: Any) {
-        let urlPrivacyPolicy = URL(string: K.url.privacyPolicy)
+        let urlPrivacyPolicy = URL(string: K.Url.privacyPolicy)
         let safari = SFSafariViewController(url: urlPrivacyPolicy!)
         self.present(safari, animated: true)
     }
@@ -56,7 +63,7 @@ class Login: UIViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == K.segue.tabController {
+        if segue.identifier == K.Segue.tabController {
             let tabBarVC = segue.destination as! UITabBarController
             let profileVC = tabBarVC.viewControllers?[0] as! ProfileVC
             profileVC.employee = self.employee
@@ -66,83 +73,61 @@ class Login: UIViewController {
     
     // MARK: - Functions
     
+    func validateTextField(user:UITextField, password:UITextField) throws -> (String,String) {
+        guard let userValue = user.text, userValue.isValidName else {
+            throw LoginError.invalidUser
+        }
+        
+        guard let passwordValue = password.text, passwordValue.isValidPassword else {
+            throw LoginError.invalidPassword
+        }
+        return (userValue, passwordValue)
+    }
 
-    func authenticationFor(user:String, with password:String) -> Promise<Any> {
+    func authenticationFor(user:String, with password:String, completionHandler: @escaping (_ json:JSON)->Void) {
         let authParamaters = ["username":user, "password":password]
-        return Promise { fulfill, reject in
-            Alamofire.request(Api.Url.authenticate, method: .post, parameters:authParamaters)
-                .responseJSON().then { response -> Void in
-                    fulfill(response)
-                }.catch { error in
-                   reject(error)
-                }
-        }
-    }
-    
-    func getUserData(with auth:Authenticate) -> Promise<Any> {
-        let urlEmployeeId = URL(string: Api.Url.employee(with: auth.userId!))
-        var urlEmployeeRequest = URLRequest(url: urlEmployeeId!)
-        self.log.debug("Token \(auth.userId)")
-        self.log.debug("Token \(auth.token)")
-        urlEmployeeRequest.addValue("Authorization", forHTTPHeaderField: "Token \(auth.token)")
-        return Promise { fulfill, reject in
-            Alamofire.request(urlEmployeeRequest)
-                .responseJSON().then { response -> Void in
-                    self.log.debug(response)
-                    fulfill(response)
-                }.catch { error in
-                    reject(error)
+        Alamofire.request(Api.Url.authenticate, method: .post, parameters:authParamaters).responseJSON() { response -> Void in
+            guard response.result.error == nil else {
+                self.log.error(response.result.error!)
+                return
             }
+            guard let json = response.result.value else {
+                self.log.error(response.result.error!)
+                return
+            }
+            completionHandler(JSON(json))
         }
-    }
-    
-    func showAlert(with message:String) {
-        let alert = UIAlertController(title: K.app.name, message: message, preferredStyle: .alert)
-        let btnOk = UIAlertAction(title: "OK", style: .default)
-        alert.addAction(btnOk)
-        self.present(alert, animated: true)
-    }
-    
-    func showActivity(in view:UIView) {
-        let activityView = UIActivityIndicatorView()
-        activityView.startAnimating()
-        activityView.hidesWhenStopped = true
-        let positionX = view.frame.size.width - 25
-        let positionY = view.frame.size.height / 2
-        activityView.frame = CGRect(x: positionX, y: positionY, width: 25, height: 0)
-        view.addSubview(activityView)
         
     }
     
-    func connect() {
-        let userValue = ""
-        let passwordValue = ""
-        self.authenticationFor(user: userValue, with: passwordValue).then { data -> Authenticate in
-            let json = JSON(data)
-            guard (json["detail"].string == nil) else { throw BxError.unauthorized  }
-            return Authenticate(data: json)
-            }.then { authenticatePermisons -> Void in
-                self.authenticate = authenticatePermisons
-                self.getUserData(with: authenticatePermisons).then { data -> Void in
-                    let json = JSON(data)
-                    self.log.debug(json)
-                    guard (json["detail"].string == nil) else { throw BxError.unauthorized  }
-                    self.log.debug(json)
-                    self.employee = Employee(data: json)
-                    self.log.debug(self.employee?.email ?? "no email")
-                    
-                    }.catch { error in
-                        self.log.error(error)
-                }
-            }.catch { error in
-                switch error {
-                case BxError.unauthorized:
-                    self.log.error("bx error detail")
-                default:
-                    print("error \(error)")
-                }
+    func getUserData(with auth:Authenticate, completionHandler: @escaping (_ json:JSON)->Void) {
+        let urlEmployeeId = URL(string: Api.Url.employee(with: auth.userId!))
+        var urlEmployeeRequest = URLRequest(url: urlEmployeeId!)
+        urlEmployeeRequest.addValue("Authorization", forHTTPHeaderField: "Token \(auth.token)")
+        
+        Alamofire.request(urlEmployeeRequest).responseJSON() { response -> Void in
+            guard response.result.error == nil else {
+                self.log.error(response.result.error!)
+                return
+            }
+            guard let json = response.result.value else {
+                self.log.error(response.result.error!)
+                return
+            }
+            completionHandler(JSON(json))
         }
     }
+    
+    func handle(_ error:LoginError) {
+        switch error {
+        case .invalidUser:
+            Please.showAlert(withMessage: "Wrong User", in: self)
+        case .invalidPassword:
+            Please.showAlert(withMessage: "Wrong Password", in: self)
+        }
+        Please.makeFeedback(type: .error)
+    }
+    
 
 }
 

@@ -72,6 +72,9 @@
                                                         <state key="normal" title="Request New Password">
                                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="requestPassword:" destination="7M3-hl-jv0" eventType="touchUpInside" id="haW-VX-v0c"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -115,6 +118,9 @@
                             <constraint firstItem="utF-2W-YUL" firstAttribute="top" secondItem="O1m-fW-chk" secondAttribute="bottom" id="y5g-mh-hmy"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="userTextField" destination="XFS-aU-18l" id="jgH-U6-c9k"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Hf-sn-bar" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

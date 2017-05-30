@@ -21,6 +21,9 @@
 		6681700C1ED4A0430073E900 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6681700A1ED4A0430073E900 /* LaunchScreen.storyboard */; };
 		668170171ED4A0440073E900 /* Bx_ConnectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668170161ED4A0440073E900 /* Bx_ConnectTests.swift */; };
 		668170221ED4A0440073E900 /* Bx_ConnectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668170211ED4A0440073E900 /* Bx_ConnectUITests.swift */; };
+		66B7B1941EDDF8450015DB8C /* Please.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B7B1931EDDF8450015DB8C /* Please.swift */; };
+		66B7B1951EDDF8450015DB8C /* Please.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B7B1931EDDF8450015DB8C /* Please.swift */; };
+		66B7B1961EDDF8450015DB8C /* Please.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B7B1931EDDF8450015DB8C /* Please.swift */; };
 		66CE42031ED5E86E00DBB8A3 /* ApiUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CE42021ED5E86E00DBB8A3 /* ApiUrl.swift */; };
 		66CE42041ED5E86E00DBB8A3 /* ApiUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CE42021ED5E86E00DBB8A3 /* ApiUrl.swift */; };
 		66CE42051ED5E86E00DBB8A3 /* ApiUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CE42021ED5E86E00DBB8A3 /* ApiUrl.swift */; };
@@ -49,17 +52,12 @@
 		66E347071ED73B2E00F5C30D /* EmployeeRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E347051ED73B2E00F5C30D /* EmployeeRole.swift */; };
 		66E347081ED73B2E00F5C30D /* EmployeeRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E347051ED73B2E00F5C30D /* EmployeeRole.swift */; };
 		66E3470A1ED74ACC00F5C30D /* ExAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E347091ED74ACC00F5C30D /* ExAppDelegate.swift */; };
-		66E3470B1ED74ACC00F5C30D /* ExAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E347091ED74ACC00F5C30D /* ExAppDelegate.swift */; };
-		66E3470C1ED74ACC00F5C30D /* ExAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E347091ED74ACC00F5C30D /* ExAppDelegate.swift */; };
 		66E3470E1ED7698200F5C30D /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E3470D1ED7698200F5C30D /* ProfileVC.swift */; };
 		66E3470F1ED7698200F5C30D /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E3470D1ED7698200F5C30D /* ProfileVC.swift */; };
 		66E347101ED7698200F5C30D /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E3470D1ED7698200F5C30D /* ProfileVC.swift */; };
 		66E347121ED7766A00F5C30D /* Authenticate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E347111ED7766A00F5C30D /* Authenticate.swift */; };
 		66E347131ED7766A00F5C30D /* Authenticate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E347111ED7766A00F5C30D /* Authenticate.swift */; };
 		66E347141ED7766A00F5C30D /* Authenticate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E347111ED7766A00F5C30D /* Authenticate.swift */; };
-		66E347161ED7821F00F5C30D /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E347151ED7821F00F5C30D /* Errors.swift */; };
-		66E347171ED7821F00F5C30D /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E347151ED7821F00F5C30D /* Errors.swift */; };
-		66E347181ED7821F00F5C30D /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E347151ED7821F00F5C30D /* Errors.swift */; };
 		66E4B8031EDC784A0014924E /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66E4B8011EDC784A0014924E /* Profile.storyboard */; };
 		66E4B8041EDC784A0014924E /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66E4B8011EDC784A0014924E /* Profile.storyboard */; };
 		66E4B8051EDC784A0014924E /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66E4B8011EDC784A0014924E /* Profile.storyboard */; };
@@ -120,6 +118,7 @@
 		6681701D1ED4A0440073E900 /* Bx ConnectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bx ConnectUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		668170211ED4A0440073E900 /* Bx_ConnectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bx_ConnectUITests.swift; sourceTree = "<group>"; };
 		668170231ED4A0440073E900 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		66B7B1931EDDF8450015DB8C /* Please.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Please.swift; sourceTree = "<group>"; };
 		66CE42021ED5E86E00DBB8A3 /* ApiUrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiUrl.swift; sourceTree = "<group>"; };
 		66CE42061ED61DD400DBB8A3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		66CE420A1ED630B300DBB8A3 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -132,7 +131,6 @@
 		66E347091ED74ACC00F5C30D /* ExAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExAppDelegate.swift; sourceTree = "<group>"; };
 		66E3470D1ED7698200F5C30D /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		66E347111ED7766A00F5C30D /* Authenticate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authenticate.swift; sourceTree = "<group>"; };
-		66E347151ED7821F00F5C30D /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		66E4B8021EDC784A0014924E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
 		66E4B8061EDC78690014924E /* Events.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Events.storyboard; sourceTree = "<group>"; };
 		66E4B80B1EDC788C0014924E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Contacts.storyboard; sourceTree = "<group>"; };
@@ -287,7 +285,7 @@
 				66CE42021ED5E86E00DBB8A3 /* ApiUrl.swift */,
 				66CE42061ED61DD400DBB8A3 /* Constants.swift */,
 				66CE420E1ED630EB00DBB8A3 /* Regex.swift */,
-				66E347151ED7821F00F5C30D /* Errors.swift */,
+				66B7B1931EDDF8450015DB8C /* Please.swift */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -328,6 +326,7 @@
 				66816FFC1ED4A0430073E900 /* Resources */,
 				06F16AEADAA3787ED1A1A156 /* [CP] Embed Pods Frameworks */,
 				A8F412AC69EF56E804A89EAE /* [CP] Copy Pods Resources */,
+				66B7B1971EDE14160015DB8C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -538,6 +537,19 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		66B7B1971EDE14160015DB8C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
+		};
 		6AB3BCF4533BBDF0E2478638 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -621,7 +633,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				66E3470A1ED74ACC00F5C30D /* ExAppDelegate.swift in Sources */,
-				66E347161ED7821F00F5C30D /* Errors.swift in Sources */,
 				668170041ED4A0430073E900 /* Login.swift in Sources */,
 				66E346FA1ED7385700F5C30D /* DefaultsKeys.swift in Sources */,
 				668170021ED4A0430073E900 /* AppDelegate.swift in Sources */,
@@ -633,6 +644,7 @@
 				66E3470E1ED7698200F5C30D /* ProfileVC.swift in Sources */,
 				66E347061ED73B2E00F5C30D /* EmployeeRole.swift in Sources */,
 				66CE42071ED61DD400DBB8A3 /* Constants.swift in Sources */,
+				66B7B1941EDDF8450015DB8C /* Please.swift in Sources */,
 				665D84981ED8936B00093719 /* NewPasswordVC.swift in Sources */,
 				665D84941ED88EBD00093719 /* NewAccountVC.swift in Sources */,
 				66E347021ED73B0700F5C30D /* Position.swift in Sources */,
@@ -647,18 +659,17 @@
 				66E3470F1ED7698200F5C30D /* ProfileVC.swift in Sources */,
 				66CE42041ED5E86E00DBB8A3 /* ApiUrl.swift in Sources */,
 				665D84951ED88EBD00093719 /* NewAccountVC.swift in Sources */,
-				66E3470B1ED74ACC00F5C30D /* ExAppDelegate.swift in Sources */,
 				665D84991ED8936B00093719 /* NewPasswordVC.swift in Sources */,
 				66E347071ED73B2E00F5C30D /* EmployeeRole.swift in Sources */,
 				66E346F71ED7348400F5C30D /* Employee.swift in Sources */,
 				66E346FF1ED738C500F5C30D /* Location.swift in Sources */,
-				66E347171ED7821F00F5C30D /* Errors.swift in Sources */,
 				66CE42101ED630EB00DBB8A3 /* Regex.swift in Sources */,
 				668170171ED4A0440073E900 /* Bx_ConnectTests.swift in Sources */,
 				66E346FB1ED7385700F5C30D /* DefaultsKeys.swift in Sources */,
 				66E347131ED7766A00F5C30D /* Authenticate.swift in Sources */,
 				66CE420C1ED630B300DBB8A3 /* String.swift in Sources */,
 				66CE42081ED61DD400DBB8A3 /* Constants.swift in Sources */,
+				66B7B1951EDDF8450015DB8C /* Please.swift in Sources */,
 				66E347031ED73B0700F5C30D /* Position.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -670,18 +681,17 @@
 				66E347101ED7698200F5C30D /* ProfileVC.swift in Sources */,
 				66CE42051ED5E86E00DBB8A3 /* ApiUrl.swift in Sources */,
 				665D84961ED88EBD00093719 /* NewAccountVC.swift in Sources */,
-				66E3470C1ED74ACC00F5C30D /* ExAppDelegate.swift in Sources */,
 				665D849A1ED8936B00093719 /* NewPasswordVC.swift in Sources */,
 				66E347081ED73B2E00F5C30D /* EmployeeRole.swift in Sources */,
 				66E346F81ED7348400F5C30D /* Employee.swift in Sources */,
 				66E347001ED738C500F5C30D /* Location.swift in Sources */,
-				66E347181ED7821F00F5C30D /* Errors.swift in Sources */,
 				66CE42111ED630EB00DBB8A3 /* Regex.swift in Sources */,
 				668170221ED4A0440073E900 /* Bx_ConnectUITests.swift in Sources */,
 				66E346FC1ED7385700F5C30D /* DefaultsKeys.swift in Sources */,
 				66E347141ED7766A00F5C30D /* Authenticate.swift in Sources */,
 				66CE420D1ED630B300DBB8A3 /* String.swift in Sources */,
 				66CE42091ED61DD400DBB8A3 /* Constants.swift in Sources */,
+				66B7B1961EDDF8450015DB8C /* Please.swift in Sources */,
 				66E347041ED73B0700F5C30D /* Position.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

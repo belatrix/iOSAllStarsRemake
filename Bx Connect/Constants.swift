@@ -9,16 +9,16 @@
 import Foundation
 
 struct K {
-    struct app {
+    struct App {
         static let name = "Bx Connect"
     }
-    struct segue {
+    struct Segue {
         static let tabController = "tabControllerSegue"
     }
-    struct cell {
+    struct Cell {
         
     }
-    struct url {
+    struct Url {
         static let privacyPolicy = "https://bxconnect-privacy-policy.herokuapp.com/privacy.html"
     }
 }
