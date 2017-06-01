@@ -18,5 +18,7 @@ struct Api {
         static func resetPassword(with email:String) -> String {
             return "\(root)/api/employee/reset/password/\(email)/"
         }
+        static let createNewUser = "\(root)/api/employee/create/"
+        
     }
 }

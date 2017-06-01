@@ -55,7 +55,7 @@
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserIcon" translatesAutoresizingMaskIntoConstraints="NO" id="fMD-hg-jg7">
                                                                 <rect key="frame" x="0.0" y="2.5" width="25" height="25"/>
                                                             </imageView>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XFS-aU-18l">
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="XFS-aU-18l">
                                                                 <rect key="frame" x="45" y="0.0" width="230" height="30"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -119,6 +119,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="keyIcon" destination="jOf-lT-DmK" id="kG7-uO-xJn"/>
+                        <outlet property="requestNewPasswordButton" destination="mCK-m8-J7s" id="XGK-kz-Ik8"/>
                         <outlet property="userTextField" destination="XFS-aU-18l" id="jgH-U6-c9k"/>
                     </connections>
                 </viewController>
@@ -126,10 +128,10 @@
             </objects>
             <point key="canvasLocation" x="-2434" y="546"/>
         </scene>
-        <!--Login-->
+        <!--LoginVC-->
         <scene sceneID="I5v-LM-Ito">
             <objects>
-                <viewController id="br2-Cx-AGh" customClass="Login" customModule="Bx_Connect" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="br2-Cx-AGh" customClass="LoginVC" customModule="Bx_Connect" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="C9C-fX-Rej"/>
                         <viewControllerLayoutGuide type="bottom" id="AsM-h7-Yoy"/>
@@ -193,7 +195,7 @@
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PasswordIcon" translatesAutoresizingMaskIntoConstraints="NO" id="rjW-F9-tcL">
                                                                         <rect key="frame" x="0.0" y="5" width="25" height="25"/>
                                                                     </imageView>
-                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="x5aa" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="so2-Lh-pkY">
+                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="45b4" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="so2-Lh-pkY">
                                                                         <rect key="frame" x="45" y="0.0" width="270" height="35"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="35" id="5IS-TP-X2C"/>
@@ -290,6 +292,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="createAccountButton" destination="3kn-MF-ULx" id="3fP-sL-AT1"/>
+                        <outlet property="loginButton" destination="mBN-Kr-Pg6" id="pgT-pV-gqO"/>
                         <outlet property="passwordTextField" destination="so2-Lh-pkY" id="03m-4B-C3R"/>
                         <outlet property="userTextField" destination="e2I-YX-fym" id="ude-ab-tVJ"/>
                         <segue destination="Qu2-vo-b2b" kind="presentation" identifier="tabControllerSegue" modalTransitionStyle="flipHorizontal" id="qpY-Im-ouN"/>
@@ -346,7 +350,7 @@
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Bld-nf-sd9">
                                                                 <rect key="frame" x="0.0" y="2.5" width="25" height="25"/>
                                                             </imageView>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ql1-ul-xLV">
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Ql1-ul-xLV">
                                                                 <rect key="frame" x="45" y="0.0" width="230" height="30"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -363,6 +367,9 @@
                                                         <state key="normal" title="Sign up">
                                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="requestAccount:" destination="yp6-JH-jMU" eventType="touchUpInside" id="ZCA-q7-ixm"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -406,6 +413,11 @@
                             <constraint firstItem="31G-Oe-fK5" firstAttribute="leading" secondItem="5AH-tP-o3Z" secondAttribute="leading" id="ubv-GK-4Pl"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailIcon" destination="wzU-jA-wu6" id="Z8l-zD-vZ1"/>
+                        <outlet property="newUserTextField" destination="Ql1-ul-xLV" id="mTO-5F-Q2A"/>
+                        <outlet property="signUpButton" destination="1oD-8h-PsJ" id="dfO-YL-3lf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="34b-76-dl2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

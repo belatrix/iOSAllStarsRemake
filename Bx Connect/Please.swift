@@ -22,7 +22,7 @@ struct Please {
         let activityView = UIActivityIndicatorView()
         activityView.startAnimating()
         activityView.hidesWhenStopped = true
-        let positionX = view.frame.size.width - 25
+        let positionX = view.frame.size.width - 30
         let positionY = view.frame.size.height / 2
         activityView.frame = CGRect(x: positionX, y: positionY, width: 25, height: 0)
         view.addSubview(activityView)
@@ -38,4 +38,25 @@ struct Please {
             feedbackGenerator = nil
         }
     }
+    
+    static func animate(icon:UIView) {
+        UIView.animate(withDuration: 0.5, animations: {
+            icon.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        }) { confirm in
+            UIView.animate(withDuration: 0.2, animations: {
+                icon.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+            }) { confirm in
+                UIView.animate(withDuration: 0.4, animations: {
+                    icon.transform = CGAffineTransform(scaleX: 1, y: 1)
+                })
+            }
+        }
+    }
+    
+    static func addCornerRadiusTo(button:UIButton...) {
+        for btn in button {
+            btn.layer.cornerRadius = 5
+        }
+    }
+    
 }

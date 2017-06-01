@@ -17,16 +17,27 @@ enum NewPasswordError: Error {
 
 class NewPasswordVC: UIViewController {
     
+    // MARK: - Properties
+    
     @IBOutlet weak var userTextField: UITextField!
+    @IBOutlet weak var keyIcon: UIImageView!
+    @IBOutlet weak var requestNewPasswordButton: UIButton!
+    
      let log = SwiftyBeaver.self
     
-    //MARK: - LifeCycle
+    // MARK: - LifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        Please.addCornerRadiusTo(button: self.requestNewPasswordButton)
     }
     
-    //MARK: - Actions
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        Please.animate(icon: self.keyIcon)
+    }
+    
+    // MARK: - Actions
     
     @IBAction func requestPassword(_ sender: UIButton) {
         do {
@@ -49,7 +60,7 @@ class NewPasswordVC: UIViewController {
         self.dismiss(animated: true)
     }
     
-    //MARK: - Functions
+    // MARK: - Functions
     
     func validateTextField(user:UITextField) throws -> String  {
         guard let userEmail = user.text, userEmail.isValidEmail else {
@@ -58,7 +69,7 @@ class NewPasswordVC: UIViewController {
         return userEmail
     }
 
-    func requestNewPassword(withEmail email:String, completionHandler: @escaping (_ json:JSON)->Void){
+    func requestNewPassword(withEmail email:String, completionHandler: @escaping (_ json:JSON) -> Void){
         Alamofire.request(Api.Url.resetPassword(with: email)).responseJSON { response in
             guard response.result.error == nil else {
                 self.log.error(response.result.error!)

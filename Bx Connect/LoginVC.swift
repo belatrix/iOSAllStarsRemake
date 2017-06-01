@@ -11,38 +11,69 @@ import Alamofire
 import SwiftyJSON
 import SwiftyBeaver
 import SafariServices
+import SwiftyUserDefaults
 
 enum LoginError:Error {
     case invalidUser
     case invalidPassword
 }
 
-class Login: UIViewController {
+class LoginVC: UIViewController {
     
     // MARK: - Properties
+    
     @IBOutlet weak var userTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var createAccountButton: UIButton!
     var employee:Employee?
     var authenticate:Authenticate!
     let log = SwiftyBeaver.self
     
     // MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        Please.addCornerRadiusTo(button: loginButton,createAccountButton)
+        
+        let headers:HTTPHeaders = ["Authorization":"Token 39f0511a41b7a189959fe626fd5e141fe646d9e4"]
+        Alamofire.request("https://bxconnect.herokuapp.com:443/api/employee/87", headers: headers).responseJSON() { response -> Void in
+            self.log.debug(response)
+            guard response.result.error == nil else {
+                self.log.error(response.result.error!)
+                return
+            }
+            guard let json = response.result.value else {
+                self.log.error(response.result.error!)
+                return
+            }
+            self.log.debug(json)
+            debugPrint(response)
+        }
     }
     
     // MARK: - Actions
+    
     @IBAction func login(_ sender: UIButton) {
         do {
             let textField = try self.validateTextField(user: self.userTextField, password: self.passwordTextField)
             let activity = Please.showActivityButton(in: sender)
             self.authenticationFor(user: textField.0, with: textField.1, completionHandler: { json in
                 activity.stopAnimating()
+                self.log.verbose(json)
                 if let detail = json["detail"].string {
                     Please.showAlert(withMessage: detail, in: self)
                     return
                 }
-                self.log.verbose(json)
+                Defaults[.token] = json["token"].string!
+                self.authenticate = Authenticate(data: json)
+                self.getUserData(with: self.authenticate, completionHandler: { json in
+                    self.log.verbose(json)
+                    if let detail = json["detail"].string {
+                        Please.showAlert(withMessage: detail, in: self)
+                        return
+                    }
+                })
             })
         } catch let error as LoginError{
             self.handle(error)
@@ -101,11 +132,11 @@ class Login: UIViewController {
     }
     
     func getUserData(with auth:Authenticate, completionHandler: @escaping (_ json:JSON)->Void) {
-        let urlEmployeeId = URL(string: Api.Url.employee(with: auth.userId!))
-        var urlEmployeeRequest = URLRequest(url: urlEmployeeId!)
-        urlEmployeeRequest.addValue("Authorization", forHTTPHeaderField: "Token \(auth.token)")
+        //Api.Url.employee(with: auth.userId!)
+        let headers:HTTPHeaders = ["Authorization":"Token 39f0511a41b7a189959fe626fd5e141fe646d9e4"]
         
-        Alamofire.request(urlEmployeeRequest).responseJSON() { response -> Void in
+        Alamofire.request("https://bxconnect.herokuapp.com:443/api/employee/87", headers: headers).responseJSON() { response -> Void in
+            self.log.debug(response)
             guard response.result.error == nil else {
                 self.log.error(response.result.error!)
                 return
@@ -114,6 +145,7 @@ class Login: UIViewController {
                 self.log.error(response.result.error!)
                 return
             }
+            debugPrint(response)
             completionHandler(JSON(json))
         }
     }

@@ -9,5 +9,5 @@
 import SwiftyUserDefaults
 
 extension DefaultsKeys {
-    static let session = DefaultsKey<Bool>("session")
+    static var token = DefaultsKey<String>("token")
 }
