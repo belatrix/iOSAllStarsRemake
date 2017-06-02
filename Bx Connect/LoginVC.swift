@@ -35,21 +35,6 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         Please.addCornerRadiusTo(button: loginButton,createAccountButton)
-        
-        let headers:HTTPHeaders = ["Authorization":"Token 39f0511a41b7a189959fe626fd5e141fe646d9e4"]
-        Alamofire.request("https://bxconnect.herokuapp.com:443/api/employee/87", headers: headers).responseJSON() { response -> Void in
-            self.log.debug(response)
-            guard response.result.error == nil else {
-                self.log.error(response.result.error!)
-                return
-            }
-            guard let json = response.result.value else {
-                self.log.error(response.result.error!)
-                return
-            }
-            self.log.debug(json)
-            debugPrint(response)
-        }
     }
     
     // MARK: - Actions
@@ -65,7 +50,6 @@ class LoginVC: UIViewController {
                     Please.showAlert(withMessage: detail, in: self)
                     return
                 }
-                Defaults[.token] = json["token"].string!
                 self.authenticate = Authenticate(data: json)
                 self.getUserData(with: self.authenticate, completionHandler: { json in
                     self.log.verbose(json)
@@ -132,10 +116,11 @@ class LoginVC: UIViewController {
     }
     
     func getUserData(with auth:Authenticate, completionHandler: @escaping (_ json:JSON)->Void) {
-        //Api.Url.employee(with: auth.userId!)
-        let headers:HTTPHeaders = ["Authorization":"Token 39f0511a41b7a189959fe626fd5e141fe646d9e4"]
         
-        Alamofire.request("https://bxconnect.herokuapp.com:443/api/employee/87", headers: headers).responseJSON() { response -> Void in
+        let headers:HTTPHeaders = ["Authorization":"Token \(auth.token!)"]
+        self.log.debug(headers)
+        self.log.debug(Api.Url.employee(with: auth.userId!))
+        Alamofire.request(Api.Url.employee(with: auth.userId!), headers: headers).responseJSON() { response -> Void in
             self.log.debug(response)
             guard response.result.error == nil else {
                 self.log.error(response.result.error!)
@@ -145,7 +130,6 @@ class LoginVC: UIViewController {
                 self.log.error(response.result.error!)
                 return
             }
-            debugPrint(response)
             completionHandler(JSON(json))
         }
     }

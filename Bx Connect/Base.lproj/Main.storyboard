@@ -195,7 +195,7 @@
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PasswordIcon" translatesAutoresizingMaskIntoConstraints="NO" id="rjW-F9-tcL">
                                                                         <rect key="frame" x="0.0" y="5" width="25" height="25"/>
                                                                     </imageView>
-                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="45b4" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="so2-Lh-pkY">
+                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="so2-Lh-pkY">
                                                                         <rect key="frame" x="45" y="0.0" width="270" height="35"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="35" id="5IS-TP-X2C"/>
