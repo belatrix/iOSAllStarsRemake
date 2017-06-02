@@ -57,6 +57,8 @@ class LoginVC: UIViewController {
                         Please.showAlert(withMessage: detail, in: self)
                         return
                     }
+                    self.employee = Employee(data: json)
+                    self.performSegue(withIdentifier: K.Segue.tabController, sender: nil)
                 })
             })
         } catch let error as LoginError{
@@ -64,8 +66,6 @@ class LoginVC: UIViewController {
         } catch {
             self.log.error("Login Error")
         }
-        
-        //self.performSegue(withIdentifier: K.Segue.tabController, sender: nil)
     }
     
     @IBAction func showPrivacyPolicy(_ sender: Any) {

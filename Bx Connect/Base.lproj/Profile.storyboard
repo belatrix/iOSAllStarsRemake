@@ -254,6 +254,13 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics">
                         <color key="tintColor" red="0.56107233509999999" green="0.56107233509999999" blue="0.56107233509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </simulatedTabBarMetrics>
+                    <connections>
+                        <outlet property="userEmailLabel" destination="2aI-90-G79" id="NqE-nl-hiD"/>
+                        <outlet property="userImage" destination="4Yq-fD-KDO" id="CKa-Ca-oeL"/>
+                        <outlet property="userLocationLabel" destination="vgr-b9-C42" id="vqJ-Du-HGp"/>
+                        <outlet property="userNameLabel" destination="hUZ-ar-yXv" id="9Zn-0r-j38"/>
+                        <outlet property="userSkypeLabel" destination="bgV-cG-NZ2" id="BDL-7X-ef6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

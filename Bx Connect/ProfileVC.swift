@@ -7,35 +7,45 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireImage
 import SwiftyBeaver
 
 class ProfileVC: UIViewController {
     
-    var employee:Employee?
+    // MARK: - Properties
+    
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var userEmailLabel: UILabel!
+    @IBOutlet weak var userSkypeLabel: UILabel!
+    @IBOutlet weak var userLocationLabel: UILabel!
+    @IBOutlet weak var userImage: UIImageView!
+    var employee:Employee!
     let log = SwiftyBeaver.self
 
+    // MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        log.debug(employee ?? "No employee")
-        log.verbose(employee?.email ?? "no email")
-        log.verbose(employee?.firstName ?? "no firstname")
-        log.verbose(employee?.lastName ?? "no lastname")
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        self.setImageProfile(withURL: self.employee.avatar!)
+        self.setDataInView(ofEmployee: self.employee)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // MARK: - Functions
+    
+    func setImageProfile(withURL url:String) {
+        self.userImage.af_setImage(
+            withURL: URL(string: url)!,
+            imageTransition: .crossDissolve(0.2)
+        )
     }
-    */
+
+    func setDataInView(ofEmployee employee:Employee) {
+        self.userNameLabel.text = "\(employee.firstName!) \(employee.lastName!)"
+        self.userEmailLabel.text = "\(employee.email!)"
+        self.userSkypeLabel.text = "Skype: \(employee.skypeId!)"
+        self.userLocationLabel.text = "Location: \(employee.location!.name!)"
+    }
+
 
 }

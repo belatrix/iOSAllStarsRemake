@@ -13,7 +13,7 @@ struct Api {
         static let root = "https://bxconnect.herokuapp.com:443"
         static let authenticate = "\(root)/api/employee/authenticate/"
         static func employee(with id:Int) -> String {
-            return "\(root)/api/employee/\(id)"
+            return "\(root)/api/employee/\(id)/"
         }
         static func resetPassword(with email:String) -> String {
             return "\(root)/api/employee/reset/password/\(email)/"
