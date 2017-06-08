@@ -10,4 +10,6 @@ import SwiftyUserDefaults
 
 extension DefaultsKeys {
     static var token = DefaultsKey<String>("token")
+    static var userID = DefaultsKey<Int>("userID")
+    static var employee = DefaultsKey<Employee>("employee")
 }

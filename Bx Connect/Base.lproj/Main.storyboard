@@ -426,7 +426,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="Feh-Ys-Kai">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Qu2-vo-b2b" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabController" automaticallyAdjustsScrollViewInsets="NO" id="Qu2-vo-b2b" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="J3F-2Q-8RC">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>

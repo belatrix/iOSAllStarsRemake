@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import SwiftyUserDefaults
 
 class Authenticate: NSObject {
     
@@ -16,7 +17,7 @@ class Authenticate: NSObject {
     var isBaseProfileComplete:Bool?
     var resetPasswordCode:String?
     var isStaff:Bool?
-    var userId:Int?
+    var userID:Int?
     
     init(data: JSON) {
         self.token = data["token"].string
@@ -24,7 +25,14 @@ class Authenticate: NSObject {
         self.isBaseProfileComplete = data["is_base_profile_complete"].bool
         self.resetPasswordCode = data["reset_password_code"].string
         self.isStaff = data["is_staff"].bool
-        self.userId = data["user_id"].int
+        self.userID = data["user_id"].int
     }
 
+}
+
+extension Authenticate {
+    func saveInDefaults() {
+        Defaults[.token] = self.token!
+        Defaults[.userID] = self.userID!
+    }
 }

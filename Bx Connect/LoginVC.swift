@@ -12,8 +12,9 @@ import SwiftyJSON
 import SwiftyBeaver
 import SafariServices
 import SwiftyUserDefaults
+import Moya
 
-enum LoginError:Error {
+enum LoginError:Swift.Error {
     case invalidUser
     case invalidPassword
 }
@@ -27,8 +28,8 @@ class LoginVC: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var createAccountButton: UIButton!
     var employee:Employee?
-    var authenticate:Authenticate!
     let log = SwiftyBeaver.self
+    let provider = MoyaProvider<ConnectAPI>(endpointClosure: endpointClosure)
     
     // MARK: - LifeCycle
     
@@ -44,22 +45,29 @@ class LoginVC: UIViewController {
             let textField = try self.validateTextField(user: self.userTextField, password: self.passwordTextField)
             let activity = Please.showActivityButton(in: sender)
             self.authenticationFor(user: textField.0, with: textField.1, completionHandler: { json in
+                
                 activity.stopAnimating()
                 self.log.verbose(json)
+                
                 if let detail = json["detail"].string {
                     Please.showAlert(withMessage: detail, in: self)
                     return
                 }
-                self.authenticate = Authenticate(data: json)
-                self.getUserData(with: self.authenticate, completionHandler: { json in
+                
+                let authenticate = Authenticate(data: json)
+                authenticate.saveInDefaults()
+                
+                self.getUserData(with: authenticate.userID!, completionHandler: { json in
                     self.log.verbose(json)
                     if let detail = json["detail"].string {
                         Please.showAlert(withMessage: detail, in: self)
                         return
                     }
                     self.employee = Employee(data: json)
+                    
                     self.performSegue(withIdentifier: K.Segue.tabController, sender: nil)
                 })
+                
             })
         } catch let error as LoginError{
             self.handle(error)
@@ -100,38 +108,31 @@ class LoginVC: UIViewController {
     }
 
     func authenticationFor(user:String, with password:String, completionHandler: @escaping (_ json:JSON)->Void) {
-        let authParamaters = ["username":user, "password":password]
-        Alamofire.request(Api.Url.authenticate, method: .post, parameters:authParamaters).responseJSON() { response -> Void in
-            guard response.result.error == nil else {
-                self.log.error(response.result.error!)
-                return
+        
+        self.provider.request(.authenticate(user: user, password: password)) { result in
+            switch result {
+            case let .success(moyaResponse):
+                let data = moyaResponse.data
+                completionHandler(JSON(data))
+            case let .failure(error):
+                self.log.error(error)
             }
-            guard let json = response.result.value else {
-                self.log.error(response.result.error!)
-                return
-            }
-            completionHandler(JSON(json))
         }
         
     }
     
-    func getUserData(with auth:Authenticate, completionHandler: @escaping (_ json:JSON)->Void) {
+    func getUserData(with id:Int, completionHandler: @escaping (_ json:JSON)->Void) {
         
-        let headers:HTTPHeaders = ["Authorization":"Token \(auth.token!)"]
-        self.log.debug(headers)
-        self.log.debug(Api.Url.employee(with: auth.userId!))
-        Alamofire.request(Api.Url.employee(with: auth.userId!), headers: headers).responseJSON() { response -> Void in
-            self.log.debug(response)
-            guard response.result.error == nil else {
-                self.log.error(response.result.error!)
-                return
+        self.provider.request(.employee(id: id)) { result in
+            switch result {
+            case let .success(moyaResponse):
+                let data = moyaResponse.data
+                completionHandler(JSON(data))
+            case let .failure(error):
+                self.log.error(error)
             }
-            guard let json = response.result.value else {
-                self.log.error(response.result.error!)
-                return
-            }
-            completionHandler(JSON(json))
         }
+        
     }
     
     func handle(_ error:LoginError) {

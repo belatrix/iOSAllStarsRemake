@@ -13,6 +13,8 @@ target 'Bx Connect' do
   pod 'IQKeyboardManagerSwift'
   pod 'SwiftyBeaver'
   pod 'SwiftyUserDefaults'
+  pod 'Moya'
+  
 
   target 'Bx ConnectTests' do
     inherit! :search_paths

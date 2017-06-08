@@ -17,7 +17,7 @@ class Employee: NSObject {
     var firstName:String?
     var lastName:String?
     var location:Location?
-    var skypeId:String?
+    var skypeID:String?
     var avatar:String?
     var isBaseProfileComplete:Bool?
     var isPasswordResetRequired:Bool?
@@ -42,7 +42,7 @@ class Employee: NSObject {
         self.firstName = data["first_name"].string
         self.lastName = data["last_name"].string
         self.location = Location(data: data["location"])
-        self.skypeId = data["skype_id"].string
+        self.skypeID = data["skype_id"].string
         self.avatar = data["avatar"].string
         self.isBaseProfileComplete = data["is_base_profile_complete"].bool
         self.isPasswordResetRequired = data["is_password_reset_required"].bool
@@ -60,6 +60,5 @@ class Employee: NSObject {
         self.position = Position(data: data["position"])
         self.roles = EmployeeRole.getList(data: data["roles"])
     }
-    
 
 }

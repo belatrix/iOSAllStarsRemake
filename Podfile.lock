@@ -4,6 +4,12 @@ PODS:
     - Alamofire (~> 4.1)
   - DZNEmptyDataSet (1.8.1)
   - IQKeyboardManagerSwift (4.0.9)
+  - Moya (8.0.3):
+    - Moya/Core (= 8.0.3)
+  - Moya/Core (8.0.3):
+    - Alamofire (~> 4.1)
+    - Result (~> 3.0)
+  - Result (3.2.1)
   - SwiftyBeaver (1.2.2)
   - SwiftyJSON (3.1.4)
   - SwiftyUserDefaults (3.0.0)
@@ -13,6 +19,7 @@ DEPENDENCIES:
   - AlamofireImage (~> 3.1)
   - DZNEmptyDataSet
   - IQKeyboardManagerSwift
+  - Moya
   - SwiftyBeaver
   - SwiftyJSON
   - SwiftyUserDefaults
@@ -22,10 +29,12 @@ SPEC CHECKSUMS:
   AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   IQKeyboardManagerSwift: 2eefe6c429b86aa08bfbc1b5c891164d754adf91
+  Moya: d3721622e3cc0cc2f038d69a258686f0b66e7252
+  Result: 2453a22e5c5b11c0c3a478736e82cd02f763b781
   SwiftyBeaver: 90a39e3dc5136b7285f2e4c870b107e3933b8b84
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
 
-PODFILE CHECKSUM: ba9ac58807ea3df47f2fd1fb2eeb56b25f244d93
+PODFILE CHECKSUM: fe1c1766208e1141eea9c18379a8a834cfbec229
 
 COCOAPODS: 1.2.1

@@ -24,6 +24,9 @@
 		66B7B1941EDDF8450015DB8C /* Please.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B7B1931EDDF8450015DB8C /* Please.swift */; };
 		66B7B1951EDDF8450015DB8C /* Please.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B7B1931EDDF8450015DB8C /* Please.swift */; };
 		66B7B1961EDDF8450015DB8C /* Please.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B7B1931EDDF8450015DB8C /* Please.swift */; };
+		66C0ADE71EE98A1B007F97BD /* ConnectAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C0ADE61EE98A1B007F97BD /* ConnectAPI.swift */; };
+		66C0ADE81EE98A1B007F97BD /* ConnectAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C0ADE61EE98A1B007F97BD /* ConnectAPI.swift */; };
+		66C0ADE91EE98A1B007F97BD /* ConnectAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C0ADE61EE98A1B007F97BD /* ConnectAPI.swift */; };
 		66CE42031ED5E86E00DBB8A3 /* ApiUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CE42021ED5E86E00DBB8A3 /* ApiUrl.swift */; };
 		66CE42041ED5E86E00DBB8A3 /* ApiUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CE42021ED5E86E00DBB8A3 /* ApiUrl.swift */; };
 		66CE42051ED5E86E00DBB8A3 /* ApiUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CE42021ED5E86E00DBB8A3 /* ApiUrl.swift */; };
@@ -119,6 +122,7 @@
 		668170211ED4A0440073E900 /* Bx_ConnectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bx_ConnectUITests.swift; sourceTree = "<group>"; };
 		668170231ED4A0440073E900 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66B7B1931EDDF8450015DB8C /* Please.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Please.swift; sourceTree = "<group>"; };
+		66C0ADE61EE98A1B007F97BD /* ConnectAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectAPI.swift; sourceTree = "<group>"; };
 		66CE42021ED5E86E00DBB8A3 /* ApiUrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiUrl.swift; sourceTree = "<group>"; };
 		66CE42061ED61DD400DBB8A3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		66CE420A1ED630B300DBB8A3 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -283,6 +287,7 @@
 				668170081ED4A0430073E900 /* Assets.xcassets */,
 				6681700D1ED4A0430073E900 /* Info.plist */,
 				66CE42021ED5E86E00DBB8A3 /* ApiUrl.swift */,
+				66C0ADE61EE98A1B007F97BD /* ConnectAPI.swift */,
 				66CE42061ED61DD400DBB8A3 /* Constants.swift */,
 				66CE420E1ED630EB00DBB8A3 /* Regex.swift */,
 				66B7B1931EDDF8450015DB8C /* Please.swift */,
@@ -633,6 +638,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66E3470A1ED74ACC00F5C30D /* ExAppDelegate.swift in Sources */,
+				66C0ADE71EE98A1B007F97BD /* ConnectAPI.swift in Sources */,
 				668170041ED4A0430073E900 /* LoginVC.swift in Sources */,
 				66E346FA1ED7385700F5C30D /* DefaultsKeys.swift in Sources */,
 				668170021ED4A0430073E900 /* AppDelegate.swift in Sources */,
@@ -671,6 +677,7 @@
 				66CE42081ED61DD400DBB8A3 /* Constants.swift in Sources */,
 				66B7B1951EDDF8450015DB8C /* Please.swift in Sources */,
 				66E347031ED73B0700F5C30D /* Position.swift in Sources */,
+				66C0ADE81EE98A1B007F97BD /* ConnectAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -693,6 +700,7 @@
 				66CE42091ED61DD400DBB8A3 /* Constants.swift in Sources */,
 				66B7B1961EDDF8450015DB8C /* Please.swift in Sources */,
 				66E347041ED73B0700F5C30D /* Position.swift in Sources */,
+				66C0ADE91EE98A1B007F97BD /* ConnectAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

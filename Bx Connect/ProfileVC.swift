@@ -20,15 +20,20 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var userSkypeLabel: UILabel!
     @IBOutlet weak var userLocationLabel: UILabel!
     @IBOutlet weak var userImage: UIImageView!
-    var employee:Employee!
+    var employee: Employee?
     let log = SwiftyBeaver.self
 
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setImageProfile(withURL: self.employee.avatar!)
-        self.setDataInView(ofEmployee: self.employee)
+        if let employee = self.employee {
+            self.setImageProfile(withURL: employee.avatar!)
+            self.setDataInView(ofEmployee: employee)
+        } else {
+            
+        }
+        
     }
     
     // MARK: - Functions
@@ -43,7 +48,7 @@ class ProfileVC: UIViewController {
     func setDataInView(ofEmployee employee:Employee) {
         self.userNameLabel.text = "\(employee.firstName!) \(employee.lastName!)"
         self.userEmailLabel.text = "\(employee.email!)"
-        self.userSkypeLabel.text = "Skype: \(employee.skypeId!)"
+        self.userSkypeLabel.text = "Skype: \(employee.skypeID!)"
         self.userLocationLabel.text = "Location: \(employee.location!.name!)"
     }
 
