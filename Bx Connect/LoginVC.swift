@@ -57,14 +57,13 @@ class LoginVC: UIViewController {
                 let authenticate = Authenticate(data: json)
                 authenticate.saveInDefaults()
                 
-                self.getUserData(with: authenticate.userID!, completionHandler: { json in
+                Please.getUserData(with: authenticate.userID!, completionHandler: { json in
                     self.log.verbose(json)
                     if let detail = json["detail"].string {
                         Please.showAlert(withMessage: detail, in: self)
                         return
                     }
                     self.employee = Employee(data: json)
-                    
                     self.performSegue(withIdentifier: K.Segue.tabController, sender: nil)
                 })
                 
@@ -120,20 +119,7 @@ class LoginVC: UIViewController {
         }
         
     }
-    
-    func getUserData(with id:Int, completionHandler: @escaping (_ json:JSON)->Void) {
-        
-        self.provider.request(.employee(id: id)) { result in
-            switch result {
-            case let .success(moyaResponse):
-                let data = moyaResponse.data
-                completionHandler(JSON(data))
-            case let .failure(error):
-                self.log.error(error)
-            }
-        }
-        
-    }
+
     
     func handle(_ error:LoginError) {
         switch error {

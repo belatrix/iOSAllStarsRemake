@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import SwiftyJSON
+import Moya
+import SwiftyBeaver
 
 /* Please is my new name for tradicional Util struct */
 
@@ -56,6 +59,20 @@ struct Please {
     static func addCornerRadiusTo(button:UIButton...) {
         for btn in button {
             btn.layer.cornerRadius = 5
+        }
+    }
+    
+    static func getUserData(with id:Int, completionHandler: @escaping (_ json:JSON)->Void) {
+        let provider = MoyaProvider<ConnectAPI>(endpointClosure: endpointClosure)
+        let log = SwiftyBeaver.self
+        provider.request(.employee(id: id)) { result in
+            switch result {
+            case let .success(moyaResponse):
+                let data = moyaResponse.data
+                completionHandler(JSON(data))
+            case let .failure(error):
+                log.error(error)
+            }
         }
     }
     

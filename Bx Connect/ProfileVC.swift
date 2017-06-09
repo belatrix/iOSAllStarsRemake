@@ -10,6 +10,8 @@ import UIKit
 import Alamofire
 import AlamofireImage
 import SwiftyBeaver
+import SwiftyUserDefaults
+import Moya
 
 class ProfileVC: UIViewController {
     
@@ -31,7 +33,15 @@ class ProfileVC: UIViewController {
             self.setImageProfile(withURL: employee.avatar!)
             self.setDataInView(ofEmployee: employee)
         } else {
-            
+            Please.getUserData(with: Defaults[.userID], completionHandler: { json in
+                if let detail = json["detail"].string {
+                    Please.showAlert(withMessage: detail, in: self)
+                    return
+                }
+                self.employee = Employee(data: json)
+                self.setImageProfile(withURL: (self.employee?.avatar!)!)
+                self.setDataInView(ofEmployee: self.employee!)
+            })
         }
         
     }
@@ -50,6 +60,10 @@ class ProfileVC: UIViewController {
         self.userEmailLabel.text = "\(employee.email!)"
         self.userSkypeLabel.text = "Skype: \(employee.skypeID!)"
         self.userLocationLabel.text = "Location: \(employee.location!.name!)"
+    }
+    
+    func getUserData() {
+        
     }
 
 
